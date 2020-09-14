@@ -1,8 +1,9 @@
-/target/
+target/
 .idea/
 .settings
 .project
 .classpath
+.dbeaver/
 
 *.iml
 .DS_Store
