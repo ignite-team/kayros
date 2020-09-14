@@ -1,0 +1,102 @@
+package es.ozona.kairos.employee.domain.model.valueobjects;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+import org.springframework.util.ObjectUtils;
+
+import es.ozona.kairos.employee.interfaces.rest.dto.EmployeeResource;
+
+@Embeddable
+public class UserAccount implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@NotEmpty
+	@Length(min = 3, max = 50)
+	@Column(name = "username", nullable = false, unique = true, length = 50)
+	private String username;
+
+	@NotEmpty
+	@Email
+	@Length(min = 3, max = 50)
+	@Column(name = "email", nullable = false, unique = true, length = 50)
+	private String email;
+
+	@NotEmpty
+	@Length(min = 3, max = 50)
+	@Column(name = "firstname", nullable = false, unique = false, length = 50)
+	private String firstname;
+
+	@NotEmpty
+	@Length(min = 3, max = 50)
+	@Column(name = "lastname", nullable = false, unique = false, length = 50)
+	private String lastname;
+
+	public UserAccount() {
+
+	}
+
+	public UserAccount(String username, String email, String firstname, String lastname) {
+		this.username = username;
+		this.email = email;
+		this.firstname = firstname;
+		this.lastname = lastname;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	@Override
+	public int hashCode() {
+
+		return ObjectUtils.nullSafeHashCode(new Object[] { username, email, firstname, lastname });
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		if (obj == null || !(obj instanceof EmployeeResource)) {
+			return false;
+		}
+		return this.hashCode() == obj.hashCode();
+	}
+
+}

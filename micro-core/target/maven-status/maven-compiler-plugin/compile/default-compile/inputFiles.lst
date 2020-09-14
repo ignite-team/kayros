@@ -1,0 +1,16 @@
+C:\Proxectos\kairos-back\micro-core\src\main\java\es\ozona\micro\core\infrastructure\respository\UUIDIdentityGenerator.java
+C:\Proxectos\kairos-back\micro-core\src\main\java\es\ozona\micro\core\application\internal\eventservices\BaseEventSourceService.java
+C:\Proxectos\kairos-back\micro-core\src\main\java\es\ozona\micro\core\infrastructure\respository\BaseRepositoryImpl.java
+C:\Proxectos\kairos-back\micro-core\src\main\java\es\ozona\micro\core\application\internal\commandservices\BaseCommandService.java
+C:\Proxectos\kairos-back\micro-core\src\main\java\es\ozona\micro\core\infrastructure\message\resources\Labels.java
+C:\Proxectos\kairos-back\micro-core\src\main\java\es\ozona\micro\core\interfaces\rest\BaseControllerImpl.java
+C:\Proxectos\kairos-back\micro-core\src\main\java\es\ozona\micro\core\application\internal\exceptions\ApplicationException.java
+C:\Proxectos\kairos-back\micro-core\src\main\java\es\ozona\micro\core\application\internal\eventservices\BaseEventSourceSeviceImpl.java
+C:\Proxectos\kairos-back\micro-core\src\main\java\es\ozona\micro\core\application\internal\queryservices\BaseQueryService.java
+C:\Proxectos\kairos-back\micro-core\src\main\java\es\ozona\micro\core\application\internal\commandservices\BaseCommandServiceImpl.java
+C:\Proxectos\kairos-back\micro-core\src\main\java\es\ozona\micro\core\application\internal\queryservices\BaseQueryServiceImpl.java
+C:\Proxectos\kairos-back\micro-core\src\main\java\es\ozona\micro\core\infrastructure\message\resources\InitializationException.java
+C:\Proxectos\kairos-back\micro-core\src\main\java\es\ozona\micro\core\interfaces\rest\MCModelMapper.java
+C:\Proxectos\kairos-back\micro-core\src\main\java\es\ozona\micro\core\infrastructure\broker\EventSource.java
+C:\Proxectos\kairos-back\micro-core\src\main\java\es\ozona\micro\core\infrastructure\respository\BaseRepository.java
+C:\Proxectos\kairos-back\micro-core\src\main\java\es\ozona\micro\core\interfaces\rest\BaseController.java

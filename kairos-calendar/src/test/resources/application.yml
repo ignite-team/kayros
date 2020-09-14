@@ -1,0 +1,84 @@
+logging:
+  level:
+    es:
+      ozona: debug
+    root: warn
+    
+server:
+  port: 8081
+
+kairosCalendarApplication:
+  service:
+    calendar:
+      url: http://localhost:{port}/calendar
+      api:
+        create: /
+        find: /find?calendarId={calendarId}
+        findByYear: /findByYear?year={year}
+        findAll: /findAll
+        holidayCreate: /{calendarId}/holiday
+        
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    service-url:
+      defaultZone: http://eureka-primary:4002/eureka
+  
+spring:
+  application:
+    name: kairos-calendar-service
+  cloud:
+    stream:
+      bindings:
+        calendarManagementChannel:
+          destination: calendarManagement    
+          binder: rabbit
+        shiftplanManagementChannel:
+          destination: shiftplanManagement         
+          binder: rabbit
+        calendarAssigningChannel:
+          destination: calendarAssigning
+          group: employeeQueue
+          binder: rabbit
+      binders:
+        rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+  datasource:
+    url: jdbc:h2:file:C:/Proxectos/testdb;AUTO_SERVER=TRUE #DB_CLOSE_ON_EXIT=false
+    username: sa
+    password:
+    driverClassName: org.h2.Driver     
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    open-in-view: true          
+    database-platform: es.ozona.kairos.calendar.MyH2Dialect
+    hibernate:      
+      ddl-auto: create-drop
+#    properties:
+#      hibernate:
+#        hbm2ddl:
+#          auto: update   
+#      javax:
+#        persistence:      
+#          schema-generation:
+#            database:
+#              action: drop-and-create                
+#            drop-source: metadata
+#            create-source: metadata
+#            scripts:
+#              action: drop-and-create
+#              create-target: ./src/test/resources/dll/create.sql
+#              drop-target: ./src/test/resources/dll/drop.sql
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
