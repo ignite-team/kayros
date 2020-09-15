@@ -1,24 +1,22 @@
-# Project Base for Vaadin and Spring Boot
+# Custom project from start.vaadin.com
 
-This project can be used as a starting point to create your own Vaadin application with Spring Boot.
-It contains all the necessary configuration and some placeholder files to get you started.
+This project was created from https://start.vaadin.com. It's a fully working Vaadin application that you continue developing locally.
+It has all the necessary dependencies and files to help you get going.
 
-The best way to create your own project based on this starter is [start.vaadin.com](https://start.vaadin.com/) - you can get only the necessary parts and choose the package naming you want to use.
+The project is a standard Maven project, so you can import it to your IDE of choice. You'll need to have Java 8+ and Node.js 10+ installed.
 
-## Running the Application
+To run from the command line, use `mvn` and open [http://localhost:8080](http://localhost:8080) in your browser.
 
-Import the project to the IDE of your choosing as a Maven project.
+## Project structure
 
-Run the application using `mvn spring-boot:run` or by running the `Application` class directly from your IDE.
+- `MainView.java` in `src/main/java` contains the navigation setup. It uses [App Layout](https://vaadin.com/components/vaadin-app-layout).
+- `views` package in `src/main/java` contains the server-side Java views of your application.
+- `views` folder in `frontend/src/` contains the client-side JavaScript views of your application.
 
-Open http://localhost:8080/ in your browser.
+## What next?
 
-If you want to run the application locally in the production mode, run `mvn spring-boot:run -Pproduction`.
+[vaadin.com](https://vaadin.com) has lots of material to help you get you started:
 
-To run Integration Tests, execute `mvn verify -Pintegration-tests`.
-
-## More Information
-
-- [Vaadin Flow](https://vaadin.com/flow) documentation
-- [Using Vaadin and Spring](https://vaadin.com/docs/v14/flow/spring/tutorial-spring-basic.html) article
-
+- Follow the tutorials in [vaadin.com/tutorials](https://vaadin.com/tutorials). Especially [vaadin.com/tutorials/getting-started-with-flow](https://vaadin.com/tutorials/getting-started-with-flow) is good for getting a grasp of the basic Vaadin concepts.
+- Read the documentation in [vaadin.com/docs](https://vaadin.com/docs).
+- For a bigger Vaadin application example, check out the Full Stack App starter from [vaadin.com/start](https://vaadin.com/start).

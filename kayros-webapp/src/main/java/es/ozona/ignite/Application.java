@@ -1,4 +1,4 @@
-package es.ozona;
+package es.ozona.ignite;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

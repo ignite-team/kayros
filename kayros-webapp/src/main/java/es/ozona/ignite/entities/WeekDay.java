@@ -1,0 +1,5 @@
+package es.ozona.ignite.entities;
+
+public enum WeekDay {
+	MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+}
