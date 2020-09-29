@@ -1,8 +1,8 @@
 <zk xmlns:n="native">
-	<!--
+
+	<!-- 
 		<n:form action="login" method="POST">
-		<vlayout>
-		
+		<vlayout>		
 		<grid width="450px">
 		<columns>
 		<column width="160px" />
@@ -31,9 +31,11 @@
 		</vlayout>
 		</n:form>
 	-->
-	<window  border="none" position="center,center" mode="overlapped" width="400px">
+	<window border="none" position="center,center" mode="overlapped"
+		width="400px">
 		<vbox align="center">
-			<image src="~./img/ozona-tecnologia-corporeo_.png"	width="150px" height="auto" />
+			<image src="~./img/ozona-tecnologia-corporeo_.png"
+				width="150px" height="auto" />
 			<space></space>
 			<label>Bienvenido a Kayros</label>
 			<space></space>
@@ -43,14 +45,15 @@
 			<grid>
 				<rows>
 					<row>
-						<a href="oauth2/authorization/kayrosclient" vflex="1">
+						<a href="oauth2/authorization/kayrosclient"
+							vflex="1">
 							<image
 								src="~./img/ozona-tecnologia-corporeo_2.png" width="150px"
 								height="auto">
 							</image>
 							<space></space>
 							<label>OAuth2 Server</label>
-						</a>						
+						</a>
 					</row>
 				</rows>
 			</grid>

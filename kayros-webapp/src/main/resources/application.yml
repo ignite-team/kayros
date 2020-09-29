@@ -1,7 +1,7 @@
 #see: https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 
 zk:
-  homepage: index
+  homepage: login
   zul-view-resolver-prefix: /zul
 
 server:

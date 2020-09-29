@@ -1,6 +1,22 @@
 <zk>
-    <div>
-    You should see this a secure page after a successful authentication.
-    </div>
-    <a href="/logout">logout</a>
+	<div height="100px" hflex="1" style="background: rgb(237,22,81)" align="right">
+		<image src="~./img/profile.png" width="75px" height="auto" style="margin: 10px 10px 10px 10px" onClick='accountProfile.open(self,"after_start")'>
+		</image>
+	</div>
+	<tabbox vflex="1">
+		<tabs>
+			<tab>Registro</tab>
+			<tab>Exportar</tab>
+		</tabs>
+		<tabpanels>
+			<tabpanel></tabpanel>
+			<tabpanel></tabpanel>
+		</tabpanels>
+	</tabbox>
+
+	<menupopup id="accountProfile">
+		<menuitem label="Teletrabajo" checked="false" checkmark="true" onClick="self.setChecked(!self.isChecked())" />
+		<menuseparator />
+		<menuitem label="Cerrar sesión" href="/logout" />
+	</menupopup>
 </zk>

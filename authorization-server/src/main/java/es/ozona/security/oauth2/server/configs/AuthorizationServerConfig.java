@@ -24,7 +24,7 @@ import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFacto
 @RefreshScope
 @Configuration
 @EnableAuthorizationServer
-@Order
+@Order(1)
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
 	@Autowired

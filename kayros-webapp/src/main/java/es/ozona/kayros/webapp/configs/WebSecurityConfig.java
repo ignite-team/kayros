@@ -26,7 +26,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/zkau/web/**/js/**",
             "/zkau/web/**/zul/css/**",
             "/zkau/web/**/font/**",
-            "/zkau/web/**/img/**",
             "/zkau/web/**/img/**"
     };
     
@@ -55,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             	.mvcMatchers("/","/login","/logout")
             		.permitAll()
             	.mvcMatchers("/secure")
-            		.hasRole("USER")
+            		.hasRole("kayros_user")
             	.anyRequest()
             		.authenticated()
             .and()
