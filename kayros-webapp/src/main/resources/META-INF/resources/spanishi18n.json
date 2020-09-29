@@ -1,0 +1,13 @@
+{
+	"form": {
+		"title": "Iniciar sesión",
+		"username": "Correo electrónico o teléfono",
+		"password": "Contraseña",
+		"submit": "Siguiente",
+		"forgotPassword": "¿Has olvidado tu contraseña?"
+	},
+	"errorMessage": {
+		"title": "Usuario o contraseña incorrectos.",
+		"message": "Comprueba que has introducido tu usuario y contra correcto e introducelos de nuevo."
+	}
+}

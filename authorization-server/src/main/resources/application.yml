@@ -1,0 +1,35 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-primary:4002/eureka
+            
+server:
+  port: 9100
+  servlet:
+    context-path: /auth
+    session:
+      cookie:
+        path: /auth
+  
+spring:
+  application:
+    name: authorization-server
+#  ldap:    
+#    embedded:
+##      base: dc=springframework,dc=org
+##      ldif: classpath:users.ldif
+#      validation:
+#        enabled: false
+##      base-dn: dc=springframework,dc=org
+##      port: 8389
+      
+config:
+  security:
+    oauth:
+      client:
+        id: kayrosclientid
+        secret: secret
+      jwt:
+        key: clave_firma_jwt
+
+# $> keytool -genkey -alias oauth2server -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore oauth2keystore.p12

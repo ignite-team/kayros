@@ -1,0 +1,6 @@
+#main-wiew-view {
+  display: block;
+}
+:host {
+  display: block;
+}

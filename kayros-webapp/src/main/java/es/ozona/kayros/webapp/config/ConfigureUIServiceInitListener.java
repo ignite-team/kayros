@@ -1,0 +1,44 @@
+package es.ozona.kayros.webapp.config;
+
+import org.springframework.stereotype.Component;
+
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.NotFoundException;
+import com.vaadin.flow.server.ServiceInitEvent;
+import com.vaadin.flow.server.VaadinServiceInitListener;
+
+import es.ozona.kayros.webapp.security.SecurityUtils;
+import es.ozona.kayros.webapp.views.LoginView;
+
+@Component
+public class ConfigureUIServiceInitListener implements VaadinServiceInitListener {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	public void serviceInit(ServiceInitEvent event) {
+		event.getSource().addUIInitListener(uiEvent -> {
+			final UI ui = uiEvent.getUI();
+			ui.addBeforeEnterListener(this::beforeEnter);
+		});
+	}
+
+	/**
+	 * Reroutes the user if (s)he is not authorized to access the view.
+	 *
+	 * @param event before navigation event with event details
+	 */
+	private void beforeEnter(BeforeEnterEvent event) {
+		if (!SecurityUtils.isAccessGranted(event.getNavigationTarget())) {
+			if (SecurityUtils.isUserLoggedIn()) {
+				event.rerouteToError(NotFoundException.class);
+			} else {
+				event.rerouteTo(LoginView.class);
+			}
+		}
+	}
+}

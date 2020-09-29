@@ -1,0 +1,5 @@
+spring:  application:    name: hystrix-dashboard
+turbine:  app-config: kairos-employee-service # kairos-calendar-service, kairos-clock-service  cluster-name-expression: new String("default")
+
+server:
+  port: 5556eureka:  client:    service-url:      defaultZone: http://eureka-primary:4002/eureka

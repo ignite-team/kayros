@@ -1,0 +1,41 @@
+logging:
+  level:
+    org:
+      atmosphere: warn
+
+vaadin:
+  compatibilityMode: false
+
+server:
+  servlet:
+    context-path: /kayros
+    session:
+      cookie:
+        path: /kayros
+  port: 8443
+  ssl:
+    key-store-password: zWx6bv-YTePQ%1qtGtnI
+    key-store: classpath:kayrosWebappKeyStore.p12
+    key-store-type: PKCS12
+    key-alias: kayros-webapp
+
+spring:
+  security: 
+    oauth2:
+      client:
+        registration:
+          kayrosclient:
+            client-id: kayrosclientid
+            client-secret: secret
+            client-name: kayros
+            scope: user_info,read,write
+            redirect-uri: https://localhost:8443/kayros/login/oauth2/code/kayrosclient
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+            provider: kayros-authserver-provider
+        provider:
+            kayros-authserver-provider:
+              token-uri: http://localhost:9100/auth/oauth/token
+              authorization-uri: http://localhost:9100/auth/oauth/authorize
+              user-info-uri: http://localhost:9100/auth/userinfo
+              user-name-attribute: username

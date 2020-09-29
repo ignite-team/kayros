@@ -1,0 +1,24 @@
+ El volumen de la unidad C no tiene etiqueta.
+ El n£mero de serie del volumen es: 5AED-ED13
+
+ Directorio de C:\Proxectos\kayros\workspace
+
+29/09/2020  12:17    <DIR>          .
+29/09/2020  12:17    <DIR>          ..
+29/09/2020  12:16               372 .gitignore
+15/09/2020  12:11    <DIR>          .metadata
+29/09/2020  12:16    <DIR>          authorization-server
+29/09/2020  12:16    <DIR>          data-inquire
+29/09/2020  12:16    <DIR>          eureka
+29/09/2020  12:16    <DIR>          hystrix-dashboard
+29/09/2020  12:16    <DIR>          kayros-calendar
+29/09/2020  12:16    <DIR>          kayros-clock
+29/09/2020  12:16    <DIR>          kayros-employee
+29/09/2020  12:16    <DIR>          kayros-webapp
+14/09/2020  13:30            11.558 LICENSE
+29/09/2020  12:16    <DIR>          micro-core
+14/09/2020  13:30                 8 README.md
+29/09/2020  12:17                 0 work.txt
+29/09/2020  12:16    <DIR>          zuul-server
+               4 archivos         11.938 bytes
+              13 dirs  22.830.772.224 bytes libres
