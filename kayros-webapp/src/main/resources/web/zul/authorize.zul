@@ -1,0 +1,10 @@
+<?page title="Login" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<window title="login" border="normal">
+		<vlayout>
+			<label>Kayros</label>
+			<label>Seleciona método de acceso</label>
+			<label>Ozona</label>
+		</vlayout>
+	</window>
+</zk>

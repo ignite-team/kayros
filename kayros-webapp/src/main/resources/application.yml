@@ -1,10 +1,8 @@
-logging:
-  level:
-    org:
-      atmosphere: warn
+#see: https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 
-vaadin:
-  compatibilityMode: false
+zk:
+  homepage: index
+  zul-view-resolver-prefix: /zul
 
 server:
   servlet:
@@ -18,7 +16,7 @@ server:
     key-store: classpath:kayrosWebappKeyStore.p12
     key-store-type: PKCS12
     key-alias: kayros-webapp
-
+    
 spring:
   security: 
     oauth2:
