@@ -5,6 +5,11 @@ eureka:
             
 server:
   port: 9100
+  servlet:
+    context-path: /auth
+    session:
+      cookie:
+        path: /auth
   
 spring:
   application:
@@ -22,7 +27,9 @@ config:
   security:
     oauth:
       client:
-        id: kairos-webapp
-        secret: un_secreto
+        id: kayrosclientid
+        secret: secret
       jwt:
         key: clave_firma_jwt
+
+# $> keytool -genkey -alias oauth2server -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore oauth2keystore.p12
