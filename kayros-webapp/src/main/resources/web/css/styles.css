@@ -1,0 +1,13 @@
+.ozona_button {
+	background: #ed1651;
+	border: 2px solid #cccccc;
+	border-radius: 1000px;
+	box-shadow: 0 1px #eeeeee;
+	width: 45px;
+	height: 43px;
+	color: #ffffff;
+	display: inline-block;
+	font: normal bold "Open Sans", sans-serif;
+	text-align: center;
+	text-shadow: 1px 1px #ffffff;
+}

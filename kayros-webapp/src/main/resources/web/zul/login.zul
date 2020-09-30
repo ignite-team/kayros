@@ -1,3 +1,4 @@
+<?link rel="stylesheet" type="text/css" href="~./css/styles.css"?>
 <zk xmlns:n="native">
 
 	<!-- 
@@ -47,10 +48,10 @@
 					<row>
 						<a href="oauth2/authorization/kayrosclient"
 							vflex="1">
-							<image
-								src="~./img/ozona-tecnologia-corporeo_2.png" width="150px"
-								height="auto">
-							</image>
+							<button zclass="ozona_button" label="Oz" >
+<!-- 								src="~./img/ozona-tecnologia-corporeo_2.png" width="150px" -->
+<!-- 								height="auto"> -->
+							</button>
 							<space></space>
 							<label>OAuth2 Server</label>
 						</a>

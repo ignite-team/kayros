@@ -26,7 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/zkau/web/**/js/**",
             "/zkau/web/**/zul/css/**",
             "/zkau/web/**/font/**",
-            "/zkau/web/**/img/**"
+            "/zkau/web/**/img/**",
+            "/zkau/web/**/css/**"
     };
     
     // allow desktop cleanup after logout or when reloading login page
