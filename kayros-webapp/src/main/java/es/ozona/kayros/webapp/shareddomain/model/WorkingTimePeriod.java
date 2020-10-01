@@ -1,45 +1,38 @@
-package es.ozona.kairos.clock.interfaces.rest.dto;
+package es.ozona.kayros.webapp.shareddomain.model;
 
 import java.time.ZonedDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.ZonedDateTimeSerializer;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+public class WorkingTimePeriod {
 
-@ApiModel(description = "A working time period resource")
-public class WorkingTimePeriodResource {
-
-	@ApiModelProperty(value = "The start time", required = true, example = "06/07/2020 08:00")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/uuuu'T'HH:mm:ss:SSSXXXXX")
 	@JsonSerialize(using = ZonedDateTimeSerializer.class)
+	@JsonDeserialize(using = CustomZonedDateTimeDeserializer.class)
 	private ZonedDateTime startTime;
 
-	@ApiModelProperty(value = "Start time value has been generated.", required = true, example = "false")
 	private Boolean generatedStartTime;
 
-	@ApiModelProperty(value = "Start time value has been edited.", required = true, example = "false")
 	private Boolean editedStartTime;
 
-	@ApiModelProperty(value = "The finish time.", required = false, example = "06/07/2020 05:00")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/uuuu'T'HH:mm:ss:SSSXXXXX")
 	@JsonSerialize(using = ZonedDateTimeSerializer.class)
+	@JsonDeserialize(using = CustomZonedDateTimeDeserializer.class)
 	private ZonedDateTime finishTime;
 
-	@ApiModelProperty(value = "Finish time value has been generated.", required = false, example = "false")
 	private Boolean generatedFinishTime;
 
-	@ApiModelProperty(value = "Finish time value has been edited.", required = false, example = "false")
 	private Boolean editedFinishTime;
 
-	public WorkingTimePeriodResource() {
+	public WorkingTimePeriod() {
 
 	}
 
-	public WorkingTimePeriodResource(ZonedDateTime startTime, Boolean generatedStartTime, Boolean editedStartTime, ZonedDateTime finishTime,
-			Boolean generatedFinishTime, Boolean editedFinishTime) {
+	public WorkingTimePeriod(ZonedDateTime startTime, Boolean generatedStartTime, Boolean editedStartTime,
+			ZonedDateTime finishTime, Boolean generatedFinishTime, Boolean editedFinishTime) {
 		super();
 		this.startTime = startTime;
 		this.generatedStartTime = generatedStartTime;
@@ -96,4 +89,5 @@ public class WorkingTimePeriodResource {
 	public void setEditedFinishTime(Boolean editedFinishTime) {
 		this.editedFinishTime = editedFinishTime;
 	}
+
 }
