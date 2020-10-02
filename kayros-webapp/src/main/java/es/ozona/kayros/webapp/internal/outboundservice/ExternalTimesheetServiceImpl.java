@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import es.ozona.kayros.webapp.domain.model.WorkingTimePeriod;
-import es.ozona.kayros.webapp.infraestructure.feingclients.TimesheetService;
+import es.ozona.kayros.webapp.infrastructure.feingclients.TimesheetService;
 import es.ozona.kayros.webapp.internal.outboundservice.acl.WorkTimePeriodMapper;
 import es.ozona.kayros.webapp.shareddomain.model.TimesheetResource;
 
@@ -32,6 +32,7 @@ public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 
 		final List<TimesheetResource> timesheets = timesheetService.search("employeeId:%s".formatted(employeeId), "+date", 1, 1000).getItems();
 		
+		// capa de anticorrupcion
 		return CollectionUtils.isEmpty(timesheets) ? null : CollectionUtils.lastElement(timesheets).getWorkingTimePeriods().stream() 
 				.map(t -> WorkTimePeriodMapper.map(t)).collect(Collectors.toList());
 	}

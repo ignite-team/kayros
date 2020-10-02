@@ -2,27 +2,14 @@ package es.ozona.kayros.webapp.domain.model;
 
 import java.time.ZonedDateTime;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.ZonedDateTimeSerializer;
-
-import es.ozona.kayros.webapp.shareddomain.model.CustomZonedDateTimeDeserializer;
-
 public class WorkingTimePeriod {
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/uuuu'T'HH:mm:ss:SSSXXXXX")
-	@JsonSerialize(using = ZonedDateTimeSerializer.class)
-	@JsonDeserialize(using = CustomZonedDateTimeDeserializer.class)
 	private ZonedDateTime startTime;
 
 	private Boolean generatedStartTime;
 
 	private Boolean editedStartTime;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/uuuu'T'HH:mm:ss:SSSXXXXX")
-	@JsonSerialize(using = ZonedDateTimeSerializer.class)
-	@JsonDeserialize(using = CustomZonedDateTimeDeserializer.class)
 	private ZonedDateTime finishTime;
 
 	private Boolean generatedFinishTime;

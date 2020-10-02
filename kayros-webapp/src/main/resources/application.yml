@@ -33,6 +33,13 @@ kairos-clock-service:
     MaxAutoRetriesNextServer: 4
     MaxAutoRetries: 2
     
+kairos-employee-service:
+  ribbon:
+    ReadTimeout: 1000
+    ConnectTimeout: 1000   
+    MaxAutoRetriesNextServer: 4
+    MaxAutoRetries: 2
+    
 spring:
   application:
     name: kairos-webapp

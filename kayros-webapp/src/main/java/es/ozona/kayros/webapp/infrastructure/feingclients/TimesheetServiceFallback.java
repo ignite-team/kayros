@@ -1,4 +1,4 @@
-package es.ozona.kayros.webapp.infraestructure.feingclients;
+package es.ozona.kayros.webapp.infrastructure.feingclients;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;

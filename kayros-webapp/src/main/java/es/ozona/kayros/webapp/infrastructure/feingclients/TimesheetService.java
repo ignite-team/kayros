@@ -1,4 +1,4 @@
-package es.ozona.kayros.webapp.infraestructure.feingclients;
+package es.ozona.kayros.webapp.infrastructure.feingclients;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.util.MimeTypeUtils;
