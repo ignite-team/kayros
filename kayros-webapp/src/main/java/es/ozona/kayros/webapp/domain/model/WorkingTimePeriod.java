@@ -1,4 +1,4 @@
-package es.ozona.kayros.webapp.shareddomain.model;
+package es.ozona.kayros.webapp.domain.model;
 
 import java.time.ZonedDateTime;
 
@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.ZonedDateTimeSerializer;
+
+import es.ozona.kayros.webapp.shareddomain.model.CustomZonedDateTimeDeserializer;
 
 public class WorkingTimePeriod {
 

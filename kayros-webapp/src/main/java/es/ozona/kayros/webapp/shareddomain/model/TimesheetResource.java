@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
-public class Timesheet {
+public class TimesheetResource {
 
 	private String timesheetId;
 
@@ -22,9 +22,9 @@ public class Timesheet {
 	@JsonSerialize(using = LocalDateSerializer.class)
 	private LocalDate date;
 
-	private List<WorkingTimePeriod> workingTimePeriods = new ArrayList<WorkingTimePeriod>(0);
+	private List<WorkingTimePeriodResource> workingTimePeriods = new ArrayList<WorkingTimePeriodResource>(0);
 
-	public Timesheet() {
+	public TimesheetResource() {
 
 	}
 
@@ -52,11 +52,11 @@ public class Timesheet {
 		this.date = date;
 	}
 
-	public List<WorkingTimePeriod> getWorkingTimePeriods() {
+	public List<WorkingTimePeriodResource> getWorkingTimePeriods() {
 		return workingTimePeriods;
 	}
 
-	public void setWorkingTimePeriods(List<WorkingTimePeriod> workingTimePeriods) {
+	public void setWorkingTimePeriod(List<WorkingTimePeriodResource> workingTimePeriods) {
 		this.workingTimePeriods = workingTimePeriods;
 	}
 }
