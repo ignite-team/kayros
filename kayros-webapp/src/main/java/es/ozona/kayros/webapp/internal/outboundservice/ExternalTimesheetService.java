@@ -10,4 +10,6 @@ public interface ExternalTimesheetService {
 	TimesheetResource clock(String username);
 
 	List<WorkingTimePeriod> searchCurrentByEmployeeId(String employeeId);
+
+	List<WorkingTimePeriod> searchTimesheetsByEmployeeIdBetweenDates(String startDate, String endDate, String employeeId);
 }
