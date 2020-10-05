@@ -1,68 +1,181 @@
+<?link rel="stylesheet" type="text/css" href="~./css/styles.css"?>
+
 <zk>
+
 	<div height="100px" hflex="1" style="background: rgb(237,22,81)" align="right">
+	
 		<hbox pack="center" align="center" viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.AccountViewModel')">
+		
 			<button label="@load(vm.state eq 1? 'Registrar entrada': 'Registrar salida')" onClick="@command('clock')" />
+			
 			<checkbox label="Teletrabajo" mold="switch" checked="false" style="color: white" />
+			
 			<image src="~./img/profile.png" width="75px" height="auto" style="margin: 10px 10px 10px 10px" onClick='accountProfile.open(self,"after_start")' />
+			
 		</hbox>
+		
 	</div>
+	
 	<style>
+	
 		.nav_toolbar .z-toolbarbutton-content i { font-size: 20px;} .nav_tabs .z-tabpanel { padding: 0; border-bottom: 0 none;} .nav_tabs .z-tabpanels
 		.z-toolbarbutton-content { padding: 4px;} .nav_category { cursor:pointer; } .nav_text { color: #696569; font-size : 24px; font-weight: bold;}
+		
 	</style>
+	
 	<tabbox sclass="nav_tabs">
+	
 		<tabs>
+		
 			<tab>Registro</tab>
 			<tab>Exportar</tab>
+			
 		</tabs>
+		
 		<tabpanels>
+		
 			<tabpanel>
+			
 				<toolbar hflex="true">
+				
 					<toolbarbutton label="Hoy" onClick="updateSubPage(self.label)" />
 					<toolbarbutton label="Esta semana" onClick="updateSubPage(self.label)" />
 					<toolbarbutton label="Este mes" onClick="updateSubPage(self.label)" />
+					
 				</toolbar>
+				
+				<hlayout viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.CurrentTimesheetModel')">
+				
+					<listbox model="@load(vm.workingTimePeriods)" mold="paging" pageSize="5">
+					
+						<listhead>
+						
+							<listheader>Entrada</listheader>
+							<listheader>Salida</listheader>
+							<listheader>Parcial</listheader>
+							<listheader>Acumulado</listheader>
+							
+						</listhead>
+						
+						<template name="model">
+						
+							<listitem>
+							
+								<listcell>
+								
+									<label value="@load(each.startTime)" />
+									
+								</listcell>
+								
+								<listcell>
+								
+									<label value="@load(each.finishTime)" />
+									
+								</listcell>
+								
+								<listcell />
+								<listcell />
+								
+							</listitem>
+							
+						</template>
+						
+					</listbox>
+					
+				</hlayout>
+				
 			</tabpanel>
-			<tabpanel></tabpanel>
+						
+			<tabpanel apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.ExportViewModel')">
+										
+				<div zclass="flexRow" style="margin: 10px 10px 0 10px">
+																			
+					<div zclass = "flexColumn" style="margin: 10px">
+					
+						<div zclass="flexRow">
+												
+							<label style="margin: 0 10px 0 0">Start date</label>
+							<datebox id="startDate" value="@bind(vm.startDate)" style="margin: 10px"/>
+								
+						</div>
+											
+						<div zclass="flexRow" style="margin: 10px">
+							
+							<label style="margin: 0 10px 0 0">Extension</label>
+							<combobox selectedItem="@bind(vm.fileType)" readonly="true" autodrop="true" style="margin: 10px">
+								
+								<comboitem label="CSV" value="CSV"/>
+								<comboitem label="XLSM" value="XLSM"/>
+										    
+							</combobox>
+							
+						</div>
+					
+					</div>
+					
+					<div zclass = "flexColumn" style="margin: 10px">
+					
+						<div zclass="flexRow">
+							
+							<label style="margin: 0 10px 0 0">End date</label>						
+							<datebox id="endDate" value="@bind(vm.endDate)" style="margin: 10px"/>
+										
+						</div>
+									
+						<div zclass="flexRow" style="margin: 10px 10px 0 10px">
+										
+							<label style="margin: 0 10px 0 0">Employee</label>
+							<combobox model="@bind(vm.employees)" style="margin: 10px" onChanging="@command('searchEmployeesCommand', v = event.value)">
+																		
+								<template name="model">
+																
+									<comboitem label="@bind(each.username)" value="@bind(each.username)"/>
+													
+								</template>
+											    
+							</combobox>
+								
+						</div>
+								
+					</div>
+					
+				</div>
+																			
+				<div zclass="flexRow">											
+						
+					<button style="margin: 10px" label="Download" onClick="@command('export')"/>
+												
+				</div>
+																																		
+			</tabpanel>
+		
 		</tabpanels>
+	
 	</tabbox>
+	
 	<separator height="30px"></separator>
+	
 	<zscript><![CDATA[
-	void updateCategory(String category) {
-		current_category.setValue(category);
-		current_subpage.setValue("Index");
-	}
-	void updateSubPage(String sub) {
-		current_subpage.setValue(sub);
-	}
-]]></zscript>
 
-	<hlayout></hlayout>
-
-	<hlayout viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.CurrentTimesheetModel')">
-		<listbox model="@load(vm.workingTimePeriods)" mold="paging" pageSize="5">
-			<listhead>
-				<listheader>Entrada</listheader>
-				<listheader>Salida</listheader>
-				<listheader>Parcial</listheader>
-				<listheader>Acumulado</listheader>
-			</listhead>
-			<template name="model">
-				<listitem>
-					<listcell>
-						<label value="@load(each.startTime)" />
-					</listcell>
-					<listcell>
-						<label value="@load(each.finishTime)" />
-					</listcell>
-					<listcell />
-					<listcell />
-				</listitem>
-			</template>
-		</listbox>
-	</hlayout>
+		void updateCategory(String category) {
+			
+			current_category.setValue(category);
+			current_subpage.setValue("Index");
+			
+		}
+		
+		void updateSubPage(String sub) {
+			
+			current_subpage.setValue(sub);
+		
+		}
+	
+	]]></zscript>
 
 	<menupopup id="accountProfile">
+	
 		<menuitem label="Cerrar sesión" href="/logout" />
+	
 	</menupopup>
+
 </zk>

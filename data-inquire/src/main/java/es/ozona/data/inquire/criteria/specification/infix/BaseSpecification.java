@@ -139,6 +139,7 @@ public class BaseSpecification<E> implements Specification<E> {
 		converters.put(LocalDate.class, s -> s == null ? null : LocalDate.parse(s, DateTimeFormatter.BASIC_ISO_DATE));
 
 		return converters.get(clazz).apply(stringValue);
+
 	}
 
 }

@@ -11,3 +11,21 @@
 	text-align: center;
 	text-shadow: 1px 1px #ffffff;
 }
+
+.flexRow {
+
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.flexColumn {
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+}
