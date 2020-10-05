@@ -32,9 +32,17 @@ public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 
 		final List<TimesheetResource> timesheets = timesheetService.search("employeeId:%s".formatted(employeeId), "+date", 1, 1000).getItems();
 		
-		// capa de anticorrupcion
 		return CollectionUtils.isEmpty(timesheets) ? null : CollectionUtils.lastElement(timesheets).getWorkingTimePeriods().stream() 
 				.map(t -> WorkTimePeriodMapper.map(t)).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<WorkingTimePeriod> searchTimesheetsByEmployeeIdBetweenDates(String startDate, String endDate, String employeeId) {
+		
+		final List<TimesheetResource> timesheets = timesheetService.search("( date>%s and date<%s and employeeId:%s )".formatted(startDate, endDate, employeeId), "+date", 1, 1000).getItems();
+		
+		return CollectionUtils.isEmpty(timesheets) ? null : CollectionUtils.lastElement(timesheets).getWorkingTimePeriods().stream() .map(t -> WorkTimePeriodMapper.map(t)).collect(Collectors.toList());
+
 	}
 
 }
