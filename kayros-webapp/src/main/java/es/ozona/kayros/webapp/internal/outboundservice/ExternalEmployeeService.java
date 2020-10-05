@@ -8,4 +8,6 @@ public interface ExternalEmployeeService {
 
 	Optional<Employee> findEmployeeByUsername(String username);
 
+	Employee createEmployeeFromPrincipal();
+
 }

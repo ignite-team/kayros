@@ -1,10 +1,7 @@
 package es.ozona.kayros.webapp.vms;
 
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
-import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-import org.springframework.security.oauth2.core.OAuth2AccessToken;
-import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
@@ -25,10 +22,10 @@ public class AccountViewModel {
 
 	@WireVariable("externalEmployeeService")
 	protected ExternalEmployeeService employeeService;
-	
-	@WireVariable("authorizedClientService")
-	protected OAuth2AuthorizedClientService oAuth2AuthorizedClientService;
-	
+
+	@WireVariable("jwtDecoder")
+	protected JwtDecoder jwtDecoder;
+
 	private static final int SIGNED_IN_STATE = 1;
 	private static final int SIGNED_OUT_STATE = 0;
 
@@ -38,21 +35,10 @@ public class AccountViewModel {
 
 	@Init
 	public void init() {
-//		OAuth2AuthenticationToken auth = (OAuth2AuthenticationToken) SecurityContextHolder.getContext()
-//				.getAuthentication();
-//		
-//		OAuth2AccessToken accessToken = (OAuth2AccessToken) oAuth2AuthorizedClientService.loadAuthorizedClient(
-//				auth.getAuthorizedClientRegistrationId()
-//	            ,auth.getName()
-//	            ).getAccessToken();
-//		
-//		employeeService.findEmployeeByUsername(auth.getName()).ifPresentOrElse(v -> this.employee = v, new Runnable() {
-//			@Override
-//			public void run() {
-//				employee = new Employee();
-//				
-//			}
-//		});
+		// obtenemos el empleado, si no lo encontramos lo creamos a partir de los datos de login.
+		employee = employeeService
+				.findEmployeeByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
+				.orElse(employeeService.createEmployeeFromPrincipal());
 	}
 
 	public int getState() {

@@ -24,7 +24,7 @@ public class CurrentTimesheetModel {
 	public void init() {
 
 		// buscamos los periodos del dia
-		seachWorkingTimePeriods();
+	//	seachWorkingTimePeriods();
 	}
 
 	public List<WorkingTimePeriod> getWorkingTimePeriods() {

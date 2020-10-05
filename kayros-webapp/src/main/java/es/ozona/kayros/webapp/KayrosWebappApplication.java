@@ -11,6 +11,7 @@ import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,9 +33,11 @@ public class KayrosWebappApplication {
 	}
 
 	@GetMapping("/secure/{page}")
+	@PreAuthorize("hasRole('KAYROS_USER')")
 	public String secure(@PathVariable String page) {
 		return "secure/" + page;
 	}
+	
 
 	@Bean
 	public ServletWebServerFactory servletContainer() {

@@ -2,9 +2,7 @@ package es.ozona.kayros.webapp.domain.model;
 
 import org.springframework.util.ObjectUtils;
 
-
 public class Employee {
-
 
 	private String employeeId;
 
@@ -16,11 +14,13 @@ public class Employee {
 
 	private String lastname;
 
+	private String workplace;
+
 	public Employee() {
 
 	}
 
-	public Employee(String employeeId, String username, String email, String firstname, String lastname) {
+	public Employee(String employeeId, String username, String email, String firstname, String lastname, String workplace) {
 		this.employeeId = employeeId;
 		this.username = username;
 		this.email = email;
@@ -68,10 +68,18 @@ public class Employee {
 		this.lastname = lastname;
 	}
 
+	public String getWorkplace() {
+		return workplace;
+	}
+
+	public void setWorkplace(String workplace) {
+		this.workplace = workplace;
+	}
+
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] { employeeId, username, email, firstname, lastname });
+		return ObjectUtils.nullSafeHashCode(new Object[] { employeeId, username, email, firstname, lastname, workplace });
 	}
 
 	@Override

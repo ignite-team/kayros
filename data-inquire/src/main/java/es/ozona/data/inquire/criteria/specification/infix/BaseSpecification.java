@@ -1,5 +1,7 @@
 package es.ozona.data.inquire.criteria.specification.infix;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -72,7 +74,8 @@ public class BaseSpecification<E> implements Specification<E> {
 		}
 	}
 
-	private <Y extends Comparable<Y>> Predicate buildRelationalPredicate(CriteriaBuilder builder, Path<Y> path, Y value) {
+	private <Y extends Comparable<Y>> Predicate buildRelationalPredicate(CriteriaBuilder builder, Path<Y> path,
+			Y value) {
 
 		switch (criteria.getOperation()) {
 		case GREATER_THAN:
@@ -133,6 +136,7 @@ public class BaseSpecification<E> implements Specification<E> {
 		converters.put(Double.class, s -> s == null ? null : Double.parseDouble(s));
 		converters.put(Double.TYPE, s -> Double.parseDouble(s));
 		converters.put(String.class, s -> s);
+		converters.put(LocalDate.class, s -> s == null ? null : LocalDate.parse(s, DateTimeFormatter.BASIC_ISO_DATE));
 
 		return converters.get(clazz).apply(stringValue);
 	}

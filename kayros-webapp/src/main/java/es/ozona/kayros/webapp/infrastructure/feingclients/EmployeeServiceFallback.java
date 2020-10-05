@@ -20,4 +20,10 @@ public class EmployeeServiceFallback implements EmployeeService {
 		return new PageResult<EmployeeResource>();
 	}
 
+	@Override
+	public EmployeeResource create(EmployeeResource employeeResource) {
+		// Si no se ha podido crear el empleado devolvemos el empleados con los datos originales
+		return employeeResource;
+	}
+
 }

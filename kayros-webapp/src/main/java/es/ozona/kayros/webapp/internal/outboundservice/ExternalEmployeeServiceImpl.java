@@ -3,6 +3,8 @@ package es.ozona.kayros.webapp.internal.outboundservice;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import es.ozona.data.inquire.model.paging.PageResult;
@@ -16,14 +18,29 @@ public class ExternalEmployeeServiceImpl implements ExternalEmployeeService {
 
 	@Autowired
 	protected EmployeeService employeeService;
-	
+
 	@Override
 	public Optional<Employee> findEmployeeByUsername(String username) {
-		final PageResult<EmployeeResource> employees = employeeService.search("username:%s".formatted(username), "+username", 1, 1);
-		if (employees.getSize() > 0) {
+		final PageResult<EmployeeResource> employees = employeeService.search("username:%s".formatted(username),
+				"+username", 1, 1);
+		if (employees.getItems().size() > 0) {
 			return Optional.of(EmployeeMapper.map(employees.getItems().get(0)));
 		}
 		return Optional.empty();
+	}
+
+	@Override
+	public Employee createEmployeeFromPrincipal() {
+		final OAuth2AuthenticationToken auth = (OAuth2AuthenticationToken) SecurityContextHolder.getContext()
+				.getAuthentication();
+
+		EmployeeResource employeeResource = new EmployeeResource(null, auth.getName(),
+				auth.getPrincipal().getAttribute("mail"), auth.getPrincipal().getAttribute("cn"),
+				auth.getPrincipal().getAttribute("sn"));
+
+		employeeResource = employeeService.create(employeeResource);
+
+		return EmployeeMapper.map(employeeResource);
 	}
 
 }
