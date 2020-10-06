@@ -23,6 +23,8 @@ import javax.persistence.Table;
 import org.springframework.data.domain.AbstractAggregateRoot;
 import org.springframework.util.ObjectUtils;
 
+import com.sun.istack.NotNull;
+
 import es.ozona.kairos.employee.domain.model.commands.AssignScheduleCommand;
 import es.ozona.kairos.employee.domain.model.commands.CreateEmployeeCommand;
 import es.ozona.kairos.employee.domain.model.commands.ModifyEmployeeCommand;
@@ -41,9 +43,7 @@ import es.ozona.kairos.employee.shareddomain.model.events.EmployeeModifiedEventD
 @Entity
 @Table(name = "employees", indexes = { @Index(name = "employee_user_name_idx", columnList = "username") })
 public class Employee extends AbstractAggregateRoot<Employee> implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -60,40 +60,52 @@ public class Employee extends AbstractAggregateRoot<Employee> implements Seriali
 	@JoinColumn(name = "employee_id")
 	private Set<Schedule> schedules = new HashSet<Schedule>(0);
 
+	@NotNull
+	private Boolean telecommuting;
+
 	public Employee() {
 
 	}
 
 	public Employee(CreateEmployeeCommand createEmployeeCommand) {
-		super();
-		this.employeeId = new EmployeeId(createEmployeeCommand.getEmployeeId());
-		this.account = new UserAccount(createEmployeeCommand.getUsername(), createEmployeeCommand.getEmail(), createEmployeeCommand.getFirstname(),
-				createEmployeeCommand.getLastname());
 
-		this.registerEvent(new EmployeeCreatedEvent(new EmployeeCreatedEventData(createEmployeeCommand.getEmployeeId(), createEmployeeCommand.getUsername(),
-				createEmployeeCommand.getEmail(), createEmployeeCommand.getFirstname(), createEmployeeCommand.getLastname())));
+		super();
+
+		this.employeeId = new EmployeeId(createEmployeeCommand.getEmployeeId());
+		this.account = new UserAccount(createEmployeeCommand.getUsername(), createEmployeeCommand.getEmail(), createEmployeeCommand.getFirstname(), createEmployeeCommand.getLastname());
+
+		this.telecommuting = createEmployeeCommand.getTelecommuting();
+
+		this.registerEvent(new EmployeeCreatedEvent(new EmployeeCreatedEventData(createEmployeeCommand.getEmployeeId(), createEmployeeCommand.getUsername(), createEmployeeCommand.getEmail(), createEmployeeCommand.getFirstname(), createEmployeeCommand.getLastname(), createEmployeeCommand.getTelecommuting())));
+
 	}
 
 	public void modify(ModifyEmployeeCommand modifyEmployeeCommand) {
-		this.account = new UserAccount(modifyEmployeeCommand.getUsername(), modifyEmployeeCommand.getEmail(), modifyEmployeeCommand.getFirstname(),
-				modifyEmployeeCommand.getLastname());
 
-		this.registerEvent(new EmployeeModifiedEvent(new EmployeeModifiedEventData(modifyEmployeeCommand.getEmployeeId(), modifyEmployeeCommand.getUsername(),
-				modifyEmployeeCommand.getEmail(), modifyEmployeeCommand.getFirstname(), modifyEmployeeCommand.getLastname())));
+		this.account = new UserAccount(modifyEmployeeCommand.getUsername(), modifyEmployeeCommand.getEmail(), modifyEmployeeCommand.getFirstname(), modifyEmployeeCommand.getLastname());
+
+		this.telecommuting = modifyEmployeeCommand.getTelecommuting();
+
+		this.registerEvent(new EmployeeModifiedEvent(new EmployeeModifiedEventData(modifyEmployeeCommand.getEmployeeId(), modifyEmployeeCommand.getUsername(), modifyEmployeeCommand.getEmail(), modifyEmployeeCommand.getFirstname(), modifyEmployeeCommand.getLastname(), modifyEmployeeCommand.getTelecommuting())));
+
 	}
 
 	public Schedule assignSchedule(AssignScheduleCommand assignScheduleCommand) {
-		final Schedule schedule = new Schedule(new ScheduleId(assignScheduleCommand.getScheduleId()), new CalendarId(assignScheduleCommand.getCalendarId()),
-				new Validity(assignScheduleCommand.getStartDate(), assignScheduleCommand.getEndDate()));
+
+		final Schedule schedule = new Schedule(new ScheduleId(assignScheduleCommand.getScheduleId()), new CalendarId(assignScheduleCommand.getCalendarId()), new Validity(assignScheduleCommand.getStartDate(), assignScheduleCommand.getEndDate()));
+
 		this.schedules.add(schedule);
 
 		return schedule;
+
 	}
 
 	public void unassignSchedule(UnassignScheduleCommand unassignScheduleCommand) {
+
 		// TODO: cuando el numero de calendarios programados sea muy alto, el rendimiento puede bajar.
 		// valorar cambir el modelo, para mejorar el rendimiento.
 		this.schedules.remove(new Schedule(new ScheduleId(unassignScheduleCommand.getEmployeeId())));
+
 	}
 
 	public EmployeeId getEmployeeId() {
@@ -114,6 +126,18 @@ public class Employee extends AbstractAggregateRoot<Employee> implements Seriali
 
 	public List<Schedule> getSchedules() {
 		return Collections.unmodifiableList(schedules.stream().sorted(new ScheduleComparator()).collect(Collectors.toList()));
+	}
+	
+	public Boolean getTelecommuting() {
+
+		return telecommuting;
+	
+	}
+
+	public void setTelecommuting(Boolean telecommuting) {
+
+		this.telecommuting = telecommuting;
+
 	}
 
 	@Override

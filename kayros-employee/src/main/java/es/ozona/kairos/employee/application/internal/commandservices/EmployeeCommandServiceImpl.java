@@ -28,7 +28,7 @@ import es.ozona.micro.core.application.internal.commandservices.BaseCommandServi
 public class EmployeeCommandServiceImpl extends BaseCommandServiceImpl<Employee, Long, EmployeeRepository> implements EmployeeCommandService {
 
 	private static final Logger LOG = LoggerFactory.getLogger(EmployeeCommandServiceImpl.class);
-	
+
 	@Autowired
 	private ExternalCalendarService calendarService;
 
@@ -36,29 +36,34 @@ public class EmployeeCommandServiceImpl extends BaseCommandServiceImpl<Employee,
 	public Employee createEmployee(CreateEmployeeCommand createEmployeeCommand) {
 
 		if (createEmployeeCommand.getEmployeeId() == null) {
+
 			createEmployeeCommand.setEmployeeId(repository.nextId());
+
 		}
 
 		final Employee employee = new Employee(createEmployeeCommand);
-		
+
 		repository.save(employee);
 
 		return employee;
+
 	}
-	
+
 	@Override
 	public Employee createEmployeeAuto(CreateEmployeeCommand createEmployeeCommand) {
-		
+
 		// TODO: trasladar este metodo al service domain.
 		CalendarId calendarId = null;
-		
+
 		try {
-			 calendarId = calendarService.fetchDefaultCalendar();
+
+			calendarId = calendarService.fetchDefaultCalendar();
+
 		} catch (ExternalServiceException e) {
 			if (LOG.isWarnEnabled()) {
 				LOG.warn("Failed to fetch default calendar.", e);
-			}			
-		}		
+			}
+		}
 
 		if (createEmployeeCommand.getEmployeeId() == null) {
 			createEmployeeCommand.setEmployeeId(repository.nextId());

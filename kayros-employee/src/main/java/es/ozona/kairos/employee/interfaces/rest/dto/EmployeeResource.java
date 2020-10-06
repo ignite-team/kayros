@@ -23,16 +23,22 @@ public class EmployeeResource {
 	@ApiModelProperty(value = "The employee identifier.", required = true, position = 5, allowEmptyValue = false, example = "de Castro")
 	private String lastname;
 
+	@ApiModelProperty(value = "The employee is telecommiting.", required = true, position = 6, allowEmptyValue = false)
+	private Boolean telecommuting;
+
 	public EmployeeResource() {
 
 	}
 
-	public EmployeeResource(String employeeId, String username, String email, String firstname, String lastname) {
+	public EmployeeResource(String employeeId, String username, String email, String firstname, String lastname, Boolean telecommuting) {
+
 		this.employeeId = employeeId;
 		this.username = username;
 		this.email = email;
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.telecommuting = telecommuting;
+
 	}
 
 	public String getEmployeeId() {
@@ -75,10 +81,23 @@ public class EmployeeResource {
 		this.lastname = lastname;
 	}
 
+	public Boolean getTelecommuting() {
+
+		return telecommuting;
+
+	}
+
+	public void setTelecommuting(Boolean telecommuting) {
+
+		this.telecommuting = telecommuting;
+
+	}
+
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] { employeeId, username, email, firstname, lastname });
+		return ObjectUtils.nullSafeHashCode(new Object[] {employeeId, username, email, firstname, lastname, telecommuting});
+
 	}
 
 	@Override
