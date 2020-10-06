@@ -9,6 +9,13 @@ public class EmployeeMapper {
 	}
 	
 	public static Employee map(EmployeeResource resource) {
-		return null;
+		final Employee employee = new Employee(resource.getEmployeeId(), 
+				resource.getUsername(), 
+				resource.getEmail(), 
+				resource.getFirstname(), 
+				resource.getLastname(), 
+				null);
+		
+		return employee;
 	}
 }

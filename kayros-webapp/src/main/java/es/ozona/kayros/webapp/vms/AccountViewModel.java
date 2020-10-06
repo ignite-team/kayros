@@ -1,5 +1,7 @@
 package es.ozona.kayros.webapp.vms;
 
+import java.util.Optional;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.zkoss.bind.annotation.Command;
@@ -36,9 +38,12 @@ public class AccountViewModel {
 	@Init
 	public void init() {
 		// obtenemos el empleado, si no lo encontramos lo creamos a partir de los datos de login.
-		employee = employeeService
-				.findEmployeeByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
-				.orElse(employeeService.createEmployeeFromPrincipal());
+		Optional<Employee> employee2 = employeeService
+				.findEmployeeByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		if (employee2.isPresent()) {
+			System.out.println();
+		}
+		//		.orElse(employeeService.createEmployeeFromPrincipal());
 	}
 
 	public int getState() {
