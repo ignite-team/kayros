@@ -1,7 +1,6 @@
 package es.ozona.kayros.webapp.infrastructure.feingclients;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import es.ozona.data.inquire.model.paging.PageResult;
 import es.ozona.kayros.webapp.shareddomain.model.TimesheetResource;
@@ -9,7 +8,8 @@ import es.ozona.kayros.webapp.shareddomain.model.TimesheetResource;
 @Service
 public class TimesheetServiceFallback implements TimesheetService {
 
-	public TimesheetResource clock(@RequestParam String username) {
+	@Override
+	public TimesheetResource clock(String employeeId, String username) {
 		return new TimesheetResource();
 	}
 

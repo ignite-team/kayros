@@ -6,7 +6,7 @@
 
 		<hbox pack="center" align="center" viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.AccountViewModel')">
 
-			<label value="@Load(vm.employee.email)" />
+			<label value="@load(vm.employee.email)" style="color: white"/>
 
 			<button label="@load(vm.state eq 1? 'Registrar entrada': 'Registrar salida')" onClick="@command('clock')" />
 

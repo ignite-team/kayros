@@ -233,7 +233,7 @@ public class ExportViewModel {
 
 			final ListModelList<Employee> finalEmployees = new ListModelList<Employee>();
 			
-			employeeService.findEmployeesLikeUsername(employeeUsername).stream().forEach(e -> finalEmployees.add(e));
+			employeeService.findEmployeeByUsername(employeeUsername).stream().forEach(e -> finalEmployees.add(e));
 					
 			setEmployees(finalEmployees);
 

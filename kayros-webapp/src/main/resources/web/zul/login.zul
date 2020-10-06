@@ -48,7 +48,7 @@
 					<row>
 						<a href="oauth2/authorization/kayrosclient"
 							vflex="1">
-							<button zclass="ozona_button" label="Oz" >
+							<button zclass="ozona_button" label="O" >
 <!-- 								src="~./img/ozona-tecnologia-corporeo_2.png" width="150px" -->
 <!-- 								height="auto"> -->
 							</button>
