@@ -64,7 +64,7 @@ spring:
                 username: guest
                 password: guest
   datasource:
-    url: jdbc:h2:file:C:/Proxectos/employeedb;DB_CLOSE_DELAY=2;AUTO_SERVER=TRUE #DB_CLOSE_ON_EXIT=false
+    url: jdbc:h2:file:C:/proyectos/employeedb;DB_CLOSE_DELAY=2;AUTO_SERVER=TRUE #DB_CLOSE_ON_EXIT=false
     username: sa
     password:
     driverClassName: org.h2.Driver     
