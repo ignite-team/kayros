@@ -1,27 +1,32 @@
 package es.ozona.kayros.webapp.domain.model;
 
-import java.time.ZonedDateTime;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class WorkingTimePeriod {
 
-	private ZonedDateTime startTime;
+	private Date startTime;
 
 	private Boolean generatedStartTime;
 
 	private Boolean editedStartTime;
 
-	private ZonedDateTime finishTime;
+	private Date finishTime;
 
 	private Boolean generatedFinishTime;
 
 	private Boolean editedFinishTime;
 
+	private long totalDone;
+
 	public WorkingTimePeriod() {
 
 	}
 
-	public WorkingTimePeriod(ZonedDateTime startTime, Boolean generatedStartTime, Boolean editedStartTime,
-			ZonedDateTime finishTime, Boolean generatedFinishTime, Boolean editedFinishTime) {
+	public WorkingTimePeriod(Date startTime, Boolean generatedStartTime, Boolean editedStartTime, Date finishTime, Boolean generatedFinishTime,
+			Boolean editedFinishTime) {
 		super();
 		this.startTime = startTime;
 		this.generatedStartTime = generatedStartTime;
@@ -29,13 +34,14 @@ public class WorkingTimePeriod {
 		this.finishTime = finishTime;
 		this.generatedFinishTime = generatedFinishTime;
 		this.editedFinishTime = editedFinishTime;
+
 	}
 
-	public ZonedDateTime getStartTime() {
+	public Date getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(ZonedDateTime startTime) {
+	public void setStartTime(Date startTime) {
 		this.startTime = startTime;
 	}
 
@@ -55,11 +61,13 @@ public class WorkingTimePeriod {
 		this.editedStartTime = editedStartTime;
 	}
 
-	public ZonedDateTime getFinishTime() {
+	public Date getFinishTime() {
+
 		return finishTime;
 	}
 
-	public void setFinishTime(ZonedDateTime finishTime) {
+	public void setFinishTime(Date finishTime) {
+
 		this.finishTime = finishTime;
 	}
 
@@ -77,6 +85,17 @@ public class WorkingTimePeriod {
 
 	public void setEditedFinishTime(Boolean editedFinishTime) {
 		this.editedFinishTime = editedFinishTime;
+	}
+
+	public String getPartialDone() {
+		Date endTime = finishTime == null ? new Date() : finishTime;
+
+		return new TemporalDuration(Duration.between(LocalDateTime.ofInstant(startTime.toInstant(), 
+				ZoneId.systemDefault()),LocalDateTime.ofInstant(endTime.toInstant(), ZoneId.systemDefault()))).toString();
+	}
+
+	public Date getTotalDone() {
+		return null;
 	}
 
 }

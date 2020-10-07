@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk>
+	<config-name>kayros-config</config-name>
+	<library-property>
+	    <name>org.zkoss.web.preferred.dateFormatInfo</name>
+	    <value>es.ozona.kayros.webapp.utils.converters.DateTimeFormater</value>
+	</library-property>
+</zk>

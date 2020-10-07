@@ -32,7 +32,7 @@ public class TimesheetCommandServiceImpl extends BaseCommandServiceImpl<Timeshee
 
 		} else {
 			timesheet = repository.findFirstByEmployeeIdOrderByDateDesc(new EmployeeId(clockTimesheetCommand.getEmployeeId()));
-
+			
 			if (timesheet != null) {
 				timesheet.clock(clockTimesheetCommand);
 			} else {
