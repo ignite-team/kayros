@@ -34,12 +34,14 @@ public class WorkingTimePeriodResource {
 	@ApiModelProperty(value = "Finish time value has been edited.", required = false, example = "false")
 	private Boolean editedFinishTime;
 
+	@ApiModelProperty(value = "telecommuting", required = true, example = "true")
+	private Boolean telecommuting;
+
 	public WorkingTimePeriodResource() {
 
 	}
 
-	public WorkingTimePeriodResource(ZonedDateTime startTime, Boolean generatedStartTime, Boolean editedStartTime, ZonedDateTime finishTime,
-			Boolean generatedFinishTime, Boolean editedFinishTime) {
+	public WorkingTimePeriodResource(ZonedDateTime startTime, Boolean generatedStartTime, Boolean editedStartTime, ZonedDateTime finishTime, Boolean generatedFinishTime, Boolean editedFinishTime, Boolean telecommuting) {
 		super();
 		this.startTime = startTime;
 		this.generatedStartTime = generatedStartTime;
@@ -47,6 +49,7 @@ public class WorkingTimePeriodResource {
 		this.finishTime = finishTime;
 		this.generatedFinishTime = generatedFinishTime;
 		this.editedFinishTime = editedFinishTime;
+		this.telecommuting = telecommuting;
 	}
 
 	public ZonedDateTime getStartTime() {
@@ -95,5 +98,17 @@ public class WorkingTimePeriodResource {
 
 	public void setEditedFinishTime(Boolean editedFinishTime) {
 		this.editedFinishTime = editedFinishTime;
+	}
+	
+	public Boolean getTelecommuting() {
+
+		return telecommuting;
+		
+	}
+
+	public void setTelecommuting(Boolean telecommuting) {
+		
+		this.telecommuting = telecommuting;
+		
 	}
 }

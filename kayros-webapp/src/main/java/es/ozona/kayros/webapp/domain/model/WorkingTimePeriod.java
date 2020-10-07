@@ -15,13 +15,15 @@ public class WorkingTimePeriod {
 	private Boolean generatedFinishTime;
 
 	private Boolean editedFinishTime;
+	
+	private Boolean telecommuting;
 
 	public WorkingTimePeriod() {
 
 	}
 
-	public WorkingTimePeriod(ZonedDateTime startTime, Boolean generatedStartTime, Boolean editedStartTime,
-			ZonedDateTime finishTime, Boolean generatedFinishTime, Boolean editedFinishTime) {
+	public WorkingTimePeriod(ZonedDateTime startTime, Boolean generatedStartTime, Boolean editedStartTime, ZonedDateTime finishTime, Boolean generatedFinishTime, Boolean editedFinishTime, Boolean telecommuting) {
+
 		super();
 		this.startTime = startTime;
 		this.generatedStartTime = generatedStartTime;
@@ -29,6 +31,8 @@ public class WorkingTimePeriod {
 		this.finishTime = finishTime;
 		this.generatedFinishTime = generatedFinishTime;
 		this.editedFinishTime = editedFinishTime;
+		this.telecommuting = telecommuting;
+
 	}
 
 	public ZonedDateTime getStartTime() {
@@ -77,6 +81,18 @@ public class WorkingTimePeriod {
 
 	public void setEditedFinishTime(Boolean editedFinishTime) {
 		this.editedFinishTime = editedFinishTime;
+	}
+
+	public Boolean getTelecommuting() {
+		
+		return telecommuting;
+
+	}	
+
+	public void setTelecommuting(Boolean telecommuting) {
+		
+		this.telecommuting = telecommuting;
+		
 	}
 
 }

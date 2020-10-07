@@ -9,16 +9,21 @@ public class ClockTimesheetCommand {
 	private String username;
 
 	private ZonedDateTime clockTime;
-
+	
+	private Boolean telecommuting;
+	
 	public ClockTimesheetCommand() {
 		
 	}
 
-	public ClockTimesheetCommand(String employeeId, String username) {
+	public ClockTimesheetCommand(String employeeId, String username, Boolean telecommuting) {
+		
 		super();
 		this.employeeId = employeeId;
 		this.username = username;
 		this.clockTime = ZonedDateTime.now();
+		this.telecommuting = telecommuting;
+		
 	}
 
 	public String getEmployeeId() {
@@ -43,6 +48,18 @@ public class ClockTimesheetCommand {
 
 	public void setClockTime(ZonedDateTime clockTime) {
 		this.clockTime = clockTime;
+	}
+
+	public Boolean getTelecommuting() {
+		
+		return telecommuting;
+
+	}	
+
+	public void setTelecommuting(Boolean telecommuting) {
+		
+		this.telecommuting = telecommuting;
+		
 	}
 
 }

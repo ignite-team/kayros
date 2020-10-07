@@ -11,17 +11,22 @@ public class CreateTimesheetCommand {
 	private String username; 
 
 	private LocalDate date;
-
+	
+	private Boolean telecommuting;
+	
 	public CreateTimesheetCommand() {
 
 	}
 
-	public CreateTimesheetCommand(String timesheetId, String employeeId, String username, LocalDate date) {
+	public CreateTimesheetCommand(String timesheetId, String employeeId, String username, LocalDate date, Boolean telecommuting) {
+		
 		super();
 		this.timesheetId = timesheetId;
 		this.employeeId = employeeId;
 		this.username = username;
 		this.date = date;
+		this.telecommuting = telecommuting;
+
 	}
 
 	public String getTimesheetId() {
@@ -54,6 +59,18 @@ public class CreateTimesheetCommand {
 
 	public void setDate(LocalDate date) {
 		this.date = date;
+	}
+	
+	public Boolean getTelecommuting() {
+		
+		return telecommuting;
+		
+	}
+
+	public void setTelecommuting(Boolean telecommuting) {
+		
+		this.telecommuting = telecommuting;
+		
 	}
 
 }
