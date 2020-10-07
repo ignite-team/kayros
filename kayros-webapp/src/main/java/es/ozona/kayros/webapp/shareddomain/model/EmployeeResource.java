@@ -17,18 +17,23 @@ public class EmployeeResource {
 	private String lastname;
 	
 	private Boolean telecommuting;
+	
+	private String workplace;
 
 	public EmployeeResource() {
 
 	}
 
-	public EmployeeResource(String employeeId, String username, String email, String firstname, String lastname, Boolean telecommuting) {
+	public EmployeeResource(String employeeId, String username, String email, String firstname, String lastname, Boolean telecommuting, String workplace) {
+
 		this.employeeId = employeeId;
 		this.username = username;
 		this.email = email;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.telecommuting = telecommuting;
+		this.workplace = workplace;
+
 	}
 
 	public String getEmployeeId() {
@@ -83,10 +88,22 @@ public class EmployeeResource {
 		
 	}
 
+	public String getWorkplace() {
+		
+		return workplace;
+		
+	}
+
+	public void setWorkplace(String workplace) {
+
+		this.workplace = workplace;
+		
+	}
+
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] {employeeId, username, email, firstname, lastname, telecommuting});
+		return ObjectUtils.nullSafeHashCode(new Object[] {employeeId, username, email, firstname, lastname, telecommuting, workplace});
 
 	}
 
@@ -94,9 +111,13 @@ public class EmployeeResource {
 	public boolean equals(Object obj) {
 
 		if (obj == null || !(obj instanceof EmployeeResource)) {
+			
 			return false;
+			
 		}
+		
 		return this.hashCode() == obj.hashCode();
+		
 	}
 
 }

@@ -102,6 +102,7 @@ public class ExportViewModel {
 			        headers.add("generatedFinishTime");
 			        headers.add("editedFinishTime");
 			        headers.add("telecommuting");
+			        headers.add("workplace");
 				
 				    ArrayList<Object> row = new ArrayList<Object>();
 		
@@ -118,6 +119,7 @@ public class ExportViewModel {
 					    row.add(wtp.getGeneratedFinishTime());
 					    row.add(wtp.getEditedFinishTime());
 					    row.add(wtp.getTelecommuting());
+					    row.add(employee.get().getWorkplace());
 
 					    rows.add(row);
 					    			    			    

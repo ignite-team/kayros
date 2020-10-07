@@ -14,21 +14,24 @@ public class Employee {
 
 	private String lastname;
 
+	private Boolean telecommuting;
+
 	private String workplace;
 
-	private Boolean telecommuting;
-	
 	public Employee() {
 
 	}
 
-	public Employee(String employeeId, String username, String email, String firstname, String lastname, String workplace, Boolean telecommuting) {
+	public Employee(String employeeId, String username, String email, String firstname, String lastname, Boolean telecommuting,  String workplace) {
+
 		this.employeeId = employeeId;
 		this.username = username;
 		this.email = email;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.telecommuting = telecommuting;
+		this.workplace = workplace;
+
 	}
 
 	public String getEmployeeId() {
@@ -71,14 +74,6 @@ public class Employee {
 		this.lastname = lastname;
 	}
 
-	public String getWorkplace() {
-		return workplace;
-	}
-
-	public void setWorkplace(String workplace) {
-		this.workplace = workplace;
-	}
-
 	public Boolean getTelecommuting() {
 		
 		return telecommuting;
@@ -91,10 +86,22 @@ public class Employee {
 		
 	}
 
+	public String getWorkplace() {
+		
+		return workplace;
+		
+	}
+
+	public void setWorkplace(String workplace) {
+
+		this.workplace = workplace;
+		
+	}
+
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] {employeeId, username, email, firstname, lastname, workplace, telecommuting});
+		return ObjectUtils.nullSafeHashCode(new Object[] {employeeId, username, email, firstname, lastname, telecommuting, workplace});
 
 	}
 
@@ -102,9 +109,13 @@ public class Employee {
 	public boolean equals(Object obj) {
 
 		if (obj == null || !(obj instanceof Employee)) {
+			
 			return false;
+			
 		}
+		
 		return this.hashCode() == obj.hashCode();
+		
 	}
 
 }
