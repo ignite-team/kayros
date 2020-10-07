@@ -24,7 +24,8 @@ public class MappingConfig {
 			.addMapping(s -> s.getAccount().getFirstname(), EmployeeResource::setFirstname)
 			.addMapping(s -> s.getAccount().getLastname(), EmployeeResource::setLastname)
 			.addMapping(s -> s.getAccount().getEmail(), EmployeeResource::setEmail)
-			.addMapping(s -> s.getTelecommuting(), EmployeeResource::setTelecommuting);
+			.addMapping(s -> s.getTelecommuting(), EmployeeResource::setTelecommuting)
+			.addMapping(s -> s.getWorkplace(), EmployeeResource::setWorkplace);
 
 		modelMapper.createTypeMap(Schedule.class, ScheduleResource.class)
 			.addMapping(s -> s.getValidity().getStartDate(), ScheduleResource::setStartDate)

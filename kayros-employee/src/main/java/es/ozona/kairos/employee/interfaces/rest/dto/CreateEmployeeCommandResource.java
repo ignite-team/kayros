@@ -42,8 +42,12 @@ public class CreateEmployeeCommandResource {
 	@NotNull
 	@ApiModelProperty(value = "The employee is telecommiting.", required = true, position = 6, allowEmptyValue = false)
 	private Boolean telecommuting;
+	
+	@NotEmpty
+	@ApiModelProperty(value = "The employee workplace.", required = true, position = 7, allowEmptyValue = false, example = "San Marcos")
+	private String workplace;
 
-	public CreateEmployeeCommandResource(String employeeId, String username, String email, String firstname, String lastname, Boolean telecommuting) {
+	public CreateEmployeeCommandResource(String employeeId, String username, String email, String firstname, String lastname, Boolean telecommuting, String workplace) {
 
 		super();
 		this.employeeId = employeeId;
@@ -52,6 +56,7 @@ public class CreateEmployeeCommandResource {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.telecommuting = telecommuting;
+		this.workplace = workplace;
 
 	}
 
@@ -107,10 +112,22 @@ public class CreateEmployeeCommandResource {
 
 	}
 
+	public String getWorkplace() {
+		
+		return workplace;
+		
+	}
+
+	public void setWorkplace(String workplace) {
+
+		this.workplace = workplace;
+		
+	}
+
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] {employeeId, username, email, firstname, lastname, telecommuting});
+		return ObjectUtils.nullSafeHashCode(new Object[] {employeeId, username, email, firstname, lastname, telecommuting, workplace});
 
 	}
 

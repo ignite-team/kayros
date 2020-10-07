@@ -17,12 +17,14 @@ public class CreateEmployeeCommand {
 	private String lastname;
 
 	private Boolean telecommuting;
+	
+	private String workplace;
 
 	public CreateEmployeeCommand() {
 
 	}
 
-	public CreateEmployeeCommand(String employeeId, String username, String email, String firstname, String lastname, Boolean telecommuting) {
+	public CreateEmployeeCommand(String employeeId, String username, String email, String firstname, String lastname, Boolean telecommuting, String workplace) {
 
 		super();
 		this.employeeId = employeeId;
@@ -31,6 +33,7 @@ public class CreateEmployeeCommand {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.telecommuting = telecommuting;
+		this.workplace = workplace;
 
 	}
 
@@ -87,10 +90,22 @@ public class CreateEmployeeCommand {
 
 	}
 
+	public String getWorkplace() {
+
+		return workplace;
+		
+	}
+
+	public void setWorkplace(String workplace) {
+		
+		this.workplace = workplace;
+		
+	}
+
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] {employeeId, username, email, firstname, lastname, telecommuting});
+		return ObjectUtils.nullSafeHashCode(new Object[] {employeeId, username, email, firstname, lastname, telecommuting, workplace});
 
 	}
 

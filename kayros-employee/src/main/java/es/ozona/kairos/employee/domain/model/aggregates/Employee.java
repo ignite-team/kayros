@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,7 +20,9 @@ import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.domain.AbstractAggregateRoot;
 import org.springframework.util.ObjectUtils;
 
@@ -61,8 +64,14 @@ public class Employee extends AbstractAggregateRoot<Employee> implements Seriali
 	private Set<Schedule> schedules = new HashSet<Schedule>(0);
 
 	@NotNull
+	@Column(name = "telecommuting", nullable = false, unique = false)
 	private Boolean telecommuting;
 
+	@NotEmpty
+	@Length(min = 5, max = 75)
+	@Column(name = "workplace", nullable = false, unique = false, length = 75)
+	private String workplace;
+	
 	public Employee() {
 
 	}
@@ -75,8 +84,9 @@ public class Employee extends AbstractAggregateRoot<Employee> implements Seriali
 		this.account = new UserAccount(createEmployeeCommand.getUsername(), createEmployeeCommand.getEmail(), createEmployeeCommand.getFirstname(), createEmployeeCommand.getLastname());
 
 		this.telecommuting = createEmployeeCommand.getTelecommuting();
-
-		this.registerEvent(new EmployeeCreatedEvent(new EmployeeCreatedEventData(createEmployeeCommand.getEmployeeId(), createEmployeeCommand.getUsername(), createEmployeeCommand.getEmail(), createEmployeeCommand.getFirstname(), createEmployeeCommand.getLastname(), createEmployeeCommand.getTelecommuting())));
+		this.workplace = createEmployeeCommand.getWorkplace();
+		
+		this.registerEvent(new EmployeeCreatedEvent(new EmployeeCreatedEventData(createEmployeeCommand.getEmployeeId(), createEmployeeCommand.getUsername(), createEmployeeCommand.getEmail(), createEmployeeCommand.getFirstname(), createEmployeeCommand.getLastname(), createEmployeeCommand.getTelecommuting(), createEmployeeCommand.getWorkplace())));
 
 	}
 
@@ -85,8 +95,9 @@ public class Employee extends AbstractAggregateRoot<Employee> implements Seriali
 		this.account = new UserAccount(modifyEmployeeCommand.getUsername(), modifyEmployeeCommand.getEmail(), modifyEmployeeCommand.getFirstname(), modifyEmployeeCommand.getLastname());
 
 		this.telecommuting = modifyEmployeeCommand.getTelecommuting();
+		this.workplace = modifyEmployeeCommand.getWorkplace();
 
-		this.registerEvent(new EmployeeModifiedEvent(new EmployeeModifiedEventData(modifyEmployeeCommand.getEmployeeId(), modifyEmployeeCommand.getUsername(), modifyEmployeeCommand.getEmail(), modifyEmployeeCommand.getFirstname(), modifyEmployeeCommand.getLastname(), modifyEmployeeCommand.getTelecommuting())));
+		this.registerEvent(new EmployeeModifiedEvent(new EmployeeModifiedEventData(modifyEmployeeCommand.getEmployeeId(), modifyEmployeeCommand.getUsername(), modifyEmployeeCommand.getEmail(), modifyEmployeeCommand.getFirstname(), modifyEmployeeCommand.getLastname(), modifyEmployeeCommand.getTelecommuting(), modifyEmployeeCommand.getWorkplace())));
 
 	}
 
@@ -138,6 +149,18 @@ public class Employee extends AbstractAggregateRoot<Employee> implements Seriali
 
 		this.telecommuting = telecommuting;
 
+	}
+
+	public String getWorkplace() {
+
+		return workplace;
+		
+	}
+
+	public void setWorkplace(String workplace) {
+		
+		this.workplace = workplace;
+		
 	}
 
 	@Override

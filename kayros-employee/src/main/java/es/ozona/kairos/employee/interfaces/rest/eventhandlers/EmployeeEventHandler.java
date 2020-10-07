@@ -45,7 +45,7 @@ public class EmployeeEventHandler {
 
 		LOG.debug("Clock created event received for ID {}", eventData.getEmployeeId());
 
-		final CreateEmployeeCommand createEmployeeCommand = new CreateEmployeeCommand(eventData.getEmployeeId(), eventData.getUseraname(), eventData.getUseraname(), "autoname", "autolastname", true);
+		final CreateEmployeeCommand createEmployeeCommand = new CreateEmployeeCommand(eventData.getEmployeeId(), eventData.getUseraname(), eventData.getUseraname(), "autoname", "autolastname", null, "autoworkplace");
 
 		employeeCommandService.createEmployeeAuto(createEmployeeCommand);
 
