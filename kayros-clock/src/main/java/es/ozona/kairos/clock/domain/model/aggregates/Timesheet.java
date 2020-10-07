@@ -96,7 +96,7 @@ public class Timesheet extends AbstractAggregateRoot<Timesheet> {
 		this.username = createTimesheetCommand.getUsername();
 		this.date = createTimesheetCommand.getDate();
 		
-		final ClockTimesheetCommand clockTimesheetCommand = new ClockTimesheetCommand(createTimesheetCommand.getEmployeeId(), createTimesheetCommand.getUsername(), createTimesheetCommand.getTelecommuting());
+		final ClockTimesheetCommand clockTimesheetCommand = new ClockTimesheetCommand(createTimesheetCommand.getEmployeeId(), createTimesheetCommand.getUsername(), createTimesheetCommand.getTelecommuting(), createTimesheetCommand.getWorkplace());
 
 		clockIn(clockTimesheetCommand);
 
@@ -222,7 +222,7 @@ public class Timesheet extends AbstractAggregateRoot<Timesheet> {
 	}
 
 	protected void clockIn(ClockTimesheetCommand clockTimesheetCommand) {
-		final WorkingTimePeriod newWorkingTimePeriod = new WorkingTimePeriod(new StartTime(ZonedDateTime.now(), Boolean.FALSE, Boolean.FALSE), clockTimesheetCommand.getTelecommuting());
+		final WorkingTimePeriod newWorkingTimePeriod = new WorkingTimePeriod(new StartTime(ZonedDateTime.now(), Boolean.FALSE, Boolean.FALSE), clockTimesheetCommand.getTelecommuting(), clockTimesheetCommand.getWorkplace());
 		this.workingTimePeriods.add(newWorkingTimePeriod);
 		
 		registerEvent(new TimesheetClockedInEvent(new TimesheetClockedInEventData(employeeId.getEmployeeId(), timesheetId.getTimesheetId(), date,
@@ -231,7 +231,8 @@ public class Timesheet extends AbstractAggregateRoot<Timesheet> {
 				newWorkingTimePeriod.getFinishTime().isPresent() ? newWorkingTimePeriod.getFinishTime().get().getFinishTime() : null,
 				newWorkingTimePeriod.getFinishTime().isPresent() ? newWorkingTimePeriod.getFinishTime().get().isGenerated() : null,
 				newWorkingTimePeriod.getFinishTime().isPresent() ? newWorkingTimePeriod.getFinishTime().get().isEdited() : null,
-				newWorkingTimePeriod.getTelecommuting())));
+				newWorkingTimePeriod.getTelecommuting(),
+				newWorkingTimePeriod.getWorkplace())));
 
 	}
 
@@ -244,7 +245,8 @@ public class Timesheet extends AbstractAggregateRoot<Timesheet> {
 				workingTimePeriod.getFinishTime().isPresent() ? workingTimePeriod.getFinishTime().get().getFinishTime() : null,
 				workingTimePeriod.getFinishTime().isPresent() ? workingTimePeriod.getFinishTime().get().isGenerated() : null,
 				workingTimePeriod.getFinishTime().isPresent() ? workingTimePeriod.getFinishTime().get().isEdited() : null,
-				workingTimePeriod.getTelecommuting())));
+				workingTimePeriod.getTelecommuting(),
+				workingTimePeriod.getWorkplace())));
 
 	}
 

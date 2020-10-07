@@ -37,11 +37,16 @@ public class WorkingTimePeriodResource {
 	@ApiModelProperty(value = "telecommuting", required = true, example = "true")
 	private Boolean telecommuting;
 
+	@ApiModelProperty(value = "workplace", required = true, example = "San Marcos")
+	private String workplace;
+
 	public WorkingTimePeriodResource() {
 
 	}
 
-	public WorkingTimePeriodResource(ZonedDateTime startTime, Boolean generatedStartTime, Boolean editedStartTime, ZonedDateTime finishTime, Boolean generatedFinishTime, Boolean editedFinishTime, Boolean telecommuting) {
+	public WorkingTimePeriodResource(ZonedDateTime startTime, Boolean generatedStartTime, Boolean editedStartTime, ZonedDateTime finishTime,
+			Boolean generatedFinishTime, Boolean editedFinishTime, Boolean telecommuting, String workplace) {
+
 		super();
 		this.startTime = startTime;
 		this.generatedStartTime = generatedStartTime;
@@ -50,6 +55,8 @@ public class WorkingTimePeriodResource {
 		this.generatedFinishTime = generatedFinishTime;
 		this.editedFinishTime = editedFinishTime;
 		this.telecommuting = telecommuting;
+		this.workplace = workplace;
+
 	}
 
 	public ZonedDateTime getStartTime() {
@@ -99,16 +106,29 @@ public class WorkingTimePeriodResource {
 	public void setEditedFinishTime(Boolean editedFinishTime) {
 		this.editedFinishTime = editedFinishTime;
 	}
-	
+
 	public Boolean getTelecommuting() {
 
 		return telecommuting;
-		
+
 	}
 
 	public void setTelecommuting(Boolean telecommuting) {
-		
+
 		this.telecommuting = telecommuting;
-		
+
 	}
+
+	public String getWorkplace() {
+
+		return workplace;
+
+	}
+
+	public void setWorkplace(String workplace) {
+
+		this.workplace = workplace;
+
+	}
+
 }

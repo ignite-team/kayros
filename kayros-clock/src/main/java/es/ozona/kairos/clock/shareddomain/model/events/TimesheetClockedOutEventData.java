@@ -22,14 +22,18 @@ public class TimesheetClockedOutEventData {
 	private Boolean generatedFinishTime;
 
 	private Boolean editedFinishTime;
-	
+
 	private Boolean telecommuting;
-	
+
+	private String workplace;
+
 	public TimesheetClockedOutEventData() {
-		
+
 	}
 
-	public TimesheetClockedOutEventData(String employeeId, String timesheetId, LocalDate date, ZonedDateTime startTime, Boolean generatedStartTime, Boolean editedStartTime, ZonedDateTime finishTime, Boolean generatedFinishTime, Boolean editedFinishTime, Boolean telecommuting) {
+	public TimesheetClockedOutEventData(String employeeId, String timesheetId, LocalDate date, ZonedDateTime startTime, Boolean generatedStartTime,
+			Boolean editedStartTime, ZonedDateTime finishTime, Boolean generatedFinishTime, Boolean editedFinishTime, Boolean telecommuting, String workplace) {
+
 		super();
 		this.employeeId = employeeId;
 		this.timesheetId = timesheetId;
@@ -41,6 +45,8 @@ public class TimesheetClockedOutEventData {
 		this.generatedFinishTime = generatedFinishTime;
 		this.editedFinishTime = editedFinishTime;
 		this.telecommuting = telecommuting;
+		this.workplace = workplace;
+
 	}
 
 	public String getEmployeeId() {
@@ -118,13 +124,24 @@ public class TimesheetClockedOutEventData {
 	public Boolean getTelecommuting() {
 
 		return telecommuting;
-		
+
 	}
 
 	public void setTelecommuting(Boolean telecommuting) {
-		
+
 		this.telecommuting = telecommuting;
-		
+
+	}
+
+	public String getWorkplace() {
+
+		return workplace;
+
+	}
+
+	public void setWorkplace(String workplace) {
+
+		this.workplace = workplace;
 	}
 
 }

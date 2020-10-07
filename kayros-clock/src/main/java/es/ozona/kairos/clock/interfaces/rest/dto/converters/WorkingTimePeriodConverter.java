@@ -16,6 +16,7 @@ public class WorkingTimePeriodConverter extends AbstractConverter<WorkingTimePer
 		wtp.setGeneratedStartTime(source.getStartTime().isGenerated());
 		wtp.setEditedStartTime(source.getStartTime().isEdited());
 		wtp.setTelecommuting(source.getTelecommuting());
+		wtp.setWorkplace(source.getWorkplace());
 
 		if (source.getFinishTime().isPresent()) {
 			
