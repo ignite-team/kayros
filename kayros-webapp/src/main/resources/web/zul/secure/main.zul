@@ -48,7 +48,7 @@
 									<label value="Un centro" />
 								</listcell>
 								<listcell>
-									<label value="@load(each.telecommuting)" />
+									<label value="@load(each.telecommuting) @converter('es.ozona.kayros.webapp.utils.converters.BoolFormatConverter', format='Sí,No')" />
 								</listcell>
 							</listitem>
 						</template>

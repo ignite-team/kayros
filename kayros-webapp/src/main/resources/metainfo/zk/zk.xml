@@ -5,4 +5,8 @@
 	    <name>org.zkoss.web.preferred.dateFormatInfo</name>
 	    <value>es.ozona.kayros.webapp.utils.converters.DateTimeFormater</value>
 	</library-property>
+	<library-property>
+		<name>org.zkoss.bind.appConverters</name>
+    	<value>formatedBool=es.ozona.kayros.webapp.utils.converters.BoolFormatConverter</value>
+	</library-property>
 </zk>
