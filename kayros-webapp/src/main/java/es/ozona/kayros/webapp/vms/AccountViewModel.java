@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
@@ -26,9 +25,6 @@ public class AccountViewModel {
 
 	@WireVariable("externalEmployeeService")
 	protected ExternalEmployeeService employeeService;
-
-	@WireVariable("jwtDecoder")
-	protected JwtDecoder jwtDecoder;
 
 	private static final int SIGNED_IN_STATE = 1;
 	private static final int SIGNED_OUT_STATE = 0;

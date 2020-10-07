@@ -46,7 +46,7 @@ public class TimesheetCommandServiceImpl extends BaseCommandServiceImpl<Timeshee
 			clockTimesheetCommand.setTelecommuting(telecommuting);
 
 			timesheet = repository.findFirstByEmployeeIdOrderByDateDesc(new EmployeeId(clockTimesheetCommand.getEmployeeId()));
-
+			
 			if (timesheet != null) {
 
 				timesheet.clock(clockTimesheetCommand);
