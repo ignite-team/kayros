@@ -37,8 +37,7 @@ public class AccountViewModel {
 	public void init() {
 		// obtenemos el empleado, si no lo encontramos lo creamos a partir de los datos
 		// de login.
-		this.setEmployee(employeeService
-				.findEmployeeByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
+		this.setEmployee(employeeService.findEmployeeByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
 				.orElseGet(() -> employeeService.createEmployeeFromPrincipal()));
 	}
 
@@ -67,17 +66,21 @@ public class AccountViewModel {
 	@NotifyChange("state")
 	public void clock() {
 		TimesheetResource timesheet = timesheetService.clock(employee);
-		WorkingTimePeriodResource tp = timesheet.getWorkingTimePeriods()
-				.get(timesheet.getWorkingTimePeriods().size() - 1);
+		WorkingTimePeriodResource tp = timesheet.getWorkingTimePeriods().get(timesheet.getWorkingTimePeriods().size() - 1);
 		if (tp.getFinishTime() == null) {
 			state = SIGNED_IN_STATE;
 		} else {
 			state = SIGNED_OUT_STATE;
 		}
-		
+
 		final Map<String, Object> params = new HashMap<String, Object>();
 		params.put("employeeId", employee.getEmployeeId());
 		BindUtils.postGlobalCommand(null, null, "updateEmployee", params);
+	}
+
+	@Command
+	public void updateTelecommuting() {
+		employeeService.modifyEmployee(employee);
 	}
 
 }

@@ -13,4 +13,6 @@ public interface ExternalEmployeeService {
 
 	Employee createEmployeeFromPrincipal();
 
+	Employee modifyEmployee(Employee employee);
+
 }

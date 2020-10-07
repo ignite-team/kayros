@@ -20,6 +20,8 @@ public class WorkingTimePeriod {
 	private Boolean editedFinishTime;
 
 	private Boolean telecommuting;
+	
+	private String workplace;
 
 	private long totalDone;
 
@@ -28,7 +30,7 @@ public class WorkingTimePeriod {
 	}
 
 	public WorkingTimePeriod(Date startTime, Boolean generatedStartTime, Boolean editedStartTime, Date finishTime, Boolean generatedFinishTime,
-			Boolean editedFinishTime, Boolean telecommuting) {
+			Boolean editedFinishTime, String workplace, Boolean telecommuting) {
 
 		super();
 		this.startTime = startTime;
@@ -38,6 +40,7 @@ public class WorkingTimePeriod {
 		this.generatedFinishTime = generatedFinishTime;
 		this.editedFinishTime = editedFinishTime;
 		this.telecommuting = telecommuting;
+		this.workplace = workplace;
 
 	}
 
@@ -100,6 +103,14 @@ public class WorkingTimePeriod {
 
 	public Date getTotalDone() {
 		return null;
+	}	
+	
+	public String getWorkplace() {
+		return workplace;
+	}
+
+	public void setWorkplace(String workplace) {
+		this.workplace = workplace;
 	}
 
 	public Boolean getTelecommuting() {

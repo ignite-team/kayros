@@ -6,6 +6,7 @@ import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,4 +28,7 @@ public interface EmployeeService {
 	@PostMapping(path = "/api/v1/employees", produces = MimeTypeUtils.APPLICATION_JSON_VALUE, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public EmployeeResource create(@RequestBody EmployeeResource employeeResource);
 
+	@PutMapping(path = "/api/v1/employees/{employee-id}", produces = MimeTypeUtils.APPLICATION_JSON_VALUE, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public EmployeeResource modify(@RequestBody EmployeeResource modifyEmployeeCommandResource, @PathVariable("employee-id") String id);
+	
 }

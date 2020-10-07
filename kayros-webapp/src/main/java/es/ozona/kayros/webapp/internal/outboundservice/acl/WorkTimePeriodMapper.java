@@ -6,11 +6,12 @@ import es.ozona.kayros.webapp.domain.model.WorkingTimePeriod;
 import es.ozona.kayros.webapp.shareddomain.model.WorkingTimePeriodResource;
 
 public class WorkTimePeriodMapper {
+	
 	private WorkTimePeriodMapper() {
 
 	}
 
-	public static WorkingTimePeriod map(WorkingTimePeriodResource resource) {
+	public static WorkingTimePeriod mapFromResource(WorkingTimePeriodResource resource) {
 
 		final WorkingTimePeriod wtp = new WorkingTimePeriod();
 		
@@ -20,6 +21,7 @@ public class WorkTimePeriodMapper {
 		wtp.setFinishTime(resource.getFinishTime() == null ? null: Date.from(resource.getFinishTime().toInstant()));
 		wtp.setGeneratedFinishTime(resource.getGeneratedFinishTime());
 		wtp.setEditedFinishTime(resource.getEditedFinishTime());
+		wtp.setTelecommuting(resource.getTelecommuting());
 
 		return wtp;
 

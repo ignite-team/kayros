@@ -26,4 +26,10 @@ public class EmployeeServiceFallback implements EmployeeService {
 		return employeeResource;
 	}
 
+	@Override
+	public EmployeeResource modify(EmployeeResource modifyEmployeeCommandResource, String id) {
+		// TODO Auto-generated method stub
+		return modifyEmployeeCommandResource;
+	}
+
 }

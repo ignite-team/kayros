@@ -22,7 +22,7 @@ public class Employee {
 
 	}
 
-	public Employee(String employeeId, String username, String email, String firstname, String lastname, Boolean telecommuting,  String workplace) {
+	public Employee(String employeeId, String username, String email, String firstname, String lastname, Boolean telecommuting, String workplace) {
 
 		this.employeeId = employeeId;
 		this.username = username;
@@ -75,33 +75,25 @@ public class Employee {
 	}
 
 	public Boolean getTelecommuting() {
-		
 		return telecommuting;
-		
 	}
-	
+
 	public void setTelecommuting(Boolean telecommuting) {
-		
 		this.telecommuting = telecommuting;
-		
 	}
 
 	public String getWorkplace() {
-		
 		return workplace;
-		
 	}
 
 	public void setWorkplace(String workplace) {
-
 		this.workplace = workplace;
-		
 	}
 
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] {employeeId, username, email, firstname, lastname, telecommuting, workplace});
+		return ObjectUtils.nullSafeHashCode(new Object[] { employeeId, username, email, firstname, lastname, telecommuting, workplace });
 
 	}
 
@@ -109,13 +101,13 @@ public class Employee {
 	public boolean equals(Object obj) {
 
 		if (obj == null || !(obj instanceof Employee)) {
-			
+
 			return false;
-			
+
 		}
-		
+
 		return this.hashCode() == obj.hashCode();
-		
+
 	}
 
 }

@@ -23,32 +23,39 @@ public class ExternalEmployeeServiceImpl implements ExternalEmployeeService {
 
 	@Override
 	public Optional<Employee> findEmployeeByUsername(String username) {
-		final PageResult<EmployeeResource> employees = employeeService.search("username:%s".formatted(username),
-				"+username", 1, 1);
+		final PageResult<EmployeeResource> employees = employeeService.search("username:%s".formatted(username), "+username", 1, 1);
 		if (employees.getItems().size() > 0) {
-			return Optional.of(EmployeeMapper.map(employees.getItems().get(0)));
+			return Optional.of(EmployeeMapper.mapFromResource(employees.getItems().get(0)));
 		}
 		return Optional.empty();
 	}
 
 	@Override
 	public List<Employee> findEmployeesLikeUsername(String username) {
-		
-		return employeeService.search("username:%s*".formatted(username), "+username", 1, 15).getItems().stream().map(e -> EmployeeMapper.map(e)).collect(Collectors.toList());
-		
+
+		return employeeService.search("username:%s*".formatted(username), "+username", 1, 15).getItems().stream().map(e -> EmployeeMapper.mapFromResource(e))
+				.collect(Collectors.toList());
+
 	}
 
 	@Override
 	public Employee createEmployeeFromPrincipal() {
-		final OAuth2AuthenticationToken auth = (OAuth2AuthenticationToken) SecurityContextHolder.getContext()
-				.getAuthentication();
+		final OAuth2AuthenticationToken auth = (OAuth2AuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
 
-		EmployeeResource employeeResource = new EmployeeResource(null, auth.getName(), auth.getPrincipal().getAttribute("mail"), auth.getPrincipal().getAttribute("cn"), auth.getPrincipal().getAttribute("sn"), null, "autoworkplace");
+		EmployeeResource employeeResource = new EmployeeResource(null, auth.getName(), auth.getPrincipal().getAttribute("mail"),
+				auth.getPrincipal().getAttribute("cn"), auth.getPrincipal().getAttribute("sn"), false,
+				auth.getPrincipal().getAttribute("physicalDeliveryOfficeName"));
 
 		employeeResource = employeeService.create(employeeResource);
 
-		return EmployeeMapper.map(employeeResource);
+		return EmployeeMapper.mapFromResource(employeeResource);
 
+	}
+
+	@Override
+	public Employee modifyEmployee(Employee employee) {
+
+		return EmployeeMapper.mapFromResource(employeeService.modify(EmployeeMapper.mapToResource(employee), employee.getEmployeeId()));
 	}
 
 }

@@ -4,7 +4,7 @@
 		<hbox pack="center" align="center" viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.AccountViewModel')">
 			<label value="@load(vm.employee.email)" style="color: white" />
 			<button label="@load(vm.state eq 1? 'Registrar entrada': 'Registrar salida')" onClick="@command('clock')" />
-			<checkbox label="Teletrabajo" mold="switch" checked="false" style="color: white" />
+			<checkbox label="Teletrabajo" mold="switch" checked="@bind(vm.employee.telecommuting)" onCheck="@command('updateTelecommuting')" style="color: white" />
 			<image src="~./img/profile.png" width="75px" height="auto" style="margin: 10px 10px 10px 10px" onClick='accountProfile.open(self,"after_start")' />
 		</hbox>
 	</div>
@@ -30,19 +30,26 @@
 							<listheader>Entrada</listheader>
 							<listheader>Salida</listheader>
 							<listheader>Parcial</listheader>
-							<listheader>Acumulado</listheader>
+							<listheader>Centro</listheader>
+							<listheader>Teletrabajo</listheader>
 						</listhead>
 						<template name="model">
 							<listitem>
 								<listcell>
-									<label value="@load(each.startTime) @converter('formatedDate', format='dd-MM-yyyy HH:mm:ss')"  />
+									<label value="@load(each.startTime) @converter('formatedDate', format='dd-MM-yyyy HH:mm:ss')" />
 								</listcell>
 								<listcell>
 									<label value="@load(each.finishTime) @converter('formatedDate', format='dd-MM-yyyy HH:mm:ss')" />
 								</listcell>
 								<listcell>
 									<label value="@load(each.partialDone)" />
-								</listcell>							
+								</listcell>
+								<listcell>
+									<label value="Un centro" />
+								</listcell>
+								<listcell>
+									<label value="@load(each.telecommuting)" />
+								</listcell>
 							</listitem>
 						</template>
 					</listbox>
