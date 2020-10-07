@@ -1,6 +1,8 @@
 package es.ozona.kayros.webapp.internal.outboundservice;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,13 +32,20 @@ public class ExternalEmployeeServiceImpl implements ExternalEmployeeService {
 	}
 
 	@Override
+	public List<Employee> findEmployeesLikeUsername(String username) {
+		
+		return employeeService.search("username:%s*".formatted(username), "+username", 1, 15).getItems().stream().map(e -> EmployeeMapper.map(e)).collect(Collectors.toList());
+		
+	}
+
+	@Override
 	public Employee createEmployeeFromPrincipal() {
 		final OAuth2AuthenticationToken auth = (OAuth2AuthenticationToken) SecurityContextHolder.getContext()
 				.getAuthentication();
 
 		EmployeeResource employeeResource = new EmployeeResource(null, auth.getName(),
 				auth.getPrincipal().getAttribute("mail"), auth.getPrincipal().getAttribute("cn"),
-				auth.getPrincipal().getAttribute("sn"));
+				auth.getPrincipal().getAttribute("sn"), false);
 
 		employeeResource = employeeService.create(employeeResource);
 

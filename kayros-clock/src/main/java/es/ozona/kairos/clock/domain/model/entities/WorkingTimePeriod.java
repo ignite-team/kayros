@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
+import com.sun.istack.NotNull;
+
 import es.ozona.kairos.clock.domain.model.valueobjects.FinishTime;
 import es.ozona.kairos.clock.domain.model.valueobjects.StartTime;
 
@@ -25,9 +27,6 @@ import es.ozona.kairos.clock.domain.model.valueobjects.StartTime;
 @Entity(name = "working_time_period")
 public class WorkingTimePeriod implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -39,6 +38,9 @@ public class WorkingTimePeriod implements Serializable {
 
 	@Embedded
 	private FinishTime finishTime;
+	
+	@NotNull
+	private Boolean telecommuting;
 
 	/**
 	 * Default constructor.
@@ -53,10 +55,11 @@ public class WorkingTimePeriod implements Serializable {
 	 * @param startTime  a {@code StartTime}
 	 * @param finishTime a {@code EndTime}
 	 */
-	public WorkingTimePeriod(StartTime startTime) {
+	public WorkingTimePeriod(StartTime startTime, Boolean telecommuting) {
 		super();
 		Assert.notNull(startTime, "WorkingTimePeriod startTiem can not be null.");
 		this.startTime = startTime;
+		this.telecommuting = telecommuting;
 	}
 
 	/**
@@ -112,11 +115,24 @@ public class WorkingTimePeriod implements Serializable {
 	public void setFinishTime(FinishTime endTime) {
 		this.finishTime = endTime;
 	}
+	
+	public Boolean getTelecommuting() {
+
+		return telecommuting;
+		
+	}
+
+	public void setTelecommuting(Boolean telecommuting) {
+		
+		this.telecommuting = telecommuting;
+		
+	}
 
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] { id, startTime, finishTime });
+		return ObjectUtils.nullSafeHashCode(new Object[] {id, startTime, finishTime, telecommuting});
+
 	}
 
 	@Override

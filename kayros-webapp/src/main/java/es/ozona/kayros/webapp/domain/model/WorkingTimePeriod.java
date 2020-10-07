@@ -19,6 +19,8 @@ public class WorkingTimePeriod {
 
 	private Boolean editedFinishTime;
 
+	private Boolean telecommuting;
+
 	private long totalDone;
 
 	public WorkingTimePeriod() {
@@ -26,7 +28,8 @@ public class WorkingTimePeriod {
 	}
 
 	public WorkingTimePeriod(Date startTime, Boolean generatedStartTime, Boolean editedStartTime, Date finishTime, Boolean generatedFinishTime,
-			Boolean editedFinishTime) {
+			Boolean editedFinishTime, Boolean telecommuting) {
+
 		super();
 		this.startTime = startTime;
 		this.generatedStartTime = generatedStartTime;
@@ -34,6 +37,7 @@ public class WorkingTimePeriod {
 		this.finishTime = finishTime;
 		this.generatedFinishTime = generatedFinishTime;
 		this.editedFinishTime = editedFinishTime;
+		this.telecommuting = telecommuting;
 
 	}
 
@@ -90,12 +94,24 @@ public class WorkingTimePeriod {
 	public String getPartialDone() {
 		Date endTime = finishTime == null ? new Date() : finishTime;
 
-		return new TemporalDuration(Duration.between(LocalDateTime.ofInstant(startTime.toInstant(), 
-				ZoneId.systemDefault()),LocalDateTime.ofInstant(endTime.toInstant(), ZoneId.systemDefault()))).toString();
+		return new TemporalDuration(Duration.between(LocalDateTime.ofInstant(startTime.toInstant(), ZoneId.systemDefault()),
+				LocalDateTime.ofInstant(endTime.toInstant(), ZoneId.systemDefault()))).toString();
 	}
 
 	public Date getTotalDone() {
 		return null;
+	}
+
+	public Boolean getTelecommuting() {
+
+		return telecommuting;
+
+	}
+
+	public void setTelecommuting(Boolean telecommuting) {
+
+		this.telecommuting = telecommuting;
+
 	}
 
 }

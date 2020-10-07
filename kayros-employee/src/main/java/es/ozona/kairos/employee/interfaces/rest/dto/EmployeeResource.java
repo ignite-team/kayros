@@ -23,16 +23,26 @@ public class EmployeeResource {
 	@ApiModelProperty(value = "The employee identifier.", required = true, position = 5, allowEmptyValue = false, example = "de Castro")
 	private String lastname;
 
+	@ApiModelProperty(value = "The employee is telecommiting.", required = true, position = 6, allowEmptyValue = false)
+	private Boolean telecommuting;
+	
+	@ApiModelProperty(value = "The employee workplace.", required = true, position = 7, allowEmptyValue = false, example = "San Marcos")
+	private String workplace;
+
 	public EmployeeResource() {
 
 	}
 
-	public EmployeeResource(String employeeId, String username, String email, String firstname, String lastname) {
+	public EmployeeResource(String employeeId, String username, String email, String firstname, String lastname, Boolean telecommuting, String workplace) {
+
 		this.employeeId = employeeId;
 		this.username = username;
 		this.email = email;
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.telecommuting = telecommuting;
+		this.workplace = workplace;
+
 	}
 
 	public String getEmployeeId() {
@@ -75,10 +85,35 @@ public class EmployeeResource {
 		this.lastname = lastname;
 	}
 
+	public Boolean getTelecommuting() {
+
+		return telecommuting;
+
+	}
+
+	public void setTelecommuting(Boolean telecommuting) {
+
+		this.telecommuting = telecommuting;
+
+	}
+
+	public String getWorkplace() {
+
+		return workplace;
+		
+	}
+
+	public void setWorkplace(String workplace) {
+		
+		this.workplace = workplace;
+		
+	}
+
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] { employeeId, username, email, firstname, lastname });
+		return ObjectUtils.nullSafeHashCode(new Object[] {employeeId, username, email, firstname, lastname, telecommuting, workplace});
+
 	}
 
 	@Override

@@ -101,6 +101,7 @@ public class ExportViewModel {
 			        headers.add("finishTime");       
 			        headers.add("generatedFinishTime");
 			        headers.add("editedFinishTime");
+			        headers.add("telecommuting");
 				
 				    ArrayList<Object> row = new ArrayList<Object>();
 		
@@ -116,7 +117,8 @@ public class ExportViewModel {
 					    row.add(wtp.getFinishTime());
 					    row.add(wtp.getGeneratedFinishTime());
 					    row.add(wtp.getEditedFinishTime());
-						    
+					    row.add(wtp.getTelecommuting());
+
 					    rows.add(row);
 					    			    			    
 			        }    
@@ -233,7 +235,7 @@ public class ExportViewModel {
 
 			final ListModelList<Employee> finalEmployees = new ListModelList<Employee>();
 			
-			employeeService.findEmployeeByUsername(employeeUsername).stream().forEach(e -> finalEmployees.add(e));
+			employeeService.findEmployeesLikeUsername(employeeUsername).stream().forEach(e -> finalEmployees.add(e));
 					
 			setEmployees(finalEmployees);
 

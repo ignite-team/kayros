@@ -65,15 +65,23 @@ public class EmployeeController extends BaseControllerImpl<Employee, Long, Emplo
 			@ApiResponse(code = 201, message = "Employee created", response = EmployeeResource.class),
 			@ApiResponse(code = 400, message = "Bad request") })
 	public ResponseEntity<EmployeeResource> create(@ApiParam(required = true) @Valid @RequestBody CreateEmployeeCommandResource createEmployeeResource) {
+
 		try {
+
 			final Employee employee = commandService.createEmployee(modelMapper.map(createEmployeeResource, CreateEmployeeCommand.class));
-			final EmployeeResource employeeResource = modelMapper.map(employee, EmployeeResource.class);
+
+			final EmployeeResource employeeResource = modelMapper.map(employee, EmployeeResource.class);				
+
 			final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(employeeResource.getEmployeeId()).toUri();
 
 			return ResponseEntity.created(location).body(employeeResource);
+
 		} catch (Exception e) {
+
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide correct employee ID.", e);
+
 		}
+
 	}
 
 	@PutMapping(path = "/employees/{employee-id}", produces = MimeTypeUtils.APPLICATION_JSON_VALUE, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)

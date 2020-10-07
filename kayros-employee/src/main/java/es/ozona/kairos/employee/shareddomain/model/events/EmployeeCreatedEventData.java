@@ -14,13 +14,21 @@ public class EmployeeCreatedEventData {
 
 	private String surename;
 
-	public EmployeeCreatedEventData(String employeeId, String lastname, String email, String firstname, String surename) {
+	private Boolean telecommuting;
+	
+	private String workplace;
+
+	public EmployeeCreatedEventData(String employeeId, String lastname, String email, String firstname, String surename, Boolean telecommuting, String workplace) {
+
 		super();
 		this.employeeId = employeeId;
 		this.lastname = lastname;
 		this.email = email;
 		this.firstname = firstname;
 		this.surename = surename;
+		this.telecommuting = telecommuting;
+		this.workplace = workplace;
+
 	}
 
 	public String getEmployeeId() {
@@ -63,10 +71,35 @@ public class EmployeeCreatedEventData {
 		this.surename = surename;
 	}
 
+	public Boolean getTelecommuting() {
+
+		return telecommuting;
+
+	}
+
+	public void setTelecommuting(Boolean telecommuting) {
+
+		this.telecommuting = telecommuting;
+
+	}
+	
+	public String getWorkplace() {
+		
+		return workplace;
+		
+	}
+
+	public void setWorkplace(String workplace) {
+
+		this.workplace = workplace;
+		
+	}
+
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] { employeeId, lastname, email, firstname, surename });
+		return ObjectUtils.nullSafeHashCode(new Object[] {employeeId, lastname, email, firstname, surename, telecommuting, workplace});
+
 	}
 
 	@Override

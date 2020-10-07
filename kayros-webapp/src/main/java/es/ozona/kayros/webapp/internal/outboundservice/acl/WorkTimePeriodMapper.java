@@ -13,6 +13,7 @@ public class WorkTimePeriodMapper {
 	public static WorkingTimePeriod map(WorkingTimePeriodResource resource) {
 
 		final WorkingTimePeriod wtp = new WorkingTimePeriod();
+		
 		wtp.setStartTime(Date.from(resource.getStartTime().toInstant()));
 		wtp.setGeneratedStartTime(resource.getGeneratedStartTime());
 		wtp.setEditedStartTime(resource.getEditedStartTime());
