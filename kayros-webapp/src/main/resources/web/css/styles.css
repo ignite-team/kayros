@@ -1,3 +1,17 @@
+.oops-label {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 160px;
+	font-weight: bolder;
+	color: #D90047;
+}
+
+.error-label {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 32px;
+	font-weight: bold;
+	color: #a4657d;
+}
+
 .nav_toolbar .z-toolbarbutton-content i {
 	font-size: 20px;
 }
