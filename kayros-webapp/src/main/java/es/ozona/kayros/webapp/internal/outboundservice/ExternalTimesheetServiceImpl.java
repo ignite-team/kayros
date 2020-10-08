@@ -33,17 +33,21 @@ public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 	public List<WorkingTimePeriod> searchCurrentByEmployeeId(String employeeId) {
 
 		final List<TimesheetResource> timesheets = timesheetService.search("employeeId:%s".formatted(employeeId), "+date", 1, 1000).getItems();
-		
-		return CollectionUtils.isEmpty(timesheets) ? new ArrayList<WorkingTimePeriod>() : CollectionUtils.lastElement(timesheets).getWorkingTimePeriods().stream() 
-				.map(t -> WorkTimePeriodMapper.mapFromResource(t)).collect(Collectors.toList());
+
+		return CollectionUtils.isEmpty(timesheets) ? new ArrayList<WorkingTimePeriod>()
+				: CollectionUtils.lastElement(timesheets).getWorkingTimePeriods().stream().map(t -> WorkTimePeriodMapper.mapFromResource(t))
+						.collect(Collectors.toList());
 	}
 
 	@Override
 	public List<WorkingTimePeriod> searchTimesheetsByEmployeeIdBetweenDates(String startDate, String endDate, String employeeId) {
-		
-		final List<TimesheetResource> timesheets = timesheetService.search("( date>%s and date<%s and employeeId:%s )".formatted(startDate, endDate, employeeId), "+date", 1, 1000).getItems();
-		
-		return CollectionUtils.isEmpty(timesheets) ? null : CollectionUtils.lastElement(timesheets).getWorkingTimePeriods().stream() .map(t -> WorkTimePeriodMapper.mapFromResource(t)).collect(Collectors.toList());
+
+		final List<TimesheetResource> timesheets = timesheetService
+				.search("( date>%s and date<%s and employeeId:%s )".formatted(startDate, endDate, employeeId), "+date", 1, 1000).getItems();
+
+		return CollectionUtils.isEmpty(timesheets) ? null
+				: CollectionUtils.lastElement(timesheets).getWorkingTimePeriods().stream().map(t -> WorkTimePeriodMapper.mapFromResource(t))
+						.collect(Collectors.toList());
 
 	}
 

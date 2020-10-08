@@ -24,7 +24,7 @@ public class TimesheetCommandServiceImpl extends BaseCommandServiceImpl<Timeshee
 		Timesheet timesheet = null;
 
 		// TODO: mover a capa domain service.
-		if (clockTimesheetCommand.getEmployeeId() == null) { // employee sercice is not available.
+		if (clockTimesheetCommand.getEmployeeId() == null) { // employee service is not available.
 
 			timesheet = repository.findFirstByUsernameOrderByDateDesc(clockTimesheetCommand.getUsername());
 
