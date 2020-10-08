@@ -23,7 +23,7 @@ public class BoolFormatConverter implements Converter<String, Boolean, Component
 			throw new NullPointerException("format attribute not found");
 
 		if (val != null && val == true) { // si es true
-			boolValue = 1;
+			boolValue = 0;
 		}
 
 		final String[] boolValues = format.split(",");
@@ -47,7 +47,7 @@ public class BoolFormatConverter implements Converter<String, Boolean, Component
 
 		final String[] boolValues = format.split(",");
 
-		if (!StringUtils.isEmpty(val) && val.equals(boolValues[0])) { // si es true
+		if (!StringUtils.isEmpty(val) && val.equals(boolValues[1])) { // si es true
 			boolValue = true;
 		}
 
