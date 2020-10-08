@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.GlobalCommand;
+import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.bind.annotation.ToClientCommand;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zul.ListModelList;
 
-import es.ozona.kayros.webapp.domain.model.Timesheet;
+import es.ozona.kayros.webapp.domain.model.WorkingTimePeriod;
 import es.ozona.kayros.webapp.internal.outboundservice.ExternalTimesheetService;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
@@ -19,25 +21,34 @@ public class CurrentTimesheetModel {
 	@WireVariable("externalTimesheetService")
 	protected ExternalTimesheetService timesheetService;
 
-	private List<Timesheet> timesheets;
+	private List<WorkingTimePeriod> workingTimePeriods;
+	
 
-	public List<Timesheet> getTimesheets() {
 
-		return timesheets;
+	@Init
+	public void init() {
 
+		// buscamos los periodos del dia
+		// seachWorkingTimePeriods();
 	}
 
-	public void setTimesheets(List<Timesheet> timesheets) {
+	public List<WorkingTimePeriod> getWorkingTimePeriods() {
+		return workingTimePeriods;
+	}
 
-		this.timesheets = timesheets;
-
+	public void setWorkingTimePeriods(List<WorkingTimePeriod> workingTimePeriods) {
+		this.workingTimePeriods = workingTimePeriods;
 	}
 
 	@GlobalCommand()
-	@NotifyChange("timesheets")
+	@NotifyChange("workingTimePeriods")
 	public void updateEmployee(@BindingParam("employeeId") String employeeId) {
+		final ListModelList<WorkingTimePeriod> workingTimePeriods = new ListModelList<WorkingTimePeriod>();
 
-		setTimesheets(timesheetService.searchTimesheetsByEmployeeId(employeeId));
+		timesheetService.searchCurrentByEmployeeId(employeeId).stream()
+				.forEach(w -> workingTimePeriods.add(w));
+
+		setWorkingTimePeriods(workingTimePeriods);
 
 	}
 

@@ -22,20 +22,19 @@
 				<hlayout viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.CurrentTimesheetModel')">
 					<listbox model="@load(vm.workingTimePeriods)" mold="paging" pagingPosition="both" pageSize="10">
 						<listhead>
-							<listheader label="Entrda" sort="auto(startTime)" />
+							<listheader label="Entrada" sort="auto(startTime)" />
 							<listheader label="Salida" sort="auto(finishTime)" />
 							<listheader label="Parcial" sort="auto(partialDone)" />
 							<listheader label="Centro" sort="auto(workplace)" />
 							<listheader label="Teletrabajo" sort="auto(telecommuting)" />
-
 						</listhead>
 						<template name="model">
 							<listitem>
 								<listcell>
-									<label value="@load(each.startDate) @converter('formatedDate', format='dd-MM-yyyy HH:mm:ss')" />
+									<label value="@load(each.startTime) @converter('formatedDate', format='dd-MM-yyyy HH:mm:ss')" />
 								</listcell>
 								<listcell>
-									<label value="@load(each.endDate) @converter('formatedDate', format='dd-MM-yyyy HH:mm:ss')" />
+									<label value="@load(each.finishTime) @converter('formatedDate', format='dd-MM-yyyy HH:mm:ss')" />
 								</listcell>
 								<listcell>
 									<label value="@load(each.partialDone)" />
