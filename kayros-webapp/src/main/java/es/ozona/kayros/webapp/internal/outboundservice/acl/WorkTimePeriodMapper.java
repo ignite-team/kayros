@@ -21,8 +21,9 @@ public class WorkTimePeriodMapper {
 		wtp.setFinishTime(resource.getFinishTime() == null ? null : Date.from(resource.getFinishTime().toInstant()));
 		wtp.setGeneratedFinishTime(resource.getGeneratedFinishTime());
 		wtp.setEditedFinishTime(resource.getEditedFinishTime());
-		wtp.setWorkplace(resource.getWorkspace());
+		wtp.setWorkplace(resource.getWorkplace());
 		wtp.setTelecommuting(resource.getTelecommuting());
+		wtp.setWorkplace(resource.getWorkplace());
 
 		return wtp;
 

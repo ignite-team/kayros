@@ -27,16 +27,16 @@ public class WorkingTimePeriodResource {
 
 	private Boolean editedFinishTime;
 
-	private String workspace;
-
 	private Boolean telecommuting;
+	
+	private String workplace;
 
 	public WorkingTimePeriodResource() {
 
 	}
 
 	public WorkingTimePeriodResource(ZonedDateTime startTime, Boolean generatedStartTime, Boolean editedStartTime, ZonedDateTime finishTime,
-			Boolean generatedFinishTime, Boolean editedFinishTime, String workspace, Boolean telecommuting) {
+			Boolean generatedFinishTime, Boolean editedFinishTime, Boolean telecommuting, String workplace) {
 
 		super();
 		this.startTime = startTime;
@@ -45,8 +45,8 @@ public class WorkingTimePeriodResource {
 		this.finishTime = finishTime;
 		this.generatedFinishTime = generatedFinishTime;
 		this.editedFinishTime = editedFinishTime;
-		this.workspace = workspace;
 		this.telecommuting = telecommuting;
+		this.workplace = workplace;
 
 	}
 
@@ -99,19 +99,27 @@ public class WorkingTimePeriodResource {
 	}
 
 	public Boolean getTelecommuting() {
-		return telecommuting;
-	}	
-	
-	public String getWorkspace() {
-		return workspace;
-	}
 
-	public void setWorkspace(String workspace) {
-		this.workspace = workspace;
+		return telecommuting;
+
 	}
 
 	public void setTelecommuting(Boolean teletelecommuting) {
+
 		this.telecommuting = teletelecommuting;
+
+	}
+
+	public String getWorkplace() {
+
+		return workplace;
+
+	}
+
+	public void setWorkplace(String workplace) {
+
+		this.workplace = workplace;
+
 	}
 
 }
