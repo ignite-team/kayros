@@ -1,17 +1,17 @@
 <?link rel="stylesheet" type="text/css" href="~./css/styles.css"?>
 <zk>
-	<div height="100px" hflex="1" style="background: rgb(237,22,81)" align="right">
+	<div height="75px" hflex="1" align="right" class="header-background">
 		<hbox pack="center" align="center" viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.AccountViewModel')">
-			<label value="@load(vm.employee.email)" style="color: white" />
-			<button label="@load(vm.state eq 1? 'Registrar entrada': 'Registrar salida')" onClick="@command('clock')" />
-			<checkbox label="Teletrabajo" mold="switch" checked="@bind(vm.employee.telecommuting)" onCheck="@command('updateTelecommuting')" style="color: white" />
-			<image src="~./img/profile.png" width="75px" height="auto" style="margin: 10px 10px 10px 10px" onClick='accountProfile.open(self,"after_start")' />
+			<button label="@load(vm.state eq 1? 'Entrar': 'Salir')" onClick="@command('clock')" width="125px" />
+			<vbox align="start" class="horizontalMargin50">
+				<label value="@load(vm.employee.email)" />
+				<label value="@load(vm.employee.workplace)" />
+			</vbox>
+			<checkbox label="Teletrabajo" mold="switch" checked="@bind(vm.employee.telecommuting)" onCheck="@command('updateTelecommuting')" />
+			<image src="~./img/profile2.png" width="50px" height="auto" style="margin: 10px 10px 10px 10px" onClick='accountProfile.open(self,"after_start")' />
 		</hbox>
 	</div>
-	<style>
-		.nav_toolbar .z-toolbarbutton-content i { font-size: 20px;} .nav_tabs .z-tabpanel { padding: 0; border-bottom: 0 none;} .nav_tabs .z-tabpanels
-		.z-toolbarbutton-content { padding: 4px;} .nav_category { cursor:pointer; } .nav_text { color: #696569; font-size : 24px; font-weight: bold;}
-	</style>
+	
 	<tabbox sclass="nav_tabs">
 		<tabs>
 			<tab>Registro</tab>
@@ -19,19 +19,14 @@
 		</tabs>
 		<tabpanels>
 			<tabpanel>
-				<toolbar hflex="true">
-					<toolbarbutton label="Hoy" onClick="updateSubPage(self.label)" />
-					<toolbarbutton label="Esta semana" onClick="updateSubPage(self.label)" />
-					<toolbarbutton label="Este mes" onClick="updateSubPage(self.label)" />
-				</toolbar>
 				<hlayout viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.CurrentTimesheetModel')">
-					<listbox model="@load(vm.workingTimePeriods)" mold="paging" pageSize="5">
+					<listbox model="@load(vm.workingTimePeriods)" mold="paging" pagingPosition="both" pageSize="10">
 						<listhead>
-							<listheader>Entrada</listheader>
-							<listheader>Salida</listheader>
-							<listheader>Parcial</listheader>
-							<listheader>Centro</listheader>
-							<listheader>Teletrabajo</listheader>
+							<listheader label="Entrda" sort="auto(startTime)" />
+							<listheader label="Salida" sort="auto(finishTime)" />
+							<listheader label="Parcial" sort="auto(partialDone)" />
+							<listheader label="Centro" sort="auto(workplace)" />
+							<listheader label="Teletrabajo" sort="auto(telecommuting)" />
 						</listhead>
 						<template name="model">
 							<listitem>
@@ -48,7 +43,8 @@
 									<label value="@load(each.workplace)" />
 								</listcell>
 								<listcell>
-									<label value="@load(each.telecommuting) @converter('es.ozona.kayros.webapp.utils.converters.BoolFormatConverter', format='Sí,No')" />
+									<label
+										value="@load(each.telecommuting) @converter('es.ozona.kayros.webapp.utils.converters.BoolFormatConverter', format='Sí,No')" />
 								</listcell>
 							</listitem>
 						</template>

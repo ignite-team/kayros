@@ -1,3 +1,82 @@
+.nav_toolbar .z-toolbarbutton-content i {
+	font-size: 20px;
+}
+
+.nav_tabs .z-tabpanel {
+	padding: 0;
+	border-bottom: 0 none;
+}
+
+.nav_tabs .z-tabpanels
+		.z-toolbarbutton-content {
+	padding: 4px;
+}
+
+.nav_category {
+	cursor: pointer;
+}
+
+.nav_text {
+	color: #696569;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.horizontalMargin50 {
+	margin-left: 50px;
+	margin-right: 50px
+}
+
+.z-button {
+	background-color: #E71657
+}
+
+.z-button:hover {
+	background-color: #E17396
+}
+
+.z-checkbox-switch-on>.z-checkbox-mold {
+	background-color: #D90047;
+}
+
+.z-listheader {
+	border-left: 1px solid #E7162A;
+	border-bottom: 1px solid #E7162A;
+	background: #D90047;
+}
+
+.header-background {
+	background-image: url("ozona-logo.png");
+	height: 75px;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-position-y: bottom;
+}
+
+.z-button:active {
+	color: #FFFFFF;
+	border-color: transparent;
+	background-color: #D90047;
+}
+
+.z-button:focus {
+	color: #FFFFFF;
+	border-color: #FFA516;
+	background-color: #D90047;
+}
+
+.z-tab-selected .z-tab-text:hover {
+	color: #FF2F2F;
+}
+
+.z-tab-selected .z-tab-text {
+	color: #D90047;
+}
+
+.z-tab-selected {
+	border-bottom: 2px solid #D90047;
+}
+
 .ozona_button {
 	background: #ed1651;
 	border: 2px solid #cccccc;
@@ -13,19 +92,15 @@
 }
 
 .flexRow {
-
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
 }
 
 .flexColumn {
-
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-
 }
