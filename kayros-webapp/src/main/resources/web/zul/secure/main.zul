@@ -25,7 +25,7 @@
 							<listhead>
 								<listheader label="Entrada" />
 								<listheader label="Salida" />
-								<listheader label="Parcial" />
+								<listheader label="Acumulado" />
 							</listhead>
 							<listitem>
 								<listcell>
