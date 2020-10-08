@@ -50,7 +50,7 @@ public class TimesheetController extends BaseControllerImpl<Timesheet, Long, Tim
 			@ApiParam(value = "Employee Id", required = false, example = "FBF844DF-CA8D-4E59-A310-8AC8AED8B439") @RequestParam(required = false) String employeeId,
 			@ApiParam(value = "Ldap user", required = true, example = "xose.eijo@ozona.es") @RequestParam String username) {
 		
-		final TimesheetResource timesheet = modelMapper.map(commandService.clock(new ClockTimesheetCommand(employeeId, username, null)), TimesheetResource.class);
+		final TimesheetResource timesheet = modelMapper.map(commandService.clock(new ClockTimesheetCommand(employeeId, username, null, "autoworkplace")), TimesheetResource.class);
 		
 		final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(timesheet.getTimesheetId()).toUri();
 

@@ -3,12 +3,15 @@ package es.ozona.kairos.clock.domain.model.entities;
 import java.io.Serializable;
 import java.util.Optional;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.Length;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
@@ -38,9 +41,14 @@ public class WorkingTimePeriod implements Serializable {
 
 	@Embedded
 	private FinishTime finishTime;
-	
+
 	@NotNull
 	private Boolean telecommuting;
+
+	@NotEmpty
+	@Length(min = 5, max = 75)
+	@Column(name = "workplace", nullable = false, unique = false, length = 75)
+	private String workplace;
 
 	/**
 	 * Default constructor.
@@ -55,11 +63,14 @@ public class WorkingTimePeriod implements Serializable {
 	 * @param startTime  a {@code StartTime}
 	 * @param finishTime a {@code EndTime}
 	 */
-	public WorkingTimePeriod(StartTime startTime, Boolean telecommuting) {
+	public WorkingTimePeriod(StartTime startTime, Boolean telecommuting, String workplace) {
+
 		super();
 		Assert.notNull(startTime, "WorkingTimePeriod startTiem can not be null.");
 		this.startTime = startTime;
 		this.telecommuting = telecommuting;
+		this.workplace = workplace;
+
 	}
 
 	/**
@@ -115,23 +126,34 @@ public class WorkingTimePeriod implements Serializable {
 	public void setFinishTime(FinishTime endTime) {
 		this.finishTime = endTime;
 	}
-	
+
 	public Boolean getTelecommuting() {
 
 		return telecommuting;
-		
+
 	}
 
 	public void setTelecommuting(Boolean telecommuting) {
-		
+
 		this.telecommuting = telecommuting;
-		
+
+	}
+
+	public String getWorkplace() {
+
+		return workplace;
+
+	}
+
+	public void setWorkplace(String workplace) {
+
+		this.workplace = workplace;
 	}
 
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] {id, startTime, finishTime, telecommuting});
+		return ObjectUtils.nullSafeHashCode(new Object[] { id, startTime, finishTime, telecommuting, workplace });
 
 	}
 

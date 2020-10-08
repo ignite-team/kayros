@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.ozona.kairos.clock.application.internal.outboundservice.EmployeeService;
+import es.ozona.kairos.clock.application.internal.outboundservice.acl.Employee;
 import es.ozona.kairos.clock.domain.model.aggregates.Timesheet;
 import es.ozona.kairos.clock.domain.model.commands.ClockTimesheetCommand;
 import es.ozona.kairos.clock.domain.model.commands.CreateTimesheetCommand;
@@ -41,9 +42,10 @@ public class TimesheetCommandServiceImpl extends BaseCommandServiceImpl<Timeshee
 
 		} else {
 
-			Boolean telecommuting = employeeService.findEmployeeById(clockTimesheetCommand.getEmployeeId()).getTeletelecommuting();
+			Employee employee = employeeService.findEmployeeById(clockTimesheetCommand.getEmployeeId());
 
-			clockTimesheetCommand.setTelecommuting(telecommuting);
+			clockTimesheetCommand.setTelecommuting(employee.getTelecommuting());
+			clockTimesheetCommand.setWorkplace(employee.getWorkplace());
 
 			timesheet = repository.findFirstByEmployeeIdOrderByDateDesc(new EmployeeId(clockTimesheetCommand.getEmployeeId()));
 			
@@ -69,7 +71,7 @@ public class TimesheetCommandServiceImpl extends BaseCommandServiceImpl<Timeshee
 
 		final String timesheetId = repository.nextId();
 		final String employeeId = clockTimesheetCommand.getEmployeeId();
-		final CreateTimesheetCommand createTimesheetCommand = new CreateTimesheetCommand(timesheetId, employeeId, clockTimesheetCommand.getUsername(), clockTimesheetCommand.getClockTime().toLocalDate(), clockTimesheetCommand.getTelecommuting());
+		final CreateTimesheetCommand createTimesheetCommand = new CreateTimesheetCommand(timesheetId, employeeId, clockTimesheetCommand.getUsername(), clockTimesheetCommand.getClockTime().toLocalDate(), clockTimesheetCommand.getTelecommuting(), clockTimesheetCommand.getWorkplace());
 
 		return createTimesheetCommand;
 
