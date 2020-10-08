@@ -69,12 +69,19 @@ public class Timesheet {
 
 		if (endDate != null) {
 
-			this.totalTime = new TimesheetDuration(Duration.between(LocalDateTime.ofInstant(startDate.toInstant(), ZoneId.systemDefault()), LocalDateTime.ofInstant(endDate.toInstant(), ZoneId.systemDefault()))).toString();
+			this.totalTime = new TimesheetDuration(Duration.between(LocalDateTime.ofInstant(startDate.toInstant(), ZoneId.systemDefault()),
+					LocalDateTime.ofInstant(endDate.toInstant(), ZoneId.systemDefault()))).toString();
+
+			if (totalTime.length() == 0) {
+
+				this.totalTime = "Menos de un minuto";
+
+			}
 
 		} else {
-			
-			this.totalTime = "No end time available | End turn to get partial time";
-			
+
+			this.totalTime = "No hay salidas disponibles";
+
 		}
 
 	}

@@ -54,10 +54,11 @@ public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 	}
 
 	@Override
-	public List<Timesheet> searchTimesheetsByEmployeeId(String employeeId) {
+	public Timesheet searchCurrentTimesheetByEmployeeId(String employeeId) {
 
-		return timesheetService.search("employeeId:%s".formatted(employeeId), "+date", 1, 1000).getItems().stream().map(t -> TimesheetMapper.mapFromResource(t))
-				.collect(Collectors.toList());
+		final List<TimesheetResource> timesheets = timesheetService.search("employeeId:%s".formatted(employeeId), "+date", 1, 1000).getItems();
+
+		return TimesheetMapper.mapFromResource(CollectionUtils.lastElement(timesheets));
 
 	}
 

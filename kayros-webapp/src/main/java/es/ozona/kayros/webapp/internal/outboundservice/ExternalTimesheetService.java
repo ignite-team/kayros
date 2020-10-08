@@ -15,6 +15,6 @@ public interface ExternalTimesheetService {
 
 	List<WorkingTimePeriod> searchTimesheetsByEmployeeIdBetweenDates(String startDate, String endDate, String employeeId);
 
-	List<Timesheet> searchTimesheetsByEmployeeId(String employeeId);
+	Timesheet searchCurrentTimesheetByEmployeeId(String employeeId);
 
 }
