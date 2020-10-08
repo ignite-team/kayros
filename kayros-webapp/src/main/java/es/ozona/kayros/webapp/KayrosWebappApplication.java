@@ -37,7 +37,6 @@ public class KayrosWebappApplication {
 	public String secure(@PathVariable String page) {
 		return "secure/" + page;
 	}
-	
 
 	@Bean
 	public ServletWebServerFactory servletContainer() {

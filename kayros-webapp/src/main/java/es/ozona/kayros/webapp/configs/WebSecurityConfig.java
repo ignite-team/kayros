@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String REMOVE_DESKTOP_REGEX = "/zkau\\?dtid=.*&cmd_0=rmDesktop&.*";
     
     @Autowired
-    protected OAuth2AuthenticationSuccessHandler OAuth2AuthenticationSuccessHandler;
+    protected OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -60,16 +60,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             		.permitAll() // allow desktop cleanup
             	.requestMatchers(req -> "rmDesktop".equals(req.getParameter("cmd_0")))
             		.permitAll() // allow desktop cleanup from ZATS
-            	.mvcMatchers("/","/login","/logout")
+            	.mvcMatchers("/login","/logout")
             		.permitAll()
-            	.mvcMatchers("/secure")
-            		.hasRole("kayros_user")
+            	.mvcMatchers("/","/secure/**")
+            		.authenticated()
             	.anyRequest()
             		.authenticated()
 			.and()
 				.oauth2Login()
 					.loginPage("/login")
-					.successHandler(OAuth2AuthenticationSuccessHandler)
+					.successHandler(oAuth2AuthenticationSuccessHandler)
 			.and()
             	.logout()
             		.logoutUrl("/logout")
