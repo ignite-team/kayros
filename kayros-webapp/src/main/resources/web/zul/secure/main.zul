@@ -11,7 +11,7 @@
 			<image src="~./img/profile2.png" width="50px" height="auto" style="margin: 10px 10px 10px 10px" onClick='accountProfile.open(self,"after_start")' />
 		</hbox>
 	</div>
-	
+
 	<tabbox sclass="nav_tabs">
 		<tabs>
 			<tab>Registro</tab>
@@ -27,14 +27,15 @@
 							<listheader label="Parcial" sort="auto(partialDone)" />
 							<listheader label="Centro" sort="auto(workplace)" />
 							<listheader label="Teletrabajo" sort="auto(telecommuting)" />
+
 						</listhead>
 						<template name="model">
 							<listitem>
 								<listcell>
-									<label value="@load(each.startTime) @converter('formatedDate', format='dd-MM-yyyy HH:mm:ss')" />
+									<label value="@load(each.startDate) @converter('formatedDate', format='dd-MM-yyyy HH:mm:ss')" />
 								</listcell>
 								<listcell>
-									<label value="@load(each.finishTime) @converter('formatedDate', format='dd-MM-yyyy HH:mm:ss')" />
+									<label value="@load(each.endDate) @converter('formatedDate', format='dd-MM-yyyy HH:mm:ss')" />
 								</listcell>
 								<listcell>
 									<label value="@load(each.partialDone)" />
@@ -43,8 +44,7 @@
 									<label value="@load(each.workplace)" />
 								</listcell>
 								<listcell>
-									<label
-										value="@load(each.telecommuting) @converter('es.ozona.kayros.webapp.utils.converters.BoolFormatConverter', format='Sí,No')" />
+									<label value="@load(each.telecommuting) @converter('es.ozona.kayros.webapp.utils.converters.BoolFormatConverter', format='Sí,No')" />
 								</listcell>
 							</listitem>
 						</template>

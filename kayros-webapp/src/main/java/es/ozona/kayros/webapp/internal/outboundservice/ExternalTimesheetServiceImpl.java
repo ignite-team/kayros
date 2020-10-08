@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import es.ozona.kayros.webapp.domain.model.Employee;
+import es.ozona.kayros.webapp.domain.model.Timesheet;
 import es.ozona.kayros.webapp.domain.model.WorkingTimePeriod;
 import es.ozona.kayros.webapp.infrastructure.feingclients.TimesheetService;
+import es.ozona.kayros.webapp.internal.outboundservice.acl.TimesheetMapper;
 import es.ozona.kayros.webapp.internal.outboundservice.acl.WorkTimePeriodMapper;
 import es.ozona.kayros.webapp.shareddomain.model.TimesheetResource;
 
@@ -48,6 +50,14 @@ public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 		return CollectionUtils.isEmpty(timesheets) ? null
 				: CollectionUtils.lastElement(timesheets).getWorkingTimePeriods().stream().map(t -> WorkTimePeriodMapper.mapFromResource(t))
 						.collect(Collectors.toList());
+
+	}
+
+	@Override
+	public List<Timesheet> searchTimesheetsByEmployeeId(String employeeId) {
+
+		return timesheetService.search("employeeId:%s".formatted(employeeId), "+date", 1, 1000).getItems().stream().map(t -> TimesheetMapper.mapFromResource(t))
+				.collect(Collectors.toList());
 
 	}
 

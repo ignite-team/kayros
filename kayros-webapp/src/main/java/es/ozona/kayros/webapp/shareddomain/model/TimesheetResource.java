@@ -16,7 +16,7 @@ public class TimesheetResource {
 	private String timesheetId;
 
 	private String employeeId;
-	
+
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	@JsonDeserialize(using = LocalDateDeserializer.class)
 	@JsonSerialize(using = LocalDateSerializer.class)
