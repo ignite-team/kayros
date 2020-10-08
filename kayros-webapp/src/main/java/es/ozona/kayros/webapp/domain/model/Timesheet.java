@@ -58,7 +58,12 @@ public class Timesheet {
 	public void setWorkingTimePeriod(List<WorkingTimePeriod> workingTimePeriods) {
 
 		this.workingTimePeriods = workingTimePeriods;
-		this.calculateTotalTime();
+
+		if (this.workingTimePeriods.size() != 0) {
+
+			this.calculateTotalTime();
+
+		}
 
 	}
 
@@ -67,20 +72,21 @@ public class Timesheet {
 		this.startDate = this.workingTimePeriods.get(0).getStartTime();
 		this.endDate = this.workingTimePeriods.get(this.workingTimePeriods.size() - 1).getFinishTime();
 
-		if (endDate != null) {
+		Duration totalComputed = Duration.ZERO;
 
-			this.totalTime = new TimesheetDuration(Duration.between(LocalDateTime.ofInstant(startDate.toInstant(), ZoneId.systemDefault()),
-					LocalDateTime.ofInstant(endDate.toInstant(), ZoneId.systemDefault()))).toString();
+		for (WorkingTimePeriod wtp : this.workingTimePeriods) {
 
-			if (totalTime.length() == 0) {
+			Date end = wtp.getFinishTime() == null ? new Date() : wtp.getFinishTime();
 
-				this.totalTime = "Menos de un minuto";
+			totalComputed.plus(Duration.between(LocalDateTime.ofInstant(wtp.getStartTime().toInstant(), ZoneId.systemDefault()), LocalDateTime.ofInstant(end.toInstant(), ZoneId.systemDefault())));
 
-			}
+		}
 
-		} else {
+		this.totalTime = new TimesheetDuration(Duration.between(LocalDateTime.ofInstant(startDate.toInstant(), ZoneId.systemDefault()), LocalDateTime.ofInstant(endDate.toInstant(), ZoneId.systemDefault()))).toString();
 
-			this.totalTime = "No hay salidas disponibles";
+		if (totalTime.length() == 0) {
+
+			this.totalTime = "Menos de un minuto";
 
 		}
 
