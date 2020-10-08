@@ -41,7 +41,7 @@ public class ExportViewModel {
 	private Date startDate = new Date();
 	private Date endDate = new Date();
 	private String fileType = "CSV";
-	private String employeeUsername = "";
+	private String employeeUsername = null;
 	private List<Employee> employees = new ArrayList<Employee>();
 
 	@Command("export")
@@ -57,7 +57,7 @@ public class ExportViewModel {
 
 				switch (fileType) {
 
-				case "XLSM":
+				case "XLSX":
 
 					finalFileType = CSVFormat.EXCEL;
 					break;

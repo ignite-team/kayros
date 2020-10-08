@@ -84,7 +84,7 @@
 							<label style="margin: 0 10px 0 0">Extension</label>
 							<combobox selectedItem="@bind(vm.fileType)" readonly="true" autodrop="true" style="margin: 10px">
 								<comboitem label="CSV" value="CSV" />
-								<comboitem label="XLSM" value="XLSM" />
+								<!-- <comboitem label="XLSM" value="XLSM" /> -->
 							</combobox>
 						</div>
 					</div>
@@ -95,7 +95,8 @@
 						</div>
 						<div zclass="flexRow" style="margin: 10px 10px 0 10px">
 							<label style="margin: 0 10px 0 0">Employee</label>
-							<combobox model="@bind(vm.employees)" style="margin: 10px" onChanging="@command('searchEmployeesCommand', v = event.value)">
+							<combobox model="@bind(vm.employees)" style="margin: 10px" onChanging="@command('searchEmployeesCommand', v = event.value)"
+								constraint="no empty: El campo es obligatorio.">
 								<template name="model">
 									<comboitem label="@bind(each.username)" value="@bind(each.username)" />
 								</template>
