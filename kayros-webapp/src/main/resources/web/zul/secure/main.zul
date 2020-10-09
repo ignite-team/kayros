@@ -7,7 +7,8 @@
 				<label value="@load(vm.employee.email)" class="username-label" />
 				<label value="@load(vm.employee.workplace)" class="workplace-label" />
 			</vbox>
-			<checkbox label="Teletrabajo" mold="switch" checked="@bind(vm.employee.telecommuting)" onCheck="@command('updateTelecommuting')" class="workplace-label" />
+			<checkbox label="Teletrabajo" mold="switch" checked="@bind(vm.employee.telecommuting)" onCheck="@command('updateTelecommuting')"
+				class="workplace-label" />
 			<image src="~./img/profile2.png" width="50px" height="auto" style="margin: 10px 0px 10px 50px" onClick='accountProfile.open(self,"after_start")' />
 		</hbox>
 	</div>
@@ -64,8 +65,7 @@
 										<label value="@bind(each.workplace)" />
 									</listcell>
 									<listcell>
-										<label
-											value="@bind(each.telecommuting) @converter('es.ozona.kayros.webapp.utils.converters.BoolFormatConverter', format='Sí,No')" />
+										<label value="@bind(each.telecommuting) @converter('es.ozona.kayros.webapp.utils.converters.BoolFormatConverter', format='Sí,No')" />
 									</listcell>
 								</listitem>
 							</template>

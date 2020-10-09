@@ -80,7 +80,7 @@ public class AccountViewModel {
 
 	@Command
 	public void updateTelecommuting() {
-		employeeService.modifyEmployee(employee);
+		employee = employeeService.modifyEmployee(employee);
 	}
 
 }

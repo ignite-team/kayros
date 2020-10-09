@@ -17,7 +17,7 @@ public class BoolFormatConverter implements Converter<String, Boolean, Component
 	public String coerceToUi(Boolean val, Component comp, BindContext ctx) {
 		// user sets format in annotation of binding or args when calling binder.addPropertyBinding()
 		final String format = (String) ctx.getConverterArg("format");
-		int boolValue = 0; // por defecto false
+		int boolValue = 1; // por defecto false
 
 		if (format == null)
 			throw new NullPointerException("format attribute not found");
