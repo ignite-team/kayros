@@ -1,3 +1,17 @@
+.workplace-label {
+	font-family: "Tahoma", Geneva, sans-serif;
+	text-align: center;
+	font-size: 16px;
+	color: rgb(106, 98, 98);
+}
+
+.username-label {
+	font-family: "Tahoma", Geneva, sans-serif;
+	text-align: center;
+	font-size: 16px;
+	color: #D90047;
+}
+
 .oops-label {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 160px;
@@ -37,8 +51,7 @@
 }
 
 .horizontalMargin50 {
-	margin-left: 50px;
-	margin-right: 50px
+	margin-right: 20px
 }
 
 .z-button {
