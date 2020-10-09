@@ -56,11 +56,7 @@ public class CurrentTimesheetModel {
 
 		setTimesheet(timesheetService.searchCurrentTimesheetByEmployeeId(employeeId));
 
-		final List<WorkingTimePeriod> workingTimePeriods = new ArrayList<WorkingTimePeriod>();
-
-		timesheetService.searchCurrentByEmployeeId(employeeId).stream().forEach(w -> workingTimePeriods.add(w));
-
-		setWorkingTimePeriods(workingTimePeriods);
+		setWorkingTimePeriods(timesheetService.searchCurrentByEmployeeId(employeeId));
 
 	}
 
