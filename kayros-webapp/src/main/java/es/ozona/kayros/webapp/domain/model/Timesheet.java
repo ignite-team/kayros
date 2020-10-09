@@ -82,7 +82,7 @@ public class Timesheet {
 
 		}
 
-		this.totalTime = new TimesheetDuration(Duration.between(LocalDateTime.ofInstant(startDate.toInstant(), ZoneId.systemDefault()), LocalDateTime.ofInstant(endDate.toInstant(), ZoneId.systemDefault()))).toString();
+		this.totalTime = new TimesheetDuration(totalComputed).toString();
 
 		if (totalTime.length() == 0) {
 

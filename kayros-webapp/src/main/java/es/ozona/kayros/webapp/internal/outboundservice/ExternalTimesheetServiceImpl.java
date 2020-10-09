@@ -58,7 +58,7 @@ public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 
 		final List<TimesheetResource> timesheets = timesheetService.search("employeeId:%s".formatted(employeeId), "+date", 1, 1000).getItems();
 
-		return TimesheetMapper.mapFromResource(CollectionUtils.lastElement(timesheets));
+		return CollectionUtils.isEmpty(timesheets) ? null : TimesheetMapper.mapFromResource(CollectionUtils.lastElement(timesheets));
 
 	}
 
