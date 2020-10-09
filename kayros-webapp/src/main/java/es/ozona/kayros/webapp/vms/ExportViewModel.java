@@ -1,8 +1,7 @@
 package es.ozona.kayros.webapp.vms;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Reader;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,6 +21,7 @@ import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.ListModelList;
+import org.zkoss.zul.Messagebox;
 
 import es.ozona.kayros.webapp.domain.model.Employee;
 import es.ozona.kayros.webapp.domain.model.WorkingTimePeriod;
@@ -40,39 +40,18 @@ public class ExportViewModel {
 
 	private Date startDate = new Date();
 	private Date endDate = new Date();
-	private String fileType = "CSV";
+	private String fileType = "csv";
 	private String employeeUsername = null;
 	private List<Employee> employees = new ArrayList<Employee>();
 
 	@Command("export")
 	public void export() throws IOException, ParseException {
 
-		if (employeeUsername != "") {
+		if (employeeUsername.length() != 0) {
 
 			Optional<Employee> employee = employeeService.findEmployeeByUsername(employeeUsername);
 
 			if (employee.isEmpty() == false) {
-
-				CSVFormat finalFileType;
-
-				switch (fileType) {
-
-				case "XLSX":
-
-					finalFileType = CSVFormat.EXCEL;
-					break;
-
-				case "CSV":
-
-					finalFileType = CSVFormat.DEFAULT;
-					break;
-
-				default:
-
-					finalFileType = CSVFormat.DEFAULT;
-					break;
-
-				}
 
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 
@@ -124,35 +103,55 @@ public class ExportViewModel {
 
 					}
 
-					Reader reader = ExportUtils.exportCSV(finalFileType, rows, headers);
+					InputStream instr;
 
-					if (reader != null) {
+					switch (fileType) {
+					case "csv":
 
-						BufferedReader br = new BufferedReader(reader);
+						instr = ExportUtils.exportCSV(CSVFormat.DEFAULT, rows, headers);
 
-						Filedownload.save(br, fileType, "test." + fileType);
+						break;
+
+					case "xlsx":
+
+						instr = ExportUtils.exportXLSX(rows, headers);
+
+						break;
+
+					default:
+
+						instr = ExportUtils.exportCSV(CSVFormat.DEFAULT, rows, headers);
+
+						break;
+
+					}
+
+					if (instr != null) {
+
+						Filedownload.save(instr, fileType, "workingtimeperiods." + fileType);
+						instr.close();
 
 					} else {
 
-						// error csv
+						Messagebox.show("Error creando fichero", "Error", Messagebox.OK, Messagebox.ERROR);
 
 					}
 
 				} else {
 
-					// no logs for that employee
+					Messagebox.show("No hay registros disponibles para exportar", "Informacion", Messagebox.OK, Messagebox.INFORMATION);
 
 				}
 
 			} else {
 
-				// invalid employee username not find
+				Messagebox.show("No existe el empleado", "Informacion", Messagebox.OK, Messagebox.INFORMATION);
 
 			}
 
 		} else {
 
-			// employee usernma empty
+			Messagebox.show("El campo empleado no puede estar vacio", "Advertencia", Messagebox.OK, Messagebox.EXCLAMATION);
 
 		}
 

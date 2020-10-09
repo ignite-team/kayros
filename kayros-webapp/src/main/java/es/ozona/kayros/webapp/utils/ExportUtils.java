@@ -1,21 +1,29 @@
 package es.ozona.kayros.webapp.utils;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.PipedReader;
-import java.io.PipedWriter;
+import java.io.InputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExportUtils {
 
-	public static PipedReader exportCSV(CSVFormat fileType, ArrayList<ArrayList<Object>> rows, ArrayList<String> headers) {
+	public static InputStream exportCSV(CSVFormat fileType, ArrayList<ArrayList<Object>> rows, ArrayList<String> headers) {
 
 		try {
 
-			PipedWriter outstr = new PipedWriter();
-			PipedReader instr = new PipedReader(outstr, 15000);
+			ByteArrayInputStream instr;
+
+			StringWriter outstr = new StringWriter();
 
 			CSVPrinter printer = new CSVPrinter(outstr, fileType.withHeader(headers.toArray(new String[headers.size()])));
 
@@ -29,9 +37,64 @@ public class ExportUtils {
 
 			printer.flush();
 			printer.close();
+
+			instr = new ByteArrayInputStream(outstr.toString().getBytes("UTF-8"));
+
 			outstr.close();
 
 			return instr;
+
+		} catch (IOException e) {
+
+			return null;
+
+		}
+
+	}
+
+	public static InputStream exportXLSX(ArrayList<ArrayList<Object>> rows, ArrayList<String> headers) {
+
+		try {
+
+			Workbook workbook = new XSSFWorkbook();
+
+			Sheet sheet = workbook.createSheet("workingtimeperiods");
+
+			Row header = sheet.createRow(0);
+
+			for (int x = 0; x < headers.size(); x++) {
+
+				sheet.setColumnWidth(x, rows.size());
+				Cell cell = header.createCell(x);
+				cell.setCellValue(headers.get(x));
+
+			}
+
+			for (int y = 0; y < rows.size(); y++) {
+
+				Row row = sheet.createRow(y + 1);
+
+				for (int z = 0; z < rows.get(y).size(); z++) {
+
+					Cell cell = row.createCell(z);
+
+					cell.setCellValue(rows.get(y).get(z) == null ? null : rows.get(y).get(z).toString());
+
+				}
+
+			}
+
+			ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+
+			workbook.write(buffer);
+			workbook.close();
+
+			byte[] bytes = buffer.toByteArray();
+			InputStream inputStream = new ByteArrayInputStream(bytes);
+
+			buffer.close();
+
+			return inputStream;
 
 		} catch (IOException e) {
 
