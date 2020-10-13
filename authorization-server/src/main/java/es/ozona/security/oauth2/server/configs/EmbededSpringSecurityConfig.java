@@ -46,7 +46,7 @@ public class EmbededSpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/css/**", "/webjars/**");
+		web.ignoring().antMatchers("/css/**", "/webjars/**","/img/**");
 	}
 	
 	@Override

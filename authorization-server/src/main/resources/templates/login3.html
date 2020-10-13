@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta charset="UTF-8" />
+<title>User Sign-in</title>
+<link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/webjars/bootstrap/4.1.0/css/bootstrap.min.css"	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<!-- <link rel="stylesheet" type="text/css" href="../static/css/portfolio.css" th:href="@{/css/portfolio.css}" /> -->
+<!-- <link rel="stylesheet" type="text/css" href="../static/css/login.css" th:href="@{/css/login.css}" /> -->
+<script src="http://cdn.jsdelivr.net/webjars/bootstrap/4.1.0/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script src="http://cdn.jsdelivr.net/webjars/jquery/3.3.1/jquery.min.js" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+</head>
+
+<body>
+
+	<div class="container" style="height: 100%">
+		<p th:if="${loginError}" class="error">Wrong user, password or security pin</p>
+		<p th:if="${verified}" class="info">Your account has been verified!, Please sign-in</p>
+		<form class="form-signin" method="post" action="@{/login}">
+			<h2 class="form-signin-heading">Iniciar sesión</h2>
+			<p>
+				<label for="username" class="sr-only">Usuario</label> <input type="text" id="username" name="username" class="form-control" placeholder="Usuario" required
+					autofocus>
+			</p>
+			<p>
+				<label for="password" class="sr-only">Contraseña</label> <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña"
+					required>
+			</p>
+
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar</button>
+		</form>
+	</div>
+</body>
+</html>

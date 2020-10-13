@@ -1,0 +1,8 @@
+<?page title="Kayros" contentType="text/html;charset=UTF-8"?>
+<zk>
+	<div id="container" hflex="1" vflex="1">
+		<div id="header" height="100px" hflex="1" style="background-color:red"></div>
+		<div id="content" hflex="1" vflex="1" style="background-color:yellow"></div>
+		<div id="footer" height="50px" hflex="1" style="background-color:red"></div>
+	</div>
+</zk>
