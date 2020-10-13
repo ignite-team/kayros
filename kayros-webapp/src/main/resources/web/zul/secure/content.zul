@@ -90,7 +90,7 @@
 							</combobox>
 							<label hflex="1">Empleado</label>
 							<combobox hflex="2" value="@bind(exportForm.employeeUsername)" model="@bind(vm.employees)"
-								onChanging="@command('searchEmployeesCommand', v=event.value)" autodrop="true">
+								onChanging="@command('searchEmployeesCommand', v=event.value)">
 								<template name="model">
 									<comboitem label="@bind(each.username)" value="@bind(each.username)" />
 								</template>

@@ -19,6 +19,7 @@ import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.event.InputEvent;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zul.Combobox;
 import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Messagebox;
 
@@ -214,9 +215,16 @@ public class ExportViewModel {
 
 		setEmployeeUsername(value);
 
+		Combobox combo = (Combobox) event.getTarget();
+
 		if (value.length() >= 3) {
 
+			combo.setAutodrop(true);
 			setEmployees(employeeService.findEmployeesLikeUsername(this.employeeUsername));
+
+		} else {
+
+			combo.setAutodrop(false);
 
 		}
 
