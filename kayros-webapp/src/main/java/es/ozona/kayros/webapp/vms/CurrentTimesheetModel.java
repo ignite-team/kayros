@@ -42,15 +42,18 @@ public class CurrentTimesheetModel {
 	}
 
 	public Timesheet getTimesheet() {
+
 		return timesheet;
+
 	}
 
 	public void setTimesheet(Timesheet timesheet) {
+
 		this.timesheet = timesheet;
 
 		if (this.timesheet != null) {
 
-			setWorkingTimePeriods(timesheet.getWorkingTimePeriods());
+			setWorkingTimePeriods(this.timesheet.getWorkingTimePeriods());
 
 		}
 
