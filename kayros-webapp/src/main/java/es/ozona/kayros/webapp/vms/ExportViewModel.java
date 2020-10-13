@@ -20,7 +20,6 @@ import org.zkoss.zk.ui.event.InputEvent;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Filedownload;
-import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Messagebox;
 
 import es.ozona.kayros.webapp.domain.model.Employee;
@@ -40,118 +39,110 @@ public class ExportViewModel {
 
 	private Date startDate = new Date();
 	private Date endDate = new Date();
-	private String fileType = "csv";
-	private String employeeUsername = null;
+	private String fileFormat = "csv";
+	private String employeeUsername = "";
 	private List<Employee> employees = new ArrayList<Employee>();
 
 	@Command("export")
 	public void export() throws IOException, ParseException {
 
-		if (employeeUsername.length() != 0) {
+		Optional<Employee> employee = employeeService.findEmployeeByUsername(employeeUsername);
 
-			Optional<Employee> employee = employeeService.findEmployeeByUsername(employeeUsername);
+		if (employee.isEmpty() == false) {
 
-			if (employee.isEmpty() == false) {
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 
-				SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+			Calendar starCalendar = Calendar.getInstance();
+			starCalendar.setTime(startDate);
 
-				Calendar starCalendar = Calendar.getInstance();
-				starCalendar.setTime(startDate);
+			Calendar endCalendar = Calendar.getInstance();
+			endCalendar.setTime(endDate);
 
-				Calendar endCalendar = Calendar.getInstance();
-				endCalendar.setTime(endDate);
+			starCalendar.add(Calendar.DATE, -1);
+			endCalendar.add(Calendar.DATE, 1);
 
-				starCalendar.add(Calendar.DATE, -1);
-				endCalendar.add(Calendar.DATE, 1);
+			startDate = starCalendar.getTime();
+			endDate = endCalendar.getTime();
 
-				startDate = starCalendar.getTime();
-				endDate = endCalendar.getTime();
+			List<WorkingTimePeriod> workingTimePeriods = timesheetService.searchTimesheetsByEmployeeIdBetweenDates(formatter.format(startDate),
+					formatter.format(endDate), employee.get().getEmployeeId());
 
-				List<WorkingTimePeriod> workingTimePeriods = timesheetService.searchTimesheetsByEmployeeIdBetweenDates(formatter.format(startDate),
-						formatter.format(endDate), employee.get().getEmployeeId());
+			if (workingTimePeriods != null && workingTimePeriods.size() > 0) {
 
-				if (workingTimePeriods != null && workingTimePeriods.size() > 0) {
+				ArrayList<ArrayList<Object>> rows = new ArrayList<ArrayList<Object>>();
+				ArrayList<String> headers = new ArrayList<String>();
 
-					ArrayList<ArrayList<Object>> rows = new ArrayList<ArrayList<Object>>();
-					ArrayList<String> headers = new ArrayList<String>();
+				headers.add("startTime");
+				headers.add("generatedStartTime");
+				headers.add("editedStartTime");
+				headers.add("finishTime");
+				headers.add("generatedFinishTime");
+				headers.add("editedFinishTime");
+				headers.add("telecommuting");
+				headers.add("workplace");
 
-					headers.add("startTime");
-					headers.add("generatedStartTime");
-					headers.add("editedStartTime");
-					headers.add("finishTime");
-					headers.add("generatedFinishTime");
-					headers.add("editedFinishTime");
-					headers.add("telecommuting");
-					headers.add("workplace");
+				for (int x = 0; x < workingTimePeriods.size(); x++) {
 
-					for (int x = 0; x < workingTimePeriods.size(); x++) {
+					ArrayList<Object> row = new ArrayList<Object>();
 
-						ArrayList<Object> row = new ArrayList<Object>();
+					WorkingTimePeriod wtp = workingTimePeriods.get(x);
 
-						WorkingTimePeriod wtp = workingTimePeriods.get(x);
+					row.add(wtp.getStartTime());
+					row.add(wtp.getGeneratedStartTime());
+					row.add(wtp.getEditedStartTime());
+					row.add(wtp.getFinishTime());
+					row.add(wtp.getGeneratedFinishTime());
+					row.add(wtp.getEditedFinishTime());
+					row.add(wtp.getTelecommuting());
+					row.add(wtp.getWorkplace());
 
-						row.add(wtp.getStartTime());
-						row.add(wtp.getGeneratedStartTime());
-						row.add(wtp.getEditedStartTime());
-						row.add(wtp.getFinishTime());
-						row.add(wtp.getGeneratedFinishTime());
-						row.add(wtp.getEditedFinishTime());
-						row.add(wtp.getTelecommuting());
-						row.add(wtp.getWorkplace());
+					rows.add(row);
 
-						rows.add(row);
+				}
 
-					}
+				InputStream instr;
 
-					InputStream instr;
+				switch (fileFormat) {
+				case "csv":
 
-					switch (fileType) {
-					case "csv":
+					instr = ExportUtils.exportCSV(CSVFormat.DEFAULT, rows, headers);
 
-						instr = ExportUtils.exportCSV(CSVFormat.DEFAULT, rows, headers);
+					break;
 
-						break;
+				case "xlsx":
 
-					case "xlsx":
+					instr = ExportUtils.exportXLSX(rows, headers);
 
-						instr = ExportUtils.exportXLSX(rows, headers);
+					break;
 
-						break;
+				default:
 
-					default:
+					instr = ExportUtils.exportCSV(CSVFormat.DEFAULT, rows, headers);
 
-						instr = ExportUtils.exportCSV(CSVFormat.DEFAULT, rows, headers);
+					break;
 
-						break;
+				}
 
-					}
+				if (instr != null) {
 
-					if (instr != null) {
-
-						Filedownload.save(instr, fileType, "workingtimeperiods." + fileType);
-						instr.close();
-
-					} else {
-
-						Messagebox.show("Error creando fichero", "Error", Messagebox.OK, Messagebox.ERROR);
-
-					}
+					Filedownload.save(instr, fileFormat, "workingtimeperiods." + fileFormat);
+					instr.close();
 
 				} else {
 
-					Messagebox.show("No hay registros disponibles para exportar", "Informacion", Messagebox.OK, Messagebox.INFORMATION);
+					Messagebox.show("Error creando fichero", "Error", Messagebox.OK, Messagebox.ERROR);
 
 				}
 
 			} else {
 
-				Messagebox.show("No existe el empleado", "Informacion", Messagebox.OK, Messagebox.INFORMATION);
+				Messagebox.show("No hay registros disponibles para exportar", "Informacion", Messagebox.OK, Messagebox.INFORMATION);
 
 			}
 
 		} else {
 
-			Messagebox.show("El campo empleado no puede estar vacio", "Advertencia", Messagebox.OK, Messagebox.EXCLAMATION);
+			Messagebox.show("No existe el empleado", "Informacion", Messagebox.OK, Messagebox.INFORMATION);
 
 		}
 
@@ -181,15 +172,15 @@ public class ExportViewModel {
 
 	}
 
-	public String getFileType() {
+	public String getFileFormat() {
 
-		return fileType;
+		return fileFormat;
 
 	}
 
-	public void setFileType(String fileType) {
+	public void setFileFormat(String fileType) {
 
-		this.fileType = fileType;
+		this.fileFormat = fileType;
 
 	}
 
@@ -218,23 +209,14 @@ public class ExportViewModel {
 	}
 
 	@Command("searchEmployeesCommand")
-	@NotifyChange("employees")
+	@NotifyChange({ "employees", "employeeUsername" })
 	public void searchEmployeeCommand(@BindingParam("v") String value, @ContextParam(ContextType.TRIGGER_EVENT) InputEvent event) {
 
 		setEmployeeUsername(value);
 
 		if (value.length() >= 3) {
 
-			final ListModelList<Employee> finalEmployees = new ListModelList<Employee>();
-
-			employeeService.findEmployeesLikeUsername(employeeUsername).stream().forEach(e -> finalEmployees.add(e));
-
-			setEmployees(finalEmployees);
-
-		} else {
-
-			List<Employee> emptyList = new ArrayList<Employee>();
-			setEmployees(emptyList);
+			setEmployees(employeeService.findEmployeesLikeUsername(this.employeeUsername));
 
 		}
 
