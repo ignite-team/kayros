@@ -19,6 +19,13 @@
 	color: #D90047;
 }
 
+.nullTimesheet-label {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 5rem;
+	font-weight: bolder;
+	color: #D90047;
+}
+
 .error-label {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 32px;

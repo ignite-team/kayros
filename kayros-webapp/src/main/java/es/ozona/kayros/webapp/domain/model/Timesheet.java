@@ -78,15 +78,18 @@ public class Timesheet {
 
 			Date end = wtp.getFinishTime() == null ? new Date() : wtp.getFinishTime();
 
-			totalComputed.plus(Duration.between(LocalDateTime.ofInstant(wtp.getStartTime().toInstant(), ZoneId.systemDefault()), LocalDateTime.ofInstant(end.toInstant(), ZoneId.systemDefault())));
+			totalComputed =  totalComputed.plus(Duration.between(LocalDateTime.ofInstant(wtp.getStartTime().toInstant(), ZoneId.systemDefault()),
+					LocalDateTime.ofInstant(end.toInstant(), ZoneId.systemDefault())));
 
 		}
 
-		this.totalTime = new TimesheetDuration(totalComputed).toString();
-
-		if (totalTime.length() == 0) {
+		if (totalComputed.getSeconds() < 60) {
 
 			this.totalTime = "Menos de un minuto";
+
+		} else {
+
+			this.totalTime = new TimesheetDuration(totalComputed).toString();
 
 		}
 

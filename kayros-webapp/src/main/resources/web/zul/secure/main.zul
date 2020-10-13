@@ -19,8 +19,13 @@
 			<tab>Exportar</tab>
 		</tabs>
 		<tabpanels>
-			<tabpanel>
-				<vlayout apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.CurrentTimesheetModel')">
+			<tabpanel apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.CurrentTimesheetModel')">
+				<vlayout if="${vm.timesheet == 'null'}">
+					<vbox vflex="1" hflex="1" align="center" pack="center">
+						<label value="No hay registros" class="nullTimesheet-label" />
+					</vbox>
+				</vlayout>
+				<vlayout if="${vm.timesheet != 'null'}">
 					<hlayout>
 						<listbox>
 							<listhead>
@@ -74,53 +79,47 @@
 					</hlayout>
 				</vlayout>
 			</tabpanel>
-			<tabpanel apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.ExportViewModel')"
-				form="@id('exportForm') @bind(vm) @save(vm, before='export') @validator('es.ozona.kayros.webapp.vms.ExportFormValidator')"
-				validationMessages="@id('vmsgs')">
-				<div zclass="flexRow" style="margin: 10px 10px 0 10px">
-					<div zclass="flexColumn" style="margin: 10px">
-						<div zclass="flexRow">
-							<label style="margin: 0 10px 0 0">Inicio</label>
-							<datebox id="startDate" value="@bind(exportForm.startDate)" style="margin: 10px" />
-						</div>
-						<div>
-							<label value="@bind(vmsgs['startDate'])" />
-						</div>
-						<div zclass="flexRow" style="margin: 10px">
-							<label style="margin: 0 10px 0 0">Formato</label>
-							<combobox selectedItem="@bind(exportForm.fileFormat)" readonly="true" autodrop="true" style="margin: 10px">
+			<tabpanel>
+				<div align="center" style="padding: 15px">
+					<vbox form="@id('exportForm') @bind(vm) @save(vm, before='export') @validator('es.ozona.kayros.webapp.vms.ExportFormValidator')"
+						validationMessages="@id('vmsgs')" vflex="true" style="min-width: 50%" apply="org.zkoss.bind.BindComposer"
+						viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.ExportViewModel')">
+						<hbox hflex="true" align="center">
+							<label hflex="1">Fecha de inicio</label>
+							<datebox hflex="2" id="startDate" value="@bind(exportForm.startDate)" />
+							<label hflex="1">Fecha de fin</label>
+							<datebox hflex="2" id="endDate" value="@bind(exportForm.endDate)" />
+						</hbox>
+						<hbox hflex="true" align="center">
+							<space hflex="1" />
+							<label value="@bind(vmsgs['startDate'])" hflex="2" class="username-label" />
+							<space hflex="1" />
+							<label value="@bind(vmsgs['endDate'])" hflex="2" class="username-label" />
+						</hbox>
+						<hbox hflex="true" align="center">
+							<label hflex="1">Formato</label>
+							<combobox hflex="2" selectedItem="@bind(exportForm.fileFormat)" readonly="true" autodrop="true">
 								<comboitem label="CSV" value="csv" />
 								<comboitem label="XLSX" value="xlsx" />
 							</combobox>
-						</div>
-						<div>
-							<label value="@bind(vmsgs['fileFormat'])" />
-						</div>
-					</div>
-					<div zclass="flexColumn" style="margin: 10px">
-						<div zclass="flexRow">
-							<label style="margin: 0 10px 0 0">Fin</label>
-							<datebox id="endDate" value="@bind(exportForm.endDate)" style="margin: 10px" />
-						</div>
-						<div>
-							<label value="@bind(vmsgs['endDate'])" />
-						</div>
-						<div zclass="flexRow" style="margin: 10px 10px 0 10px">
-							<label style="margin: 0 10px 0 0">Empleado</label>
-							<combobox value="@bind(exportForm.employeeUsername)" model="@bind(vm.employees)" style="margin: 10px"
-								onChanging="@command('searchEmployeesCommand', v = event.value)">
+							<label hflex="1">Empleado</label>
+							<combobox hflex="2" value="@bind(exportForm.employeeUsername)" model="@bind(vm.employees)"
+								onChanging="@command('searchEmployeesCommand', v=event.value)" autodrop="true">
 								<template name="model">
 									<comboitem label="@bind(each.username)" value="@bind(each.username)" />
 								</template>
 							</combobox>
-						</div>
-						<div>
-							<label value="@bind(vmsgs['employee'])" />
-						</div>
-					</div>
-				</div>
-				<div zclass="flexRow">
-					<button style="margin: 10px" label="Download" onClick="@command('export')" />
+						</hbox>
+						<hbox hflex="true" align="center">
+							<space hflex="1" />
+							<label value="@bind(vmsgs['fileFormat'])" hflex="2" class="username-label" />
+							<space hflex="1" />
+							<label value="@bind(vmsgs['employee'])" hflex="2" class="username-label" />
+						</hbox>
+						<hbox hflex="true" align="center" pack="center">
+							<button label="Descargar" onClick="@command('export')" />
+						</hbox>
+					</vbox>
 				</div>
 			</tabpanel>
 		</tabpanels>

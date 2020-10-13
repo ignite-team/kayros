@@ -13,16 +13,17 @@ public class ExportFormValidator extends AbstractValidator {
 
 		Map<String, Property> beanProps = ctx.getProperties(ctx.getProperty().getBase());
 
-		validateStartDate(ctx, (Date) beanProps.get("startDate").getValue(), (Date) beanProps.get("endDate").getValue());
-		validateEndtDate(ctx, (Date) beanProps.get("startDate").getValue(), (Date) beanProps.get("endDate").getValue());
+		validateStartDate(ctx, (Date) beanProps.get("startDate").getValue());
+		validateEndtDate(ctx, (Date) beanProps.get("endDate").getValue());
+		validateDates(ctx, (Date) beanProps.get("startDate").getValue(), (Date) beanProps.get("endDate").getValue());
 		validateFileFormat(ctx, (String) beanProps.get("fileFormat").getValue());
 		validateEmployeeUsername(ctx, (String) beanProps.get("employeeUsername").getValue());
 
 	}
 
-	private void validateStartDate(ValidationContext ctx, Date startDate, Date endDate) {
+	private void validateStartDate(ValidationContext ctx, Date startDate) {
 
-		if (startDate == null || startDate.compareTo(endDate) > 0) {
+		if (startDate == null) {
 
 			this.addInvalidMessage(ctx, "startDate", "Fecha invalida");
 
@@ -30,11 +31,26 @@ public class ExportFormValidator extends AbstractValidator {
 
 	}
 
-	private void validateEndtDate(ValidationContext ctx, Date startDate, Date endDate) {
+	private void validateEndtDate(ValidationContext ctx, Date endDate) {
 
-		if (endDate == null || endDate.compareTo(startDate) < 0) {
+		if (endDate == null) {
 
 			this.addInvalidMessage(ctx, "endDate", "Fecha invalida");
+
+		}
+
+	}
+
+	private void validateDates(ValidationContext ctx, Date startDate, Date endDate) {
+
+		if (startDate != null && endDate != null) {
+
+			if (startDate.compareTo(endDate) > 0) {
+
+				this.addInvalidMessage(ctx, "startDate", "Las fechas no concuerdan");
+				this.addInvalidMessage(ctx, "endDate", "Las fechas no concuerdan");
+
+			}
 
 		}
 
