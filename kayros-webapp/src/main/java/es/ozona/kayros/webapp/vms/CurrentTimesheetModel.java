@@ -1,6 +1,5 @@
 package es.ozona.kayros.webapp.vms;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.zkoss.bind.annotation.BindingParam;
@@ -48,7 +47,13 @@ public class CurrentTimesheetModel {
 
 	public void setTimesheet(Timesheet timesheet) {
 		this.timesheet = timesheet;
-		setWorkingTimePeriods(timesheet.getWorkingTimePeriods());
+
+		if (this.timesheet != null) {
+
+			setWorkingTimePeriods(timesheet.getWorkingTimePeriods());
+
+		}
+
 	}
 
 	@GlobalCommand
@@ -56,8 +61,6 @@ public class CurrentTimesheetModel {
 	public void updateEmployee(@BindingParam("employeeId") String employeeId) {
 
 		setTimesheet(timesheetService.searchCurrentTimesheetByEmployeeId(employeeId));
-		
-		// setWorkingTimePeriods(timesheetService.searchCurrentByEmployeeId(employeeId));
 
 	}
 
