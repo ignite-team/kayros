@@ -1,3 +1,28 @@
-<div style="background-color:yellow">
-
+<div style="background-color:yellow" align="center">
+	<vbox form="@id('fx')" vflex="true" style="min-width: 50%;background-color:green">
+		<hbox hflex="true" align="center">
+			<label hflex="1" value="Fecha de inicio" />
+			<datebox hflex="2" constraint="no empty" />
+			<label hflex="1" value="Fecha de fin" />
+			<datebox hflex="2" constraint="no empty" />
+		</hbox>
+		<hbox hflex="true" align="center">
+			<label value="error1 dfasf d dsfadfa" hflex="3" />
+			<label value="error2 fdsafass fddsfa" hflex="3" />
+		</hbox>
+		<hbox hflex="true" align="center">
+			<label hflex="1" value="Formato" />
+			<combobox hflex="2" constraint="no empty" />
+			<label hflex="1" value="Usuario" />
+			<combobox hflex="2" constraint="no empty" />
+		</hbox>
+		<hbox hflex="true" align="center">
+			<label value="error1 dfasf d dsfadfa" visible="false" hflex="3" />
+			<label value="error2 fdsafass fddsfa" visible="false" hflex="3" />
+		</hbox>
+		<hbox hflex="true">
+			<space hflex="4" />
+			<button hflex="2" label="Descargar" />
+		</hbox>
+	</vbox>
 </div>
