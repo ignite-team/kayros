@@ -71,7 +71,7 @@
 						validationMessages="@id('vmsgs')" vflex="true" style="min-width: 50%" apply="org.zkoss.bind.BindComposer"
 						viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.ExportViewModel')">
 						<hbox hflex="true" align="center">
-							<label hflex="1">Fecha de inicio</label>
+							<label hflex="1" value="${labels.export.startdate}"></label>
 							<datebox hflex="2" id="startDate" value="@bind(exportForm.startDate)" />
 							<label hflex="1">Fecha de fin</label>
 							<datebox hflex="2" id="endDate" value="@bind(exportForm.endDate)" />

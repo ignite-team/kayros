@@ -23,8 +23,6 @@ public class WorkingTimePeriod {
 
 	private String workplace;
 
-	private long totalDone;
-
 	public WorkingTimePeriod() {
 
 	}
