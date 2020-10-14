@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>es.ozona</groupId>
 	<artifactId>kayros-webapp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.1.0</version>
 	<name>kayros-webapp</name>
 	<description>kayros webapp</description>
 
@@ -56,25 +56,6 @@
 			<version>1.8</version>
 		</dependency>
 
-		<!-- <dependency> -->
-		<!-- <groupId>org.zkoss.zk</groupId> -->
-		<!-- <artifactId>zkmax</artifactId> -->
-		<!-- <version>${zk.version}</version> -->
-		<!-- <exclusions> -->
-		<!-- <exclusion> -->
-		<!-- <groupId>org.slf4j</groupId> -->
-		<!-- <artifactId>slf4j-jdk14</artifactId> -->
-		<!-- </exclusion> -->
-		<!-- </exclusions> -->
-		<!-- </dependency> -->
-
-		<!-- <dependency> -->
-		<!-- <groupId>org.zkoss.zats</groupId> -->
-		<!-- <artifactId>zats-mimic-ext7</artifactId> -->
-		<!-- <version>${zats.version}</version> -->
-		<!-- <scope>test</scope> -->
-		<!-- </dependency> -->
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -119,7 +100,7 @@
 		<dependency>
 			<groupId>es.ozona</groupId>
 			<artifactId>data-inquire</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
