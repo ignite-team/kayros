@@ -6,6 +6,8 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.util.ObjectUtils;
 
+import com.sun.istack.NotNull;
+
 import io.swagger.annotations.ApiModelProperty;
 
 public class ModifyEmployeeCommandResource {
@@ -35,16 +37,28 @@ public class ModifyEmployeeCommandResource {
 	@ApiModelProperty(value = "The employee identifier.", required = true, position = 5, allowEmptyValue = false, example = "Queizan")
 	private String lastname;
 
+	@NotNull
+	@ApiModelProperty(value = "The employee is telecommiting.", required = true, position = 6, allowEmptyValue = false)
+	private Boolean telecommuting;
+
+	@NotEmpty
+	@ApiModelProperty(value = "The employee workplace.", required = true, position = 7, allowEmptyValue = false, example = "San Marcos")
+	private String workplace;
+
 	public ModifyEmployeeCommandResource() {
-		
+
 	}
 	
-	public ModifyEmployeeCommandResource(String employeeId, String username, String email, String firstname, String lastname) {
+	public ModifyEmployeeCommandResource(String employeeId, String username, String email, String firstname, String lastname, Boolean telecommuting, String workplace) {
+
 		super();
 		this.username = username;
 		this.email = email;
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.telecommuting = telecommuting;
+		this.workplace = workplace;
+
 	}
 
 	public String getEmployeeId() {
@@ -86,11 +100,36 @@ public class ModifyEmployeeCommandResource {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+	
+	public Boolean getTelecommuting() {
+
+		return telecommuting;
+
+	}
+
+	public void setTelecommuting(Boolean telecommuting) {
+
+		this.telecommuting = telecommuting;
+
+	}
+
+	public String getWorkplace() {
+
+		return workplace;
+		
+	}
+
+	public void setWorkplace(String workplace) {
+		
+		this.workplace = workplace;
+		
+	}
 
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] { username, email, firstname, lastname });
+		return ObjectUtils.nullSafeHashCode(new Object[] {username, email, firstname, lastname, telecommuting, workplace});
+
 	}
 
 	@Override

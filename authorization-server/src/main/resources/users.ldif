@@ -42,6 +42,20 @@ mobile: 616300294
 physicalDeliveryOfficeName: San Marcos
 employeeNumber: 1001
 
+dn: uid=ppabli,ou=users,dc=xilco,dc=gal
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: ppabli
+sn: ppabli
+uid: ppabli
+userPassword: abc123.
+mail: ppabli@xilco.gal
+mobile: 123456789
+physicalDeliveryOfficeName: San Marcos
+employeeNumber: 9009
+
 dn: cn=kayros_admin,ou=groups,dc=xilco,dc=gal
 objectclass: top
 objectclass: groupOfUniqueNames

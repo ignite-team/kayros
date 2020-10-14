@@ -16,12 +16,24 @@ public class ModifyEmployeeCommand {
 
 	private String lastname;
 
-	public ModifyEmployeeCommand(String employeeId, String username, String email, String firstname, String lastname) {
+	private Boolean telecommuting;
+	
+	private String workplace;
+
+	public ModifyEmployeeCommand() {
+
+	}
+
+	public ModifyEmployeeCommand(String employeeId, String username, String email, String firstname, String lastname, Boolean telecommuting, String workplace) {
+
 		super();
 		this.username = username;
 		this.email = email;
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.telecommuting = telecommuting;
+		this.workplace = workplace;
+
 	}
 
 	public String getEmployeeId() {
@@ -64,10 +76,35 @@ public class ModifyEmployeeCommand {
 		this.lastname = lastname;
 	}
 
+	public Boolean getTelecommuting() {
+
+		return telecommuting;
+
+	}
+
+	public void setTelecommuting(Boolean telecommuting) {
+
+		this.telecommuting = telecommuting;
+
+	}
+
+	public String getWorkplace() {
+
+		return workplace;
+		
+	}
+
+	public void setWorkplace(String workplace) {
+		
+		this.workplace = workplace;
+		
+	}
+
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] { employeeId, username, email, firstname, lastname });
+		return ObjectUtils.nullSafeHashCode(new Object[] {employeeId, username, email, firstname, lastname, telecommuting, workplace});
+
 	}
 
 	@Override

@@ -24,7 +24,7 @@ import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFacto
 @RefreshScope
 @Configuration
 @EnableAuthorizationServer
-@Order
+@Order(1)
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
 	@Autowired
@@ -50,8 +50,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		clients.inMemory()
 			.withClient(env.getProperty("config.security.oauth.client.id"))
 			.secret(passwordEncoder.encode(env.getProperty("config.security.oauth.client.secret")))
-			.authorizedGrantTypes("password", "refresh_token", "authorization_code","client_credentials")	
-			.scopes("user_info", "read", "write")			
+			.authorizedGrantTypes("password", "refresh_token", "authorization_code","client_credentials")
+			.scopes("user_info", "read", "write")
 			.redirectUris("https://localhost:8443/kayros/login/oauth2/code/kayrosclient")
 			.autoApprove(true)
 			.accessTokenValiditySeconds(3600)

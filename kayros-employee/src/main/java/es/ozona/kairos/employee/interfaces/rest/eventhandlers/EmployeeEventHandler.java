@@ -40,12 +40,15 @@ public class EmployeeEventHandler {
 
 	@StreamListener(target = EmployeeEventSource.INPUT, condition = "@unregisteredClockInCondition.test(headers)")
 	public void observeEmployeeUnregisteredClocInEvent(UnregisteredTimesheetClockedInEvent event) {
+
 		UnregisteredTimesheetClockedInEventData eventData = event.getUnregisteredTimesheetClockInEventData();
+
 		LOG.debug("Clock created event received for ID {}", eventData.getEmployeeId());
-		
-		final CreateEmployeeCommand createEmployeeCommand = new CreateEmployeeCommand(eventData.getEmployeeId(), eventData.getUseraname(), eventData.getUseraname(), "autoname", "autolastname");
-		
+
+		final CreateEmployeeCommand createEmployeeCommand = new CreateEmployeeCommand(eventData.getEmployeeId(), eventData.getUseraname(), eventData.getUseraname(), "autoname", "autolastname", null, "autoworkplace");
+
 		employeeCommandService.createEmployeeAuto(createEmployeeCommand);
+
 	}
 	
 	@StreamListener(target = EmployeeEventSource.INPUT, condition = "@anyClockInCondition.test(headers)")

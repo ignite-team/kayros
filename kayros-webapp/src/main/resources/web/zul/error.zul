@@ -1,0 +1,12 @@
+<?page title="Error" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="~./css/styles.css"?>
+<zk>
+	<div viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.ErrorViewModel')" vflex="1" hflex="1">
+		<vbox vflex="1" hflex="1" align="center" pack="center">
+			<label value="Oops!" class="oops-label" />
+			<label value="@load(vm.errorMessage)" class="error-label" />
+			<space />
+			<button label="Volver a casa" href="/secure/main" />
+		</vbox>
+	</div>
+</zk>

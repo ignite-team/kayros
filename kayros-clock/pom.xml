@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>es.ozona</groupId>
 	<artifactId>kairos-clock</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.1.0</version>
 	<name>kairos-clock</name>
 
 	<properties>
@@ -35,7 +35,6 @@
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
 
-		<!-- begin logstash+logback -->
 		<dependency>
 			<groupId>net.logstash.logback</groupId>
 			<artifactId>logstash-logback-encoder</artifactId>
@@ -51,7 +50,6 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-core</artifactId>
 		</dependency>
-		<!-- end logstash+logback -->
 
 		<dependency>
 			<groupId>org.modelmapper</groupId>
@@ -103,8 +101,24 @@
 		<dependency>
 			<groupId>es.ozona</groupId>
 			<artifactId>micro-core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.1.0</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+	
 	</dependencies>
 
 	<dependencyManagement>

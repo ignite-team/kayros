@@ -1,0 +1,17 @@
+<div>
+	<div height="75px" hflex="1" align="right" class="header-background">
+		<hbox pack="center" align="center" viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.AccountViewModel')">
+			<button label="@load(vm.state eq 1? 'Entrar': 'Salir')" onClick="@command('clock')" width="125px" class="horizontalMargin50" />
+			<vbox align="start" class="horizontalMargin50">
+				<label value="@load(vm.employee.email)" class="username-label" />
+				<label value="@load(vm.employee.workplace)" class="workplace-label" />
+			</vbox>
+			<checkbox label="Teletrabajo" mold="switch" checked="@bind(vm.employee.telecommuting)" onCheck="@command('updateTelecommuting')"
+				class="workplace-label" />
+			<image src="~./img/profile2.png" width="50px" height="auto" style="margin: 10px 0px 10px 50px" onClick='accountProfile.open(self,"after_start")' />
+		</hbox>
+	</div>
+	<menupopup id="accountProfile">
+		<menuitem label="Cerrar sesión" href="/logout" />
+	</menupopup>
+</div>

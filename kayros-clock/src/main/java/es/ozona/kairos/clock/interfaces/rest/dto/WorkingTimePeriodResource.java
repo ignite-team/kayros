@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class WorkingTimePeriodResource {
 
 	@ApiModelProperty(value = "The start time", required = true, example = "06/07/2020 08:00")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/uuuu'T'HH:mm:ss:SSSXXXXX")
 	@JsonSerialize(using = ZonedDateTimeSerializer.class)
 	private ZonedDateTime startTime;
 
@@ -24,7 +24,7 @@ public class WorkingTimePeriodResource {
 	private Boolean editedStartTime;
 
 	@ApiModelProperty(value = "The finish time.", required = false, example = "06/07/2020 05:00")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/uuuu'T'HH:mm:ss:SSSXXXXX")
 	@JsonSerialize(using = ZonedDateTimeSerializer.class)
 	private ZonedDateTime finishTime;
 
@@ -34,12 +34,19 @@ public class WorkingTimePeriodResource {
 	@ApiModelProperty(value = "Finish time value has been edited.", required = false, example = "false")
 	private Boolean editedFinishTime;
 
+	@ApiModelProperty(value = "telecommuting", required = true, example = "true")
+	private Boolean telecommuting;
+
+	@ApiModelProperty(value = "workplace", required = true, example = "San Marcos")
+	private String workplace;
+
 	public WorkingTimePeriodResource() {
 
 	}
 
 	public WorkingTimePeriodResource(ZonedDateTime startTime, Boolean generatedStartTime, Boolean editedStartTime, ZonedDateTime finishTime,
-			Boolean generatedFinishTime, Boolean editedFinishTime) {
+			Boolean generatedFinishTime, Boolean editedFinishTime, Boolean telecommuting, String workplace) {
+
 		super();
 		this.startTime = startTime;
 		this.generatedStartTime = generatedStartTime;
@@ -47,6 +54,9 @@ public class WorkingTimePeriodResource {
 		this.finishTime = finishTime;
 		this.generatedFinishTime = generatedFinishTime;
 		this.editedFinishTime = editedFinishTime;
+		this.telecommuting = telecommuting;
+		this.workplace = workplace;
+
 	}
 
 	public ZonedDateTime getStartTime() {
@@ -96,4 +106,29 @@ public class WorkingTimePeriodResource {
 	public void setEditedFinishTime(Boolean editedFinishTime) {
 		this.editedFinishTime = editedFinishTime;
 	}
+
+	public Boolean getTelecommuting() {
+
+		return telecommuting;
+
+	}
+
+	public void setTelecommuting(Boolean telecommuting) {
+
+		this.telecommuting = telecommuting;
+
+	}
+
+	public String getWorkplace() {
+
+		return workplace;
+
+	}
+
+	public void setWorkplace(String workplace) {
+
+		this.workplace = workplace;
+
+	}
+
 }

@@ -90,14 +90,16 @@ public class Timesheet extends AbstractAggregateRoot<Timesheet> {
 	 * @param timesheetCommand
 	 */
 	public Timesheet(CreateTimesheetCommand createTimesheetCommand) {
+
 		this.timesheetId = new TimesheetId(createTimesheetCommand.getTimesheetId());
 		this.employeeId = new EmployeeId(createTimesheetCommand.getEmployeeId());
 		this.username = createTimesheetCommand.getUsername();
 		this.date = createTimesheetCommand.getDate();
-
-		final ClockTimesheetCommand clockTimesheetCommand = new ClockTimesheetCommand(createTimesheetCommand.getEmployeeId(), createTimesheetCommand.getUsername());
+		
+		final ClockTimesheetCommand clockTimesheetCommand = new ClockTimesheetCommand(createTimesheetCommand.getEmployeeId(), createTimesheetCommand.getUsername(), createTimesheetCommand.getTelecommuting(), createTimesheetCommand.getWorkplace());
 
 		clockIn(clockTimesheetCommand);
+
 	}
 
 	/**
@@ -220,7 +222,7 @@ public class Timesheet extends AbstractAggregateRoot<Timesheet> {
 	}
 
 	protected void clockIn(ClockTimesheetCommand clockTimesheetCommand) {
-		final WorkingTimePeriod newWorkingTimePeriod = new WorkingTimePeriod(new StartTime(ZonedDateTime.now(), Boolean.FALSE, Boolean.FALSE));
+		final WorkingTimePeriod newWorkingTimePeriod = new WorkingTimePeriod(new StartTime(ZonedDateTime.now(), Boolean.FALSE, Boolean.FALSE), clockTimesheetCommand.getTelecommuting(), clockTimesheetCommand.getWorkplace());
 		this.workingTimePeriods.add(newWorkingTimePeriod);
 		
 		registerEvent(new TimesheetClockedInEvent(new TimesheetClockedInEventData(employeeId.getEmployeeId(), timesheetId.getTimesheetId(), date,
@@ -228,7 +230,10 @@ public class Timesheet extends AbstractAggregateRoot<Timesheet> {
 				newWorkingTimePeriod.getStartTime().isGenerated(),
 				newWorkingTimePeriod.getFinishTime().isPresent() ? newWorkingTimePeriod.getFinishTime().get().getFinishTime() : null,
 				newWorkingTimePeriod.getFinishTime().isPresent() ? newWorkingTimePeriod.getFinishTime().get().isGenerated() : null,
-				newWorkingTimePeriod.getFinishTime().isPresent() ? newWorkingTimePeriod.getFinishTime().get().isEdited() : null)));
+				newWorkingTimePeriod.getFinishTime().isPresent() ? newWorkingTimePeriod.getFinishTime().get().isEdited() : null,
+				newWorkingTimePeriod.getTelecommuting(),
+				newWorkingTimePeriod.getWorkplace())));
+
 	}
 
 	protected void clockOut(ClockTimesheetCommand clockTimesheetCommand, WorkingTimePeriod workingTimePeriod) {
@@ -239,7 +244,10 @@ public class Timesheet extends AbstractAggregateRoot<Timesheet> {
 				workingTimePeriod.getStartTime().getStartTime(), workingTimePeriod.getStartTime().isGenerated(), workingTimePeriod.getStartTime().isGenerated(),
 				workingTimePeriod.getFinishTime().isPresent() ? workingTimePeriod.getFinishTime().get().getFinishTime() : null,
 				workingTimePeriod.getFinishTime().isPresent() ? workingTimePeriod.getFinishTime().get().isGenerated() : null,
-				workingTimePeriod.getFinishTime().isPresent() ? workingTimePeriod.getFinishTime().get().isEdited() : null)));
+				workingTimePeriod.getFinishTime().isPresent() ? workingTimePeriod.getFinishTime().get().isEdited() : null,
+				workingTimePeriod.getTelecommuting(),
+				workingTimePeriod.getWorkplace())));
+
 	}
 
 	@Override

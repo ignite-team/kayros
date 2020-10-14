@@ -18,7 +18,7 @@ import org.springframework.security.ldap.server.UnboundIdContainer;
 
 @Configuration
 @Profile("dev")
-@Order(1)
+@Order(2)
 public class EmbededSpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
@@ -46,7 +46,7 @@ public class EmbededSpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/css/**", "/webjars/**");
+		web.ignoring().antMatchers("/css/**", "/webjars/**","/img/**");
 	}
 	
 	@Override

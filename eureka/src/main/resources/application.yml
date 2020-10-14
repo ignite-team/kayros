@@ -25,8 +25,8 @@ eureka:
     
     fetch-registry: true
     register-with-eureka: false    
-    serviceUrl:
-      defaultZone: http://eureka-secondary:4003/eureka,http://eureka-tertiary:4004/eureka
+#    serviceUrl:
+#      defaultZone: http://eureka-secondary:4003/eureka,http://eureka-tertiary:4004/eureka
  
 
   

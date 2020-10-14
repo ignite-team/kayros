@@ -1,0 +1,7 @@
+<?page title="Kayros" contentType="text/html;charset=UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="~./css/styles.css"?>
+
+<zk>
+	<include src="~./zul/secure/header.zul" />
+	<include src="~./zul/secure/content.zul" />
+</zk>
