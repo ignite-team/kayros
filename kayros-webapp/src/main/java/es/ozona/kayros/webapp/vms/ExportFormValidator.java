@@ -6,8 +6,14 @@ import java.util.Map;
 import org.zkoss.bind.Property;
 import org.zkoss.bind.ValidationContext;
 import org.zkoss.bind.validator.AbstractValidator;
+import org.zkoss.util.resource.Labels;
 
 public class ExportFormValidator extends AbstractValidator {
+
+	private final String invalidDateText = Labels.getLabel("exception.date.invalidDate");
+	private final String notTallyDatesText = Labels.getLabel("exception.date.notTally");
+	private final String invalidFormatText = Labels.getLabel("exception.format.invalidFormat");
+	private final String invalidEmployeeText = Labels.getLabel("exception.employee.invalidEmployee");
 
 	public void validate(ValidationContext ctx) {
 
@@ -25,7 +31,7 @@ public class ExportFormValidator extends AbstractValidator {
 
 		if (startDate == null) {
 
-			this.addInvalidMessage(ctx, "startDate", "Fecha invalida");
+			this.addInvalidMessage(ctx, "startDate", invalidDateText);
 
 		}
 
@@ -35,7 +41,7 @@ public class ExportFormValidator extends AbstractValidator {
 
 		if (endDate == null) {
 
-			this.addInvalidMessage(ctx, "endDate", "Fecha invalida");
+			this.addInvalidMessage(ctx, "endDate", invalidDateText);
 
 		}
 
@@ -47,8 +53,8 @@ public class ExportFormValidator extends AbstractValidator {
 
 			if (startDate.compareTo(endDate) > 0) {
 
-				this.addInvalidMessage(ctx, "startDate", "Las fechas no concuerdan");
-				this.addInvalidMessage(ctx, "endDate", "Las fechas no concuerdan");
+				this.addInvalidMessage(ctx, "startDate", notTallyDatesText);
+				this.addInvalidMessage(ctx, "endDate", notTallyDatesText);
 
 			}
 
@@ -60,7 +66,7 @@ public class ExportFormValidator extends AbstractValidator {
 
 		if (fileFormat == null || (fileFormat.equals("xlsx") == false && fileFormat.equals("csv") == false)) {
 
-			this.addInvalidMessage(ctx, "fileFormat", "Formato no valido");
+			this.addInvalidMessage(ctx, "fileFormat", invalidFormatText);
 
 		}
 
@@ -70,7 +76,7 @@ public class ExportFormValidator extends AbstractValidator {
 
 		if (employeeUsername == null || employeeUsername.length() < 3) {
 
-			this.addInvalidMessage(ctx, "employee", "Empleado no valido");
+			this.addInvalidMessage(ctx, "employee", invalidEmployeeText);
 
 		}
 

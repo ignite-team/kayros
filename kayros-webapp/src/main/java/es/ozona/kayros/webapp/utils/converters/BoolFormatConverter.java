@@ -3,9 +3,13 @@ package es.ozona.kayros.webapp.utils.converters;
 import org.apache.commons.lang.StringUtils;
 import org.zkoss.bind.BindContext;
 import org.zkoss.bind.Converter;
+import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Component;
 
 public class BoolFormatConverter implements Converter<String, Boolean, Component> {
+
+	private final String exceptionText = Labels.getLabel("exception.format.notFound");
+
 	/**
 	 * Convert Date to String.
 	 * 
@@ -20,7 +24,7 @@ public class BoolFormatConverter implements Converter<String, Boolean, Component
 		int boolValue = 1; // por defecto false
 
 		if (format == null)
-			throw new NullPointerException("format attribute not found");
+			throw new NullPointerException(exceptionText);
 
 		if (val != null && val == true) { // si es true
 			boolValue = 0;
@@ -43,7 +47,7 @@ public class BoolFormatConverter implements Converter<String, Boolean, Component
 		Boolean boolValue = false; // por defecto false
 
 		if (format == null)
-			throw new NullPointerException("format attribute not found");
+			throw new NullPointerException(exceptionText);
 
 		final String[] boolValues = format.split(",");
 

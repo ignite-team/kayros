@@ -10,12 +10,17 @@ import java.time.temporal.TemporalAccessor;
 import java.time.temporal.TemporalField;
 import java.time.temporal.UnsupportedTemporalTypeException;
 
+import org.zkoss.util.resource.Labels;
+
 public class TimesheetDuration implements TemporalAccessor {
 
 	private static final Temporal BASE_TEMPORAL = LocalDateTime.of(0, 1, 1, 0, 0);
 
 	private final Duration duration;
 	private final Temporal temporal;
+
+	private final String hoursText = " " + Labels.getLabel("general.hours") + " ";
+	private final String minutesText = " " + Labels.getLabel("general.minutes") + " ";
 
 	public TimesheetDuration(Duration duration) {
 
@@ -66,6 +71,6 @@ public class TimesheetDuration implements TemporalAccessor {
 	}
 
 	private final DateTimeFormatter dtf = new DateTimeFormatterBuilder().optionalStart().optionalStart().appendValue(ChronoField.HOUR_OF_DAY)
-			.appendLiteral(" horas ").optionalEnd().appendValue(ChronoField.MINUTE_OF_HOUR).appendLiteral(" minutos ").optionalEnd().toFormatter();
+			.appendLiteral(hoursText).optionalEnd().appendValue(ChronoField.MINUTE_OF_HOUR).appendLiteral(minutesText).optionalEnd().toFormatter();
 
 }

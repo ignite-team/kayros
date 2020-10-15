@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.zkoss.util.resource.Labels;
+
 public class Timesheet {
 
 	private String timesheetId;
@@ -20,6 +22,8 @@ public class Timesheet {
 	private Date startDate;
 	private Date endDate;
 	private String totalTime;
+
+	private final String lessThanMinuteText = Labels.getLabel("general.lessThanMinute");
 
 	private List<WorkingTimePeriod> workingTimePeriods = new ArrayList<WorkingTimePeriod>(0);
 
@@ -78,14 +82,14 @@ public class Timesheet {
 
 			Date end = wtp.getFinishTime() == null ? new Date() : wtp.getFinishTime();
 
-			totalComputed =  totalComputed.plus(Duration.between(LocalDateTime.ofInstant(wtp.getStartTime().toInstant(), ZoneId.systemDefault()),
+			totalComputed = totalComputed.plus(Duration.between(LocalDateTime.ofInstant(wtp.getStartTime().toInstant(), ZoneId.systemDefault()),
 					LocalDateTime.ofInstant(end.toInstant(), ZoneId.systemDefault())));
 
 		}
 
 		if (totalComputed.getSeconds() < 60) {
 
-			this.totalTime = "Menos de un minuto";
+			this.totalTime = lessThanMinuteText;
 
 		} else {
 

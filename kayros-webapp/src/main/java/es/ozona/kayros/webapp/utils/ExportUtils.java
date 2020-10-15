@@ -14,8 +14,11 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.zkoss.util.resource.Labels;
 
 public class ExportUtils {
+
+	private static final String workingTimePeriodsText = Labels.getLabel("timesheet.workingTimePeriods");
 
 	public static InputStream exportCSV(CSVFormat fileType, ArrayList<ArrayList<Object>> rows, ArrayList<String> headers) {
 
@@ -58,7 +61,7 @@ public class ExportUtils {
 
 			Workbook workbook = new XSSFWorkbook();
 
-			Sheet sheet = workbook.createSheet("workingtimeperiods");
+			Sheet sheet = workbook.createSheet(workingTimePeriodsText);
 
 			Row header = sheet.createRow(0);
 

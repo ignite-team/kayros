@@ -16,6 +16,7 @@ import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
 import org.zkoss.bind.annotation.ContextType;
 import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.event.InputEvent;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
@@ -31,6 +32,21 @@ import es.ozona.kayros.webapp.utils.ExportUtils;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class ExportViewModel {
+
+	private final String startTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.startDate");
+	private final String generatedStartTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.generatedStartDate");
+	private final String editedStartTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.editedStartDate");
+	private final String finishtTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.endDate");
+	private final String generatedFinishTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.generatedEndDate");
+	private final String editedFinishTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.editedEndDate");
+	private final String telecommutingText = Labels.getLabel("general.telecommuting");
+	private final String workplaceText = Labels.getLabel("general.workplace");
+
+	private final String noEmployeeText = Labels.getLabel("exception.export.noEmployee");
+	private final String fileErrorText = Labels.getLabel("exception.export.fileError");
+	private final String noWorkingTimePeriodsText = Labels.getLabel("exception.export.noWorkingTimePeriods");
+
+	private final String fileName = Labels.getLabel("timesheet.workingTimePeriods");
 
 	@WireVariable("externalEmployeeService")
 	protected ExternalEmployeeService employeeService;
@@ -73,14 +89,14 @@ public class ExportViewModel {
 				ArrayList<ArrayList<Object>> rows = new ArrayList<ArrayList<Object>>();
 				ArrayList<String> headers = new ArrayList<String>();
 
-				headers.add("startTime");
-				headers.add("generatedStartTime");
-				headers.add("editedStartTime");
-				headers.add("finishTime");
-				headers.add("generatedFinishTime");
-				headers.add("editedFinishTime");
-				headers.add("telecommuting");
-				headers.add("workplace");
+				headers.add(startTimeText);
+				headers.add(generatedStartTimeText);
+				headers.add(editedStartTimeText);
+				headers.add(finishtTimeText);
+				headers.add(generatedFinishTimeText);
+				headers.add(editedFinishTimeText);
+				headers.add(telecommutingText);
+				headers.add(workplaceText);
 
 				for (int x = 0; x < workingTimePeriods.size(); x++) {
 
@@ -126,24 +142,24 @@ public class ExportViewModel {
 
 				if (instr != null) {
 
-					Filedownload.save(instr, fileFormat, "workingtimeperiods." + fileFormat);
+					Filedownload.save(instr, fileFormat, fileName + "." + fileFormat);
 					instr.close();
 
 				} else {
 
-					Messagebox.show("Error creando fichero", "Error", Messagebox.OK, Messagebox.ERROR);
+					Messagebox.show(fileErrorText, "Error", Messagebox.OK, Messagebox.ERROR);
 
 				}
 
 			} else {
 
-				Messagebox.show("No hay registros disponibles para exportar", "Informacion", Messagebox.OK, Messagebox.INFORMATION);
+				Messagebox.show(noWorkingTimePeriodsText, "Informacion", Messagebox.OK, Messagebox.INFORMATION);
 
 			}
 
 		} else {
 
-			Messagebox.show("No existe el empleado", "Informacion", Messagebox.OK, Messagebox.INFORMATION);
+			Messagebox.show(noEmployeeText, "Informacion", Messagebox.OK, Messagebox.INFORMATION);
 
 		}
 
