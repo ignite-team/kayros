@@ -1,13 +1,19 @@
 package es.ozona.kayros.webapp.vms;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.zkoss.bind.BindUtils;
+import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.web.Attributes;
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.Session;
+import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 
@@ -32,13 +38,28 @@ public class AccountViewModel {
 	private int state = SIGNED_IN_STATE;
 
 	private Employee employee;
+	private String actualLanguage;
 
 	@Init
 	public void init() {
-		// obtenemos el empleado, si no lo encontramos lo creamos a partir de los datos
-		// de login.
+
 		this.setEmployee(employeeService.findEmployeeByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
 				.orElseGet(() -> employeeService.createEmployeeFromPrincipal()));
+
+		Session session = Sessions.getCurrent();
+
+		if (session.getAttribute(Attributes.PREFERRED_LOCALE) == null) {
+
+			this.setActualLanguage(Executions.getCurrent().getHeader("Accept-Language").split(",")[0].replace("-", "_"));
+
+		} else {
+
+			this.setActualLanguage(session.getAttribute(Attributes.PREFERRED_LOCALE).toString());
+
+		}
+
+		System.err.println(this.getActualLanguage());
+
 	}
 
 	public int getState() {
@@ -50,7 +71,61 @@ public class AccountViewModel {
 	}
 
 	public Employee getEmployee() {
+
 		return employee;
+
+	}
+
+	public String getActualLanguage() {
+
+		return actualLanguage;
+
+	}
+
+	public void setActualLanguage(String actualLanguage) {
+
+		String finalLanguage;
+
+		switch (actualLanguage.toLowerCase()) {
+		case "es_es":
+
+			finalLanguage = "es_ES";
+			break;
+
+		case "gl_es":
+
+			finalLanguage = "gl_ES";
+			break;
+
+		case "en_en":
+
+			finalLanguage = "en_EN";
+			break;
+
+		default:
+
+			finalLanguage = "es_ES";
+
+			break;
+
+		}
+
+		this.actualLanguage = finalLanguage;
+
+	}
+
+	@Command
+	@NotifyChange("actualLanguage")
+	public void changeLang(@BindingParam("lang") String lang) {
+
+		this.setActualLanguage(lang);
+		Locale preferredLocale = new Locale(this.getActualLanguage());
+
+		Session session = Sessions.getCurrent();
+		session.setAttribute(Attributes.PREFERRED_LOCALE, preferredLocale);
+
+		Executions.getCurrent().sendRedirect("");
+
 	}
 
 	@Command
