@@ -58,8 +58,6 @@ public class AccountViewModel {
 
 		}
 
-		System.err.println(this.getActualLanguage());
-
 	}
 
 	public int getState() {

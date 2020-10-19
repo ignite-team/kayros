@@ -25,6 +25,7 @@ import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Messagebox;
 
 import es.ozona.kayros.webapp.domain.model.Employee;
+import es.ozona.kayros.webapp.domain.model.Timesheet;
 import es.ozona.kayros.webapp.domain.model.WorkingTimePeriod;
 import es.ozona.kayros.webapp.internal.outboundservice.ExternalEmployeeService;
 import es.ozona.kayros.webapp.internal.outboundservice.ExternalTimesheetService;
@@ -33,12 +34,16 @@ import es.ozona.kayros.webapp.utils.ExportUtils;
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class ExportViewModel {
 
+	private final String employeeText = Labels.getLabel("general.employee");
+	private final String emailText = Labels.getLabel("general.email");
+	private final String dayText = Labels.getLabel("general.day");
 	private final String startTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.startDate");
 	private final String generatedStartTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.generatedStartDate");
 	private final String editedStartTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.editedStartDate");
 	private final String finishtTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.endDate");
 	private final String generatedFinishTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.generatedEndDate");
 	private final String editedFinishTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.editedEndDate");
+	private final String partialText = Labels.getLabel("timesheet.general.partial");
 	private final String telecommutingText = Labels.getLabel("general.telecommuting");
 	private final String workplaceText = Labels.getLabel("general.workplace");
 
@@ -63,9 +68,11 @@ public class ExportViewModel {
 	@Command("export")
 	public void export() throws IOException, ParseException {
 
-		Optional<Employee> employee = employeeService.findEmployeeByUsername(employeeUsername);
+		Optional<Employee> employeeOptional = employeeService.findEmployeeByUsername(employeeUsername);
 
-		if (employee.isEmpty() == false) {
+		if (employeeOptional.isEmpty() == false) {
+
+			Employee employee = employeeOptional.get();
 
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
 
@@ -81,39 +88,57 @@ public class ExportViewModel {
 			startDate = starCalendar.getTime();
 			endDate = endCalendar.getTime();
 
-			List<WorkingTimePeriod> workingTimePeriods = timesheetService.searchTimesheetsByEmployeeIdBetweenDates(formatter.format(startDate),
-					formatter.format(endDate), employee.get().getEmployeeId());
+			List<Timesheet> timesheets = timesheetService.searchTimesheetsByEmployeeIdBetweenDates(formatter.format(startDate), formatter.format(endDate),
+					employee.getEmployeeId());
 
-			if (workingTimePeriods != null && workingTimePeriods.size() > 0) {
+			if (timesheets != null) {
 
 				ArrayList<ArrayList<Object>> rows = new ArrayList<ArrayList<Object>>();
 				ArrayList<String> headers = new ArrayList<String>();
 
+				headers.add(emailText);
+				headers.add(employeeText);
+				headers.add(dayText);
 				headers.add(startTimeText);
 				headers.add(generatedStartTimeText);
 				headers.add(editedStartTimeText);
 				headers.add(finishtTimeText);
 				headers.add(generatedFinishTimeText);
 				headers.add(editedFinishTimeText);
+				headers.add(partialText);
 				headers.add(telecommutingText);
 				headers.add(workplaceText);
 
-				for (int x = 0; x < workingTimePeriods.size(); x++) {
+				for (Timesheet timesheet : timesheets) {
 
-					ArrayList<Object> row = new ArrayList<Object>();
+					List<WorkingTimePeriod> workingTimePeriods = timesheet.getWorkingTimePeriods();
 
-					WorkingTimePeriod wtp = workingTimePeriods.get(x);
+					if (workingTimePeriods != null && workingTimePeriods.size() > 0) {
 
-					row.add(wtp.getStartTime());
-					row.add(wtp.getGeneratedStartTime());
-					row.add(wtp.getEditedStartTime());
-					row.add(wtp.getFinishTime());
-					row.add(wtp.getGeneratedFinishTime());
-					row.add(wtp.getEditedFinishTime());
-					row.add(wtp.getTelecommuting());
-					row.add(wtp.getWorkplace());
+						for (int x = 0; x < workingTimePeriods.size(); x++) {
 
-					rows.add(row);
+							ArrayList<Object> row = new ArrayList<Object>();
+
+							WorkingTimePeriod wtp = workingTimePeriods.get(x);
+
+							row.add(employee.getEmail());
+							row.add(employee.getUsername());
+							row.add(timesheet.getDate());
+							row.add(wtp.getStartTime());
+							row.add(wtp.getGeneratedStartTime());
+							row.add(wtp.getEditedStartTime());
+							row.add(wtp.getFinishTime());
+							row.add(wtp.getGeneratedFinishTime());
+							row.add(wtp.getEditedFinishTime());
+							row.add(wtp.getPartialDone());
+							row.add(wtp.getTelecommuting());
+							row.add(wtp.getWorkplace());
+
+							rows.add(row);
+
+						}
+
+					}
 
 				}
 
@@ -235,12 +260,26 @@ public class ExportViewModel {
 
 		if (value.length() >= 3) {
 
-			combo.setAutodrop(true);
-			setEmployees(employeeService.findEmployeesLikeUsername(this.employeeUsername));
+			List<Employee> employees = employeeService.findEmployeesLikeUsername(this.employeeUsername);
+
+			if (employees.size() > 0) {
+
+				setEmployees(employees);
+
+				combo.setAutodrop(true);
+				combo.setButtonVisible(true);
+
+			} else {
+
+				combo.setAutodrop(false);
+				combo.setButtonVisible(false);
+
+			}
 
 		} else {
 
 			combo.setAutodrop(false);
+			combo.setButtonVisible(false);
 
 		}
 

@@ -5,7 +5,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -19,6 +23,13 @@ import org.zkoss.util.resource.Labels;
 public class ExportUtils {
 
 	private static final String workingTimePeriodsText = Labels.getLabel("timesheet.workingTimePeriods");
+	private static final String yesText = Labels.getLabel("general.yes");
+	private static final String noText = Labels.getLabel("general.no");
+
+	private static final String fullPattern = "dd/MM/yyyy HH:mm:ss";
+	private static final String pattern = "dd/MM/yyyy";
+	private static final SimpleDateFormat fullFormater = new SimpleDateFormat(fullPattern);
+	private static final SimpleDateFormat formater = new SimpleDateFormat(pattern);
 
 	public static InputStream exportCSV(CSVFormat fileType, ArrayList<ArrayList<Object>> rows, ArrayList<String> headers) {
 
@@ -33,6 +44,32 @@ public class ExportUtils {
 			for (ArrayList<Object> row : rows) {
 
 				Object[] array = row.toArray();
+
+				for (int x = 0; x < array.length; x++) {
+
+					if (array[x] instanceof Boolean) {
+
+						if ((Boolean) array[x] == true) {
+
+							array[x] = yesText;
+
+						} else {
+
+							array[x] = noText;
+
+						}
+
+					} else if (array[x] instanceof Date) {
+
+						array[x] = fullFormater.format(array[x]);
+
+					} else if (array[x] instanceof LocalDate) {
+
+						array[x] = formater.format(Date.from(((LocalDate) array[x]).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+
+					}
+
+				}
 
 				printer.printRecord(array);
 
@@ -81,7 +118,31 @@ public class ExportUtils {
 
 					Cell cell = row.createCell(z);
 
-					cell.setCellValue(rows.get(y).get(z) == null ? null : rows.get(y).get(z).toString());
+					if (rows.get(y).get(z) instanceof Boolean) {
+
+						if ((Boolean) rows.get(y).get(z) == true) {
+
+							cell.setCellValue(yesText);
+
+						} else {
+
+							cell.setCellValue(noText);
+
+						}
+
+					} else if (rows.get(y).get(z) instanceof Date) {
+
+						cell.setCellValue(fullFormater.format(rows.get(y).get(z)));
+
+					} else if (rows.get(y).get(z) instanceof LocalDate) {
+
+						cell.setCellValue(formater.format(Date.from(((LocalDate) rows.get(y).get(z)).atStartOfDay(ZoneId.systemDefault()).toInstant())));
+
+					} else {
+
+						cell.setCellValue(rows.get(y).get(z) == null ? null : rows.get(y).get(z).toString());
+
+					}
 
 				}
 

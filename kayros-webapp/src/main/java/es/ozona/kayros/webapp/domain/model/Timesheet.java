@@ -36,9 +36,6 @@ public class Timesheet {
 		this.timesheetId = timesheetId;
 		this.employeeId = employeeId;
 		this.date = date;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.totalTime = totalTime;
 		this.workingTimePeriods = workingTimePeriods;
 
 	}

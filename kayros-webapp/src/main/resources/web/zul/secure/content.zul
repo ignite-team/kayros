@@ -17,7 +17,7 @@
 							<listhead>
 								<listheader label="${labels.registry.entry}" />
 								<listheader label="${labels.registry.exit}" />
-								<listheader label="${labels.registry.total}" />
+								<listheader label="${labels.timesheet.general.total}" />
 							</listhead>
 							<listitem>
 								<listcell>
@@ -37,7 +37,7 @@
 							<listhead>
 								<listheader label="${labels.registry.entry}" sort="auto(startTime)" />
 								<listheader label="${labels.registry.exit}" sort="auto(finishTime)" />
-								<listheader label="${labels.registry.partial}" sort="auto(partialDone)" />
+								<listheader label="${labels.timesheet.general.partial}" sort="auto(partialDone)" />
 								<listheader label="${labels.general.workplace}" sort="auto(workplace)" />
 								<listheader label="${labels.general.telecommuting}" sort="auto(telecommuting)" />
 							</listhead>
@@ -90,7 +90,7 @@
 							</combobox>
 							<label hflex="1" value="${labels.general.employee}" />
 							<combobox hflex="2" value="@bind(exportForm.employeeUsername)" model="@bind(vm.employees)"
-								onChanging="@command('searchEmployeesCommand', v=event.value)">
+								onChanging="@command('searchEmployeesCommand', v=event.value)" autocomplete="true" buttonVisible="false" autodrop="false">
 								<template name="model">
 									<comboitem label="@bind(each.username)" value="@bind(each.username)" />
 								</template>

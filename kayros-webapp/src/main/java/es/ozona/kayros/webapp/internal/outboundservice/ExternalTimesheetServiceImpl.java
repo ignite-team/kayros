@@ -42,14 +42,12 @@ public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 	}
 
 	@Override
-	public List<WorkingTimePeriod> searchTimesheetsByEmployeeIdBetweenDates(String startDate, String endDate, String employeeId) {
+	public List<Timesheet> searchTimesheetsByEmployeeIdBetweenDates(String startDate, String endDate, String employeeId) {
 
 		final List<TimesheetResource> timesheets = timesheetService
 				.search("( date>%s and date<%s and employeeId:%s )".formatted(startDate, endDate, employeeId), "+date", 1, 1000).getItems();
 
-		return CollectionUtils.isEmpty(timesheets) ? null
-				: CollectionUtils.lastElement(timesheets).getWorkingTimePeriods().stream().map(t -> WorkTimePeriodMapper.mapFromResource(t))
-						.collect(Collectors.toList());
+		return CollectionUtils.isEmpty(timesheets) ? null : timesheets.stream().map(t -> TimesheetMapper.mapFromResource(t)).collect(Collectors.toList());
 
 	}
 
