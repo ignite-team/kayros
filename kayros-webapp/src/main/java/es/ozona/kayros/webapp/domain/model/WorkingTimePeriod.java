@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 
+import org.springframework.util.ObjectUtils;
+
 public class WorkingTimePeriod {
 
 	private Date startTime;
@@ -99,10 +101,6 @@ public class WorkingTimePeriod {
 				LocalDateTime.ofInstant(endTime.toInstant(), ZoneId.systemDefault()))).toString();
 	}
 
-	public Date getTotalDone() {
-		return null;
-	}
-
 	public String getWorkplace() {
 		return workplace;
 	}
@@ -120,6 +118,27 @@ public class WorkingTimePeriod {
 	public void setTelecommuting(Boolean telecommuting) {
 
 		this.telecommuting = telecommuting;
+
+	}
+
+	@Override
+	public int hashCode() {
+
+		return ObjectUtils.nullSafeHashCode(
+				new Object[] { startTime, generatedStartTime, editedStartTime, finishTime, generatedFinishTime, editedFinishTime, telecommuting, workplace });
+
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		if (obj == null || !(obj instanceof WorkingTimePeriod)) {
+
+			return false;
+
+		}
+
+		return this.hashCode() == obj.hashCode();
 
 	}
 

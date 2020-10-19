@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.util.ObjectUtils;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -25,6 +27,16 @@ public class TimesheetResource {
 	private List<WorkingTimePeriodResource> workingTimePeriods = new ArrayList<WorkingTimePeriodResource>(0);
 
 	public TimesheetResource() {
+
+	}
+
+	public TimesheetResource(String timesheetId, String employeeId, LocalDate date, List<WorkingTimePeriodResource> workingTimePeriods) {
+
+		super();
+		this.timesheetId = timesheetId;
+		this.employeeId = employeeId;
+		this.date = date;
+		this.workingTimePeriods = workingTimePeriods;
 
 	}
 
@@ -56,7 +68,28 @@ public class TimesheetResource {
 		return workingTimePeriods;
 	}
 
-	public void setWorkingTimePeriod(List<WorkingTimePeriodResource> workingTimePeriods) {
+	public void setWorkingTimePeriods(List<WorkingTimePeriodResource> workingTimePeriods) {
 		this.workingTimePeriods = workingTimePeriods;
 	}
+
+	@Override
+	public int hashCode() {
+
+		return ObjectUtils.nullSafeHashCode(new Object[] { timesheetId, employeeId, date, workingTimePeriods });
+
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		if (obj == null || !(obj instanceof TimesheetResource)) {
+
+			return false;
+
+		}
+
+		return this.hashCode() == obj.hashCode();
+
+	}
+
 }

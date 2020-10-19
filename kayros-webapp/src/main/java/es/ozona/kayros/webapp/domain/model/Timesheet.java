@@ -5,10 +5,10 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.util.ObjectUtils;
 import org.zkoss.util.resource.Labels;
 
 public class Timesheet {
@@ -25,9 +25,21 @@ public class Timesheet {
 
 	private final String lessThanMinuteText = Labels.getLabel("general.lessThanMinute");
 
-	private List<WorkingTimePeriod> workingTimePeriods = new ArrayList<WorkingTimePeriod>(0);
+	private List<WorkingTimePeriod> workingTimePeriods;
 
 	public Timesheet() {
+
+	}
+
+	public Timesheet(String timesheetId, String employeeId, LocalDate date, List<WorkingTimePeriod> workingTimePeriods) {
+		super();
+		this.timesheetId = timesheetId;
+		this.employeeId = employeeId;
+		this.date = date;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.totalTime = totalTime;
+		this.workingTimePeriods = workingTimePeriods;
 
 	}
 
@@ -59,11 +71,11 @@ public class Timesheet {
 		return workingTimePeriods;
 	}
 
-	public void setWorkingTimePeriod(List<WorkingTimePeriod> workingTimePeriods) {
+	public void setWorkingTimePeriods(List<WorkingTimePeriod> workingTimePeriods) {
 
 		this.workingTimePeriods = workingTimePeriods;
 
-		if (this.workingTimePeriods.size() != 0) {
+		if (this.workingTimePeriods != null && this.workingTimePeriods.size() != 0) {
 
 			this.calculateTotalTime();
 
@@ -114,6 +126,26 @@ public class Timesheet {
 	public String getTotalTime() {
 
 		return totalTime;
+
+	}
+
+	@Override
+	public int hashCode() {
+
+		return ObjectUtils.nullSafeHashCode(new Object[] { timesheetId, employeeId, date, startDate, endDate, totalTime, workingTimePeriods });
+
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		if (obj == null || !(obj instanceof Timesheet)) {
+
+			return false;
+
+		}
+
+		return this.hashCode() == obj.hashCode();
 
 	}
 

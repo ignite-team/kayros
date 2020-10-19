@@ -18,8 +18,7 @@ public class TimesheetMapper {
 		timesheet.setTimesheetId(resource.getTimesheetId());
 		timesheet.setEmployeeId(resource.getEmployeeId());
 		timesheet.setDate(resource.getDate());
-		timesheet
-				.setWorkingTimePeriod(resource.getWorkingTimePeriods().stream().map(t -> WorkTimePeriodMapper.mapFromResource(t)).collect(Collectors.toList()));
+		timesheet.setWorkingTimePeriods(resource.getWorkingTimePeriods().stream().map(t -> WorkTimePeriodMapper.mapFromResource(t)).collect(Collectors.toList()));
 
 		return timesheet;
 
