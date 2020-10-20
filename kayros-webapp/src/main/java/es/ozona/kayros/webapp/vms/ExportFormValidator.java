@@ -8,6 +8,8 @@ import org.zkoss.bind.ValidationContext;
 import org.zkoss.bind.validator.AbstractValidator;
 import org.zkoss.util.resource.Labels;
 
+import es.ozona.kayros.webapp.utils.SecurityAccess;
+
 public class ExportFormValidator extends AbstractValidator {
 
 	private final String invalidDateText = Labels.getLabel("exception.date.invalidDate");
@@ -23,7 +25,12 @@ public class ExportFormValidator extends AbstractValidator {
 		validateEndtDate(ctx, (Date) beanProps.get("endDate").getValue());
 		validateDates(ctx, (Date) beanProps.get("startDate").getValue(), (Date) beanProps.get("endDate").getValue());
 		validateFileFormat(ctx, (String) beanProps.get("fileFormat").getValue());
-		validateEmployeeUsername(ctx, (String) beanProps.get("employeeUsername").getValue());
+
+		if (SecurityAccess.hasRole("ROLE_KAYROS_HR_MANAGER")) {
+
+			validateEmployeeUsername(ctx, (String) beanProps.get("employeeUsername").getValue());
+
+		}
 
 	}
 

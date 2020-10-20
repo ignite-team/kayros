@@ -82,7 +82,7 @@
 							<space hflex="1" />
 							<label value="@bind(vmsgs['endDate'])" hflex="2" class="username-label" />
 						</hbox>
-						<hbox hflex="true" align="center">
+						<hbox hflex="true" align="center" if="${sec:hasRole('ROLE_KAYROS_HR_MANAGER') == 'true'}">
 							<label hflex="1" value="${labels.export.fileFormat}" />
 							<combobox hflex="2" selectedItem="@bind(exportForm.fileFormat)" readonly="true" autodrop="true">
 								<comboitem label="CSV" value="csv" />
@@ -96,11 +96,24 @@
 								</template>
 							</combobox>
 						</hbox>
-						<hbox hflex="true" align="center">
+						<hbox hflex="true" align="center" if="${sec:hasRole('ROLE_KAYROS_HR_MANAGER') == 'false'}">
+							<label hflex="1" value="${labels.export.fileFormat}" />
+							<combobox hflex="2" selectedItem="@bind(exportForm.fileFormat)" readonly="true" autodrop="true">
+								<comboitem label="CSV" value="csv" />
+								<comboitem label="XLSX" value="xlsx" />
+							</combobox>
+							<space hflex="3" />
+						</hbox>
+						<hbox hflex="true" align="center" if="${sec:hasRole('ROLE_KAYROS_HR_MANAGER') == 'true'}">
 							<space hflex="1" />
 							<label value="@bind(vmsgs['fileFormat'])" hflex="2" class="username-label" />
 							<space hflex="1" />
 							<label value="@bind(vmsgs['employee'])" hflex="2" class="username-label" />
+						</hbox>
+						<hbox hflex="true" align="center" if="${sec:hasRole('ROLE_KAYROS_HR_MANAGER') == 'false'}">
+							<space hflex="1" />
+							<label value="@bind(vmsgs['fileFormat'])" hflex="2" class="username-label" />
+							<space hflex="3" />
 						</hbox>
 						<hbox hflex="true" align="center" pack="center">
 							<button label="${labels.export.download}" onClick="@command('export')" />

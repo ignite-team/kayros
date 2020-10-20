@@ -29,6 +29,7 @@ import es.ozona.kayros.webapp.domain.model.WorkingTimePeriod;
 import es.ozona.kayros.webapp.internal.outboundservice.ExternalEmployeeService;
 import es.ozona.kayros.webapp.internal.outboundservice.ExternalTimesheetService;
 import es.ozona.kayros.webapp.utils.ExportUtils;
+import es.ozona.kayros.webapp.utils.SecurityAccess;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class ExportViewModel {
@@ -67,9 +68,15 @@ public class ExportViewModel {
 	@Command("export")
 	public void export() throws IOException, ParseException {
 
+		if (!SecurityAccess.hasRole("ROLE_KAYROS_HR_MANAGER")) {
+
+			employeeUsername = SecurityAccess.getPrincipal();
+
+		}
+
 		Optional<Employee> employeeOptional = employeeService.findEmployeeByUsername(employeeUsername);
 
-		if (employeeOptional.isEmpty() == false) {
+		if (employeeOptional != null && employeeOptional.isEmpty() == false) {
 
 			Employee employee = employeeOptional.get();
 
