@@ -13,6 +13,7 @@ import java.util.Date;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.commons.csv.QuoteMode;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -31,7 +32,7 @@ public class ExportUtils {
 	private static final SimpleDateFormat fullFormater = new SimpleDateFormat(fullPattern);
 	private static final SimpleDateFormat formater = new SimpleDateFormat(pattern);
 
-	public static InputStream exportCSV(CSVFormat fileType, ArrayList<ArrayList<Object>> rows, ArrayList<String> headers) {
+	public static InputStream exportCSV(ArrayList<ArrayList<Object>> rows, ArrayList<String> headers) {
 
 		try {
 
@@ -39,7 +40,8 @@ public class ExportUtils {
 
 			StringWriter outstr = new StringWriter();
 
-			CSVPrinter printer = new CSVPrinter(outstr, fileType.withHeader(headers.toArray(new String[headers.size()])));
+			CSVPrinter printer = new CSVPrinter(outstr,
+					CSVFormat.DEFAULT.withQuote('"').withQuoteMode(QuoteMode.ALL).withDelimiter(';').withHeader(headers.toArray(new String[headers.size()])));
 
 			for (ArrayList<Object> row : rows) {
 

@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.csv.CSVFormat;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.ContextParam;
@@ -147,7 +146,7 @@ public class ExportViewModel {
 				switch (fileFormat) {
 				case "csv":
 
-					instr = ExportUtils.exportCSV(CSVFormat.DEFAULT, rows, headers);
+					instr = ExportUtils.exportCSV(rows, headers);
 
 					break;
 
@@ -159,7 +158,7 @@ public class ExportViewModel {
 
 				default:
 
-					instr = ExportUtils.exportCSV(CSVFormat.DEFAULT, rows, headers);
+					instr = ExportUtils.exportCSV(rows, headers);
 
 					break;
 

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
-import org.apache.commons.csv.CSVFormat;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -92,7 +91,7 @@ public class ExportUtilsTest {
 
 		try {
 
-			InputStream input = ExportUtils.exportCSV(CSVFormat.DEFAULT, rows, headers);
+			InputStream input = ExportUtils.exportCSV(rows, headers);
 
 			BufferedReader br = new BufferedReader(new InputStreamReader(input));
 
