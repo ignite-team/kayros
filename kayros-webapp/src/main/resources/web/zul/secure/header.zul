@@ -13,9 +13,9 @@
 		</hbox>
 	</div>
 	<menupopup id="accountProfile">
-		<menuitem label="${labels.header.logout}" href="/logout" />
+
 		<menu label="${labels.languages.language}">
-			<menupopup >
+			<menupopup>
 				<menuitem label="${labels.languages.spanish}" checked="@bind(vm.actualLanguage eq 'es_ES' ? 'true' : 'false')"
 					onClick="@command('changeLang', lang = 'es_ES')" />
 				<menuitem label="${labels.languages.galician}" checked="@bind(vm.actualLanguage eq 'gl_ES' ? 'true' : 'false')"
@@ -24,5 +24,7 @@
 					onClick="@command('changeLang', lang = 'en_EN')" />
 			</menupopup>
 		</menu>
+		<menuseparator />
+		<menuitem label="${labels.header.logout}" href="/logout" />
 	</menupopup>
 </div>

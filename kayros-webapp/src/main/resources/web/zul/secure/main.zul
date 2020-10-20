@@ -1,4 +1,5 @@
 <?page title="Kayros" contentType="text/html;charset=UTF-8"?>
+<?taglib uri="http://security.access" prefix="sec"?>
 <?link rel="stylesheet" type="text/css" href="~./css/styles.css"?>
 
 <zk>
