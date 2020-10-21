@@ -1,7 +1,7 @@
 <div apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.AccountViewModel')">
 	<div height="75px" hflex="1" align="right" class="header-background">
 		<hbox pack="center" align="center">
-			<button label="@load(vm.state eq 1 ? labels.header.enter : labels.header.leave)" onClick="@command('clock')" width="125px"
+			<button label="@load(vm.state eq 1 ? labels.header.enter : labels.header.leave)" onClick="@command('clock')" width="125px" autodisable="+self"
 				class="horizontalMargin50" />
 			<vbox align="start" class="horizontalMargin50">
 				<label value="@load(vm.employee.email)" class="username-label" />

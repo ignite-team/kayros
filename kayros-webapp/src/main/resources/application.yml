@@ -65,3 +65,7 @@ spring:
               authorization-uri: http://localhost:9100/auth/oauth/authorize
               user-info-uri: http://localhost:9100/auth/userinfo
               user-name-attribute: username
+
+kayros-webapp:
+  clockin:
+    latency: 2

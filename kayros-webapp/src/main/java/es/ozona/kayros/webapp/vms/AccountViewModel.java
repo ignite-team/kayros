@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.BindingParam;
@@ -32,6 +33,9 @@ public class AccountViewModel {
 	@WireVariable("externalEmployeeService")
 	protected ExternalEmployeeService employeeService;
 
+	@WireVariable("environment")
+	protected Environment env;
+
 	private static final int SIGNED_IN_STATE = 1;
 	private static final int SIGNED_OUT_STATE = 0;
 
@@ -42,7 +46,6 @@ public class AccountViewModel {
 
 	@Init
 	public void init() {
-
 		this.setEmployee(employeeService.findEmployeeByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
 				.orElseGet(() -> employeeService.createEmployeeFromPrincipal()));
 
