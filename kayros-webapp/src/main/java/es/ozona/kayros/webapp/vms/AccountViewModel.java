@@ -184,6 +184,14 @@ public class AccountViewModel {
 	}
 
 	@Command
+	@NotifyChange({ "timeout" })
+	public void resetTimeout() {
+
+		this.setTimeout(0);
+
+	}
+
+	@Command
 	public void updateTelecommuting() {
 		employee = employeeService.modifyEmployee(employee);
 	}
@@ -191,9 +199,6 @@ public class AccountViewModel {
 	@GlobalCommand
 	@NotifyChange({ "timeout", "status" })
 	public void updateStatus(@BindingParam("status") Boolean status, @BindingParam("timeToTimeout") long timeToTimeout) {
-
-		System.err.println(status);
-		System.err.println(timeToTimeout);
 
 		this.status = status;
 		this.timeout = timeToTimeout;

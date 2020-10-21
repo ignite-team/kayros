@@ -35,7 +35,7 @@ public class CurrentTimesheetModel {
 	@Init
 	public void init() {
 
-		this.latency = Integer.parseInt(env.getProperty("kayros-webapp.clokin.latency", "3"));
+		this.latency = Integer.parseInt(env.getProperty("kayros-webapp.clockin.latency", "3"));
 
 	}
 
