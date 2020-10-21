@@ -21,8 +21,6 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import es.ozona.kayros.webapp.domain.model.Employee;
 import es.ozona.kayros.webapp.internal.outboundservice.ExternalEmployeeService;
 import es.ozona.kayros.webapp.internal.outboundservice.ExternalTimesheetService;
-import es.ozona.kayros.webapp.shareddomain.model.TimesheetResource;
-import es.ozona.kayros.webapp.shareddomain.model.WorkingTimePeriodResource;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class AccountViewModel {
@@ -32,11 +30,6 @@ public class AccountViewModel {
 
 	@WireVariable("externalEmployeeService")
 	protected ExternalEmployeeService employeeService;
-
-	private static final int SIGNED_IN_STATE = 1;
-	private static final int SIGNED_OUT_STATE = 0;
-
-	private int state = SIGNED_IN_STATE;
 
 	private Employee employee;
 	private String actualLanguage;
@@ -62,14 +55,6 @@ public class AccountViewModel {
 
 		}
 
-	}
-
-	public int getState() {
-		return state;
-	}
-
-	public void setState(int state) {
-		this.state = state;
 	}
 
 	public Employee getEmployee() {
@@ -156,24 +141,7 @@ public class AccountViewModel {
 	}
 
 	@Command
-	@NotifyChange({ "state" })
 	public void clock() {
-		TimesheetResource timesheet = timesheetService.clock(employee);
-		WorkingTimePeriodResource tp = timesheet.getWorkingTimePeriods().get(timesheet.getWorkingTimePeriods().size() - 1);
-		if (tp.getFinishTime() == null) {
-			state = SIGNED_IN_STATE;
-		} else {
-			state = SIGNED_OUT_STATE;
-		}
-
-		final Map<String, Object> params = new HashMap<String, Object>();
-		params.put("employeeId", employee.getEmployeeId());
-		BindUtils.postGlobalCommand(null, null, "updateEmployee", params);
-
-	}
-
-	@Command
-	public void clock2() {
 
 		timesheetService.clock(employee);
 
