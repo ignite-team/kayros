@@ -23,6 +23,8 @@ public class Timesheet {
 	private Date endDate;
 	private String totalTime;
 
+	private boolean status;
+
 	private final String lessThanMinuteText = Labels.getLabel("general.lessThanMinute");
 
 	private List<WorkingTimePeriod> workingTimePeriods;
@@ -32,6 +34,7 @@ public class Timesheet {
 	}
 
 	public Timesheet(String timesheetId, String employeeId, LocalDate date, List<WorkingTimePeriod> workingTimePeriods) {
+
 		super();
 		this.timesheetId = timesheetId;
 		this.employeeId = employeeId;
@@ -75,6 +78,7 @@ public class Timesheet {
 		if (this.workingTimePeriods != null && this.workingTimePeriods.size() != 0) {
 
 			this.calculateTotalTime();
+			this.updateStatus();
 
 		}
 
@@ -108,6 +112,20 @@ public class Timesheet {
 
 	}
 
+	public void updateStatus() {
+
+		boolean finalStatus = false;
+
+		if (this.workingTimePeriods.get(workingTimePeriods.size() - 1).getFinishTime() == null) {
+
+			finalStatus = true;
+
+		}
+
+		this.setStatus(finalStatus);
+
+	}
+
 	public Date getStartDate() {
 
 		return startDate;
@@ -123,6 +141,58 @@ public class Timesheet {
 	public String getTotalTime() {
 
 		return totalTime;
+
+	}
+
+	public boolean getStatus() {
+
+		return status;
+
+	}
+
+	public void setStatus(boolean status) {
+
+		this.status = status;
+
+	}
+
+	public boolean isLatencityTimeout(int latencyTime) {
+
+		boolean timeout = true;
+		Date now = new Date();
+
+		if (this.workingTimePeriods != null && this.workingTimePeriods.size() != 0) {
+
+			if (now.getTime() - this.workingTimePeriods.get(this.workingTimePeriods.size() - 1).getStartTime().getTime() < (latencyTime * 60 * 1000)) {
+
+				timeout = false;
+
+			}
+
+		}
+
+		return timeout;
+
+	}
+
+	public long getTimeToLatencyTimeout(int latencyTime) {
+
+		long timeout = 0;
+		Date now = new Date();
+
+		if (this.workingTimePeriods != null && this.workingTimePeriods.size() != 0) {
+
+			timeout = (latencyTime * 60 * 1000) - (now.getTime() - this.workingTimePeriods.get(this.workingTimePeriods.size() - 1).getStartTime().getTime());
+
+			if (timeout < 0) {
+
+				timeout = 0;
+
+			}
+
+		}
+
+		return timeout;
 
 	}
 

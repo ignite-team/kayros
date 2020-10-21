@@ -2,7 +2,7 @@
 	<div height="75px" hflex="1" align="right" class="header-background">
 		<hbox pack="center" align="center">
 			<button label="@load(vm.state eq 1 ? labels.header.enter : labels.header.leave)" onClick="@command('clock')" width="125px" autodisable="+self"
-				class="horizontalMargin50" />
+				class="horizontalMargin50" id="clockin" />
 			<vbox align="start" class="horizontalMargin50">
 				<label value="@load(vm.employee.email)" class="username-label" />
 				<label value="@load(vm.employee.workplace)" class="workplace-label" />
@@ -10,10 +10,11 @@
 			<checkbox label="${labels.general.telecommuting}" mold="switch" checked="@bind(vm.employee.telecommuting)" onCheck="@command('updateTelecommuting')"
 				class="workplace-label" />
 			<image src="~./img/profile2.png" width="50px" height="auto" style="margin: 10px 0px 10px 50px" onClick='accountProfile.open(self,"after_start")' />
+			<button label="@load(vm.status eq 'false' ? labels.header.enter : labels.header.leave)" autodisable="+self" id="test" disabled="true" onClick="@command('clock2')"/>
+			<timer id="timer" delay="@load(vm.timeout)" onTimer="test.setDisabled(false)" />
 		</hbox>
 	</div>
 	<menupopup id="accountProfile">
-
 		<menu label="${labels.languages.language}">
 			<menupopup>
 				<menuitem label="${labels.languages.spanish}" checked="@bind(vm.actualLanguage eq 'es_ES' ? 'true' : 'false')"

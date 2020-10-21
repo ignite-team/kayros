@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import org.springframework.core.env.Environment;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
+import org.zkoss.bind.annotation.GlobalCommand;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.web.Attributes;
@@ -33,9 +33,6 @@ public class AccountViewModel {
 	@WireVariable("externalEmployeeService")
 	protected ExternalEmployeeService employeeService;
 
-	@WireVariable("environment")
-	protected Environment env;
-
 	private static final int SIGNED_IN_STATE = 1;
 	private static final int SIGNED_OUT_STATE = 0;
 
@@ -44,8 +41,12 @@ public class AccountViewModel {
 	private Employee employee;
 	private String actualLanguage;
 
+	private long timeout;
+	private boolean status;
+
 	@Init
 	public void init() {
+
 		this.setEmployee(employeeService.findEmployeeByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
 				.orElseGet(() -> employeeService.createEmployeeFromPrincipal()));
 
@@ -115,6 +116,22 @@ public class AccountViewModel {
 
 	}
 
+	public long getTimeout() {
+		return timeout;
+	}
+
+	public void setTimeout(long timeout) {
+		this.timeout = timeout;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	@Command
 	@NotifyChange("actualLanguage")
 	public void changeLang(@BindingParam("lang") String lang) {
@@ -139,7 +156,7 @@ public class AccountViewModel {
 	}
 
 	@Command
-	@NotifyChange("state")
+	@NotifyChange({ "state" })
 	public void clock() {
 		TimesheetResource timesheet = timesheetService.clock(employee);
 		WorkingTimePeriodResource tp = timesheet.getWorkingTimePeriods().get(timesheet.getWorkingTimePeriods().size() - 1);
@@ -152,11 +169,35 @@ public class AccountViewModel {
 		final Map<String, Object> params = new HashMap<String, Object>();
 		params.put("employeeId", employee.getEmployeeId());
 		BindUtils.postGlobalCommand(null, null, "updateEmployee", params);
+
+	}
+
+	@Command
+	public void clock2() {
+
+		timesheetService.clock(employee);
+
+		final Map<String, Object> params = new HashMap<String, Object>();
+		params.put("employeeId", employee.getEmployeeId());
+		BindUtils.postGlobalCommand(null, null, "updateEmployee", params);
+
 	}
 
 	@Command
 	public void updateTelecommuting() {
 		employee = employeeService.modifyEmployee(employee);
+	}
+
+	@GlobalCommand
+	@NotifyChange({ "timeout", "status" })
+	public void updateStatus(@BindingParam("status") Boolean status, @BindingParam("timeToTimeout") long timeToTimeout) {
+
+		System.err.println(status);
+		System.err.println(timeToTimeout);
+
+		this.status = status;
+		this.timeout = timeToTimeout;
+
 	}
 
 }
