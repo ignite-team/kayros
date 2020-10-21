@@ -10,8 +10,12 @@
 			<checkbox label="${labels.general.telecommuting}" mold="switch" checked="@bind(vm.employee.telecommuting)" onCheck="@command('updateTelecommuting')"
 				class="workplace-label" />
 			<image src="~./img/profile2.png" width="50px" height="auto" style="margin: 10px 0px 10px 50px" onClick='accountProfile.open(self,"after_start")' />
-			<button label="@load(vm.status eq 'false' ? labels.header.enter : labels.header.leave)" autodisable="+self" id="test" disabled="true" onClick="@command('clock2')"/>
-			<timer id="timer" delay="@load(vm.timeout)" onTimer="test.setDisabled(false)" />
+			<button label="@load(vm.status eq 'false' ? labels.header.enter : labels.header.leave)" id="test"
+				disabled="@load(vm.timeout eq 0 ? 'false' : 'true')" onClick="@command('clock2')" />
+			<timer id="timer" delay="@load(vm.timeout)" onTimer="@command('resetTimeout')" />
+			<zscript>
+				timer.start();
+			</zscript>
 		</hbox>
 	</div>
 	<menupopup id="accountProfile">

@@ -180,7 +180,8 @@ public class Timesheet {
 		long timeout = 0;
 		Date now = new Date();
 
-		if (this.workingTimePeriods != null && this.workingTimePeriods.size() != 0) {
+		if (this.workingTimePeriods != null && this.workingTimePeriods.size() != 0
+				&& this.workingTimePeriods.get(this.workingTimePeriods.size() - 1).getFinishTime() == null) {
 
 			timeout = (latencyTime * 60 * 1000) - (now.getTime() - this.workingTimePeriods.get(this.workingTimePeriods.size() - 1).getStartTime().getTime());
 
