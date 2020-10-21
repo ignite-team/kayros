@@ -68,4 +68,4 @@ spring:
 
 kayros-webapp:
   clockin:
-    latency: 2
+    latency: 1
