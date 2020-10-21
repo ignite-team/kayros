@@ -1,13 +1,13 @@
-<div viewModel="@id('vm2') @init('es.ozona.kayros.webapp.vms.AccountViewModel')">
+<div viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.AccountViewModel')">
 	<div id="mainHeader" height="75px" hflex="1" align="right" class="header-background" >
 		<hbox pack="center" align="center">
-			<button label="@load(vm2.state eq 1 ? labels.header.enter : labels.header.leave)" onClick="@command('clock')" width="125px" autodisable="+self"
+			<button label="@load(vm.state eq 1 ? labels.header.enter : labels.header.leave)" onClick="@command('clock')" width="125px" autodisable="+self"
 				class="horizontalMargin50" id="clockin" />
 			<vbox align="start" class="horizontalMargin50">
-				<label value="@load(vm2.employee.email)" class="username-label" />
-				<label value="@load(vm2.employee.workplace)" class="workplace-label" />
+				<label value="@load(vm.employee.email)" class="username-label" />
+				<label value="@load(vm.employee.workplace)" class="workplace-label" />
 			</vbox>
-			<checkbox label="${labels.general.telecommuting}" mold="switch" checked="@bind(vm2.employee.telecommuting)" onCheck="@command('updateTelecommuting')"
+			<checkbox label="${labels.general.telecommuting}" mold="switch" checked="@bind(vm.employee.telecommuting)" onCheck="@command('updateTelecommuting')"
 				class="workplace-label" />
 			<image src="~./img/profile2.png" width="50px" height="auto" style="margin: 10px 0px 10px 50px" onClick='accountProfile.open(self,"after_start")' />
 
@@ -21,11 +21,11 @@
 	<menupopup id="accountProfile">
 		<menu label="${labels.languages.language}">
 			<menupopup>
-				<menuitem label="${labels.languages.spanish}" checked="@bind(vm2.actualLanguage eq 'es_ES' ? 'true' : 'false')"
+				<menuitem label="${labels.languages.spanish}" checked="@bind(vm.actualLanguage eq 'es_ES' ? 'true' : 'false')"
 					onClick="@command('changeLang', lang = 'es_ES')" />
-				<menuitem label="${labels.languages.galician}" checked="@bind(vm2.actualLanguage eq 'gl_ES' ? 'true' : 'false')"
+				<menuitem label="${labels.languages.galician}" checked="@bind(vm.actualLanguage eq 'gl_ES' ? 'true' : 'false')"
 					onClick="@command('changeLang', lang = 'gl_ES')" />
-				<menuitem label="${labels.languages.english}" checked="@bind(vm2.actualLanguage eq 'en_EN' ? 'true' : 'false')"
+				<menuitem label="${labels.languages.english}" checked="@bind(vm.actualLanguage eq 'en_EN' ? 'true' : 'false')"
 					onClick="@command('changeLang', lang = 'en_EN')" />
 			</menupopup>
 		</menu>
