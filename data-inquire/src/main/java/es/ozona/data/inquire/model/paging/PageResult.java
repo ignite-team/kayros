@@ -1,12 +1,13 @@
 package es.ozona.data.inquire.model.paging;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class PageResult<T> {
 
-	private List<T> items;
+	private List<T> items = new ArrayList<T>(0);
 	private Long totalCount;
 	private int page;
 	private int size;
