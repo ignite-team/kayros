@@ -1,5 +1,7 @@
 package es.ozona.kayros.webapp.internal.outboundservice;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,6 +21,8 @@ import es.ozona.kayros.webapp.shareddomain.model.TimesheetResource;
 @Service("externalTimesheetService")
 public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 
+	private static final String SERVICE_DATE_FORMAT = "yyyyMMdd";
+
 	@Autowired
 	private TimesheetService timesheetService;
 
@@ -33,8 +37,10 @@ public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 
 	@Override
 	public List<WorkingTimePeriod> searchCurrentByEmployeeId(String employeeId) {
+		final String date = LocalDate.now().format(DateTimeFormatter.ofPattern(SERVICE_DATE_FORMAT));
 
-		final List<TimesheetResource> timesheets = timesheetService.search("employeeId:%s".formatted(employeeId), "+date", 1, 1000).getItems();
+		final List<TimesheetResource> timesheets = timesheetService.search("( employeeId:%s and date:%s )".formatted(employeeId, date), "+date", 1, 1000)
+				.getItems();
 
 		return CollectionUtils.isEmpty(timesheets) ? new ArrayList<WorkingTimePeriod>()
 				: CollectionUtils.lastElement(timesheets).getWorkingTimePeriods().stream().map(t -> WorkTimePeriodMapper.mapFromResource(t))
@@ -53,8 +59,10 @@ public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 
 	@Override
 	public Timesheet searchCurrentTimesheetByEmployeeId(String employeeId) {
+		final String date = LocalDate.now().format(DateTimeFormatter.ofPattern(SERVICE_DATE_FORMAT));
 
-		final List<TimesheetResource> timesheets = timesheetService.search("employeeId:%s".formatted(employeeId), "+date", 1, 1000).getItems();
+		final List<TimesheetResource> timesheets = timesheetService.search("( employeeId:%s and date:%s )".formatted(employeeId, date), "+date", 1, 1000)
+				.getItems();
 
 		return CollectionUtils.isEmpty(timesheets) ? null : TimesheetMapper.mapFromResource(CollectionUtils.lastElement(timesheets));
 
