@@ -4,7 +4,7 @@
 	<div viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.ErrorViewModel')" vflex="1" hflex="1">
 		<vbox vflex="1" hflex="1" align="center" pack="center">
 			<label value="${labels.error.general.message}" class="oops-label" />
-			<label value="@load(vm.errorMessage)" class="error-label" />
+			<label if="${vm.message != 'None'}" value="@load(vm.getErrorMessage())" class="error-label" />
 			<space />
 			<label id="redirectLabel" value="${labels.error.general.redirecting} 10 ${labels.general.seconds}" class="error-label" />
 			<space />
