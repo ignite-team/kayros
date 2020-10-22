@@ -53,7 +53,7 @@ public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 		final List<TimesheetResource> timesheets = timesheetService
 				.search("( date>%s and date<%s and employeeId:%s )".formatted(startDate, endDate, employeeId), "+date", 1, 1000).getItems();
 
-		return timesheets.size() == 0 ? null : timesheets.stream().map(t -> TimesheetMapper.mapFromResource(t)).collect(Collectors.toList());
+		return CollectionUtils.isEmpty(timesheets) ? null : timesheets.stream().map(t -> TimesheetMapper.mapFromResource(t)).collect(Collectors.toList());
 
 	}
 
@@ -64,7 +64,7 @@ public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 		final List<TimesheetResource> timesheets = timesheetService.search("( employeeId:%s and date:%s )".formatted(employeeId, date), "+date", 1, 1000)
 				.getItems();
 
-		return timesheets.size() == 0 ? null : TimesheetMapper.mapFromResource(CollectionUtils.lastElement(timesheets));
+		return CollectionUtils.isEmpty(timesheets) ? null : TimesheetMapper.mapFromResource(CollectionUtils.lastElement(timesheets));
 
 	}
 
