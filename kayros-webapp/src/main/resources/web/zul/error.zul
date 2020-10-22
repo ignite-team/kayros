@@ -6,7 +6,28 @@
 			<label value="${labels.error.general.message}" class="oops-label" />
 			<label value="@load(vm.errorMessage)" class="error-label" />
 			<space />
+			<label id="redirectLabel" value="${labels.error.general.redirecting} 10 ${labels.general.seconds}" class="error-label" />
+			<space />
 			<button label="${labels.error.general.backHome}" href="/secure/main" />
+			<zscript>
+				int ticks = 10;
+			</zscript>
+			<timer delay="1000" id="timer" repeats="true">
+				<attribute name="onTimer">
+					String[] values = redirectLabel.getValue().split(" ");
+					ticks = ticks - 1;
+					if (ticks == 0) {
+						timer.stop();
+						Executions.sendRedirect("/secure/main");
+						return;
+					}
+					values[values.length - 2] = Integer.toString(ticks);
+					redirectLabel.setValue(String.join(" ", values));
+				</attribute>
+			</timer>
+			<zscript>
+				timer.start();
+			</zscript>
 		</vbox>
 	</div>
 </zk>
