@@ -5,4 +5,8 @@
 	    <name>org.zkoss.web.preferred.dateFormatInfo</name>
 	    <value>es.ozona.kayros.webapp.utils.converters.DateTimeFormater</value>
 	</library-property>
+	<error-page>
+    	<exception-type>java.lang.Throwable</exception-type>    
+    	<location>~./zul/errorHandler.zul</location>    
+	</error-page>
 </zk>
