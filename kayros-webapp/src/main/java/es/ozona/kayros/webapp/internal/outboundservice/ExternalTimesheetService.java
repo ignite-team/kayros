@@ -13,7 +13,7 @@ public interface ExternalTimesheetService {
 
 	List<WorkingTimePeriod> searchCurrentByEmployeeId(String employeeId);
 
-	List<WorkingTimePeriod> searchTimesheetsByEmployeeIdBetweenDates(String startDate, String endDate, String employeeId);
+	List<Timesheet> searchTimesheetsByEmployeeIdBetweenDates(String startDate, String endDate, String employeeId);
 
 	Timesheet searchCurrentTimesheetByEmployeeId(String employeeId);
 

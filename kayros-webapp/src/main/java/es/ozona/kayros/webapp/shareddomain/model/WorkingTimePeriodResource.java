@@ -2,6 +2,8 @@ package es.ozona.kayros.webapp.shareddomain.model;
 
 import java.time.ZonedDateTime;
 
+import org.springframework.util.ObjectUtils;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -28,7 +30,7 @@ public class WorkingTimePeriodResource {
 	private Boolean editedFinishTime;
 
 	private Boolean telecommuting;
-	
+
 	private String workplace;
 
 	public WorkingTimePeriodResource() {
@@ -119,6 +121,27 @@ public class WorkingTimePeriodResource {
 	public void setWorkplace(String workplace) {
 
 		this.workplace = workplace;
+
+	}
+
+	@Override
+	public int hashCode() {
+
+		return ObjectUtils.nullSafeHashCode(
+				new Object[] { startTime, generatedStartTime, editedStartTime, finishTime, generatedFinishTime, editedFinishTime, telecommuting, workplace });
+
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		if (obj == null || !(obj instanceof WorkingTimePeriodResource)) {
+
+			return false;
+
+		}
+
+		return this.hashCode() == obj.hashCode();
 
 	}
 

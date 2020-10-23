@@ -1,23 +1,23 @@
 <div>
 	<tabbox sclass="nav_tabs">
 		<tabs>
-			<tab>Registro</tab>
-			<tab>Exportar</tab>
+			<tab>${labels.content.tab.registry}</tab>
+			<tab>${labels.content.tab.export}</tab>
 		</tabs>
 		<tabpanels>
 			<tabpanel apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.CurrentTimesheetModel')">
 				<vlayout if="${vm.timesheet == 'null'}">
 					<vbox vflex="1" hflex="1" align="center" pack="center">
-						<label value="No hay registros" class="oops-label" />
+						<label value="${labels.exception.export.noWorkingTimePeriods}" class="oops-label" />
 					</vbox>
 				</vlayout>
 				<vlayout if="${vm.timesheet != 'null'}">
 					<hlayout>
 						<listbox>
 							<listhead>
-								<listheader label="Entrada" />
-								<listheader label="Salida" />
-								<listheader label="Acumulado" />
+								<listheader label="${labels.registry.entry}" />
+								<listheader label="${labels.registry.exit}" />
+								<listheader label="${labels.timesheet.general.total}" />
 							</listhead>
 							<listitem>
 								<listcell>
@@ -35,11 +35,11 @@
 					<hlayout>
 						<listbox model="@bind(vm.workingTimePeriods)" mold="paging" pagingPosition="both" pageSize="10">
 							<listhead>
-								<listheader label="Entrada" sort="auto(startTime)" />
-								<listheader label="Salida" sort="auto(finishTime)" />
-								<listheader label="Parcial" sort="auto(partialDone)" />
-								<listheader label="Centro" sort="auto(workplace)" />
-								<listheader label="Teletrabajo" sort="auto(telecommuting)" />
+								<listheader label="${labels.registry.entry}" sort="auto(startTime)" />
+								<listheader label="${labels.registry.exit}" sort="auto(finishTime)" />
+								<listheader label="${labels.timesheet.general.partial}" sort="auto(partialDone)" />
+								<listheader label="${labels.general.workplace}" sort="auto(workplace)" />
+								<listheader label="${labels.general.telecommuting}" sort="auto(telecommuting)" />
 							</listhead>
 							<template name="model">
 								<listitem>
@@ -57,7 +57,7 @@
 									</listcell>
 									<listcell>
 										<label
-											value="@bind(each.telecommuting) @converter('es.ozona.kayros.webapp.utils.converters.BoolFormatConverter', format='Sí,No')" />
+											value="@bind(each.telecommuting) @converter('es.ozona.kayros.webapp.utils.converters.BoolFormatConverter', format=labels.general.yes.concat(',').concat(labels.general.no))" />
 									</listcell>
 								</listitem>
 							</template>
@@ -71,9 +71,9 @@
 						validationMessages="@id('vmsgs')" vflex="true" style="min-width: 50%" apply="org.zkoss.bind.BindComposer"
 						viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.ExportViewModel')">
 						<hbox hflex="true" align="center">
-							<label hflex="1" value="Fecha de inicio" />
+							<label hflex="1" value="${labels.timesheet.workingTimePeriods.headers.startDate}" />
 							<datebox hflex="2" id="startDate" value="@bind(exportForm.startDate)" />
-							<label hflex="1" value="Fecha de fin" />
+							<label hflex="1" value="${labels.timesheet.workingTimePeriods.headers.endDate}" />
 							<datebox hflex="2" id="endDate" value="@bind(exportForm.endDate)" />
 						</hbox>
 						<hbox hflex="true" align="center">
@@ -82,28 +82,41 @@
 							<space hflex="1" />
 							<label value="@bind(vmsgs['endDate'])" hflex="2" class="username-label" />
 						</hbox>
-						<hbox hflex="true" align="center">
-							<label hflex="1" value="Formato" />
+						<hbox hflex="true" align="center" if="${sec:hasRole('ROLE_KAYROS_HR_MANAGER') == 'true'}">
+							<label hflex="1" value="${labels.export.fileFormat}" />
 							<combobox hflex="2" selectedItem="@bind(exportForm.fileFormat)" readonly="true" autodrop="true">
 								<comboitem label="CSV" value="csv" />
 								<comboitem label="XLSX" value="xlsx" />
 							</combobox>
-							<label hflex="1" value="Empleado" />
+							<label hflex="1" value="${labels.general.employee}" />
 							<combobox hflex="2" value="@bind(exportForm.employeeUsername)" model="@bind(vm.employees)"
-								onChanging="@command('searchEmployeesCommand', v=event.value)">
+								onChanging="@command('searchEmployeesCommand', v=event.value)" autocomplete="true" buttonVisible="false" autodrop="false">
 								<template name="model">
 									<comboitem label="@bind(each.username)" value="@bind(each.username)" />
 								</template>
 							</combobox>
 						</hbox>
-						<hbox hflex="true" align="center">
+						<hbox hflex="true" align="center" if="${sec:hasRole('ROLE_KAYROS_HR_MANAGER') == 'false'}">
+							<label hflex="1" value="${labels.export.fileFormat}" />
+							<combobox hflex="2" selectedItem="@bind(exportForm.fileFormat)" readonly="true" autodrop="true">
+								<comboitem label="CSV" value="csv" />
+								<comboitem label="XLSX" value="xlsx" />
+							</combobox>
+							<space hflex="3" />
+						</hbox>
+						<hbox hflex="true" align="center" if="${sec:hasRole('ROLE_KAYROS_HR_MANAGER') == 'true'}">
 							<space hflex="1" />
 							<label value="@bind(vmsgs['fileFormat'])" hflex="2" class="username-label" />
 							<space hflex="1" />
 							<label value="@bind(vmsgs['employee'])" hflex="2" class="username-label" />
 						</hbox>
+						<hbox hflex="true" align="center" if="${sec:hasRole('ROLE_KAYROS_HR_MANAGER') == 'false'}">
+							<space hflex="1" />
+							<label value="@bind(vmsgs['fileFormat'])" hflex="2" class="username-label" />
+							<space hflex="3" />
+						</hbox>
 						<hbox hflex="true" align="center" pack="center">
-							<button label="Descargar" onClick="@command('export')" />
+							<button label="${labels.export.download}" onClick="@command('export')" />
 						</hbox>
 					</vbox>
 				</div>

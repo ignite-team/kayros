@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language-addon>
+	<addon-name>kayros</addon-name>
+	<depends>zk</depends>
+    <language-name>xul/html</language-name>
+    <component>
+        <component-name>button</component-name>
+        <extends>button</extends>
+        <property>
+            <property-name>autodisable</property-name>
+            <property-value>self</property-value>
+        </property>
+    </component>
+</language-addon>

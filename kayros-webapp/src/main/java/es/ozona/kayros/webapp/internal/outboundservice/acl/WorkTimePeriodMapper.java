@@ -15,13 +15,12 @@ public class WorkTimePeriodMapper {
 
 		final WorkingTimePeriod wtp = new WorkingTimePeriod();
 
-		wtp.setStartTime(Date.from(resource.getStartTime().toInstant()));
+		wtp.setStartTime(resource.getStartTime() == null ? null : Date.from(resource.getStartTime().toInstant()));
 		wtp.setGeneratedStartTime(resource.getGeneratedStartTime());
 		wtp.setEditedStartTime(resource.getEditedStartTime());
 		wtp.setFinishTime(resource.getFinishTime() == null ? null : Date.from(resource.getFinishTime().toInstant()));
 		wtp.setGeneratedFinishTime(resource.getGeneratedFinishTime());
 		wtp.setEditedFinishTime(resource.getEditedFinishTime());
-		wtp.setWorkplace(resource.getWorkplace());
 		wtp.setTelecommuting(resource.getTelecommuting());
 		wtp.setWorkplace(resource.getWorkplace());
 

@@ -5,9 +5,11 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.util.ObjectUtils;
+import org.zkoss.util.resource.Labels;
 
 public class Timesheet {
 
@@ -21,9 +23,23 @@ public class Timesheet {
 	private Date endDate;
 	private String totalTime;
 
-	private List<WorkingTimePeriod> workingTimePeriods = new ArrayList<WorkingTimePeriod>(0);
+	private boolean status;
+
+	private final String lessThanMinuteText = Labels.getLabel("general.lessThanMinute");
+
+	private List<WorkingTimePeriod> workingTimePeriods;
 
 	public Timesheet() {
+
+	}
+
+	public Timesheet(String timesheetId, String employeeId, LocalDate date, List<WorkingTimePeriod> workingTimePeriods) {
+
+		super();
+		this.timesheetId = timesheetId;
+		this.employeeId = employeeId;
+		this.date = date;
+		this.workingTimePeriods = workingTimePeriods;
 
 	}
 
@@ -55,13 +71,14 @@ public class Timesheet {
 		return workingTimePeriods;
 	}
 
-	public void setWorkingTimePeriod(List<WorkingTimePeriod> workingTimePeriods) {
+	public void setWorkingTimePeriods(List<WorkingTimePeriod> workingTimePeriods) {
 
 		this.workingTimePeriods = workingTimePeriods;
 
-		if (this.workingTimePeriods.size() != 0) {
+		if (this.workingTimePeriods != null && this.workingTimePeriods.size() != 0) {
 
 			this.calculateTotalTime();
+			this.updateStatus();
 
 		}
 
@@ -78,20 +95,34 @@ public class Timesheet {
 
 			Date end = wtp.getFinishTime() == null ? new Date() : wtp.getFinishTime();
 
-			totalComputed =  totalComputed.plus(Duration.between(LocalDateTime.ofInstant(wtp.getStartTime().toInstant(), ZoneId.systemDefault()),
+			totalComputed = totalComputed.plus(Duration.between(LocalDateTime.ofInstant(wtp.getStartTime().toInstant(), ZoneId.systemDefault()),
 					LocalDateTime.ofInstant(end.toInstant(), ZoneId.systemDefault())));
 
 		}
 
 		if (totalComputed.getSeconds() < 60) {
 
-			this.totalTime = "Menos de un minuto";
+			this.totalTime = lessThanMinuteText;
 
 		} else {
 
 			this.totalTime = new TimesheetDuration(totalComputed).toString();
 
 		}
+
+	}
+
+	public void updateStatus() {
+
+		boolean finalStatus = false;
+
+		if (this.workingTimePeriods.get(workingTimePeriods.size() - 1).getFinishTime() == null) {
+
+			finalStatus = true;
+
+		}
+
+		this.setStatus(finalStatus);
 
 	}
 
@@ -110,6 +141,79 @@ public class Timesheet {
 	public String getTotalTime() {
 
 		return totalTime;
+
+	}
+
+	public boolean getStatus() {
+
+		return status;
+
+	}
+
+	public void setStatus(boolean status) {
+
+		this.status = status;
+
+	}
+
+	public boolean isLatencityTimeout(int latencyTime) {
+
+		boolean timeout = true;
+		Date now = new Date();
+
+		if (this.workingTimePeriods != null && this.workingTimePeriods.size() != 0) {
+
+			if (now.getTime() - this.workingTimePeriods.get(this.workingTimePeriods.size() - 1).getStartTime().getTime() < (latencyTime * 60 * 1000)) {
+
+				timeout = false;
+
+			}
+
+		}
+
+		return timeout;
+
+	}
+
+	public long getTimeToLatencyTimeout(int latencyTime) {
+
+		long timeout = 0;
+		Date now = new Date();
+
+		if (this.workingTimePeriods != null && this.workingTimePeriods.size() != 0
+				&& this.workingTimePeriods.get(this.workingTimePeriods.size() - 1).getFinishTime() == null) {
+
+			timeout = (latencyTime * 60 * 1000) - (now.getTime() - this.workingTimePeriods.get(this.workingTimePeriods.size() - 1).getStartTime().getTime());
+
+			if (timeout < 0) {
+
+				timeout = 0;
+
+			}
+
+		}
+
+		return timeout;
+
+	}
+
+	@Override
+	public int hashCode() {
+
+		return ObjectUtils.nullSafeHashCode(new Object[] { timesheetId, employeeId, date, startDate, endDate, totalTime, workingTimePeriods });
+
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		if (obj == null || !(obj instanceof Timesheet)) {
+
+			return false;
+
+		}
+
+		return this.hashCode() == obj.hashCode();
 
 	}
 

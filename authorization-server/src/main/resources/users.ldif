@@ -75,3 +75,6 @@ objectclass: top
 objectclass: groupOfUniqueNames
 cn: kayros_user
 uniqueMember: uid=jeijo,ou=users,dc=xilco,dc=gal
+uniqueMember: uid=admin,ou=users,dc=xilco,dc=gal
+uniqueMember: uid=ppabli,ou=users,dc=xilco,dc=gal
+

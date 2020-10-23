@@ -1,6 +1,5 @@
 package es.ozona.kayros.webapp.infrastructure.feingclients;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import es.ozona.data.inquire.model.paging.PageResult;
@@ -10,7 +9,7 @@ import es.ozona.kayros.webapp.shareddomain.model.EmployeeResource;
 public class EmployeeServiceFallback implements EmployeeService {
 
 	@Override
-	public ResponseEntity<EmployeeResource> find(String id) {
+	public EmployeeResource find(String id) {
 		return null;
 	}
 

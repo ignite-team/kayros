@@ -1,5 +1,7 @@
 package es.ozona.kairos.clock.application.internal.commandservices;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,7 +51,7 @@ public class TimesheetCommandServiceImpl extends BaseCommandServiceImpl<Timeshee
 
 			timesheet = repository.findFirstByEmployeeIdOrderByDateDesc(new EmployeeId(clockTimesheetCommand.getEmployeeId()));
 			
-			if (timesheet != null) {
+			if (timesheet != null && timesheet.getDate().getDayOfMonth() == LocalDate.now().getDayOfMonth()) {
 
 				timesheet.clock(clockTimesheetCommand);
 

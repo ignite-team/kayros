@@ -1,7 +1,11 @@
 package es.ozona.kayros.webapp.vms;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.core.env.Environment;
+import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.GlobalCommand;
 import org.zkoss.bind.annotation.Init;
@@ -21,11 +25,17 @@ public class CurrentTimesheetModel {
 	@WireVariable("externalTimesheetService")
 	protected ExternalTimesheetService timesheetService;
 
+	@WireVariable("environment")
+	protected Environment env;
+
 	private List<WorkingTimePeriod> workingTimePeriods;
 	private Timesheet timesheet;
+	private int latency;
 
 	@Init
 	public void init() {
+
+		this.latency = Integer.parseInt(env.getProperty("kayros-webapp.clockin.latency", "3"));
 
 	}
 
@@ -54,6 +64,11 @@ public class CurrentTimesheetModel {
 		if (this.timesheet != null) {
 
 			setWorkingTimePeriods(this.timesheet.getWorkingTimePeriods());
+
+			final Map<String, Object> params = new HashMap<String, Object>();
+			params.put("status", this.timesheet.getStatus());
+			params.put("timeToTimeout", this.timesheet.getTimeToLatencyTimeout(this.latency));
+			BindUtils.postGlobalCommand(null, null, "updateStatus", params);
 
 		}
 
