@@ -12,12 +12,17 @@ import es.ozona.kayros.webapp.utils.SecurityAccess;
 
 public class ExportFormValidator extends AbstractValidator {
 
-	private final String invalidDateText = Labels.getLabel("exception.date.invalidDate");
-	private final String notTallyDatesText = Labels.getLabel("exception.date.notTally");
-	private final String invalidFormatText = Labels.getLabel("exception.format.invalidFormat");
-	private final String invalidEmployeeText = Labels.getLabel("exception.employee.invalidEmployee");
+	private String invalidDateText;
+	private String notTallyDatesText;
+	private String invalidFormatText;
+	private String invalidEmployeeText;
 
 	public void validate(ValidationContext ctx) {
+
+		invalidDateText = Labels.getLabel("exception.date.invalidDate");
+		notTallyDatesText = Labels.getLabel("exception.date.notTally");
+		invalidFormatText = Labels.getLabel("exception.format.invalidFormat");
+		invalidEmployeeText = Labels.getLabel("exception.employee.invalidEmployee");
 
 		Map<String, Property> beanProps = ctx.getProperties(ctx.getProperty().getBase());
 
