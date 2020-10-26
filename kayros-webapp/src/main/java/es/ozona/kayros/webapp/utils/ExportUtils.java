@@ -80,7 +80,7 @@ public class ExportUtils {
 			printer.flush();
 			printer.close();
 
-			instr = new ByteArrayInputStream(outstr.toString().getBytes("UTF-8"));
+			instr = new ByteArrayInputStream(outstr.toString().getBytes("cp1252"));
 
 			outstr.close();
 
