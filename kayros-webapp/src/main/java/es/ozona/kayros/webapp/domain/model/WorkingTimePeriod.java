@@ -1,9 +1,11 @@
 package es.ozona.kayros.webapp.domain.model;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.TimeZone;
 
 import org.springframework.util.ObjectUtils;
 
@@ -95,10 +97,22 @@ public class WorkingTimePeriod {
 	}
 
 	public String getPartialDone() {
+
 		Date endTime = finishTime == null ? new Date() : finishTime;
 
 		return new TemporalDuration(Duration.between(LocalDateTime.ofInstant(startTime.toInstant(), ZoneId.systemDefault()),
 				LocalDateTime.ofInstant(endTime.toInstant(), ZoneId.systemDefault()))).toString();
+	}
+
+	public String getPartialDoneExport() {
+
+		String format = "HH:mm:ss";
+		SimpleDateFormat formater = new SimpleDateFormat(format);
+
+		Date endTime = finishTime == null ? new Date() : finishTime;
+
+		return formater.format((endTime.getTime() - startTime.getTime()) - TimeZone.getDefault().getRawOffset());
+
 	}
 
 	public String getWorkplace() {
