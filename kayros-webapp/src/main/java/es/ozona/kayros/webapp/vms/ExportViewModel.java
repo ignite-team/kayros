@@ -136,7 +136,7 @@ public class ExportViewModel {
 							row.add(wtp.getFinishTime());
 							row.add(wtp.getGeneratedFinishTime());
 							row.add(wtp.getEditedFinishTime());
-							row.add(wtp.getPartialDone());
+							row.add(wtp.getPartialDoneExport());
 							row.add(wtp.getTelecommuting());
 							row.add(wtp.getWorkplace());
 
