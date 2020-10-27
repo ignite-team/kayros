@@ -71,7 +71,7 @@ public class Employee extends AbstractAggregateRoot<Employee> implements Seriali
 	@Length(min = 5, max = 75)
 	@Column(name = "workplace", nullable = false, unique = false, length = 75)
 	private String workplace;
-	
+
 	public Employee() {
 
 	}
@@ -81,29 +81,36 @@ public class Employee extends AbstractAggregateRoot<Employee> implements Seriali
 		super();
 
 		this.employeeId = new EmployeeId(createEmployeeCommand.getEmployeeId());
-		this.account = new UserAccount(createEmployeeCommand.getUsername(), createEmployeeCommand.getEmail(), createEmployeeCommand.getFirstname(), createEmployeeCommand.getLastname());
+		this.account = new UserAccount(createEmployeeCommand.getUsername(), createEmployeeCommand.getFirstname(), createEmployeeCommand.getLastname(),
+				createEmployeeCommand.getEmail(), createEmployeeCommand.getPreferredLanguage());
 
 		this.telecommuting = createEmployeeCommand.getTelecommuting();
 		this.workplace = createEmployeeCommand.getWorkplace();
-		
-		this.registerEvent(new EmployeeCreatedEvent(new EmployeeCreatedEventData(createEmployeeCommand.getEmployeeId(), createEmployeeCommand.getUsername(), createEmployeeCommand.getEmail(), createEmployeeCommand.getFirstname(), createEmployeeCommand.getLastname(), createEmployeeCommand.getTelecommuting(), createEmployeeCommand.getWorkplace())));
+
+		this.registerEvent(new EmployeeCreatedEvent(new EmployeeCreatedEventData(createEmployeeCommand.getEmployeeId(), createEmployeeCommand.getUsername(),
+				createEmployeeCommand.getFirstname(), createEmployeeCommand.getLastname(), createEmployeeCommand.getEmail(),
+				createEmployeeCommand.getPreferredLanguage(), createEmployeeCommand.getTelecommuting(), createEmployeeCommand.getWorkplace())));
 
 	}
 
 	public void modify(ModifyEmployeeCommand modifyEmployeeCommand) {
 
-		this.account = new UserAccount(modifyEmployeeCommand.getUsername(), modifyEmployeeCommand.getEmail(), modifyEmployeeCommand.getFirstname(), modifyEmployeeCommand.getLastname());
+		this.account = new UserAccount(modifyEmployeeCommand.getUsername(), modifyEmployeeCommand.getFirstname(), modifyEmployeeCommand.getLastname(),
+				modifyEmployeeCommand.getEmail(), modifyEmployeeCommand.getPreferredLanguage());
 
 		this.telecommuting = modifyEmployeeCommand.getTelecommuting();
 		this.workplace = modifyEmployeeCommand.getWorkplace();
 
-		this.registerEvent(new EmployeeModifiedEvent(new EmployeeModifiedEventData(modifyEmployeeCommand.getEmployeeId(), modifyEmployeeCommand.getUsername(), modifyEmployeeCommand.getEmail(), modifyEmployeeCommand.getFirstname(), modifyEmployeeCommand.getLastname(), modifyEmployeeCommand.getTelecommuting(), modifyEmployeeCommand.getWorkplace())));
+		this.registerEvent(new EmployeeModifiedEvent(new EmployeeModifiedEventData(modifyEmployeeCommand.getEmployeeId(), modifyEmployeeCommand.getUsername(),
+				modifyEmployeeCommand.getFirstname(), modifyEmployeeCommand.getLastname(), modifyEmployeeCommand.getEmail(),
+				modifyEmployeeCommand.getPreferredLanguage(), modifyEmployeeCommand.getTelecommuting(), modifyEmployeeCommand.getWorkplace())));
 
 	}
 
 	public Schedule assignSchedule(AssignScheduleCommand assignScheduleCommand) {
 
-		final Schedule schedule = new Schedule(new ScheduleId(assignScheduleCommand.getScheduleId()), new CalendarId(assignScheduleCommand.getCalendarId()), new Validity(assignScheduleCommand.getStartDate(), assignScheduleCommand.getEndDate()));
+		final Schedule schedule = new Schedule(new ScheduleId(assignScheduleCommand.getScheduleId()), new CalendarId(assignScheduleCommand.getCalendarId()),
+				new Validity(assignScheduleCommand.getStartDate(), assignScheduleCommand.getEndDate()));
 
 		this.schedules.add(schedule);
 
@@ -138,11 +145,15 @@ public class Employee extends AbstractAggregateRoot<Employee> implements Seriali
 	public List<Schedule> getSchedules() {
 		return Collections.unmodifiableList(schedules.stream().sorted(new ScheduleComparator()).collect(Collectors.toList()));
 	}
-	
+
+	public void setSchedules(Set<Schedule> schedules) {
+		this.schedules = schedules;
+	}
+
 	public Boolean getTelecommuting() {
 
 		return telecommuting;
-	
+
 	}
 
 	public void setTelecommuting(Boolean telecommuting) {
@@ -154,19 +165,20 @@ public class Employee extends AbstractAggregateRoot<Employee> implements Seriali
 	public String getWorkplace() {
 
 		return workplace;
-		
+
 	}
 
 	public void setWorkplace(String workplace) {
-		
+
 		this.workplace = workplace;
-		
+
 	}
 
 	@Override
 	public int hashCode() {
 
 		return ObjectUtils.nullSafeHashCode(employeeId);
+
 	}
 
 	@Override
@@ -181,7 +193,8 @@ public class Employee extends AbstractAggregateRoot<Employee> implements Seriali
 		if (getClass() != obj.getClass())
 			return false;
 
-		return ObjectUtils.nullSafeEquals(this.employeeId, ((Employee) obj).getEmployeeId());
+		return this.hashCode() == obj.hashCode();
+
 	}
 
 	public static class ScheduleComparator implements Comparator<Schedule> {

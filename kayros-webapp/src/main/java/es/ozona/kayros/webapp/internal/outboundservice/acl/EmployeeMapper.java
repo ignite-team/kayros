@@ -11,8 +11,8 @@ public class EmployeeMapper {
 
 	public static Employee mapFromResource(EmployeeResource resource) {
 
-		final Employee employee = new Employee(resource.getEmployeeId(), resource.getUsername(), resource.getEmail(), resource.getFirstname(),
-				resource.getLastname(), resource.getTelecommuting(), resource.getWorkplace());
+		final Employee employee = new Employee(resource.getEmployeeId(), resource.getUsername(), resource.getFirstname(), resource.getLastname(),
+				resource.getEmail(), resource.getPreferredLanguage(), resource.getTelecommuting(), resource.getWorkplace());
 
 		return employee;
 
@@ -20,8 +20,8 @@ public class EmployeeMapper {
 
 	public static EmployeeResource mapToResource(Employee resource) {
 
-		final EmployeeResource employee = new EmployeeResource(resource.getEmployeeId(), resource.getUsername(), resource.getEmail(), resource.getFirstname(),
-				resource.getLastname(), resource.getTelecommuting(), resource.getWorkplace());
+		final EmployeeResource employee = new EmployeeResource(resource.getEmployeeId(), resource.getUsername(), resource.getFirstname(),
+				resource.getLastname(), resource.getEmail(), resource.getPreferredLanguage(), resource.getTelecommuting(), resource.getWorkplace());
 
 		return employee;
 
