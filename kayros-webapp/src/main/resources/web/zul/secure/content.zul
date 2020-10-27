@@ -1,8 +1,9 @@
-<div>
+<div xmlns:n="native">
 	<tabbox sclass="nav_tabs">
 		<tabs>
 			<tab>${labels.content.tab.registry}</tab>
 			<tab>${labels.content.tab.export}</tab>
+			<tab>${labels.content.tab.calendar}</tab>
 		</tabs>
 		<tabpanels>
 			<tabpanel apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.CurrentTimesheetModel')">
@@ -120,6 +121,9 @@
 						</hbox>
 					</vbox>
 				</div>
+			</tabpanel>
+			<tabpanel viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.CalendarViewModel')">
+				<n:div id="calendarContainer"></n:div>
 			</tabpanel>
 		</tabpanels>
 	</tabbox>
