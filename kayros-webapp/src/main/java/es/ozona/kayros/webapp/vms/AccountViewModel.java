@@ -47,7 +47,13 @@ public class AccountViewModel {
 
 		if (session.getAttribute(Attributes.PREFERRED_LOCALE) == null) {
 
-			this.setActualLanguage(Executions.getCurrent().getHeader("Accept-Language").split(",")[0].replace("-", "_"));
+			this.setActualLanguage(employee.getPreferredLanguage());
+
+			Locale preferredLocale = new Locale(this.getActualLanguage());
+
+			session.setAttribute(Attributes.PREFERRED_LOCALE, preferredLocale);
+
+			Executions.getCurrent().sendRedirect("");
 
 		} else {
 
@@ -122,6 +128,10 @@ public class AccountViewModel {
 	public void changeLang(@BindingParam("lang") String lang) {
 
 		this.setActualLanguage(lang);
+
+		employee.setPreferredlanguage(actualLanguage);
+		employeeService.modifyEmployee(this.employee);
+
 		Locale preferredLocale = new Locale(this.getActualLanguage());
 
 		Session session = Sessions.getCurrent();

@@ -11,9 +11,10 @@ public class EmployeeTest {
 
 	private String employeeId;
 	private String username;
-	private String email;
 	private String firstName;
 	private String lastName;
+	private String email;
+	private String preferredLanguage;
 	private Boolean telecommuting;
 	private String workplace;
 
@@ -25,14 +26,15 @@ public class EmployeeTest {
 
 		employeeId = "e7c1c31b-c936-4a8b-ad9e-46a4a86381cd";
 		username = "username";
-		email = "email";
 		firstName = "firstname";
 		lastName = "lastname";
+		email = "email";
+		preferredLanguage = "es_ES";
 		telecommuting = false;
 		workplace = "workplace";
 
 		emptyEmployee = new Employee();
-		employee = new Employee(employeeId, username, email, firstName, lastName, telecommuting, workplace);
+		employee = new Employee(employeeId, username, firstName, lastName, email, preferredLanguage, telecommuting, workplace);
 
 	}
 
@@ -51,13 +53,6 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeGetEmail_thenReturnEmail() {
-
-		assertThat(employee.getEmail()).isEqualTo(email);
-
-	}
-
-	@Test
 	public void givenEmployee_whenEmployeeGetFirstName_thenReturnFirstName() {
 
 		assertThat(employee.getFirstname()).isEqualTo(firstName);
@@ -68,6 +63,20 @@ public class EmployeeTest {
 	public void givenEmployee_whenEmployeeGetLastName_thenReturnLastName() {
 
 		assertThat(employee.getLastname()).isEqualTo(lastName);
+
+	}
+
+	@Test
+	public void givenEmployee_whenEmployeeGetEmail_thenReturnEmail() {
+
+		assertThat(employee.getEmail()).isEqualTo(email);
+
+	}
+
+	@Test
+	public void givenEmployee_whenEmployeeGetPreferredLanguage_thenReturnlanguage() {
+
+		assertThat(employee.getPreferredLanguage()).isEqualTo(preferredLanguage);
 
 	}
 
@@ -86,7 +95,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeSetEmployeeIdAndGetEmployee_thenReturnEmployeeId() {
+	public void givenEmptyEmployee_whenEmptyEmployeeSetEmployeeIdAndGetEmployee_thenReturnEmployeeId() {
 
 		emptyEmployee.setEmployeeId(employeeId);
 		assertThat(emptyEmployee.getEmployeeId()).isEqualTo(employeeId);
@@ -94,7 +103,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeSetUsernameAndGetUsername_thenReturnUsername() {
+	public void givenEmptyEmployee_whenEmptyEmployeeSetUsernameAndGetUsername_thenReturnUsername() {
 
 		emptyEmployee.setUsername(username);
 		assertThat(emptyEmployee.getUsername()).isEqualTo(username);
@@ -102,15 +111,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeSetEmailAndGetEmail_thenReturnEmail() {
-
-		emptyEmployee.setEmail(email);
-		assertThat(emptyEmployee.getEmail()).isEqualTo(email);
-
-	}
-
-	@Test
-	public void givenEmployee_whenEmployeeSetFirstNameAndGetFirstName_thenReturnFirstName() {
+	public void givenEmptyEmployee_whenEmptyEmployeeSetFirstNameAndGetFirstName_thenReturnFirstName() {
 
 		emptyEmployee.setFirstname(firstName);
 		assertThat(emptyEmployee.getFirstname()).isEqualTo(firstName);
@@ -118,7 +119,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeSetLastNameAndGetLastName_thenReturnLastName() {
+	public void givenEmptyEmployee_whenEmptyEmployeeSetLastNameAndGetLastName_thenReturnLastName() {
 
 		emptyEmployee.setLastname(lastName);
 		assertThat(emptyEmployee.getLastname()).isEqualTo(lastName);
@@ -126,7 +127,23 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
+	public void givenEmptyEmployee_whenEmptyEmployeeSetEmailAndGetEmail_thenReturnEmail() {
+
+		emptyEmployee.setEmail(email);
+		assertThat(emptyEmployee.getEmail()).isEqualTo(email);
+
+	}
+
+	@Test
+	public void givenEmptyEmployee_whenEmptyEmployeeSetPreferredLanguageAndGetPreferredLanguage_thenReturnPreferredLanguage() {
+
+		emptyEmployee.setPreferredlanguage(preferredLanguage);
+		assertThat(emptyEmployee.getPreferredLanguage()).isEqualTo(preferredLanguage);
+
+	}
+
+	@Test
+	public void givenEmptyEmployee_whenEmptyEmployeeSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
 
 		emptyEmployee.setTelecommuting(telecommuting);
 		assertThat(emptyEmployee.getTelecommuting()).isEqualTo(telecommuting);
@@ -134,7 +151,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
+	public void givenEmptyEmployee_whenEmptyEmployeeSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
 
 		emptyEmployee.setWorkplace(workplace);
 		assertThat(emptyEmployee.getWorkplace()).isEqualTo(workplace);

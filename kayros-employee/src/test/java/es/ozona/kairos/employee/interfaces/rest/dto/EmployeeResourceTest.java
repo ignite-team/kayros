@@ -1,4 +1,4 @@
-package es.ozona.kayros.webapp.shareddomain.model;
+package es.ozona.kairos.employee.interfaces.rest.dto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -60,7 +60,7 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeResourceGetLastName_thenReturnLastName() {
+	public void givenEmployeeResource_whemEmployeeResourceGetLastName_thenReturnLastName() {
 
 		assertThat(employeeResource.getLastname()).isEqualTo(lastName);
 
@@ -74,7 +74,7 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeResourceGetPreferredLanguage_thenReturnPreferredLanguage() {
+	public void givenEmployeeResource_whenEmployeeResourceGetPreferredLanguage_thenReturnlanguage() {
 
 		assertThat(employeeResource.getPreferredLanguage()).isEqualTo(preferredLanguage);
 
@@ -95,7 +95,7 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeResourceSetEmployeeIdAndGetEmployee_thenReturnEmployeeId() {
+	public void givenEmptyEmployeeResource_whenEmptyEmployeeResourceSetEmployeeIdAndGetEmployee_thenReturnEmployeeId() {
 
 		emptyEmployeeResource.setEmployeeId(employeeId);
 		assertThat(emptyEmployeeResource.getEmployeeId()).isEqualTo(employeeId);
@@ -103,7 +103,7 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeResourceSetUsernameAndGetUsername_thenReturnUsername() {
+	public void givenEmptyEmployeeResource_whenEmptyEmployeeResourceSetUsernameAndGetUsername_thenReturnUsername() {
 
 		emptyEmployeeResource.setUsername(username);
 		assertThat(emptyEmployeeResource.getUsername()).isEqualTo(username);
@@ -111,7 +111,7 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeResourceSetFirstNameAndGetFirstName_thenReturnFirstName() {
+	public void givenEmptyEmployeeResource_whenEmptyEmployeeResourceSetFirstNameAndGetFirstName_thenReturnFirstName() {
 
 		emptyEmployeeResource.setFirstname(firstName);
 		assertThat(emptyEmployeeResource.getFirstname()).isEqualTo(firstName);
@@ -119,7 +119,7 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeSetLastNameAndGetLastName_thenReturnLastName() {
+	public void givenEmptyEmployeeResource_whenEmptyEmployeeResourceSetLastNameAndGetLastName_thenReturnLastName() {
 
 		emptyEmployeeResource.setLastname(lastName);
 		assertThat(emptyEmployeeResource.getLastname()).isEqualTo(lastName);
@@ -127,7 +127,7 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeResourceSetEmailAndGetEmail_thenReturnEmail() {
+	public void givenEmptyEmployeeResource_whenEmptyEmployeeResourceSetEmailAndGetEmail_thenReturnEmail() {
 
 		emptyEmployeeResource.setEmail(email);
 		assertThat(emptyEmployeeResource.getEmail()).isEqualTo(email);
@@ -135,7 +135,7 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeResourceSetPreferredLanguageAndGetPreferredLanguage_thenReturnPreferredLanguage() {
+	public void givenEmptyEmployeeResource_whenEmptyEmployeeResourceSetPreferredLanguageAndGetPreferredLanguage_thenReturnPreferredLanguage() {
 
 		emptyEmployeeResource.setPreferredLanguage(preferredLanguage);
 		assertThat(emptyEmployeeResource.getPreferredLanguage()).isEqualTo(preferredLanguage);
@@ -143,7 +143,7 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeResourceSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
+	public void givenEmptyEmployeeResource_whenEmptyEmployeeResourceSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
 
 		emptyEmployeeResource.setTelecommuting(telecommuting);
 		assertThat(emptyEmployeeResource.getTelecommuting()).isEqualTo(telecommuting);
@@ -151,7 +151,7 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeResourceSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
+	public void givenEmptyEmployeeResource_whenEmptyEmployeeResourceSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
 
 		emptyEmployeeResource.setWorkplace(workplace);
 		assertThat(emptyEmployeeResource.getWorkplace()).isEqualTo(workplace);

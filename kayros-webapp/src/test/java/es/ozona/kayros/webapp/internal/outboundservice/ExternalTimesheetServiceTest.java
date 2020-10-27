@@ -36,18 +36,21 @@ public class ExternalTimesheetServiceTest {
 
 	private String timesheetId;
 	private String employeeId;
-	private String invalidEmployeeId;
 	private LocalDate date;
 	private String workplace;
+
+	private String invalidEmployeeId;
 
 	private String startDate;
 	private String endDate;
 
-	private String email;
+	private String username;
 	private String firstName;
 	private String lastName;
+	private String email;
+	private String preferredLanguage;
+
 	private boolean telecommuting;
-	private String username;
 
 	private Employee employee;
 
@@ -80,12 +83,19 @@ public class ExternalTimesheetServiceTest {
 		date = LocalDate.now();
 		workplace = "Casa";
 
+		username = "jeijo";
+		firstName = "firstName";
+		lastName = "lastName";
+		email = "email";
+		preferredLanguage = "es_ES";
+		telecommuting = false;
+
 		startDate = LocalDate.now().format(DateTimeFormatter.ofPattern(SERVICE_DATE_FORMAT));
 		endDate = LocalDate.now().format(DateTimeFormatter.ofPattern(SERVICE_DATE_FORMAT));
 
 		invalidEmployeeId = "e7c1c31b-c936-4a8b-ad9e-46a4a863814d";
 
-		employee = new Employee(employeeId, username, email, firstName, lastName, telecommuting, workplace);
+		employee = new Employee(employeeId, username, firstName, lastName, email, preferredLanguage, telecommuting, workplace);
 
 		workingTimePeriodResource = new WorkingTimePeriodResource(startTime, generatedStartTime, editedStartTime, finishTime, generatedFinishTime,
 				editedFinishTime, telecommuting, workplace);

@@ -24,6 +24,7 @@ public class MappingConfig {
 			.addMapping(s -> s.getAccount().getFirstname(), EmployeeResource::setFirstname)
 			.addMapping(s -> s.getAccount().getLastname(), EmployeeResource::setLastname)
 			.addMapping(s -> s.getAccount().getEmail(), EmployeeResource::setEmail)
+			.addMapping(s -> s.getAccount().getPreferredLanguage(), EmployeeResource::setPreferredLanguage)
 			.addMapping(s -> s.getTelecommuting(), EmployeeResource::setTelecommuting)
 			.addMapping(s -> s.getWorkplace(), EmployeeResource::setWorkplace);
 
