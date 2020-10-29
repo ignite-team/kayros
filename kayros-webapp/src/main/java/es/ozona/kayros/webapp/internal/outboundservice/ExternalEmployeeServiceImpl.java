@@ -42,8 +42,8 @@ public class ExternalEmployeeServiceImpl implements ExternalEmployeeService {
 	public Employee createEmployeeFromPrincipal() {
 		final OAuth2AuthenticationToken auth = (OAuth2AuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
 
-		EmployeeResource employeeResource = new EmployeeResource(null, auth.getName(), auth.getPrincipal().getAttribute("mail"),
-				auth.getPrincipal().getAttribute("cn"), auth.getPrincipal().getAttribute("sn"), false,
+		EmployeeResource employeeResource = new EmployeeResource(null, auth.getName(), auth.getPrincipal().getAttribute("cn"),
+				auth.getPrincipal().getAttribute("sn"), auth.getPrincipal().getAttribute("mail"), "es_ES", false,
 				auth.getPrincipal().getAttribute("physicalDeliveryOfficeName"));
 
 		employeeResource = employeeService.create(employeeResource);

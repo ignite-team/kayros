@@ -14,9 +14,10 @@ public class EmployeeMapperTest {
 
 	private String employeeId;
 	private String username;
-	private String email;
 	private String firstName;
 	private String lastName;
+	private String email;
+	private String preferredLanguage;
 	private Boolean telecommuting;
 	private String workplace;
 
@@ -28,14 +29,15 @@ public class EmployeeMapperTest {
 
 		employeeId = "e7c1c31b-c936-4a8b-ad9e-46a4a86381cd";
 		username = "username";
-		email = "email";
 		firstName = "firstname";
 		lastName = "lastname";
+		email = "email";
+		preferredLanguage = "es_ES";
 		telecommuting = false;
 		workplace = "workplace";
 
-		employeeResource = new EmployeeResource(employeeId, username, email, firstName, lastName, telecommuting, workplace);
-		employee = new Employee(employeeId, username, email, firstName, lastName, telecommuting, workplace);
+		employeeResource = new EmployeeResource(employeeId, username, firstName, lastName, email, preferredLanguage, telecommuting, workplace);
+		employee = new Employee(employeeId, username, firstName, lastName, email, preferredLanguage, telecommuting, workplace);
 
 	}
 

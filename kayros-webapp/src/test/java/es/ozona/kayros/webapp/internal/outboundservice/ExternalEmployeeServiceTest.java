@@ -27,12 +27,14 @@ public class ExternalEmployeeServiceTest {
 	EmployeeService employeeService;
 
 	private String employeeId;
-	private String email;
+	private String username;
 	private String firstName;
 	private String lastName;
+	private String email;
+	private String preferredLanguage;
 	private boolean telecommuting;
 	private String workplace;
-	private String username;
+
 	private String invalidUsername;
 
 	private Employee employee;
@@ -44,16 +46,18 @@ public class ExternalEmployeeServiceTest {
 	public void init() {
 
 		employeeId = "e7c1c31b-c936-4a8b-ad9e-46a4a86381cd";
-		email = "email";
+		username = "jeijo";
 		firstName = "firstname";
 		lastName = "lastname";
+		email = "email";
+		preferredLanguage = "es_ES";
 		telecommuting = false;
 		workplace = "workplace";
-		username = "jeijo";
+
 		invalidUsername = "qwertyuioplkjhgfadszcxvbnnm";
 
-		employee = new Employee(employeeId, username, email, firstName, lastName, telecommuting, workplace);
-		employeeResource = new EmployeeResource(employeeId, username, email, firstName, lastName, telecommuting, workplace);
+		employee = new Employee(employeeId, username, firstName, lastName, email, preferredLanguage, telecommuting, workplace);
+		employeeResource = new EmployeeResource(employeeId, username, firstName, lastName, email, preferredLanguage, telecommuting, workplace);
 		pageResult = new PageResult<EmployeeResource>();
 		emptyPageResult = new PageResult<EmployeeResource>();
 

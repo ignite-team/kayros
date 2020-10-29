@@ -2,21 +2,26 @@
 <?taglib uri="http://security.access" prefix="sec"?>
 <?link rel="stylesheet" type="text/css" href="~./css/styles.css"?>
 
+<?script type="text/javascript" src="~./js/fullCalendar.min.js"?>
+<?script type="text/javascript" src="~./js/locales.min.js"?>
+<?link rel="stylesheet" type="text/css" href="~./css/fullCalendar.min.css"?>
+<?script type="text/javascript" src="~./js/calendar.js"?>
+
 <zk>
 	<include id="headerInclude" src="~./zul/secure/header.zul" onClientInfo="onClientInfo(event)"/>
 	<include src="~./zul/secure/content.zul" />
-		<zscript>
-			void onClientInfo(Event evt) {
-				ClientInfoEvent event = (ClientInfoEvent) evt;
-				Div header = (Div)headerInclude.getFellow("mainHeader");
-				
-				if (1200 > event.getDesktopWidth()) {
-					header.setSclass("header-background-min");
-					// Clients.showNotification("Min background: " + event.getDesktopWidth() + " " + header.getSclass());
-				} else {
-					header.setSclass("header-background");
-					// Clients.showNotification("Max background: " + event.getDesktopWidth() + " " + header.getSclass());
-				}
+	<zscript>
+		void onClientInfo(Event evt) {
+			ClientInfoEvent event = (ClientInfoEvent) evt;
+			Div header = (Div)headerInclude.getFellow("mainHeader");
+
+			if (1200 > event.getDesktopWidth()) {
+				header.setSclass("header-background-min");
+				// Clients.showNotification("Min background: " + event.getDesktopWidth() + " " + header.getSclass());
+			} else {
+				header.setSclass("header-background");
+				// Clients.showNotification("Max background: " + event.getDesktopWidth() + " " + header.getSclass());
 			}
-		</zscript>
+		}
+	</zscript>
 </zk>

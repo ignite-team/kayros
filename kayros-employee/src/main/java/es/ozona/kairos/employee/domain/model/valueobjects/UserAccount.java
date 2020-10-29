@@ -26,12 +26,6 @@ public class UserAccount implements Serializable {
 	private String username;
 
 	@NotEmpty
-	@Email
-	@Length(min = 3, max = 50)
-	@Column(name = "email", nullable = false, unique = true, length = 50)
-	private String email;
-
-	@NotEmpty
 	@Length(min = 3, max = 50)
 	@Column(name = "firstname", nullable = false, unique = false, length = 50)
 	private String firstname;
@@ -41,15 +35,28 @@ public class UserAccount implements Serializable {
 	@Column(name = "lastname", nullable = false, unique = false, length = 50)
 	private String lastname;
 
+	@NotEmpty
+	@Email
+	@Length(min = 3, max = 50)
+	@Column(name = "email", nullable = false, unique = true, length = 50)
+	private String email;
+
+	@NotEmpty
+	@Length(min = 5, max = 5)
+	@Column(name = "preferredLanguage", nullable = false, unique = false, length = 5)
+	private String preferredLanguage;
+
 	public UserAccount() {
 
 	}
 
-	public UserAccount(String username, String email, String firstname, String lastname) {
+	public UserAccount(String username, String firstname, String lastname, String email, String preferredLanguage) {
+		super();
 		this.username = username;
-		this.email = email;
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.email = email;
+		this.preferredLanguage = preferredLanguage;
 	}
 
 	public String getUsername() {
@@ -58,14 +65,6 @@ public class UserAccount implements Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getFirstname() {
@@ -84,16 +83,32 @@ public class UserAccount implements Serializable {
 		this.lastname = lastname;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPreferredLanguage() {
+		return preferredLanguage;
+	}
+
+	public void setPreferredLanguage(String preferredLanguage) {
+		this.preferredLanguage = preferredLanguage;
+	}
+
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] { username, email, firstname, lastname });
+		return ObjectUtils.nullSafeHashCode(new Object[] { username, firstname, lastname, email, preferredLanguage });
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof EmployeeResource)) {
+		if (obj == null || !(obj instanceof UserAccount)) {
 			return false;
 		}
 		return this.hashCode() == obj.hashCode();

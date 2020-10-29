@@ -32,7 +32,7 @@ public class EmployeeEventHandler {
 			return TimesheetEvents.UNREGISTERED_CLOCKIN.name().equals(m.get(TimesheetHeaders.TYPE.name()));
 		};
 	}
-	
+
 	@Bean
 	public Predicate<Map<String, Object>> anyClockInCondition() {
 		return m -> !TimesheetEvents.UNREGISTERED_CLOCKIN.name().equals(m.get(TimesheetHeaders.TYPE.name()));
@@ -45,15 +45,16 @@ public class EmployeeEventHandler {
 
 		LOG.debug("Clock created event received for ID {}", eventData.getEmployeeId());
 
-		final CreateEmployeeCommand createEmployeeCommand = new CreateEmployeeCommand(eventData.getEmployeeId(), eventData.getUseraname(), eventData.getUseraname(), "autoname", "autolastname", null, "autoworkplace");
+		final CreateEmployeeCommand createEmployeeCommand = new CreateEmployeeCommand(eventData.getEmployeeId(), eventData.getUseraname(), "autoname",
+				"autolastname", "autoemail", "autopreferredlanguage", null, "autoworkplace");
 
 		employeeCommandService.createEmployeeAuto(createEmployeeCommand);
 
 	}
-	
+
 	@StreamListener(target = EmployeeEventSource.INPUT, condition = "@anyClockInCondition.test(headers)")
 	public void observeAnyClocInEvent(Object event) {
-		//UnregisteredTimesheetClockedInEventData eventData = event.getUnregisteredTimesheetClockInEventData();
+		// UnregisteredTimesheetClockedInEventData eventData = event.getUnregisteredTimesheetClockInEventData();
 		LOG.debug("No hacer nada.");
 	}
 
