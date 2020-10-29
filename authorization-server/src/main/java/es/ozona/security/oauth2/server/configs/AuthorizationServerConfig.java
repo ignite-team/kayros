@@ -52,7 +52,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 			.secret(passwordEncoder.encode(env.getProperty("config.security.oauth.client.secret")))
 			.authorizedGrantTypes("password", "refresh_token", "authorization_code","client_credentials")
 			.scopes("user_info", "read", "write")
-			.redirectUris("https://localhost:8443/kayros/login/oauth2/code/kayrosclient")
+			.redirectUris("https://192.168.0.19:8443/kayros/login/oauth2/code/kayrosclient")
 			.autoApprove(true)
 			.accessTokenValiditySeconds(3600)
 			.refreshTokenValiditySeconds(3600);
