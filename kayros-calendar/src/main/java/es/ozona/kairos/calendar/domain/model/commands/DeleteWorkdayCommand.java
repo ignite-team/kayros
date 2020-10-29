@@ -6,16 +6,16 @@ import es.ozona.kairos.calendar.domain.model.valueobjects.DayOfWeek;
 
 public class DeleteWorkdayCommand {
 	private DayOfWeek day;
-	private String shiftplanId;
+	private String shiftPlanId;
 
 	public DeleteWorkdayCommand() {
 
 	}
 
-	public DeleteWorkdayCommand(String shiftplanId, DayOfWeek day) {
+	public DeleteWorkdayCommand(String shiftPlanId, DayOfWeek day) {
 		super();
 		this.day = day;
-		this.shiftplanId = shiftplanId;
+		this.shiftPlanId = shiftPlanId;
 	}	
 	
 	public DayOfWeek getDay() {
@@ -26,18 +26,18 @@ public class DeleteWorkdayCommand {
 		this.day = day;
 	}
 
-	public String getShiftplanId() {
-		return shiftplanId;
+	public String getShiftPlanId() {
+		return shiftPlanId;
 	}
 
-	public void setShiftplanId(String shiftplanId) {
-		this.shiftplanId = shiftplanId;
+	public void setShiftPlanId(String shiftPlanId) {
+		this.shiftPlanId = shiftPlanId;
 	}
 
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] { shiftplanId, day });
+		return ObjectUtils.nullSafeHashCode(new Object[] { shiftPlanId, day });
 	}
 
 	@Override

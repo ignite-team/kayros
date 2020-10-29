@@ -31,12 +31,12 @@ public class CalendarQueryServiceImpl extends BaseQueryServiceImpl<Calendar, Lon
 	}
 
 	@Override
-	public PageResult<Calendar> seach(QueryObject qo) {
-		return repository.seach(qo);
+	public PageResult<Calendar> search(QueryObject qo) {
+		return repository.search(qo);
 	}
 
 	@Override
-	public List<Holiday> findAllHolidayByCanlendarId(String calendarId) {
+	public List<Holiday> findAllHolidaysByCalendarId(String calendarId) {
 		return repository.findAllHolidaysByCalendarId(new CalendarId(calendarId));
 	}
 

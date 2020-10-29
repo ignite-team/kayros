@@ -8,7 +8,7 @@ import org.springframework.util.ObjectUtils;
 import es.ozona.kairos.calendar.domain.model.valueobjects.DayOfWeek;
 
 public class AddWorkdayCommand {
-	private String shiftplanId;
+	private String shiftPlanId;
 	private DayOfWeek day;
 	private LocalTime worktimeEntry;
 	private LocalTime worktimeExit;
@@ -20,10 +20,10 @@ public class AddWorkdayCommand {
 
 	}
 
-	public AddWorkdayCommand(String shiftplanId, DayOfWeek day, LocalTime worktimeEntry, LocalTime worktimeExit, LocalTime breakTimeStart,
+	public AddWorkdayCommand(String shiftPlanId, DayOfWeek day, LocalTime worktimeEntry, LocalTime worktimeExit, LocalTime breakTimeStart,
 			LocalTime breakTimeEnd, LocalTime restTime) {
 		super();
-		this.shiftplanId = shiftplanId;
+		this.shiftPlanId = shiftPlanId;
 		this.day = day;
 		this.worktimeEntry = worktimeEntry;
 		this.worktimeExit = worktimeExit;
@@ -32,12 +32,12 @@ public class AddWorkdayCommand {
 		this.restTime = restTime;
 	}
 
-	public String getShiftplanId() {
-		return shiftplanId;
+	public String getShiftPlanId() {
+		return shiftPlanId;
 	}
 
-	public void setShiftplanId(String shiftplanId) {
-		this.shiftplanId = shiftplanId;
+	public void setShiftPlanId(String shiftPlanId) {
+		this.shiftPlanId = shiftPlanId;
 	}
 
 	public DayOfWeek getDay() {
@@ -91,7 +91,7 @@ public class AddWorkdayCommand {
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] { shiftplanId, day, worktimeEntry, worktimeExit, breakTimeStart, breakTimeEnd, restTime });
+		return ObjectUtils.nullSafeHashCode(new Object[] { shiftPlanId, day, worktimeEntry, worktimeExit, breakTimeStart, breakTimeEnd, restTime });
 	}
 
 	@Override

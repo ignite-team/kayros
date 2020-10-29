@@ -21,7 +21,7 @@ public class BaseQueryServiceImpl<E, T extends Serializable, R extends BaseRepos
 
 	@Override
 	public PageResult<E> search(QueryObject qo) {
-		return repository.seach(qo);
+		return repository.search(qo);
 	}
 
 }
