@@ -14,9 +14,9 @@ public interface CalendarQueryService extends BaseQueryService<Calendar, Long, C
 
 	Calendar findByCalendarId(String calendarId) throws CalendarNotFoundException;
 
-	PageResult<Calendar> seach(QueryObject q);
+	PageResult<Calendar> search(QueryObject q);
 
-	List<Holiday> findAllHolidayByCanlendarId(String calendarId);
+	List<Holiday> findAllHolidaysByCalendarId(String calendarId);
 
 	Calendar findDefaultCalendarByYear(Integer year);
 }

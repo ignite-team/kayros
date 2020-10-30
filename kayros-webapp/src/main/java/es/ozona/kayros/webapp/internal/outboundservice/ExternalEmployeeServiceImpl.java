@@ -1,5 +1,6 @@
 package es.ozona.kayros.webapp.internal.outboundservice;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -8,12 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import es.ozona.data.inquire.model.paging.PageResult;
 import es.ozona.kayros.webapp.domain.model.Employee;
+import es.ozona.kayros.webapp.domain.model.Schedule;
 import es.ozona.kayros.webapp.infrastructure.feingclients.EmployeeService;
 import es.ozona.kayros.webapp.internal.outboundservice.acl.EmployeeMapper;
+import es.ozona.kayros.webapp.internal.outboundservice.acl.ScheduleMapper;
 import es.ozona.kayros.webapp.shareddomain.model.EmployeeResource;
+import es.ozona.kayros.webapp.shareddomain.model.ScheduleResource;
 
 @Service("externalEmployeeService")
 public class ExternalEmployeeServiceImpl implements ExternalEmployeeService {
@@ -56,6 +61,16 @@ public class ExternalEmployeeServiceImpl implements ExternalEmployeeService {
 	public Employee modifyEmployee(Employee employee) {
 
 		return EmployeeMapper.mapFromResource(employeeService.modify(EmployeeMapper.mapToResource(employee), employee.getEmployeeId()));
+	}
+
+	@Override
+	public List<Schedule> findSchedulesByEmployeeId(String id) {
+
+		final List<ScheduleResource> schedules = employeeService.searchSchedules(id);
+
+		return CollectionUtils.isEmpty(schedules) ? new ArrayList<Schedule>()
+				: schedules.stream().map(s -> ScheduleMapper.mapFromResource(s)).collect(Collectors.toList());
+
 	}
 
 }

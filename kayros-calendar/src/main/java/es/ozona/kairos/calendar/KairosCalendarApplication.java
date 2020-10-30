@@ -7,11 +7,11 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import es.ozona.kairos.calendar.infrastructure.brokers.CalendarEventSource;
-import es.ozona.kairos.calendar.infrastructure.brokers.ShiftplanEventSource;
+import es.ozona.kairos.calendar.infrastructure.brokers.ShiftPlanEventSource;
 
 @SpringBootApplication(scanBasePackages = "es.ozona.kairos")
 @EnableJpaRepositories(basePackages = "es.ozona.kairos.calendar.infrastructure.repositories", repositoryBaseClass = es.ozona.micro.core.infrastructure.respository.BaseRepositoryImpl.class)
-@EnableBinding(value = { CalendarEventSource.class, ShiftplanEventSource.class })
+@EnableBinding(value = { CalendarEventSource.class, ShiftPlanEventSource.class })
 @EnableDiscoveryClient
 public class KairosCalendarApplication {
 

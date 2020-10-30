@@ -15,6 +15,6 @@ public interface BaseRepository<E, T extends Serializable> extends JpaRepository
 
 	List<E> search();
 
-	PageResult<E> seach(QueryObject qo);
+	PageResult<E> search(QueryObject qo);
 
 }

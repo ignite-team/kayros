@@ -148,6 +148,7 @@ public class AccountViewModel {
 		params.put("employeeId", employee.getEmployeeId());
 		this.employee = employee;
 		BindUtils.postGlobalCommand(null, null, "updateEmployee", params);
+		BindUtils.postGlobalCommand(null, null, "updateCalendar", params);
 	}
 
 	@Command

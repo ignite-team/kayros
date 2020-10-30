@@ -229,7 +229,7 @@ public class CalendarController extends BaseControllerImpl<Calendar, Long, Calen
 			@ApiResponse(code = 404, message = "Not found") })
 	public ResponseEntity<List<HolidayResource>> listHolidays(@PathVariable("calendar-id") String calendarId) {
 
-		final List<HolidayResource> holidays = queryService.findAllHolidayByCanlendarId(calendarId).stream().map(s -> modelMapper.map(s, HolidayResource.class))
+		final List<HolidayResource> holidays = queryService.findAllHolidaysByCalendarId(calendarId).stream().map(s -> modelMapper.map(s, HolidayResource.class))
 				.collect(Collectors.toList());
 
 		return ResponseEntity.ok(holidays);
