@@ -3,6 +3,7 @@ package es.ozona.kairos.calendar.domain.model.aggregates;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Disabled;
@@ -78,7 +79,9 @@ public class ShiftPlanTest {
 	@Test
 	@Disabled // TODO: dont test now
 	public void getterWorkdaysWorks() {
-		final Workdays workdays = new Workdays(List.of(new Workday()));
+		final List<Workday> list = new ArrayList<>();
+		list.add(new Workday());
+		final Workdays workdays = new Workdays(list);
 		shiftPlanA.addWorkday(new AddWorkdayCommand());
 		assertThat(shiftPlanA.getWorkdays()).isEqualTo(workdays);
 	}
