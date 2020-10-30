@@ -19,7 +19,7 @@ public class ShiftPlanQueryServiceImpl extends BaseQueryServiceImpl<ShiftPlan, L
 		final ShiftPlan shiftPlan = repository.findByShiftPlanId(new ShiftPlanId(id));
 
 		if (shiftPlan == null) {
-			throw new ShiftPlanNotFoundException("ShiftPlan with Id %s not found.".formatted(id));
+			throw new ShiftPlanNotFoundException(String.format("ShiftPlan with Id %s not found.", id));
 		}
 
 		return shiftPlan;
