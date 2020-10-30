@@ -71,7 +71,7 @@ public class ExternalEmployeeServiceTest {
 	@Test
 	public void givenExistingEmpleeUsername_whenCallFindEmployeeByUsername_thenReturnsEmployee() {
 
-		Mockito.when(employeeService.search("username:%s".formatted(username), "+username", 1, 1)).thenReturn(pageResult);
+		Mockito.when(employeeService.search(String.format("username:%s", username), "+username", 1, 1)).thenReturn(pageResult);
 		assertThat(externalEmployeeService.findEmployeeByUsername(username)).isNotEqualTo(Optional.empty());
 
 	}
@@ -79,7 +79,7 @@ public class ExternalEmployeeServiceTest {
 	@Test
 	public void givenExistingEmpleeUsername_whenCallFindEmployeesLikeUsername_thenReturnsEmployees() {
 
-		Mockito.when(employeeService.search("username:%s*".formatted(username), "+username", 1, 15)).thenReturn(pageResult);
+		Mockito.when(employeeService.search(String.format("username:%s*", username), "+username", 1, 15)).thenReturn(pageResult);
 		assertThat(externalEmployeeService.findEmployeesLikeUsername(username).size() > 0).isTrue();
 
 	}
@@ -87,7 +87,7 @@ public class ExternalEmployeeServiceTest {
 	@Test
 	public void givenInvalidEmpleeUsername_whenCallFindEmployeeByUsername_thenReturnsNoEmployee() {
 
-		Mockito.when(employeeService.search("username:%s".formatted(invalidUsername), "+username", 1, 1)).thenReturn(emptyPageResult);
+		Mockito.when(employeeService.search(String.format("username:%s", invalidUsername), "+username", 1, 1)).thenReturn(emptyPageResult);
 		assertThat(externalEmployeeService.findEmployeeByUsername(invalidUsername)).isEqualTo(Optional.empty());
 
 	}
@@ -95,7 +95,7 @@ public class ExternalEmployeeServiceTest {
 	@Test
 	public void givenInvalidEmpleeUsername_whenCallFindEmployeesLikeUsername_thenReturns0Employees() {
 
-		Mockito.when(employeeService.search("username:%s*".formatted(invalidUsername), "+username", 1, 15)).thenReturn(emptyPageResult);
+		Mockito.when(employeeService.search(String.format("username:%s*", invalidUsername), "+username", 1, 15)).thenReturn(emptyPageResult);
 		assertThat(externalEmployeeService.findEmployeesLikeUsername(invalidUsername).size() == 0).isTrue();
 
 	}

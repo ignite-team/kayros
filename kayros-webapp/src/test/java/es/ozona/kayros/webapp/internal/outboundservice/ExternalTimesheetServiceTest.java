@@ -126,7 +126,7 @@ public class ExternalTimesheetServiceTest {
 	@Test
 	public void givenExistingEmployeeId_whenCallSearchCurrentByEmployeeId_thenReturnsWorkingTimePeriods() {
 
-		Mockito.when(timesheetService.search("( employeeId:%s and date:%s )".formatted(employeeId, startDate), "+date", 1, 1000)).thenReturn(pageResult);
+		Mockito.when(timesheetService.search(String.format("( employeeId:%s and date:%s )", employeeId, startDate), "+date", 1, 1000)).thenReturn(pageResult);
 		assertThat(externalTimesheetService.searchCurrentByEmployeeId(employeeId).size() > 0).isTrue();
 
 	}
@@ -134,7 +134,7 @@ public class ExternalTimesheetServiceTest {
 	@Test
 	public void givenInvalidEmployeeId_whenCallSearchCurrentByEmployeeId_thenReturnsNoWorkingTimePeriods() {
 
-		Mockito.when(timesheetService.search("( employeeId:%s and date:%s )".formatted(invalidEmployeeId, startDate), "+date", 1, 1000))
+		Mockito.when(timesheetService.search(String.format("( employeeId:%s and date:%s )", invalidEmployeeId, startDate), "+date", 1, 1000))
 				.thenReturn(emptyPageResult);
 		assertThat(externalTimesheetService.searchCurrentByEmployeeId(invalidEmployeeId).size() == 0).isTrue();
 
@@ -143,7 +143,7 @@ public class ExternalTimesheetServiceTest {
 	@Test
 	public void givenExistingEmployeeId_whenCallSearchTimesheetsByEmployeeIdBetweenDates_thenReturnsTimesheets() {
 
-		Mockito.when(timesheetService.search("( date>%s and date<%s and employeeId:%s )".formatted(startDate, endDate, employeeId), "+date", 1, 1000))
+		Mockito.when(timesheetService.search(String.format("( date>%s and date<%s and employeeId:%s )", startDate, endDate, employeeId), "+date", 1, 1000))
 				.thenReturn(pageResult);
 		assertThat(externalTimesheetService.searchTimesheetsByEmployeeIdBetweenDates(startDate, endDate, employeeId).size() > 0).isTrue();
 
@@ -152,7 +152,7 @@ public class ExternalTimesheetServiceTest {
 	@Test
 	public void givenInvalidEmployeeId_whenCallSearchTimesheetsByEmployeeIdBetweenDates_thenReturnsNull() {
 
-		Mockito.when(timesheetService.search("( date>%s and date<%s and employeeId:%s )".formatted(startDate, endDate, invalidEmployeeId), "+date", 1, 1000))
+		Mockito.when(timesheetService.search(String.format("( date>%s and date<%s and employeeId:%s )", startDate, endDate, invalidEmployeeId), "+date", 1, 1000))
 				.thenReturn(emptyPageResult);
 		assertThat(externalTimesheetService.searchTimesheetsByEmployeeIdBetweenDates(startDate, endDate, invalidEmployeeId)).isNull();
 
@@ -161,7 +161,7 @@ public class ExternalTimesheetServiceTest {
 	@Test
 	public void givenExistingEmployeeId_whenCallSearchCurrentTimesheetByEmployeeId_thenReturnsTimesheet() {
 
-		Mockito.when(timesheetService.search("( employeeId:%s and date:%s )".formatted(employeeId, startDate), "+date", 1, 1000)).thenReturn(pageResult);
+		Mockito.when(timesheetService.search(String.format("( employeeId:%s and date:%s )", employeeId, startDate), "+date", 1, 1000)).thenReturn(pageResult);
 		assertThat(externalTimesheetService.searchCurrentTimesheetByEmployeeId(employeeId) instanceof Timesheet).isTrue();
 
 	}
@@ -169,7 +169,7 @@ public class ExternalTimesheetServiceTest {
 	@Test
 	public void givenInvalidEmployeeId_whenCallSearchCurrentTimesheetByEmployeeId_thenReturnsNull() {
 
-		Mockito.when(timesheetService.search("( employeeId:%s and date:%s )".formatted(invalidEmployeeId, startDate), "+date", 1, 1000))
+		Mockito.when(timesheetService.search(String.format("( employeeId:%s and date:%s )", invalidEmployeeId, startDate), "+date", 1, 1000))
 				.thenReturn(emptyPageResult);
 		assertThat(externalTimesheetService.searchCurrentTimesheetByEmployeeId(invalidEmployeeId)).isNull();
 

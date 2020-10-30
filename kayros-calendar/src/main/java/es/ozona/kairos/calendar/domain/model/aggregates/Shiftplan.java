@@ -132,7 +132,7 @@ public class Shiftplan extends AbstractAggregateRoot<Shiftplan> {
 		final List<Workday> currectWorkdayList = workdays.stream().filter(w -> w.getDay().getDay().equals(deleteWorkdayCommand.getDay()))
 				.collect(Collectors.toList());
 
-		Assert.isTrue(currectWorkdayList.size() > 0, "Workday with ID %s does not exist.".formatted(deleteWorkdayCommand.getDay().name()));
+		Assert.isTrue(currectWorkdayList.size() > 0, String.format("Workday with ID %s does not exist.", deleteWorkdayCommand.getDay().name()));
 
 		workdays.remove(currectWorkdayList.get(0));
 

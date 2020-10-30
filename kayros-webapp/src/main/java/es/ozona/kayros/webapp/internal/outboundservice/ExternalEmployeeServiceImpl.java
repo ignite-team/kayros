@@ -23,7 +23,7 @@ public class ExternalEmployeeServiceImpl implements ExternalEmployeeService {
 
 	@Override
 	public Optional<Employee> findEmployeeByUsername(String username) {
-		final PageResult<EmployeeResource> employees = employeeService.search("username:%s".formatted(username), "+username", 1, 1);
+		final PageResult<EmployeeResource> employees = employeeService.search(String.format("username:%s",username), "+username", 1, 1);
 		if (employees.getItems().size() > 0) {
 			return Optional.of(EmployeeMapper.mapFromResource(employees.getItems().get(0)));
 		}
@@ -33,7 +33,7 @@ public class ExternalEmployeeServiceImpl implements ExternalEmployeeService {
 	@Override
 	public List<Employee> findEmployeesLikeUsername(String username) {
 
-		return employeeService.search("username:%s*".formatted(username), "+username", 1, 15).getItems().stream().map(e -> EmployeeMapper.mapFromResource(e))
+		return employeeService.search(String.format("username:%s*", username), "+username", 1, 15).getItems().stream().map(e -> EmployeeMapper.mapFromResource(e))
 				.collect(Collectors.toList());
 
 	}
