@@ -116,13 +116,13 @@ public class ShiftPlan extends AbstractAggregateRoot<ShiftPlan> {
 	public Workday modifyWorkday(ModifyWorkdayCommand modifyWorkdayCommand) {
 
 		final Optional<Workday> workday = workdays.stream().filter(w -> w.getDay().getDay().equals(modifyWorkdayCommand.getDay())).findFirst();
-		workday.ifPresentOrElse(w -> {
+		if (workday.isPresent()) {
 			workday.get().setBreakTime(new BreakTime(modifyWorkdayCommand.getBreakTimeStart(), modifyWorkdayCommand.getBreakTimeEnd()));
 			workday.get().setWorkTime(new WorkTime(modifyWorkdayCommand.getWorktimeEntry(), modifyWorkdayCommand.getWorktimeExit()));
 			workday.get().setRestTime(new RestTime(modifyWorkdayCommand.getRestTime()));
-		}, () -> {
+		} else {
 			throw new WorkdayNotFoundException(modifyWorkdayCommand.getDay());
-		});
+		};
 
 		return workday.get();
 	}
