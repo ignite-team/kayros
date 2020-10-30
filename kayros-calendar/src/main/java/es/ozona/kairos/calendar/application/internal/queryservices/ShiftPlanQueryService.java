@@ -9,7 +9,7 @@ import es.ozona.micro.core.application.internal.queryservices.BaseQueryService;
 
 public interface ShiftPlanQueryService extends BaseQueryService<ShiftPlan, Long, ShiftPlanRepository> {
 
-	ShiftPlan find(String id);
+	ShiftPlan findByShiftPlanId(String id);
 
 	List<Workday> findAllWorkdaysByShiftPlanId(String sid);
 

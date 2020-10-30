@@ -115,11 +115,11 @@ public class ShiftPlanController<D> extends BaseControllerImpl<ShiftPlan, Long, 
 	@ApiOperation(value = "Get a ShiftPlan by Id", notes = "Value of shiftPlan ID must exist.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK."), @ApiResponse(code = 400, message = "Bad request."),
 			@ApiResponse(code = 404, message = "ShiftPlan ID not found.") })
-	public ResponseEntity<ShiftPlanResource> find(
+	public ResponseEntity<ShiftPlanResource> findByShiftPlanId(
 			@ApiParam(value = "ShiftPlan ID to find.", required = true, example = "7CAC32FF-11E0-4B72-AF0F-5A674E1EDDBD") @PathVariable("shiftPlan-id") String id) {
 
 		try {
-			return ResponseEntity.ok(modelMapper.map(queryService.find(id), ShiftPlanResource.class));
+			return ResponseEntity.ok(modelMapper.map(queryService.findByShiftPlanId(id), ShiftPlanResource.class));
 		} catch (ShiftPlanNotFoundException e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct shiftPlan id.", e);
 		}

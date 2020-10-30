@@ -15,7 +15,7 @@ import es.ozona.micro.core.application.internal.queryservices.BaseQueryServiceIm
 public class ShiftPlanQueryServiceImpl extends BaseQueryServiceImpl<ShiftPlan, Long, ShiftPlanRepository> implements ShiftPlanQueryService {
 
 	@Override
-	public ShiftPlan find(String id) {
+	public ShiftPlan findByShiftPlanId(String id) {
 		final ShiftPlan shiftPlan = repository.findByShiftPlanId(new ShiftPlanId(id));
 
 		if (shiftPlan == null) {

@@ -18,7 +18,7 @@ public interface ShiftPlanRepository extends BaseRepository<ShiftPlan, Long>, UU
 	ShiftPlan findByShiftPlanId(ShiftPlanId shiftPlanId);
 
 	List<ShiftPlan> findByCalendarId(CalendarId calendarId);
-	
+
 	@Query("select w from ShiftPlan s inner join s.workdays w where s.shiftPlanId = ?1 order by w.day")
 	List<Workday> findAllWorkdaysByShiftPlanId(ShiftPlanId shiftPlanId);
 }
