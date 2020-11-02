@@ -61,7 +61,6 @@ spring:
     generate-ddl: true
     show-sql: true
     open-in-view: true          
-    database-platform: es.ozona.kairos.calendar.MyH2Dialect    
     hibernate:      
       ddl-auto: create-drop      
 #    properties:

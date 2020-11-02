@@ -65,6 +65,7 @@ spring:
     database-platform: es.ozona.kairos.clock.MyH2Dialect
     hibernate:      
       ddl-auto: create-drop
+         
 #    properties:
 #      hibernate:
 #        hbm2ddl:

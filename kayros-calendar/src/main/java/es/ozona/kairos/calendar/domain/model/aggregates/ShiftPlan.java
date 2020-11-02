@@ -45,7 +45,7 @@ import es.ozona.kairos.shareddomain.model.events.ShiftPlanPeriodModifiedEvent;
 import es.ozona.kairos.shareddomain.model.events.ShiftPlanPeriodModifiedEventData;
 
 @Entity
-@Table(name = "shiftplan")
+@Table(name = "shiftplans")
 public class ShiftPlan extends AbstractAggregateRoot<ShiftPlan> {
 
 	/**
