@@ -1,16 +1,16 @@
 spring:
   profiles: 
-    active: eurekaone
+    active: eureka-one
 
 --- # profile eurekaone
 
 spring:
-  profiles: eurekaone
+  profiles: eureka-one
 server:
-  port: 4002  
+  port: 4001
 eureka:
   instance:
-    hostname: eureka-primary   
+    hostname: eureka-one
   client:    
     fetch-registry: true
     register-with-eureka: false    
@@ -20,12 +20,12 @@ eureka:
 --- # profile eurekatwo
 
 spring:
-  profiles: eurekatwo
+  profiles: eureka-two
 server:
-  port: 4003
+  port: 4002
 eureka:  
   instance:    
-    hostname: eureka-secondary
+    hostname: eureka-two
   client:
     fetch-registry: true
     register-with-eureka: false    
@@ -35,12 +35,12 @@ eureka:
 --- # profile eurekathree
 
 spring:
-  profiles: eurekathree
+  profiles: eureka-three
 server:
-  port: 4004
+  port: 4003
 eureka:
   instance:   
-    hostname: eureka-tertiary
+    hostname: eureka-three
   client:
     fetch-registry: true
     register-with-eureka: false    
