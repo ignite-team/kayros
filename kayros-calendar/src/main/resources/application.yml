@@ -1,3 +1,5 @@
+spring:  profiles:    active: @spring.profiles.active@    
+--- # test profile
 logging:
   level:
     es:
@@ -6,7 +8,7 @@ logging:
     console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%replace(%xException){'\n','\u2028'}%nopex%n"
    
 server:
-  port: 8081
+  port: 8081        
 
 kairosCalendarApplication:
   service:
@@ -27,6 +29,7 @@ eureka:
       defaultZone: http://eureka-primary:4002/eureka  
         
 spring: 
+  profiles: test
   application:
     name: kairos-calendar-service
   cloud:  
@@ -53,7 +56,7 @@ spring:
                 username: guest
                 password: guest
   datasource:
-    url: jdbc:h2:file:C:/proyectos/calendardb;DB_CLOSE_DELAY=2;AUTO_SERVER=TRUE #DB_CLOSE_ON_EXIT=false
+    url: jdbc:h2:file:C:/proyectos/calendartestdb;DB_CLOSE_DELAY=2;AUTO_SERVER=TRUE #DB_CLOSE_ON_EXIT=false
     username: sa
     password:
     driverClassName: org.h2.Driver     
@@ -63,22 +66,82 @@ spring:
     open-in-view: true          
     hibernate:      
       ddl-auto: create-drop      
-#    properties:
-#      hibernate:
-#        hbm2ddl:
-#          auto: update   
-#      javax:
-#        persistence:      
-#          schema-generation:
-#            database:
-#              action: drop-and-create                
-#            drop-source: metadata
-#            create-source: metadata
-#            scripts:
-#              action: drop-and-create
-#              create-target: ./src/test/resources/dll/create.sql
-#              drop-target: ./src/test/resources/dll/drop.sql
+
   h2:
     console:
       enabled: true
-      path: /h2-console
+      path: /h2-console
+      
+--- # dev profile
+
+logging:
+  level:
+    es:
+      ozona: debug
+    root: warn
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%replace(%xException){'\n','\u2028'}%nopex%n"
+   
+server:
+  port: 8081        
+
+kairosCalendarApplication:
+  service:
+    calendar:
+      url: http://localhost:{port}/calendar
+      api:
+        create: /
+        find: /find?calendarId={calendarId}
+        findByYear: /findByYear?year={year}
+        findAll: /findAll
+        holidayCreate: /{calendarId}/holiday
+        
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.value}
+  client:
+    service-url:
+      defaultZone: http://eureka-primary:4002/eureka  
+        
+spring: 
+  profiles: test
+  application:
+    name: kairos-calendar-service
+  cloud:  
+    stream:
+      bindings:
+        calendarManagementOutputChannel:
+          destination: calendar.management.queue
+          binder: rabbit
+        shiftplanManagementOutputChannel:
+          destination: shiftplan.management.queue
+          binder: rabbit
+        calendarManagementInputChannel:
+          destination: calendar.management.queue   
+          binder: rabbit
+          group: shiftplan
+      binders:
+        rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+  datasource:
+    url: jdbc:h2:file:C:/proyectos/calendar-proddb;DB_CLOSE_DELAY=2;AUTO_SERVER=TRUE #DB_CLOSE_ON_EXIT=false
+    username: sa
+    password:
+    driverClassName: org.h2.Driver     
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    open-in-view: true          
+    hibernate:      
+      ddl-auto: create-drop 
+  h2:
+    console:
+      enabled: true
+      path: /h2-console--- # prod profilelogging:  level:    es:      ozona: debug    root: warn  pattern:    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%replace(%xException){'\n','\u2028'}%nopex%n"   server:  port: 8081        kairosCalendarApplication:  service:    calendar:      url: http://localhost:{port}/calendar      api:        create: /        find: /find?calendarId={calendarId}        findByYear: /findByYear?year={year}        findAll: /findAll        holidayCreate: /{calendarId}/holiday        eureka:  instance:    instance-id: ${spring.application.name}:${random.value}  client:    service-url:      defaultZone: http://eureka-primary:4002/eureka          spring:   profiles: prod  application:    name: kairos-calendar-service  cloud:      stream:      bindings:        calendarManagementOutputChannel:          destination: calendar.management.queue          binder: rabbit        shiftplanManagementOutputChannel:          destination: shiftplan.management.queue          binder: rabbit        calendarManagementInputChannel:          destination: calendar.management.queue             binder: rabbit          group: shiftplan      binders:        rabbit:          type: rabbit          environment:            spring:              rabbitmq:                host: localhost                port: 5672                username: guest                password: guest  datasource:    url: jdbc:h2:file:C:/proyectos/calendar-proddb;DB_CLOSE_DELAY=2;AUTO_SERVER=TRUE #DB_CLOSE_ON_EXIT=false    username: sa    password:    driverClassName: org.h2.Driver       jpa:    generate-ddl: true    show-sql: true    open-in-view: true              hibernate:            ddl-auto: create-drop  h2:    console:      enabled: true      path: /h2-console
