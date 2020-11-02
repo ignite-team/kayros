@@ -1,5 +1,6 @@
 package es.ozona.kayros.webapp.vms;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -11,12 +12,14 @@ import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.GlobalCommand;
 import org.zkoss.bind.annotation.Init;
 import org.zkoss.bind.annotation.NotifyChange;
+import org.zkoss.util.Locales;
 import org.zkoss.web.Attributes;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.Session;
 import org.zkoss.zk.ui.Sessions;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
+import org.zkoss.zk.ui.util.Clients;
 
 import es.ozona.kayros.webapp.domain.model.Employee;
 import es.ozona.kayros.webapp.internal.outboundservice.ExternalEmployeeService;
@@ -53,7 +56,12 @@ public class AccountViewModel {
 
 			session.setAttribute(Attributes.PREFERRED_LOCALE, preferredLocale);
 
-			Executions.getCurrent().sendRedirect("");
+			try {
+				Clients.reloadMessages(preferredLocale);
+				Locales.setThreadLocal(preferredLocale);
+			} catch (IOException e) {
+				Executions.getCurrent().sendRedirect("");
+			}
 
 		} else {
 
