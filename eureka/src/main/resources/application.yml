@@ -1,11 +1,11 @@
 spring:
   profiles: 
-    active: dev
+    active: @spring.profiles.active@
 
 --- # profile dev
 
 spring:
-  profiles: eureka-one
+  profiles: dev
 server:
   
   port: 4001
@@ -14,9 +14,7 @@ eureka:
     hostname: eureka-one
   client:    
     fetch-registry: true
-    register-with-eureka: false    
-#    serviceUrl:
-#      defaultZone: http://eureka-two:4002/eureka,http://eureka-three:4003/eureka
+    register-with-eureka: false
 
 --- # profile eurekaone
 
