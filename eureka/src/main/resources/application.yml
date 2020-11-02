@@ -1,12 +1,13 @@
 spring:
   profiles: 
-    active: eureka-one
+    active: dev
 
---- # profile eurekaone
+--- # profile dev
 
 spring:
   profiles: eureka-one
 server:
+  
   port: 4001
 eureka:
   instance:
@@ -15,7 +16,23 @@ eureka:
     fetch-registry: true
     register-with-eureka: false    
 #    serviceUrl:
-#      defaultZone: http://eureka-secondary:4003/eureka,http://eureka-tertiary:4004/eureka
+#      defaultZone: http://eureka-two:4002/eureka,http://eureka-three:4003/eureka
+
+--- # profile eurekaone
+
+spring:
+  profiles: eureka-one
+server:
+  
+  port: 4001
+eureka:
+  instance:
+    hostname: eureka-one
+  client:    
+    fetch-registry: true
+    register-with-eureka: false    
+    serviceUrl:
+      defaultZone: http://eureka-two:4002/eureka,http://eureka-three:4003/eureka
  
 --- # profile eurekatwo
 
@@ -30,7 +47,7 @@ eureka:
     fetch-registry: true
     register-with-eureka: false    
     serviceUrl:
-      defaultZone: http://eureka-primary:4002/eureka,http://eureka-tertiary:4004/eureka
+      defaultZone: http://eureka-one:4001/eureka,http://eureka-three:4003/eureka
     
 --- # profile eurekathree
 
@@ -45,5 +62,5 @@ eureka:
     fetch-registry: true
     register-with-eureka: false    
     serviceUrl:
-      defaultZone: http://eureka-primary:4002/eureka,http://eureka-secondary:4003/eureka
+      defaultZone: http://eureka-one:4001/eureka,http://eureka-two:4002/eureka
     
