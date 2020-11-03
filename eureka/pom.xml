@@ -68,9 +68,21 @@
 
 	<build>
 		<resources>
+			<!-- solo filtramos el yml -->
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
+				<includes>
+					<include>**/*.yml</include>
+				</includes>
+			</resource>
+			<!-- inclimos el resto de recursos que no deben ser filtrados -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>**/.yml</exclude>
+				</excludes>
 			</resource>
 		</resources>
 		<plugins>
