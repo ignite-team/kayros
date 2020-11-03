@@ -5,24 +5,24 @@ import org.springframework.util.ObjectUtils;
 public class Workday {
 
 	private int day;
-	private String worktimeEntry;
-	private String worktimeExit;
-	private String breaktimeStart;
-	private String breaktimeEnd;
+	private String workTimeEntry;
+	private String workTimeExit;
+	private String breakTimeStart;
+	private String breakTimeEnd;
 	private String restTime;
 
 	public Workday() {
 
 	}
 
-	public Workday(int day, String worktimeEntry, String worktimeExit, String breaktimeStart, String breaktimeEnd, String restTime) {
+	public Workday(int day, String workTimeEntry, String workTimeExit, String breakTimeStart, String breakTimeEnd, String restTime) {
 
 		super();
 		this.day = day;
-		this.worktimeEntry = worktimeEntry;
-		this.worktimeExit = worktimeExit;
-		this.breaktimeStart = breaktimeStart;
-		this.breaktimeEnd = breaktimeEnd;
+		this.workTimeEntry = workTimeEntry;
+		this.workTimeExit = workTimeExit;
+		this.breakTimeStart = breakTimeStart;
+		this.breakTimeEnd = breakTimeEnd;
 		this.restTime = restTime;
 
 	}
@@ -36,35 +36,35 @@ public class Workday {
 	}
 
 	public String getWorkTimeEntry() {
-		return worktimeEntry;
+		return workTimeEntry;
 	}
 
 	public void setWorkTimeEntry(String workTimeEntry) {
-		this.worktimeEntry = workTimeEntry;
+		this.workTimeEntry = workTimeEntry;
 	}
 
 	public String getWorkTimeExit() {
-		return worktimeExit;
+		return workTimeExit;
 	}
 
 	public void setWorkTimeExit(String workTimeExit) {
-		this.worktimeExit = workTimeExit;
+		this.workTimeExit = workTimeExit;
 	}
 
 	public String getBreakTimeStart() {
-		return breaktimeStart;
+		return breakTimeStart;
 	}
 
 	public void setBreakTimeStart(String breakTimeStart) {
-		this.breaktimeStart = breakTimeStart;
+		this.breakTimeStart = breakTimeStart;
 	}
 
 	public String getBreakTimeEnd() {
-		return breaktimeEnd;
+		return breakTimeEnd;
 	}
 
 	public void setBreakTimeEnd(String breakTimeEnd) {
-		this.breaktimeEnd = breakTimeEnd;
+		this.breakTimeEnd = breakTimeEnd;
 	}
 
 	public String getRestTime() {
@@ -78,7 +78,7 @@ public class Workday {
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] { day, worktimeEntry, worktimeExit, breaktimeStart, breaktimeEnd, restTime });
+		return ObjectUtils.nullSafeHashCode(new Object[] { day, workTimeEntry, workTimeExit, breakTimeStart, breakTimeEnd, restTime });
 
 	}
 
