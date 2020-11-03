@@ -1,9 +1,8 @@
 #see: https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:4001/eureka  
+spring:
+  profiles:
+    active: @spring.profiles.active@
 
 zk:
   homepage: /secure/main
@@ -42,8 +41,20 @@ kairos-employee-service:
     ConnectTimeout: 1000   
     MaxAutoRetriesNextServer: 4
     MaxAutoRetries: 2
+
+kayros-webapp:
+  clockin:
+    latency: 1
+
+--- # Profile dev 
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:4001/eureka  
     
 spring:
+  profiles: dev
   application:
     name: kairos-webapp
   security: 
@@ -66,6 +77,64 @@ spring:
               user-info-uri: http://localhost:9100/auth/userinfo
               user-name-attribute: username
 
-kayros-webapp:
-  clockin:
-    latency: 1
+--- # Profile test
+              
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-one:4001/eureka  
+    
+spring:
+  profiles: test
+  application:
+    name: kairos-webapp
+  security: 
+    oauth2:
+      client:
+        registration:
+          kayrosclient:
+            client-id: kayrosclientid
+            client-secret: secret
+            client-name: kayros
+            scope: user_info,read,write
+            redirect-uri: https://kayros-webapp:8443/kayros/login/oauth2/code/kayrosclient
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+            provider: kayros-authserver-provider
+        provider:
+            kayros-authserver-provider:
+              token-uri: http://authorization-server:9100/auth/oauth/token
+              authorization-uri: http://authorization-server:9100/auth/oauth/authorize
+              user-info-uri: http://authorization-server:9100/auth/userinfo
+              user-name-attribute: username  
+              
+--- # Profile prod              
+              
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-one:4001/eureka  
+    
+spring:
+  profiles: prod
+  application:
+    name: kairos-webapp
+  security: 
+    oauth2:
+      client:
+        registration:
+          kayrosclient:
+            client-id: kayrosclientid
+            client-secret: secret
+            client-name: kayros
+            scope: user_info,read,write
+            redirect-uri: https://kayros-webapp:8443/kayros/login/oauth2/code/kayrosclient
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+            provider: kayros-authserver-provider
+        provider:
+            kayros-authserver-provider:
+              token-uri: http://authorization-server:9100/auth/oauth/token
+              authorization-uri: http://authorization-server:9100/auth/oauth/authorize
+              user-info-uri: http://authorization-server:9100/auth/userinfo
+              user-name-attribute: username  
