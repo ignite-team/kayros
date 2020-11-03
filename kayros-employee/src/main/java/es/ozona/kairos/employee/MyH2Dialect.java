@@ -11,7 +11,7 @@ public class MyH2Dialect extends H2Dialect {
 	public String getDropTableString(String tableName) {
 		// Append CASCADE to formatted DROP TABLE string
 		final String superDrop = super.getDropTableString(tableName);
-		return superDrop + " cascade";
+		return superDrop ;
 	}
 
 	@Override
