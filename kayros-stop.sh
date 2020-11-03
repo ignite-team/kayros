@@ -1,0 +1,9 @@
+docker stop eureka-one
+docker stop eureka-two
+docker stop eureka-three
+docker stop authorization-server
+docker stop kayros-calendar
+docker stop kayros-clock
+docker stop kayros-employee
+docker stop kayros-webapp
+docker stop rabbitmq
