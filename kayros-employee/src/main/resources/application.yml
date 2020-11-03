@@ -36,8 +36,8 @@ management:
         
 kairos-calendar-service:
   ribbon:
-    ReadTimeout: 1000
-    ConnectTimeout: 1000   
+    ReadTimeout: 10000
+    ConnectTimeout: 10000   
     MaxAutoRetriesNextServer: 4
     MaxAutoRetries: 2
       

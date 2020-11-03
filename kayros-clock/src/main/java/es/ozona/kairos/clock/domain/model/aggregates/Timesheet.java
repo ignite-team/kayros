@@ -209,7 +209,7 @@ public class Timesheet extends AbstractAggregateRoot<Timesheet> {
 		if (workingTimePeriod.isPresent()) {
 			final WorkingTimePeriod wtpValue = workingTimePeriod.get();
  
-			if (wtpValue.getFinishTime().isPresent()) {
+			if (!wtpValue.getFinishTime().isPresent()) {
 				clockOut(clockTimesheetCommand, workingTimePeriod.get());
 
 			} else {
