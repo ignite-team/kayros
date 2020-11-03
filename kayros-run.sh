@@ -1,4 +1,4 @@
-docker run -d --rm --hostname rabbitmq -p 15672:15672 --name rabbitmq rabbitmq:management-alpine
+docker run -d --rm --hostname rabbitmq -p 15672:15672 --name rabbitmq --network kayros-net rabbitmq:management-alpine
 docker run -d --rm --name eureka-one -p 4001:4001 --network kayros-net -e spring_profiles_active=eureka-one eureka:1.2.0
 echo [Disable] docker run -d --rm --name eureka-two -p 4002:4002 --network kayros-net -e spring_profiles_active=eureka-two eureka:1.2.0
 echo [Disable] docker run -d --rm --name eureka-three -p 4003:4003 --network kayros-net -e spring_profiles_active=eureka-three eureka:1.2.0
