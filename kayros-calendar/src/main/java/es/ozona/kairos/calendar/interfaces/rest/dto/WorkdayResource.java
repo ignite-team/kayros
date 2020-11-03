@@ -25,13 +25,13 @@ public class WorkdayResource {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
 	@JsonDeserialize(using = LocalTimeDeserializer.class)
 	@JsonSerialize(using = LocalTimeSerializer.class)	
-	private LocalTime worktimeEntry;
+	private LocalTime workTimeEntry;
 
 	@ApiModelProperty(value = "Time to leave work", required = true, example = "17:00")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
 	@JsonDeserialize(using = LocalTimeDeserializer.class)
 	@JsonSerialize(using = LocalTimeSerializer.class)	
-	private LocalTime worktimeExit;
+	private LocalTime workTimeExit;
 
 	@ApiModelProperty(value = "Break time start", required = false, example = "14:00")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
@@ -55,12 +55,12 @@ public class WorkdayResource {
 
 	}
 
-	public WorkdayResource(String shiftplanId, DayOfWeek day, LocalTime worktimeEntry, LocalTime worktimeExit, LocalTime breakTimeStart, LocalTime breakTimeEnd,
+	public WorkdayResource(String shiftplanId, DayOfWeek day, LocalTime workTimeEntry, LocalTime workTimeExit, LocalTime breakTimeStart, LocalTime breakTimeEnd,
 			LocalTime restTime) {
 		super();
 		this.day = day;
-		this.worktimeEntry = worktimeEntry;
-		this.worktimeExit = worktimeExit;
+		this.workTimeEntry = workTimeEntry;
+		this.workTimeExit = workTimeExit;
 		this.breakTimeStart = breakTimeStart;
 		this.breakTimeEnd = breakTimeEnd;
 		this.restTime = restTime;
@@ -74,20 +74,20 @@ public class WorkdayResource {
 		this.day = day;
 	}
 
-	public LocalTime getWorktimeEntry() {
-		return worktimeEntry;
+	public LocalTime getWorkTimeEntry() {
+		return workTimeEntry;
 	}
 
-	public void setWorktimeEntry(LocalTime worktimeEntry) {
-		this.worktimeEntry = worktimeEntry;
+	public void setWorkTimeEntry(LocalTime worktimeEntry) {
+		this.workTimeEntry = worktimeEntry;
 	}
 
-	public LocalTime getWorktimeExit() {
-		return worktimeExit;
+	public LocalTime getWorkTimeExit() {
+		return workTimeExit;
 	}
 
-	public void setWorktimeExit(LocalTime worktimeExit) {
-		this.worktimeExit = worktimeExit;
+	public void setWorkTimeExit(LocalTime worktimeExit) {
+		this.workTimeExit = worktimeExit;
 	}
 
 	public LocalTime getBreakTimeStart() {
@@ -117,7 +117,7 @@ public class WorkdayResource {
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] { day, worktimeEntry, worktimeExit, breakTimeStart, breakTimeEnd, restTime });
+		return ObjectUtils.nullSafeHashCode(new Object[] { day, workTimeEntry, workTimeExit, breakTimeStart, breakTimeEnd, restTime });
 	}
 
 	@Override
