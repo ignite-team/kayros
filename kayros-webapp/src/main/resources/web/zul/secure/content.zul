@@ -123,7 +123,9 @@
 				</div>
 			</tabpanel>
 			<tabpanel viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.CalendarViewModel')">
-				<n:div id="calendarContainer"></n:div>
+				<div align="center" style="padding: 15px" width="100%" height="100%">
+					<n:div id="calendarContainer"></n:div>
+				</div>
 			</tabpanel>
 		</tabpanels>
 	</tabbox>

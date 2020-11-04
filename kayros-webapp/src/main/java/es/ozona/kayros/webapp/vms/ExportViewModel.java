@@ -34,24 +34,24 @@ import es.ozona.kayros.webapp.utils.SecurityAccess;
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class ExportViewModel {
 
-	private final String employeeText = Labels.getLabel("general.employee");
-	private final String emailText = Labels.getLabel("general.email");
-	private final String dayText = Labels.getLabel("general.day");
-	private final String startTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.startDate");
-	private final String generatedStartTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.generatedStartDate");
-	private final String editedStartTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.editedStartDate");
-	private final String finishtTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.endDate");
-	private final String generatedFinishTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.generatedEndDate");
-	private final String editedFinishTimeText = Labels.getLabel("timesheet.workingTimePeriods.headers.editedEndDate");
-	private final String partialText = Labels.getLabel("timesheet.general.partial");
-	private final String telecommutingText = Labels.getLabel("general.telecommuting");
-	private final String workplaceText = Labels.getLabel("general.workplace");
+	private final String EMPLOYEETEXT = Labels.getLabel("general.employee");
+	private final String EMAILTEXT = Labels.getLabel("general.email");
+	private final String DAYTEXT = Labels.getLabel("general.day");
+	private final String STARTTIMETEXT = Labels.getLabel("timesheet.workingTimePeriods.headers.startDate");
+	private final String GENERATEDSTARTTIMETEXT = Labels.getLabel("timesheet.workingTimePeriods.headers.generatedStartDate");
+	private final String EDITEDSTARTTIMETEXT = Labels.getLabel("timesheet.workingTimePeriods.headers.editedStartDate");
+	private final String FINISHTIMETEXT = Labels.getLabel("timesheet.workingTimePeriods.headers.endDate");
+	private final String GENERATEDFINISHTIMETEXT = Labels.getLabel("timesheet.workingTimePeriods.headers.generatedEndDate");
+	private final String EDITEDFINISHTIMETEXT = Labels.getLabel("timesheet.workingTimePeriods.headers.editedEndDate");
+	private final String PARTIALTEXT = Labels.getLabel("timesheet.general.partial");
+	private final String TELECOMMUTINGTEXT = Labels.getLabel("general.telecommuting");
+	private final String WORKPLACETEXT = Labels.getLabel("general.workplace");
 
-	private final String noEmployeeText = Labels.getLabel("exception.export.noEmployee");
-	private final String fileErrorText = Labels.getLabel("exception.export.fileError");
-	private final String noWorkingTimePeriodsText = Labels.getLabel("exception.export.noWorkingTimePeriods");
+	private final String NOEMPLOYEETEXT = Labels.getLabel("exception.export.noEmployee");
+	private final String FILEERRORTEXT = Labels.getLabel("exception.export.fileError");
+	private final String NOWORKINGTIMEPERIODSTEXT = Labels.getLabel("exception.export.noWorkingTimePeriods");
 
-	private final String fileName = Labels.getLabel("timesheet.workingTimePeriods");
+	private final String FILENAME = Labels.getLabel("timesheet.workingTimePeriods");
 
 	@WireVariable("externalEmployeeService")
 	protected ExternalEmployeeService employeeService;
@@ -102,18 +102,18 @@ public class ExportViewModel {
 				ArrayList<ArrayList<Object>> rows = new ArrayList<ArrayList<Object>>();
 				ArrayList<String> headers = new ArrayList<String>();
 
-				headers.add(emailText);
-				headers.add(employeeText);
-				headers.add(dayText);
-				headers.add(startTimeText);
-				headers.add(generatedStartTimeText);
-				headers.add(editedStartTimeText);
-				headers.add(finishtTimeText);
-				headers.add(generatedFinishTimeText);
-				headers.add(editedFinishTimeText);
-				headers.add(partialText);
-				headers.add(telecommutingText);
-				headers.add(workplaceText);
+				headers.add(EMAILTEXT);
+				headers.add(EMPLOYEETEXT);
+				headers.add(DAYTEXT);
+				headers.add(STARTTIMETEXT);
+				headers.add(GENERATEDSTARTTIMETEXT);
+				headers.add(EDITEDSTARTTIMETEXT);
+				headers.add(FINISHTIMETEXT);
+				headers.add(GENERATEDFINISHTIMETEXT);
+				headers.add(EDITEDFINISHTIMETEXT);
+				headers.add(PARTIALTEXT);
+				headers.add(TELECOMMUTINGTEXT);
+				headers.add(WORKPLACETEXT);
 
 				for (Timesheet timesheet : timesheets) {
 
@@ -173,24 +173,24 @@ public class ExportViewModel {
 
 				if (instr != null) {
 
-					Filedownload.save(instr, fileFormat, fileName + "." + fileFormat);
+					Filedownload.save(instr, fileFormat, FILENAME + "." + fileFormat);
 					instr.close();
 
 				} else {
 
-					Messagebox.show(fileErrorText, "Error", Messagebox.OK, Messagebox.ERROR);
+					Messagebox.show(FILEERRORTEXT, "Error", Messagebox.OK, Messagebox.ERROR);
 
 				}
 
 			} else {
 
-				Messagebox.show(noWorkingTimePeriodsText, "Informacion", Messagebox.OK, Messagebox.INFORMATION);
+				Messagebox.show(NOWORKINGTIMEPERIODSTEXT, "Informacion", Messagebox.OK, Messagebox.INFORMATION);
 
 			}
 
 		} else {
 
-			Messagebox.show(noEmployeeText, "Informacion", Messagebox.OK, Messagebox.INFORMATION);
+			Messagebox.show(NOEMPLOYEETEXT, "Informacion", Messagebox.OK, Messagebox.INFORMATION);
 
 		}
 

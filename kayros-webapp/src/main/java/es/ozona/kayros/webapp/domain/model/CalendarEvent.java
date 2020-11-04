@@ -1,7 +1,5 @@
 package es.ozona.kayros.webapp.domain.model;
 
-import java.util.Date;
-
 import org.springframework.util.ObjectUtils;
 
 public class CalendarEvent {
@@ -9,8 +7,8 @@ public class CalendarEvent {
 	private String id;
 	private String groupId;
 	private boolean allDay;
-	private Date start;
-	private Date end;
+	private String start;
+	private String end;
 	private String title;
 	private String url;
 	private String[] classNames;
@@ -19,7 +17,7 @@ public class CalendarEvent {
 
 	}
 
-	public CalendarEvent(String id, String groupId, boolean allDay, Date start, Date end, String title, String url, String[] classNames) {
+	public CalendarEvent(String id, String groupId, boolean allDay, String start, String end, String title, String url, String[] classNames) {
 
 		super();
 		this.id = id;
@@ -49,7 +47,7 @@ public class CalendarEvent {
 		this.groupId = groupId;
 	}
 
-	public boolean isAllDay() {
+	public boolean getAllDay() {
 		return allDay;
 	}
 
@@ -57,19 +55,19 @@ public class CalendarEvent {
 		this.allDay = allDay;
 	}
 
-	public Date getStart() {
+	public String getStart() {
 		return start;
 	}
 
-	public void setStart(Date start) {
+	public void setStart(String start) {
 		this.start = start;
 	}
 
-	public Date getEnd() {
+	public String getEnd() {
 		return end;
 	}
 
-	public void setEnd(Date end) {
+	public void setEnd(String end) {
 		this.end = end;
 	}
 

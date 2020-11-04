@@ -52,7 +52,8 @@ public class AccountViewModel {
 					.orElseGet(() -> employeeService.createEmployeeFromPrincipal()));
 			// TODO: gestionar excepcion de aplicacion
 		} catch (Exception e) {
-			if (LOG.isWarnEnabled()) LOG.warn("El servicio Employee no está disponible.");
+			if (LOG.isWarnEnabled())
+				LOG.warn("El servicio Employee no está disponible.");
 			throw e;
 		}
 
@@ -69,9 +70,11 @@ public class AccountViewModel {
 			try {
 				Clients.reloadMessages(preferredLocale);
 				Locales.setThreadLocal(preferredLocale);
-				if (LOG.isDebugEnabled()) LOG.debug("Idioma preferido {} establecido con exito.", preferredLocale.toString());
+				if (LOG.isDebugEnabled())
+					LOG.debug("Idioma preferido {} establecido con exito.", preferredLocale.toString());
 			} catch (IOException e) {
-				if (LOG.isWarnEnabled()) LOG.warn("No se ha podido cargar las preferecias de idioma del empleado.", e );
+				if (LOG.isWarnEnabled())
+					LOG.warn("No se ha podido cargar las preferecias de idioma del empleado.", e);
 				Executions.getCurrent().sendRedirect("");
 			}
 
@@ -164,10 +167,17 @@ public class AccountViewModel {
 	@Command
 	@NotifyChange("employee")
 	public void setEmployee(Employee employee) {
+
 		final Map<String, Object> params = new HashMap<String, Object>();
+
 		params.put("employeeId", employee.getEmployeeId());
+
 		this.employee = employee;
+
 		BindUtils.postGlobalCommand(null, null, "updateEmployee", params);
+
+		params.put("language", this.employee.getPreferredLanguage().split("_")[0]);
+
 		BindUtils.postGlobalCommand(null, null, "updateCalendar", params);
 	}
 

@@ -4,7 +4,7 @@
 
 <?script type="text/javascript" src="~./js/fullCalendar.min.js"?>
 <?script type="text/javascript" src="~./js/locales.min.js"?>
-<?link rel="stylesheet" type="text/css" href="~./css/fullCalendar.min.css"?>
+<?link rel="stylesheet" type="text/css" href="~./css/fullCalendar.css"?>
 <?script type="text/javascript" src="~./js/calendar.js"?>
 
 <zk>
