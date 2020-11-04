@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.zkoss.bind.BindUtils;
 import org.zkoss.bind.annotation.BindingParam;
@@ -28,6 +30,8 @@ import es.ozona.kayros.webapp.internal.outboundservice.ExternalTimesheetService;
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class AccountViewModel {
 
+	private static final Logger LOG = LoggerFactory.getLogger(AccountViewModel.class);
+
 	@WireVariable("externalTimesheetService")
 	protected ExternalTimesheetService timesheetService;
 
@@ -43,8 +47,14 @@ public class AccountViewModel {
 	@Init
 	public void init() {
 
-		this.setEmployee(employeeService.findEmployeeByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
-				.orElseGet(() -> employeeService.createEmployeeFromPrincipal()));
+		try {
+			this.setEmployee(employeeService.findEmployeeByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
+					.orElseGet(() -> employeeService.createEmployeeFromPrincipal()));
+			// TODO: gestionar excepcion de aplicacion
+		} catch (Exception e) {
+			if (LOG.isWarnEnabled()) LOG.warn("El servicio Employee no está disponible.");
+			throw e;
+		}
 
 		Session session = Sessions.getCurrent();
 
@@ -59,7 +69,9 @@ public class AccountViewModel {
 			try {
 				Clients.reloadMessages(preferredLocale);
 				Locales.setThreadLocal(preferredLocale);
+				if (LOG.isDebugEnabled()) LOG.debug("Idioma preferido {} establecido con exito.", preferredLocale.toString());
 			} catch (IOException e) {
+				if (LOG.isWarnEnabled()) LOG.warn("No se ha podido cargar las preferecias de idioma del empleado.", e );
 				Executions.getCurrent().sendRedirect("");
 			}
 

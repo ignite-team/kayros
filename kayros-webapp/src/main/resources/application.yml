@@ -48,6 +48,14 @@ kayros-webapp:
 
 --- # Profile dev 
 
+logging:
+  level:
+    es:
+      ozona: debug
+    root: warn
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%replace(%xException){'\n','\u2028'}%nopex%n"    
+
 eureka:
   client:
     serviceUrl:
@@ -78,7 +86,15 @@ spring:
               user-name-attribute: username
 
 --- # Profile test
-              
+
+logging:
+  level:
+    es:
+      ozona: debug
+    root: warn
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%replace(%xException){'\n','\u2028'}%nopex%n"    
+           
 eureka:
   client:
     serviceUrl:
@@ -109,7 +125,15 @@ spring:
               user-name-attribute: username  
               
 --- # Profile prod              
-              
+
+logging:
+  level:
+    es:
+      ozona: debug
+    root: warn
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%replace(%xException){'\n','\u2028'}%nopex%n"    
+
 eureka:
   client:
     serviceUrl:
