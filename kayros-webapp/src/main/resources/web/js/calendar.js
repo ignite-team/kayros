@@ -1,8 +1,10 @@
+calendar = null;
+
 function initCalendar(date, startDate, endDate, locale, events) {
 
 	let calendarContainer = document.getElementById('calendarContainer');
 
-	var calendar = new FullCalendar.Calendar(calendarContainer, {
+	calendar = new FullCalendar.Calendar(calendarContainer, {
 
 		headerToolbar: {
 			left: 'dayGridMonth,timeGridWeek,timeGridDay',
@@ -22,6 +24,14 @@ function initCalendar(date, startDate, endDate, locale, events) {
 
 	});
 
-	calendar.render();
+}
+
+function renderCalendar() {
+
+	if (calendar) {
+
+		calendar.render();
+
+	}
 
 }
