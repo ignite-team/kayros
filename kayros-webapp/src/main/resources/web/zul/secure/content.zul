@@ -1,9 +1,9 @@
 <div xmlns:n="native">
 	<tabbox sclass="nav_tabs">
 		<tabs>
-			<tab>${labels.content.tab.registry}</tab>
+			<tab selected="true">${labels.content.tab.registry}</tab>
 			<tab>${labels.content.tab.export}</tab>
-			<tab>${labels.content.tab.calendar}</tab>
+			<tab onSelect='calendar.setWidth("100%")'>${labels.content.tab.calendar}</tab>
 		</tabs>
 		<tabpanels>
 			<tabpanel apply="org.zkoss.bind.BindComposer" viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.CurrentTimesheetModel')">
@@ -122,7 +122,7 @@
 					</vbox>
 				</div>
 			</tabpanel>
-			<tabpanel viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.CalendarViewModel')">
+			<tabpanel viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.CalendarViewModel')" id="calendar">
 				<div align="center" style="padding: 15px" width="100%" height="100%">
 					<n:div id="calendarContainer"></n:div>
 				</div>

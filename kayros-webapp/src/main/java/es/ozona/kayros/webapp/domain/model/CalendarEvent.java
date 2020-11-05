@@ -10,14 +10,18 @@ public class CalendarEvent {
 	private String start;
 	private String end;
 	private String title;
+	private String description;
 	private String url;
 	private String[] classNames;
+	private String color;
+	private String display;
 
 	public CalendarEvent() {
 
 	}
 
-	public CalendarEvent(String id, String groupId, boolean allDay, String start, String end, String title, String url, String[] classNames) {
+	public CalendarEvent(String id, String groupId, boolean allDay, String start, String end, String title, String description, String url, String[] classNames,
+			String color, String display) {
 
 		super();
 		this.id = id;
@@ -26,8 +30,11 @@ public class CalendarEvent {
 		this.start = start;
 		this.end = end;
 		this.title = title;
+		this.description = description;
 		this.url = url;
 		this.classNames = classNames;
+		this.color = color;
+		this.display = display;
 
 	}
 
@@ -95,11 +102,35 @@ public class CalendarEvent {
 		this.classNames = classNames;
 	}
 
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getDisplay() {
+		return display;
+	}
+
+	public void setDisplay(String display) {
+		this.display = display;
+	}
+
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] { id, groupId, allDay, start, end, title, url, classNames });
+		return ObjectUtils.nullSafeHashCode(new Object[] { id, groupId, allDay, start, end, title, description, url, classNames, color, display });
 
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override

@@ -15,8 +15,11 @@ public class CalendarEventTest {
 	private String start;
 	private String end;
 	private String title;
+	private String description;
 	private String url;
 	private String[] classNames;
+	private String color;
+	private String display;
 
 	private CalendarEvent emptyCalendarEvent;
 	private CalendarEvent calendarEvent;
@@ -30,11 +33,14 @@ public class CalendarEventTest {
 		start = "start";
 		end = "end";
 		title = "title";
+		description = "description";
 		url = "url";
 		classNames = new String[0];
+		color = "color";
+		display = "display";
 
 		emptyCalendarEvent = new CalendarEvent();
-		calendarEvent = new CalendarEvent(id, groupId, allDay, start, end, title, url, classNames);
+		calendarEvent = new CalendarEvent(id, groupId, allDay, start, end, title, description, url, classNames, color, display);
 
 	}
 
@@ -81,6 +87,13 @@ public class CalendarEventTest {
 	}
 
 	@Test
+	public void givenCalendarEvent_whenCalendarEventGetDescription_thenReturnDescription() {
+
+		assertThat(calendarEvent.getDescription()).isEqualTo(description);
+
+	}
+
+	@Test
 	public void givenCalendarEvent_whenCalendarEventGetUrl_thenReturnUrl() {
 
 		assertThat(calendarEvent.getUrl()).isEqualTo(url);
@@ -91,6 +104,20 @@ public class CalendarEventTest {
 	public void givenCalendarEvent_whenCalendarEventGetClassNames_thenReturnClassNames() {
 
 		assertThat(calendarEvent.getClassNames()).isEqualTo(classNames);
+
+	}
+
+	@Test
+	public void givenCalendarEvent_whenCalendarEventGetColor_thenReturnColor() {
+
+		assertThat(calendarEvent.getColor()).isEqualTo(color);
+
+	}
+
+	@Test
+	public void givenCalendarEvent_whenCalendarEventGetDisplay_thenReturnDisplay() {
+
+		assertThat(calendarEvent.getDisplay()).isEqualTo(display);
 
 	}
 
@@ -143,6 +170,14 @@ public class CalendarEventTest {
 	}
 
 	@Test
+	public void givenEmptyCalendarEvent_whenEmptyCalendarEventSetDescriptionAndGetDescription_thenReturnDescription() {
+
+		emptyCalendarEvent.setDescription(description);
+		assertThat(emptyCalendarEvent.getDescription()).isEqualTo(description);
+
+	}
+
+	@Test
 	public void givenEmptyCalendarEvent_whenEmptyCalendarEventSetUrlAndGetUrl_thenReturnUrl() {
 
 		emptyCalendarEvent.setUrl(url);
@@ -155,6 +190,22 @@ public class CalendarEventTest {
 
 		emptyCalendarEvent.setClassNames(classNames);
 		assertThat(emptyCalendarEvent.getClassNames()).isEqualTo(classNames);
+
+	}
+
+	@Test
+	public void givenEmptyCalendarEvent_whenEmptyCalendarEventSetColorAndGetColor_thenReturnColor() {
+
+		emptyCalendarEvent.setColor(color);
+		assertThat(emptyCalendarEvent.getColor()).isEqualTo(color);
+
+	}
+
+	@Test
+	public void givenEmptyCalendarEvent_whenEmptyCalendarEventSetDisplayAndGetDisplay_thenReturnDisplay() {
+
+		emptyCalendarEvent.setDisplay(display);
+		assertThat(emptyCalendarEvent.getDisplay()).isEqualTo(display);
 
 	}
 

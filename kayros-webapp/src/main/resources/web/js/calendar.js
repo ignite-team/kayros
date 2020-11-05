@@ -2,7 +2,7 @@ function initCalendar(date, startDate, endDate, locale, events) {
 
 	let calendarContainer = document.getElementById('calendarContainer');
 
-	calendar = new FullCalendar.Calendar(calendarContainer, {
+	var calendar = new FullCalendar.Calendar(calendarContainer, {
 
 		headerToolbar: {
 			left: 'dayGridMonth,timeGridWeek,timeGridDay',
@@ -11,12 +11,10 @@ function initCalendar(date, startDate, endDate, locale, events) {
 		},
 		height: 'auto',
 		contentHeight: 'auto',
-		expandRows: true,
 		initialDate: date,
-		editable: false,
-		selectable: true,
 		locale: locale,
 		events: events,
+		displayEventEnd: true,
 		validRange: {
 			start: startDate,
 			end: endDate
@@ -24,10 +22,6 @@ function initCalendar(date, startDate, endDate, locale, events) {
 
 	});
 
-	setTimeout(() => {
-
-		calendar.render();
-
-	}, 2500);
+	calendar.render();
 
 }

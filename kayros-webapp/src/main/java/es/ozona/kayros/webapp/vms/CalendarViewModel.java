@@ -53,6 +53,7 @@ public class CalendarViewModel {
 
 	private final String WORKDAYCLASS = "workdayClass";
 	private final String HOLIDAYCLASS = "holidayClass";
+	private final String HOLIDAYDISPLAY = "background";
 
 	private final String FORMAT = "yyyy-MM-dd";
 
@@ -169,7 +170,7 @@ public class CalendarViewModel {
 
 							if (date.getTime() >= monthBefore.getTime().getTime() && date.getTime() < monthAfter.getTime().getTime()) {
 
-								CalendarEvent calendarEvent = new CalendarEvent(null, HOLIDAYCLASS, true, holiday.getHoliday(), null, holidayText, null, null);
+								CalendarEvent calendarEvent = new CalendarEvent(null, null, true, holiday.getHoliday(), null, holidayText, null, null, new String[] { HOLIDAYCLASS }, null, HOLIDAYDISPLAY);
 
 								this.events.add(calendarEvent);
 
@@ -232,33 +233,12 @@ public class CalendarViewModel {
 
 									String day = FORMATER.format(date);
 
-									if (finalWorkdays.get(x).getBreakTimeStart() != null) {
+									String startHour = finalWorkdays.get(x).getWorkTimeEntry();
+									String endHour = finalWorkdays.get(x).getWorkTimeExit();
 
-										String morningStartHour = finalWorkdays.get(x).getWorkTimeEntry();
-										String morningEndHour = finalWorkdays.get(x).getBreakTimeStart();
+									CalendarEvent event = new CalendarEvent(null, null, false, day + " " + startHour, day + " " + endHour, fullShiftText, "test", null, new String[] { WORKDAYCLASS }, null, null);
 
-										String afternoonStartHour = finalWorkdays.get(x).getBreakTimeEnd();
-										String afternoonEndHour = finalWorkdays.get(x).getWorkTimeExit();
-
-										CalendarEvent morningEvent = new CalendarEvent(null, WORKDAYCLASS, false, day + " " + morningStartHour,
-												day + " " + morningEndHour, morningShitText, null, null);
-										CalendarEvent afternoonEvent = new CalendarEvent(null, WORKDAYCLASS, false, day + " " + afternoonStartHour,
-												day + " " + afternoonEndHour, afternoonShiftText, null, null);
-
-										this.events.add(morningEvent);
-										this.events.add(afternoonEvent);
-
-									} else {
-
-										String startHour = finalWorkdays.get(x).getWorkTimeEntry();
-										String endHour = finalWorkdays.get(x).getWorkTimeExit();
-
-										CalendarEvent event = new CalendarEvent(null, WORKDAYCLASS, false, day + " " + startHour, day + " " + endHour,
-												fullShiftText, null, null);
-
-										this.events.add(event);
-
-									}
+									this.events.add(event);
 
 								}
 
