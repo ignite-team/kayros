@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>es.ozona</groupId>
 	<artifactId>kayros-webapp</artifactId>
-	<version>1.2.0</version>
+	<version>1.3.0</version>
 	<name>kayros-webapp</name>
 	<description>kayros webapp</description>
 	
@@ -123,7 +123,7 @@
 		<dependency>
 			<groupId>es.ozona</groupId>
 			<artifactId>data-inquire</artifactId>
-			<version>1.2.0</version>
+			<version>1.3.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>

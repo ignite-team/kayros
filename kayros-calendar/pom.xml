@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>es.ozona</groupId>
 	<artifactId>kairos-calendar</artifactId>
-	<version>1.2.0</version>
+	<version>1.3.0</version>
 	<name>kairos-calendar</name>
 	<description>Kairos Calendar Microservice</description>
 
@@ -124,7 +124,7 @@
 		<dependency>
 			<groupId>es.ozona</groupId>
 			<artifactId>micro-core</artifactId>
-			<version>1.2.0</version>
+			<version>1.3.0</version>
 		</dependency>
 	</dependencies>
 
