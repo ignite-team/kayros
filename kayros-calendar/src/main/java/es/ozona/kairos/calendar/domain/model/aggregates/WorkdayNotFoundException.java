@@ -11,7 +11,7 @@ public class WorkdayNotFoundException extends ApplicationException {
 	private static final long serialVersionUID = 1L;
 
 	public WorkdayNotFoundException(DayOfWeek day) {
-		super("Workday with id %d not found.".formatted(day.ordinal()));
+		super(String.format("Workday with id %d not found.", day.ordinal()));
 	}
 
 }

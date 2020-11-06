@@ -6,26 +6,34 @@ public class EmployeeCreatedEventData {
 
 	private String employeeId;
 
+	private String username;
+
+	private String firstname;
+
 	private String lastname;
 
 	private String email;
 
-	private String firstname;
-
-	private String surename;
+	private String preferredLanguage;
 
 	private Boolean telecommuting;
-	
+
 	private String workplace;
 
-	public EmployeeCreatedEventData(String employeeId, String lastname, String email, String firstname, String surename, Boolean telecommuting, String workplace) {
+	public EmployeeCreatedEventData() {
+
+	}
+
+	public EmployeeCreatedEventData(String employeeId, String username, String firstname, String lastname, String email, String preferredLanguage,
+			Boolean telecommuting, String workplace) {
 
 		super();
 		this.employeeId = employeeId;
+		this.username = username;
+		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
-		this.firstname = firstname;
-		this.surename = surename;
+		this.preferredLanguage = preferredLanguage;
 		this.telecommuting = telecommuting;
 		this.workplace = workplace;
 
@@ -37,6 +45,22 @@ public class EmployeeCreatedEventData {
 
 	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 	public String getLastname() {
@@ -55,50 +79,34 @@ public class EmployeeCreatedEventData {
 		this.email = email;
 	}
 
-	public String getName() {
-		return firstname;
+	public String getPreferredLanguage() {
+		return preferredLanguage;
 	}
 
-	public void setName(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getSurename() {
-		return surename;
-	}
-
-	public void setSurename(String surename) {
-		this.surename = surename;
+	public void setPreferredLanguage(String preferredLanguage) {
+		this.preferredLanguage = preferredLanguage;
 	}
 
 	public Boolean getTelecommuting() {
-
 		return telecommuting;
-
 	}
 
 	public void setTelecommuting(Boolean telecommuting) {
-
 		this.telecommuting = telecommuting;
-
 	}
-	
+
 	public String getWorkplace() {
-		
 		return workplace;
-		
 	}
 
 	public void setWorkplace(String workplace) {
-
 		this.workplace = workplace;
-		
 	}
 
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] {employeeId, lastname, email, firstname, surename, telecommuting, workplace});
+		return ObjectUtils.nullSafeHashCode(new Object[] { employeeId, username, firstname, lastname, email, preferredLanguage, telecommuting, workplace });
 
 	}
 

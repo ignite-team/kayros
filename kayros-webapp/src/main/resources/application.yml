@@ -1,9 +1,8 @@
 #see: https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://eureka-primary:4002/eureka
+spring:
+  profiles:
+    active: @spring.profiles.active@
 
 zk:
   homepage: /secure/main
@@ -31,19 +30,39 @@ feign:
     
 kairos-clock-service:
   ribbon:
-    ReadTimeout: 1000
-    ConnectTimeout: 1000   
+    ReadTimeout: 30000
+    ConnectTimeout: 30000   
     MaxAutoRetriesNextServer: 4
     MaxAutoRetries: 2
     
 kairos-employee-service:
   ribbon:
-    ReadTimeout: 1000
-    ConnectTimeout: 1000   
+    ReadTimeout: 30000
+    ConnectTimeout: 30000   
     MaxAutoRetriesNextServer: 4
     MaxAutoRetries: 2
+
+kayros-webapp:
+  clockin:
+    latency: 1
+
+--- # Profile dev 
+
+logging:
+  level:
+    es:
+      ozona: debug
+    root: warn
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%replace(%xException){'\n','\u2028'}%nopex%n"    
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:4001/eureka  
     
 spring:
+  profiles: dev
   application:
     name: kairos-webapp
   security: 
@@ -66,6 +85,80 @@ spring:
               user-info-uri: http://localhost:9100/auth/userinfo
               user-name-attribute: username
 
-kayros-webapp:
-  clockin:
-    latency: 1
+--- # Profile test
+
+logging:
+  level:
+    es:
+      ozona: debug
+    root: warn
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%replace(%xException){'\n','\u2028'}%nopex%n"    
+           
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-one:4001/eureka  
+    
+spring:
+  profiles: test
+  application:
+    name: kairos-webapp
+  security: 
+    oauth2:
+      client:
+        registration:
+          kayrosclient:
+            client-id: kayrosclientid
+            client-secret: secret
+            client-name: kayros
+            scope: user_info,read,write
+            redirect-uri: https://192.168.0.22:8443/kayros/login/oauth2/code/kayrosclient
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+            provider: kayros-authserver-provider
+        provider:
+            kayros-authserver-provider:
+              token-uri: http://192.168.0.22:9100/auth/oauth/token
+              authorization-uri: http://192.168.0.22:9100/auth/oauth/authorize
+              user-info-uri: http://192.168.0.22:9100/auth/userinfo
+              user-name-attribute: username  
+              
+--- # Profile prod              
+
+logging:
+  level:
+    es:
+      ozona: debug
+    root: warn
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%replace(%xException){'\n','\u2028'}%nopex%n"    
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-one:4001/eureka  
+    
+spring:
+  profiles: prod
+  application:
+    name: kairos-webapp
+  security: 
+    oauth2:
+      client:
+        registration:
+          kayrosclient:
+            client-id: kayrosclientid
+            client-secret: secret
+            client-name: kayros
+            scope: user_info,read,write
+            redirect-uri: https://192.168.85.193:8443/kayros/login/oauth2/code/kayrosclient
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+            provider: kayros-authserver-provider
+        provider:
+            kayros-authserver-provider:
+              token-uri: http://192.168.85.193:9100/auth/oauth/token
+              authorization-uri: http://192.168.85.193:9100/auth/oauth/authorize
+              user-info-uri: http://192.168.85.193:9100/auth/userinfo
+              user-name-attribute: username  

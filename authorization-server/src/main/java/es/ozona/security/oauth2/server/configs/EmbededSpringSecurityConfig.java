@@ -17,7 +17,7 @@ import org.springframework.security.ldap.DefaultSpringSecurityContextSource;
 import org.springframework.security.ldap.server.UnboundIdContainer;
 
 @Configuration
-@Profile("dev")
+//@Profile("dev")
 @Order(2)
 public class EmbededSpringSecurityConfig extends WebSecurityConfigurerAdapter {
 

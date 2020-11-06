@@ -11,9 +11,10 @@ public class EmployeeResourceTest {
 
 	private String employeeId;
 	private String username;
-	private String email;
 	private String firstName;
 	private String lastName;
+	private String email;
+	private String preferredLanguage;
 	private Boolean telecommuting;
 	private String workplace;
 
@@ -25,14 +26,15 @@ public class EmployeeResourceTest {
 
 		employeeId = "e7c1c31b-c936-4a8b-ad9e-46a4a86381cd";
 		username = "username";
-		email = "email";
 		firstName = "firstname";
 		lastName = "lastname";
+		email = "email";
+		preferredLanguage = "es_ES";
 		telecommuting = false;
 		workplace = "workplace";
 
 		emptyEmployeeResource = new EmployeeResource();
-		employeeResource = new EmployeeResource(employeeId, username, email, firstName, lastName, telecommuting, workplace);
+		employeeResource = new EmployeeResource(employeeId, username, firstName, lastName, email, preferredLanguage, telecommuting, workplace);
 
 	}
 
@@ -51,13 +53,6 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeResourceGetEmail_thenReturnEmail() {
-
-		assertThat(employeeResource.getEmail()).isEqualTo(email);
-
-	}
-
-	@Test
 	public void givenEmployeeResource_whenEmployeeResourceGetFirstName_thenReturnFirstName() {
 
 		assertThat(employeeResource.getFirstname()).isEqualTo(firstName);
@@ -68,6 +63,20 @@ public class EmployeeResourceTest {
 	public void givenEmployeeResource_whenEmployeeResourceGetLastName_thenReturnLastName() {
 
 		assertThat(employeeResource.getLastname()).isEqualTo(lastName);
+
+	}
+
+	@Test
+	public void givenEmployeeResource_whenEmployeeResourceGetEmail_thenReturnEmail() {
+
+		assertThat(employeeResource.getEmail()).isEqualTo(email);
+
+	}
+
+	@Test
+	public void givenEmployeeResource_whenEmployeeResourceGetPreferredLanguage_thenReturnPreferredLanguage() {
+
+		assertThat(employeeResource.getPreferredLanguage()).isEqualTo(preferredLanguage);
 
 	}
 
@@ -86,7 +95,7 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeResourceSetEmployeeIdAndGetEmployee_thenReturnEmployeeId() {
+	public void givenEmptyEmployeeResource_whenEmptyEmployeeResourceSetEmployeeIdAndGetEmployeeId_thenReturnEmployeeId() {
 
 		emptyEmployeeResource.setEmployeeId(employeeId);
 		assertThat(emptyEmployeeResource.getEmployeeId()).isEqualTo(employeeId);
@@ -94,7 +103,7 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeResourceSetUsernameAndGetUsername_thenReturnUsername() {
+	public void givenEmptyEmployeeResource_whenEmptyEmployeeResourceSetUsernameAndGetUsername_thenReturnUsername() {
 
 		emptyEmployeeResource.setUsername(username);
 		assertThat(emptyEmployeeResource.getUsername()).isEqualTo(username);
@@ -102,15 +111,7 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeResourceSetEmailAndGetEmail_thenReturnEmail() {
-
-		emptyEmployeeResource.setEmail(email);
-		assertThat(emptyEmployeeResource.getEmail()).isEqualTo(email);
-
-	}
-
-	@Test
-	public void givenEmployeeResource_whenEmployeeResourceSetFirstNameAndGetFirstName_thenReturnFirstName() {
+	public void givenEmptyEmployeeResource_whenEmptyEmployeeResourceSetFirstNameAndGetFirstName_thenReturnFirstName() {
 
 		emptyEmployeeResource.setFirstname(firstName);
 		assertThat(emptyEmployeeResource.getFirstname()).isEqualTo(firstName);
@@ -118,7 +119,7 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeSetLastNameAndGetLastName_thenReturnLastName() {
+	public void givenEmptyEmployeeResource_whenEmptyEmployeeSetLastNameAndGetLastName_thenReturnLastName() {
 
 		emptyEmployeeResource.setLastname(lastName);
 		assertThat(emptyEmployeeResource.getLastname()).isEqualTo(lastName);
@@ -126,7 +127,23 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeResourceSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
+	public void givenEmptyEmployeeResource_whenEmptyEmployeeResourceSetEmailAndGetEmail_thenReturnEmail() {
+
+		emptyEmployeeResource.setEmail(email);
+		assertThat(emptyEmployeeResource.getEmail()).isEqualTo(email);
+
+	}
+
+	@Test
+	public void givenEmptyEmployeeResource_whenEmptyEmployeeResourceSetPreferredLanguageAndGetPreferredLanguage_thenReturnPreferredLanguage() {
+
+		emptyEmployeeResource.setPreferredLanguage(preferredLanguage);
+		assertThat(emptyEmployeeResource.getPreferredLanguage()).isEqualTo(preferredLanguage);
+
+	}
+
+	@Test
+	public void givenEmptyEmployeeResource_whenEmptyEmployeeResourceSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
 
 		emptyEmployeeResource.setTelecommuting(telecommuting);
 		assertThat(emptyEmployeeResource.getTelecommuting()).isEqualTo(telecommuting);
@@ -134,7 +151,7 @@ public class EmployeeResourceTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeResourceSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
+	public void givenEmptyEmployeeResource_whenEmptyEmployeeResourceSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
 
 		emptyEmployeeResource.setWorkplace(workplace);
 		assertThat(emptyEmployeeResource.getWorkplace()).isEqualTo(workplace);
@@ -168,4 +185,5 @@ public class EmployeeResourceTest {
 		assertThat(employeeResource.equals(employeeResource)).isTrue();
 
 	}
+
 }

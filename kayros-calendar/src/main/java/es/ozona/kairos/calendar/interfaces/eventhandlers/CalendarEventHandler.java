@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.stream.annotation.StreamListener;
 
-import es.ozona.kairos.calendar.infrastructure.brokers.ShiftplanEventSource;
+import es.ozona.kairos.calendar.infrastructure.brokers.ShiftPlanEventSource;
 import es.ozona.kairos.shareddomain.model.events.CalendarDeletedEvent;
 import es.ozona.kairos.shareddomain.model.events.CalendarDeletedEventData;
 
@@ -16,7 +16,7 @@ public class CalendarEventHandler {
 //	@Autowired
 //	private CalendarCommandServiceImpl calendarCommandService;
 
-	@StreamListener(value = ShiftplanEventSource.INPUT)
+	@StreamListener(value = ShiftPlanEventSource.INPUT)
 	public void observeCargoHandledEvent(CalendarDeletedEvent event) {
 		CalendarDeletedEventData eventData = event.getCalendarDeleteEventData();
 		LOG.debug("Calendario con ID  {} borrado.", eventData.getCalendarId());

@@ -1,64 +1,64 @@
 spring:
-  profiles: default
-eureka:  
-  server:
-    enable-self-preservation: false   
-  instance:
-    hostname: localhost   
-  client:
-    fetch-registry: false
-    register-with-eureka: false 
-server: 
-  port: 5001 
-  
----
+  profiles: 
+    active: @spring.profiles.active@
+
+--- # profile dev
 
 spring:
-  profiles: eurekaone
+  profiles: dev
 server:
-  port: 4002  
+  
+  port: 4001
 eureka:
   instance:
-    hostname: eureka-primary
-   
-  client:
-    
+    hostname: eureka-one
+  client:    
     fetch-registry: true
-    register-with-eureka: false    
-#    serviceUrl:
-#      defaultZone: http://eureka-secondary:4003/eureka,http://eureka-tertiary:4004/eureka
- 
+    register-with-eureka: false
 
-  
----
+--- # profile eurekaone
 
 spring:
-  profiles: eurekatwo
+  profiles: eureka-one
+server:
+  
+  port: 4001
+eureka:
+  instance:
+    hostname: eureka-one
+  client:    
+    fetch-registry: true
+    register-with-eureka: false    
+    serviceUrl:
+      defaultZone: http://eureka-two:4002/eureka,http://eureka-three:4003/eureka
+ 
+--- # profile eurekatwo
+
+spring:
+  profiles: eureka-two
+server:
+  port: 4002
+eureka:  
+  instance:    
+    hostname: eureka-two
+  client:
+    fetch-registry: true
+    register-with-eureka: false    
+    serviceUrl:
+      defaultZone: http://eureka-one:4001/eureka,http://eureka-three:4003/eureka
+    
+--- # profile eurekathree
+
+spring:
+  profiles: eureka-three
 server:
   port: 4003
-eureka:  
-  instance:
-    
-    hostname: eureka-secondary
-  client:
-    fetch-registry: true
-    register-with-eureka: false    
-    serviceUrl:
-      defaultZone: http://eureka-primary:4002/eureka,http://eureka-tertiary:4004/eureka
-    
----
-
-spring:
-  profiles: eurekathree
-server:
-  port: 4004
 eureka:
-  instance:
-   
-    hostname: eureka-tertiary
+  instance:   
+    hostname: eureka-three
   client:
     fetch-registry: true
     register-with-eureka: false    
     serviceUrl:
-      defaultZone: http://eureka-primary:4002/eureka,http://eureka-secondary:4003/eureka
+      defaultZone: http://eureka-one:4001/eureka,http://eureka-two:4002/eureka
     

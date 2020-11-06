@@ -19,5 +19,4 @@ public interface EmployeeCommandService extends BaseCommandService<Employee, Lon
 
 	Schedule assignSchedule(AssignScheduleCommand assignScheduleCommand);
 
-	Employee createEmployeeAuto(CreateEmployeeCommand createEmployeeCommand);
 }

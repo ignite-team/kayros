@@ -35,24 +35,6 @@ public class EmployeeCommandServiceImpl extends BaseCommandServiceImpl<Employee,
 	@Override
 	public Employee createEmployee(CreateEmployeeCommand createEmployeeCommand) {
 
-		if (createEmployeeCommand.getEmployeeId() == null) {
-
-			createEmployeeCommand.setEmployeeId(repository.nextId());
-
-		}
-
-		final Employee employee = new Employee(createEmployeeCommand);
-
-		repository.save(employee);
-
-		return employee;
-
-	}
-
-	@Override
-	public Employee createEmployeeAuto(CreateEmployeeCommand createEmployeeCommand) {
-
-		// TODO: trasladar este metodo al service domain.
 		CalendarId calendarId = null;
 
 		try {
@@ -60,60 +42,79 @@ public class EmployeeCommandServiceImpl extends BaseCommandServiceImpl<Employee,
 			calendarId = calendarService.fetchDefaultCalendar();
 
 		} catch (ExternalServiceException e) {
+
 			if (LOG.isWarnEnabled()) {
+
 				LOG.warn("Failed to fetch default calendar.", e);
+
 			}
+
 		}
 
 		if (createEmployeeCommand.getEmployeeId() == null) {
+
 			createEmployeeCommand.setEmployeeId(repository.nextId());
+
 		}
-		
-		Employee employee = null;		
+
+		Employee employee = null;
+
 		if (calendarId == null) {
+
 			employee = new Employee(createEmployeeCommand);
 			repository.save(employee);
+
 		} else {
+
 			employee = new Employee(createEmployeeCommand);
-			final LocalDate date = LocalDate.of(LocalDate.now().getYear(), 1, 1);			
-			
-			AssignScheduleCommand assignScheduleCommand = new AssignScheduleCommand(
-					employee.getEmployeeId().getEmployeeId(),
-					repository.nextId(),
-					calendarId.getCalendarId(),
-					date,
-					date.plusYears(1).minusDays(1));
-			
+			final LocalDate date = LocalDate.of(LocalDate.now().getYear(), 1, 1);
+
+			AssignScheduleCommand assignScheduleCommand = new AssignScheduleCommand(employee.getEmployeeId().getEmployeeId(), repository.nextId(),
+					calendarId.getCalendarId(), date, date.plusYears(1).minusDays(1));
+
 			repository.save(employee);
 			assignSchedule(assignScheduleCommand);
+
 		}
 
 		return employee;
-	}
 
+	}
 
 	@Override
 	public Employee modifyEmployee(ModifyEmployeeCommand modifyEmployeeCommand) {
+
 		final Employee employee = repository.findByEmployeeId(new EmployeeId(modifyEmployeeCommand.getEmployeeId()));
-		if (employee == null)
+
+		if (employee == null) {
+
 			throw new EmployeeNotFoundException(modifyEmployeeCommand.getEmployeeId());
+
+		}
 
 		employee.modify(modifyEmployeeCommand);
 
 		repository.save(employee);
 
 		return employee;
+
 	}
 
 	@Override
 	public Schedule assignSchedule(AssignScheduleCommand assignScheduleCommand) {
+
 		final Employee employee = repository.findByEmployeeId(new EmployeeId(assignScheduleCommand.getEmployeeId()));
 
-		if (employee == null)
+		if (employee == null) {
+
 			throw new EmployeeNotFoundException(assignScheduleCommand.getEmployeeId());
 
+		}
+
 		if (assignScheduleCommand.getScheduleId() == null) {
+
 			assignScheduleCommand.setScheduleId(repository.nextId());
+
 		}
 
 		final Schedule schedule = employee.assignSchedule(assignScheduleCommand);
@@ -121,13 +122,19 @@ public class EmployeeCommandServiceImpl extends BaseCommandServiceImpl<Employee,
 		repository.save(employee);
 
 		return schedule;
+
 	}
 
 	@Override
 	public void unassignSchedule(UnassignScheduleCommand unassignScheduleCommand) {
+
 		final Employee employee = repository.findByEmployeeId(new EmployeeId(unassignScheduleCommand.getEmployeeId()));
-		if (employee == null)
+
+		if (employee == null) {
+
 			throw new EmployeeNotFoundException(unassignScheduleCommand.getEmployeeId());
+
+		}
 
 		employee.unassignSchedule(unassignScheduleCommand);
 

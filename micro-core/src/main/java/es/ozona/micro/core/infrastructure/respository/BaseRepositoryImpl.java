@@ -40,7 +40,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 	}
 
 	@Override
-	public PageResult<T> seach(QueryObject qo) {
+	public PageResult<T> search(QueryObject qo) {
 
 		final CriteriaParser parser = new CriteriaParser();
 		final GenericSpecificationsBuilder<T> specBuilder = new GenericSpecificationsBuilder<>();

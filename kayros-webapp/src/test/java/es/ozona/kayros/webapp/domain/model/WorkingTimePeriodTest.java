@@ -20,6 +20,7 @@ public class WorkingTimePeriodTest {
 	private Boolean telecommuting;
 	private String workplace;
 	private String partialDone;
+	private String partialDoneExport;
 
 	private WorkingTimePeriod workingTimePeriod;
 	private WorkingTimePeriod workingTimePeriod2;
@@ -37,6 +38,7 @@ public class WorkingTimePeriodTest {
 		telecommuting = false;
 		workplace = "workplace";
 		partialDone = "0 Segundos ";
+		partialDoneExport = "00:00:00";
 
 		emptyWorkingTimePeriod = new WorkingTimePeriod();
 
@@ -174,9 +176,16 @@ public class WorkingTimePeriodTest {
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodGetPartialD0ne_thenReturnPartialDone() {
+	public void givenWorkingtimeperiod_whenWorkingtimeperiodGetPartialDone_thenReturnPartialDone() {
 
 		assertThat(workingTimePeriod.getPartialDone()).isEqualTo(partialDone);
+
+	}
+
+	@Test
+	public void givenWorkingtimeperiod_whenWorkingtimeperiodGetPartialDoneExport_thenReturnPartialDoneExport() {
+
+		assertThat(workingTimePeriod.getPartialDoneExport()).isEqualTo(partialDoneExport);
 
 	}
 
@@ -184,6 +193,13 @@ public class WorkingTimePeriodTest {
 	public void givenWorkingtimeperiod2_whenWorkingtimeperiod2GetPartialDone_thenReturnPartialDone() {
 
 		assertThat(workingTimePeriod2.getPartialDone()).isEqualTo(partialDone);
+
+	}
+
+	@Test
+	public void givenWorkingtimeperiod2_whenWorkingtimeperiod2GetPartialDoneExport_thenReturnPartialDoneExport() {
+
+		assertThat(workingTimePeriod2.getPartialDoneExport()).isEqualTo(partialDoneExport);
 
 	}
 

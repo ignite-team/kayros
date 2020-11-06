@@ -27,12 +27,14 @@ public class ExternalEmployeeServiceTest {
 	EmployeeService employeeService;
 
 	private String employeeId;
-	private String email;
+	private String username;
 	private String firstName;
 	private String lastName;
+	private String email;
+	private String preferredLanguage;
 	private boolean telecommuting;
 	private String workplace;
-	private String username;
+
 	private String invalidUsername;
 
 	private Employee employee;
@@ -44,16 +46,18 @@ public class ExternalEmployeeServiceTest {
 	public void init() {
 
 		employeeId = "e7c1c31b-c936-4a8b-ad9e-46a4a86381cd";
-		email = "email";
+		username = "jeijo";
 		firstName = "firstname";
 		lastName = "lastname";
+		email = "email";
+		preferredLanguage = "es_ES";
 		telecommuting = false;
 		workplace = "workplace";
-		username = "jeijo";
+
 		invalidUsername = "qwertyuioplkjhgfadszcxvbnnm";
 
-		employee = new Employee(employeeId, username, email, firstName, lastName, telecommuting, workplace);
-		employeeResource = new EmployeeResource(employeeId, username, email, firstName, lastName, telecommuting, workplace);
+		employee = new Employee(employeeId, username, firstName, lastName, email, preferredLanguage, telecommuting, workplace);
+		employeeResource = new EmployeeResource(employeeId, username, firstName, lastName, email, preferredLanguage, telecommuting, workplace);
 		pageResult = new PageResult<EmployeeResource>();
 		emptyPageResult = new PageResult<EmployeeResource>();
 
@@ -67,7 +71,7 @@ public class ExternalEmployeeServiceTest {
 	@Test
 	public void givenExistingEmpleeUsername_whenCallFindEmployeeByUsername_thenReturnsEmployee() {
 
-		Mockito.when(employeeService.search("username:%s".formatted(username), "+username", 1, 1)).thenReturn(pageResult);
+		Mockito.when(employeeService.search(String.format("username:%s", username), "+username", 1, 1)).thenReturn(pageResult);
 		assertThat(externalEmployeeService.findEmployeeByUsername(username)).isNotEqualTo(Optional.empty());
 
 	}
@@ -75,7 +79,7 @@ public class ExternalEmployeeServiceTest {
 	@Test
 	public void givenExistingEmpleeUsername_whenCallFindEmployeesLikeUsername_thenReturnsEmployees() {
 
-		Mockito.when(employeeService.search("username:%s*".formatted(username), "+username", 1, 15)).thenReturn(pageResult);
+		Mockito.when(employeeService.search(String.format("username:%s*", username), "+username", 1, 15)).thenReturn(pageResult);
 		assertThat(externalEmployeeService.findEmployeesLikeUsername(username).size() > 0).isTrue();
 
 	}
@@ -83,7 +87,7 @@ public class ExternalEmployeeServiceTest {
 	@Test
 	public void givenInvalidEmpleeUsername_whenCallFindEmployeeByUsername_thenReturnsNoEmployee() {
 
-		Mockito.when(employeeService.search("username:%s".formatted(invalidUsername), "+username", 1, 1)).thenReturn(emptyPageResult);
+		Mockito.when(employeeService.search(String.format("username:%s", invalidUsername), "+username", 1, 1)).thenReturn(emptyPageResult);
 		assertThat(externalEmployeeService.findEmployeeByUsername(invalidUsername)).isEqualTo(Optional.empty());
 
 	}
@@ -91,7 +95,7 @@ public class ExternalEmployeeServiceTest {
 	@Test
 	public void givenInvalidEmpleeUsername_whenCallFindEmployeesLikeUsername_thenReturns0Employees() {
 
-		Mockito.when(employeeService.search("username:%s*".formatted(invalidUsername), "+username", 1, 15)).thenReturn(emptyPageResult);
+		Mockito.when(employeeService.search(String.format("username:%s*", invalidUsername), "+username", 1, 15)).thenReturn(emptyPageResult);
 		assertThat(externalEmployeeService.findEmployeesLikeUsername(invalidUsername).size() == 0).isTrue();
 
 	}
