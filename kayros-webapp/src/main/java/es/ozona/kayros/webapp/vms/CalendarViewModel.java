@@ -64,12 +64,6 @@ public class CalendarViewModel {
 	@Init
 	public void init() {
 
-		if (LOG.isWarnEnabled()) {
-
-			LOG.warn("Error");
-
-		}
-
 		morningShitText = Labels.getLabel("general.morningShift");
 		afternoonShiftText = Labels.getLabel("general.afternoonShift");
 		fullShiftText = Labels.getLabel("general.fullShift");
