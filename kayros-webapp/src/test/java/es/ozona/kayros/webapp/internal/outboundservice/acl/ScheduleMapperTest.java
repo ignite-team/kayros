@@ -41,6 +41,16 @@ public class ScheduleMapperTest {
 	}
 
 	@Test
+	public void test() {
+
+		assertThat(ScheduleMapper.mapFromResource(scheduleResource).getCalendarId()).isEqualTo(schedule.getCalendarId());
+		assertThat(ScheduleMapper.mapFromResource(scheduleResource).getScheduleId()).isEqualTo(schedule.getScheduleId());
+		assertThat(ScheduleMapper.mapFromResource(scheduleResource).getStartDate()).isEqualTo(schedule.getStartDate());
+		assertThat(ScheduleMapper.mapFromResource(scheduleResource).getEndDate()).isEqualTo(schedule.getEndDate());
+
+	}
+
+	@Test
 	public void givenScheduleResource_whenScheduleMapperMapFromResourceEqualsSchedule_thenReturnTrue() {
 
 		assertThat(ScheduleMapper.mapFromResource(scheduleResource).equals(schedule)).isTrue();
