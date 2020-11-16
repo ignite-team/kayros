@@ -87,8 +87,8 @@ public class ExternalCalendarServiceTest {
 		markedAsDefault = false;
 
 		shiftPlanId = "2B477572-BD4A-4C28-A504-64C948649211";
-		startDate = new Date(-3600000);
-		endDate = new Date(-3600000);
+		startDate = new Date(0);
+		endDate = new Date(0);
 		startDateString = "1970/01/01";
 		endDateString = "1970/01/01";
 

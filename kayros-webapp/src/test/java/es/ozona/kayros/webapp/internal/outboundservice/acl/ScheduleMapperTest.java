@@ -30,23 +30,13 @@ public class ScheduleMapperTest {
 
 		calendarId = "2b477572-bd4a-4c28-a504-64c9486492cc";
 		scheduleId = "2b477572-bd4a-4c28-a504-64c9486492cc";
-		startDate = new Date(-3600000);
-		endDate = new Date(-3600000);
+		startDate = new Date(0);
+		endDate = new Date(0);
 		startDateString = "01/01/1970";
 		endDateString = "01/01/1970";
 
 		scheduleResource = new ScheduleResource(calendarId, scheduleId, startDateString, endDateString);
 		schedule = new Schedule(calendarId, scheduleId, startDate, endDate);
-
-	}
-
-	@Test
-	public void test() {
-
-		assertThat(ScheduleMapper.mapFromResource(scheduleResource).getCalendarId()).isEqualTo(schedule.getCalendarId());
-		assertThat(ScheduleMapper.mapFromResource(scheduleResource).getScheduleId()).isEqualTo(schedule.getScheduleId());
-		assertThat(ScheduleMapper.mapFromResource(scheduleResource).getStartDate()).isEqualTo(schedule.getStartDate());
-		assertThat(ScheduleMapper.mapFromResource(scheduleResource).getEndDate()).isEqualTo(schedule.getEndDate());
 
 	}
 
