@@ -2,6 +2,7 @@ package es.ozona.kayros.webapp.internal.outboundservice.acl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -25,13 +26,16 @@ public class ScheduleMapperTest {
 	private ScheduleResource scheduleResource;
 	private Schedule schedule;
 
+	private static String pattern = "dd/MM/yyyy";
+	private static SimpleDateFormat formater = new SimpleDateFormat(pattern);
+
 	@BeforeEach
-	public void init() {
+	public void init() throws java.text.ParseException {
 
 		calendarId = "2b477572-bd4a-4c28-a504-64c9486492cc";
 		scheduleId = "2b477572-bd4a-4c28-a504-64c9486492cc";
-		startDate = new Date(0);
-		endDate = new Date(0);
+		startDate = formater.parse("01/01/1970");
+		endDate = formater.parse("01/01/1970");
 		startDateString = "01/01/1970";
 		endDateString = "01/01/1970";
 

@@ -2,6 +2,7 @@ package es.ozona.kayros.webapp.internal.outboundservice;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -71,6 +72,9 @@ public class ExternalCalendarServiceTest {
 	private PageResult<ShiftPlanResource> shiftPlanPageResult;
 	private PageResult<ShiftPlanResource> emptyShiftPlanPageResult;
 
+	private static String pattern = "yyyy/MM/dd";
+	private static SimpleDateFormat formater = new SimpleDateFormat(pattern);
+
 	@Autowired
 	ExternalCalendarService externalCalendarService;
 
@@ -78,7 +82,7 @@ public class ExternalCalendarServiceTest {
 	CalendarService calendarService;
 
 	@BeforeEach
-	public void init() {
+	public void init() throws java.text.ParseException {
 
 		calendarId = "2B477572-BD4A-4C28-A504-64C9486492CC";
 		title = "title";
@@ -87,8 +91,8 @@ public class ExternalCalendarServiceTest {
 		markedAsDefault = false;
 
 		shiftPlanId = "2B477572-BD4A-4C28-A504-64C948649211";
-		startDate = new Date(0);
-		endDate = new Date(0);
+		startDate = formater.parse("1970/01/01");
+		endDate = formater.parse("1970/01/01");
 		startDateString = "1970/01/01";
 		endDateString = "1970/01/01";
 
