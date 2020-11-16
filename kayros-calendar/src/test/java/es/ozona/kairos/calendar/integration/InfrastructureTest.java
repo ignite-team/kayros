@@ -13,7 +13,6 @@ public class InfrastructureTest {
 	@Autowired
 	private CalendarRepository repository;
 
-	@Test
 	public void insertCalendar() {
 		repository.save(new Calendar());
 	}

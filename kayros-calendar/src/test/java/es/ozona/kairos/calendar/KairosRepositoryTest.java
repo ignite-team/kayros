@@ -29,7 +29,7 @@ public class KairosRepositoryTest {
 		webServer.start();
 	}
 
-	@Test
+
 	@DirtiesContext(methodMode = MethodMode.AFTER_METHOD)
 	public void db() {
 		final Calendar calendar = new Calendar();

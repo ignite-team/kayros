@@ -22,7 +22,6 @@ public class WorkdaysTest {
 
 	@BeforeAll
 	public static void init() {
-		workdays1.add(new Workday());
 		workdaysA = new Workdays(workdays1);
 		workdaysB = new Workdays(workdays1);
 		workdays2.add(new Workday(null, null, null, null));

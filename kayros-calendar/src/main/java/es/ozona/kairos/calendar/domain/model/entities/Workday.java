@@ -1,7 +1,5 @@
 package es.ozona.kairos.calendar.domain.model.entities;
 
-import java.util.Objects;
-
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,8 +43,8 @@ public class Workday {
 		this.workTime = workTime;
 		this.breakTime = breakTime;
 		this.restTime = restTime;
-	}	
-	
+	}
+
 	public Day getDay() {
 		return day;
 	}
@@ -82,25 +80,20 @@ public class Workday {
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] { day });
+		return ObjectUtils.nullSafeHashCode(new Object[] { id, day, workTime, breakTime, restTime });
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 
-			if (this == obj)
-				return true;
-			
-			if (obj == null)
-				return false;
-			
-			if (getClass() != obj.getClass())
-				return false;
-			
-			final Workday other = (Workday) obj;
+		if (obj == null || !(obj instanceof Workday)) {
 
-			return Objects.equals(day, other.day);
-		
+			return false;
+
+		}
+
+		return this.hashCode() == obj.hashCode();
+
 	}
 
 }
