@@ -5,12 +5,17 @@ spring:
 --- # dev
 
 server:
-  port: 9100
+  port: 9443
   servlet:
     context-path: /auth
     session:
       cookie:
         path: /auth
+  ssl:
+    key-store-password: password
+    key-store: classpath:oauth2keystore.p12
+    key-store-type: PKCS12
+    key-alias: oauth2server
 
 spring:
   application:
@@ -32,12 +37,17 @@ security:
 --- # test
 
 server:
-  port: 9100
+  port: 9443
   servlet:
     context-path: /auth
     session:
       cookie:
         path: /auth
+  ssl:
+    key-store-password: password
+    key-store: classpath:oauth2keystore.p12
+    key-store-type: PKCS12
+    key-alias: oauth2server
 
 spring:
   application:
@@ -59,12 +69,17 @@ security:
 --- # prod
 
 server:
-  port: 9100
+  port: 9443
   servlet:
     context-path: /auth
     session:
       cookie:
         path: /auth
+  ssl:
+    key-store-password: password
+    key-store: classpath:oauth2keystore.p12
+    key-store-type: PKCS12
+    key-alias: oauth2server
 
 spring:
   application:
