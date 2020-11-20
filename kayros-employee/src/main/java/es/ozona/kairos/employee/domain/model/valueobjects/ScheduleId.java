@@ -38,6 +38,21 @@ public class ScheduleId implements Serializable {
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(new Object[] { scheduleId /* , calendarId, validity */ });
+		return ObjectUtils.nullSafeHashCode(new Object[] { scheduleId });
+
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		if (obj == null || !(obj instanceof ScheduleId)) {
+
+			return false;
+
+		}
+
+		return this.hashCode() == obj.hashCode();
+
+	}
+
 }
