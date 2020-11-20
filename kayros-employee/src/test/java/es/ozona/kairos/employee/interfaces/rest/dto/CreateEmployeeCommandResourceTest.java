@@ -39,63 +39,63 @@ public class CreateEmployeeCommandResourceTest {
 	}
 
 	@Test
-	public void givenCreateEmployeeCommandResource_whenCreateEmployeeCommandResourceGetEmployeeID_thenReturnEmployeeId() {
+	protected void givenCreateEmployeeCommandResource_whenCreateEmployeeCommandResourceGetEmployeeID_thenReturnEmployeeId() {
 
 		assertThat(createEmployeeCommandResource.getEmployeeId()).isEqualTo(employeeId);
 
 	}
 
 	@Test
-	public void givenCreateEmployeeCommandResource_whenCreateEmployeeCommandResourceGetUsername_thenReturnUsername() {
+	protected void givenCreateEmployeeCommandResource_whenCreateEmployeeCommandResourceGetUsername_thenReturnUsername() {
 
 		assertThat(createEmployeeCommandResource.getUsername()).isEqualTo(username);
 
 	}
 
 	@Test
-	public void givenCreateEmployeeCommandResource_whenCreateEmployeeCommandResourceGetFirstName_thenReturnFirstName() {
+	protected void givenCreateEmployeeCommandResource_whenCreateEmployeeCommandResourceGetFirstName_thenReturnFirstName() {
 
 		assertThat(createEmployeeCommandResource.getFirstname()).isEqualTo(firstName);
 
 	}
 
 	@Test
-	public void givenCreateEmployeeCommandResource_whenCreateEmployeeCommandResourceGetLastName_thenReturnLastName() {
+	protected void givenCreateEmployeeCommandResource_whenCreateEmployeeCommandResourceGetLastName_thenReturnLastName() {
 
 		assertThat(createEmployeeCommandResource.getLastname()).isEqualTo(lastName);
 
 	}
 
 	@Test
-	public void givenCreateEmployeeCommandResource_whenCreateEmployeeCommandResourceGetEmail_thenReturnEmail() {
+	protected void givenCreateEmployeeCommandResource_whenCreateEmployeeCommandResourceGetEmail_thenReturnEmail() {
 
 		assertThat(createEmployeeCommandResource.getEmail()).isEqualTo(email);
 
 	}
 
 	@Test
-	public void givenCreateEmployeeCommandResource_whenCreateEmployeeCommandResourceGetPreferredLanguage_thenReturnlanguage() {
+	protected void givenCreateEmployeeCommandResource_whenCreateEmployeeCommandResourceGetPreferredLanguage_thenReturnlanguage() {
 
 		assertThat(createEmployeeCommandResource.getPreferredLanguage()).isEqualTo(preferredLanguage);
 
 	}
 
 	@Test
-	public void givenCreateEmployeeCommandResource_whenCreateEmployeeCommandResourceGetTelecommuting_thenReturnTelecommuting() {
+	protected void givenCreateEmployeeCommandResource_whenCreateEmployeeCommandResourceGetTelecommuting_thenReturnTelecommuting() {
 
 		assertThat(createEmployeeCommandResource.getTelecommuting()).isEqualTo(telecommuting);
 
 	}
 
 	@Test
-	public void givenCreateEmployeeCommandResource_whenCreateEmployeeCommandResourceGetWorkplace_thenReturnWorkplace() {
+	protected void givenCreateEmployeeCommandResource_whenCreateEmployeeCommandResourceGetWorkplace_thenReturnWorkplace() {
 
 		assertThat(createEmployeeCommandResource.getWorkplace()).isEqualTo(workplace);
 
 	}
 
 	@Test
-	public void givenEmptyCreateEmployeeCommandResource_whenEmptyCreateEmployeeCommandResourceSetEmployeeIdAndGetEmployee_thenReturnEmployeeId() {
+	protected void givenEmptyCreateEmployeeCommandResource_whenEmptyCreateEmployeeCommandResourceSetEmployeeIdAndGetEmployee_thenReturnEmployeeId() {
 
 		emptyCreateEmployeeCommandResource.setEmployeeId(employeeId);
 		assertThat(emptyCreateEmployeeCommandResource.getEmployeeId()).isEqualTo(employeeId);
@@ -103,7 +103,7 @@ public class CreateEmployeeCommandResourceTest {
 	}
 
 	@Test
-	public void givenEmptyCreateEmployeeCommandResource_whenEmptyCreateEmployeeCommandResourceSetUsernameAndGetUsername_thenReturnUsername() {
+	protected void givenEmptyCreateEmployeeCommandResource_whenEmptyCreateEmployeeCommandResourceSetUsernameAndGetUsername_thenReturnUsername() {
 
 		emptyCreateEmployeeCommandResource.setUsername(username);
 		assertThat(emptyCreateEmployeeCommandResource.getUsername()).isEqualTo(username);
@@ -111,7 +111,7 @@ public class CreateEmployeeCommandResourceTest {
 	}
 
 	@Test
-	public void givenEmptyCreateEmployeeCommandResource_whenEmptyCreateEmployeeCommandResourceSetFirstNameAndGetFirstName_thenReturnFirstName() {
+	protected void givenEmptyCreateEmployeeCommandResource_whenEmptyCreateEmployeeCommandResourceSetFirstNameAndGetFirstName_thenReturnFirstName() {
 
 		emptyCreateEmployeeCommandResource.setFirstname(firstName);
 		assertThat(emptyCreateEmployeeCommandResource.getFirstname()).isEqualTo(firstName);
@@ -119,7 +119,7 @@ public class CreateEmployeeCommandResourceTest {
 	}
 
 	@Test
-	public void givenEmptyCreateEmployeeCommandResource_whenEmptyCreateEmployeeCommandResourceSetLastNameAndGetLastName_thenReturnLastName() {
+	protected void givenEmptyCreateEmployeeCommandResource_whenEmptyCreateEmployeeCommandResourceSetLastNameAndGetLastName_thenReturnLastName() {
 
 		emptyCreateEmployeeCommandResource.setLastname(lastName);
 		assertThat(emptyCreateEmployeeCommandResource.getLastname()).isEqualTo(lastName);
@@ -127,7 +127,7 @@ public class CreateEmployeeCommandResourceTest {
 	}
 
 	@Test
-	public void givenEmptyCreateEmployeeCommandResource_whenEmptyCreateEmployeeCommandResourceSetEmailAndGetEmail_thenReturnEmail() {
+	protected void givenEmptyCreateEmployeeCommandResource_whenEmptyCreateEmployeeCommandResourceSetEmailAndGetEmail_thenReturnEmail() {
 
 		emptyCreateEmployeeCommandResource.setEmail(email);
 		assertThat(emptyCreateEmployeeCommandResource.getEmail()).isEqualTo(email);
@@ -135,7 +135,7 @@ public class CreateEmployeeCommandResourceTest {
 	}
 
 	@Test
-	public void givenEmptyCreateEmployeeCommandResource_whenEmptyCreateEmployeeCommandResourceSetPreferredLanguageAndGetPreferredLanguage_thenReturnPreferredLanguage() {
+	protected void givenEmptyCreateEmployeeCommandResource_whenEmptyCreateEmployeeCommandResourceSetPreferredLanguageAndGetPreferredLanguage_thenReturnPreferredLanguage() {
 
 		emptyCreateEmployeeCommandResource.setPreferredLanguage(preferredLanguage);
 		assertThat(emptyCreateEmployeeCommandResource.getPreferredLanguage()).isEqualTo(preferredLanguage);
@@ -143,7 +143,7 @@ public class CreateEmployeeCommandResourceTest {
 	}
 
 	@Test
-	public void givenEmptyCreateEmployeeCommandResource_whenEmptyCreateEmployeeCommandResourceSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
+	protected void givenEmptyCreateEmployeeCommandResource_whenEmptyCreateEmployeeCommandResourceSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
 
 		emptyCreateEmployeeCommandResource.setTelecommuting(telecommuting);
 		assertThat(emptyCreateEmployeeCommandResource.getTelecommuting()).isEqualTo(telecommuting);
@@ -151,7 +151,7 @@ public class CreateEmployeeCommandResourceTest {
 	}
 
 	@Test
-	public void givenEmptyCreateEmployeeCommandResource_whenEmptyCreateEmployeeCommandResourceSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
+	protected void givenEmptyCreateEmployeeCommandResource_whenEmptyCreateEmployeeCommandResourceSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
 
 		emptyCreateEmployeeCommandResource.setWorkplace(workplace);
 		assertThat(emptyCreateEmployeeCommandResource.getWorkplace()).isEqualTo(workplace);
@@ -159,28 +159,28 @@ public class CreateEmployeeCommandResourceTest {
 	}
 
 	@Test
-	public void givenCreateEmployeeCommandResource_whenEqualsWithEmptyCreateEmployeeCommandResource_thenReturnFalse() {
+	protected void givenCreateEmployeeCommandResource_whenEqualsWithEmptyCreateEmployeeCommandResource_thenReturnFalse() {
 
 		assertThat(createEmployeeCommandResource.equals(emptyCreateEmployeeCommandResource)).isFalse();
 
 	}
 
 	@Test
-	public void givenCreateEmployeeCommandResource_whenEqualsWithNull_thenReturnFalse() {
+	protected void givenCreateEmployeeCommandResource_whenEqualsWithNull_thenReturnFalse() {
 
 		assertThat(createEmployeeCommandResource.equals(null)).isFalse();
 
 	}
 
 	@Test
-	public void givenCreateEmployeeCommandResource_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenCreateEmployeeCommandResource_whenEqualsWithOtherClass_thenReturnFalse() {
 
 		assertThat(createEmployeeCommandResource.equals(email)).isFalse();
 
 	}
 
 	@Test
-	public void givenCreateEmployeeCommandResource_whenEqualsWithCreateEmployeeCommandResource_thenReturnTrue() {
+	protected void givenCreateEmployeeCommandResource_whenEqualsWithCreateEmployeeCommandResource_thenReturnTrue() {
 
 		assertThat(createEmployeeCommandResource.equals(createEmployeeCommandResource)).isTrue();
 

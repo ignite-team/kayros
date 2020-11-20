@@ -37,63 +37,63 @@ public class ModifyEmployeeCommandTest {
 	}
 
 	@Test
-	public void givenModifyEmployeeCommand_whenModifyEmployeeCommandGetEmployeeID_thenReturnEmployeeId() {
+	protected void givenModifyEmployeeCommand_whenModifyEmployeeCommandGetEmployeeID_thenReturnEmployeeId() {
 
 		assertThat(modifyEmployeeCommand.getEmployeeId()).isEqualTo(employeeId);
 
 	}
 
 	@Test
-	public void givenModifyEmployeeCommand_whenModifyEmployeeCommandGetUsername_thenReturnUsername() {
+	protected void givenModifyEmployeeCommand_whenModifyEmployeeCommandGetUsername_thenReturnUsername() {
 
 		assertThat(modifyEmployeeCommand.getUsername()).isEqualTo(username);
 
 	}
 
 	@Test
-	public void givenModifyEmployeeCommand_whenModifyEmployeeCommandGetFirstName_thenReturnFirstName() {
+	protected void givenModifyEmployeeCommand_whenModifyEmployeeCommandGetFirstName_thenReturnFirstName() {
 
 		assertThat(modifyEmployeeCommand.getFirstname()).isEqualTo(firstName);
 
 	}
 
 	@Test
-	public void givenModifyEmployeeCommand_whenModifyEmployeeCommandGetLastName_thenReturnLastName() {
+	protected void givenModifyEmployeeCommand_whenModifyEmployeeCommandGetLastName_thenReturnLastName() {
 
 		assertThat(modifyEmployeeCommand.getLastname()).isEqualTo(lastName);
 
 	}
 
 	@Test
-	public void givenModifyEmployeeCommand_whenModifyEmployeeCommandGetEmail_thenReturnEmail() {
+	protected void givenModifyEmployeeCommand_whenModifyEmployeeCommandGetEmail_thenReturnEmail() {
 
 		assertThat(modifyEmployeeCommand.getEmail()).isEqualTo(email);
 
 	}
 
 	@Test
-	public void givenModifyEmployeeCommand_whenModifyEmployeeCommandGetPreferredLanguage_thenReturnlanguage() {
+	protected void givenModifyEmployeeCommand_whenModifyEmployeeCommandGetPreferredLanguage_thenReturnlanguage() {
 
 		assertThat(modifyEmployeeCommand.getPreferredLanguage()).isEqualTo(preferredLanguage);
 
 	}
 
 	@Test
-	public void givenModifyEmployeeCommand_whenModifyEmployeeCommandGetTelecommuting_thenReturnTelecommuting() {
+	protected void givenModifyEmployeeCommand_whenModifyEmployeeCommandGetTelecommuting_thenReturnTelecommuting() {
 
 		assertThat(modifyEmployeeCommand.getTelecommuting()).isEqualTo(telecommuting);
 
 	}
 
 	@Test
-	public void givenModifyEmployeeCommand_whenModifyEmployeeCommandGetWorkplace_thenReturnWorkplace() {
+	protected void givenModifyEmployeeCommand_whenModifyEmployeeCommandGetWorkplace_thenReturnWorkplace() {
 
 		assertThat(modifyEmployeeCommand.getWorkplace()).isEqualTo(workplace);
 
 	}
 
 	@Test
-	public void givenEmptyModifyEmployeeCommand_whenEmptyModifyEmployeeCommandSetEmployeeIdAndGetEmployee_thenReturnEmployeeId() {
+	protected void givenEmptyModifyEmployeeCommand_whenEmptyModifyEmployeeCommandSetEmployeeIdAndGetEmployee_thenReturnEmployeeId() {
 
 		emptyModifyEmployeeCommand.setEmployeeId(employeeId);
 		assertThat(emptyModifyEmployeeCommand.getEmployeeId()).isEqualTo(employeeId);
@@ -101,7 +101,7 @@ public class ModifyEmployeeCommandTest {
 	}
 
 	@Test
-	public void givenEmptyModifyEmployeeCommand_whenEmptyModifyEmployeeCommandSetUsernameAndGetUsername_thenReturnUsername() {
+	protected void givenEmptyModifyEmployeeCommand_whenEmptyModifyEmployeeCommandSetUsernameAndGetUsername_thenReturnUsername() {
 
 		emptyModifyEmployeeCommand.setUsername(username);
 		assertThat(emptyModifyEmployeeCommand.getUsername()).isEqualTo(username);
@@ -109,7 +109,7 @@ public class ModifyEmployeeCommandTest {
 	}
 
 	@Test
-	public void givenEmptyModifyEmployeeCommand_whenEmptyModifyEmployeeCommandSetFirstNameAndGetFirstName_thenReturnFirstName() {
+	protected void givenEmptyModifyEmployeeCommand_whenEmptyModifyEmployeeCommandSetFirstNameAndGetFirstName_thenReturnFirstName() {
 
 		emptyModifyEmployeeCommand.setFirstname(firstName);
 		assertThat(emptyModifyEmployeeCommand.getFirstname()).isEqualTo(firstName);
@@ -117,7 +117,7 @@ public class ModifyEmployeeCommandTest {
 	}
 
 	@Test
-	public void givenEmptyCreateEmployeeCommand_whenEmptyModifyEmployeeCommandSetLastNameAndGetLastName_thenReturnLastName() {
+	protected void givenEmptyCreateEmployeeCommand_whenEmptyModifyEmployeeCommandSetLastNameAndGetLastName_thenReturnLastName() {
 
 		emptyModifyEmployeeCommand.setLastname(lastName);
 		assertThat(emptyModifyEmployeeCommand.getLastname()).isEqualTo(lastName);
@@ -125,7 +125,7 @@ public class ModifyEmployeeCommandTest {
 	}
 
 	@Test
-	public void givenEmptyModifyEmployeeCommand_whenEmptyModifyEmployeeCommandSetEmailAndGetEmail_thenReturnEmail() {
+	protected void givenEmptyModifyEmployeeCommand_whenEmptyModifyEmployeeCommandSetEmailAndGetEmail_thenReturnEmail() {
 
 		emptyModifyEmployeeCommand.setEmail(email);
 		assertThat(emptyModifyEmployeeCommand.getEmail()).isEqualTo(email);
@@ -133,7 +133,7 @@ public class ModifyEmployeeCommandTest {
 	}
 
 	@Test
-	public void givenEmptyModifyEmployeeCommand_whenEmptyModifyEmployeeCommandSetPreferredLanguageAndGetPreferredLanguage_thenReturnPreferredLanguage() {
+	protected void givenEmptyModifyEmployeeCommand_whenEmptyModifyEmployeeCommandSetPreferredLanguageAndGetPreferredLanguage_thenReturnPreferredLanguage() {
 
 		emptyModifyEmployeeCommand.setPreferredLanguage(preferredLanguage);
 		assertThat(emptyModifyEmployeeCommand.getPreferredLanguage()).isEqualTo(preferredLanguage);
@@ -141,7 +141,7 @@ public class ModifyEmployeeCommandTest {
 	}
 
 	@Test
-	public void givenEmptyModifyEmployeeCommand_whenEmptyModifyEmployeeCommandSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
+	protected void givenEmptyModifyEmployeeCommand_whenEmptyModifyEmployeeCommandSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
 
 		emptyModifyEmployeeCommand.setTelecommuting(telecommuting);
 		assertThat(emptyModifyEmployeeCommand.getTelecommuting()).isEqualTo(telecommuting);
@@ -149,7 +149,7 @@ public class ModifyEmployeeCommandTest {
 	}
 
 	@Test
-	public void givenEmptyModifyEmployeeCommand_whenEmptyModifyEmployeeCommandSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
+	protected void givenEmptyModifyEmployeeCommand_whenEmptyModifyEmployeeCommandSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
 
 		emptyModifyEmployeeCommand.setWorkplace(workplace);
 		assertThat(emptyModifyEmployeeCommand.getWorkplace()).isEqualTo(workplace);
@@ -157,28 +157,28 @@ public class ModifyEmployeeCommandTest {
 	}
 
 	@Test
-	public void givenEmployeeModifyEventData_whenEqualsWithEmptyModifyEmployeeCommand_thenReturnFalse() {
+	protected void givenEmployeeModifyEventData_whenEqualsWithEmptyModifyEmployeeCommand_thenReturnFalse() {
 
 		assertThat(modifyEmployeeCommand.equals(emptyModifyEmployeeCommand)).isFalse();
 
 	}
 
 	@Test
-	public void givenModifyEmployeeCommand_whenEqualsWithNull_thenReturnFalse() {
+	protected void givenModifyEmployeeCommand_whenEqualsWithNull_thenReturnFalse() {
 
 		assertThat(modifyEmployeeCommand.equals(null)).isFalse();
 
 	}
 
 	@Test
-	public void givenModifyEmployeeCommand_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenModifyEmployeeCommand_whenEqualsWithOtherClass_thenReturnFalse() {
 
 		assertThat(modifyEmployeeCommand.equals(email)).isFalse();
 
 	}
 
 	@Test
-	public void givenModifyEmployeeCommand_whenEqualsWithModifyEmployeeCommand_thenReturnTrue() {
+	protected void givenModifyEmployeeCommand_whenEqualsWithModifyEmployeeCommand_thenReturnTrue() {
 
 		assertThat(modifyEmployeeCommand.equals(modifyEmployeeCommand)).isTrue();
 

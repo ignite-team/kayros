@@ -33,42 +33,42 @@ public class UserAccountTest {
 	}
 
 	@Test
-	public void givenUserAccount_whenUserAccountGetUsername_thenReturnUsername() {
+	protected void givenUserAccount_whenUserAccountGetUsername_thenReturnUsername() {
 
 		assertThat(userAccount.getUsername()).isEqualTo(username);
 
 	}
 
 	@Test
-	public void givenUserAccount_whenUserAccountGetFirstName_thenReturnFirstName() {
+	protected void givenUserAccount_whenUserAccountGetFirstName_thenReturnFirstName() {
 
 		assertThat(userAccount.getFirstname()).isEqualTo(firstName);
 
 	}
 
 	@Test
-	public void givenUserAccount_whemUserAccountGetLastName_thenReturnLastName() {
+	protected void givenUserAccount_whemUserAccountGetLastName_thenReturnLastName() {
 
 		assertThat(userAccount.getLastname()).isEqualTo(lastName);
 
 	}
 
 	@Test
-	public void givenUserAccount_whenUserAccountGetEmail_thenReturnEmail() {
+	protected void givenUserAccount_whenUserAccountGetEmail_thenReturnEmail() {
 
 		assertThat(userAccount.getEmail()).isEqualTo(email);
 
 	}
 
 	@Test
-	public void givenUserAccount_whenUserAccountGetPreferredLanguage_thenReturnlanguage() {
+	protected void givenUserAccount_whenUserAccountGetPreferredLanguage_thenReturnlanguage() {
 
 		assertThat(userAccount.getPreferredLanguage()).isEqualTo(preferredLanguage);
 
 	}
 
 	@Test
-	public void givenEmptyUserAccount_whenEmptyUserAccountSetUsernameAndGetUsername_thenReturnUsername() {
+	protected void givenEmptyUserAccount_whenEmptyUserAccountSetUsernameAndGetUsername_thenReturnUsername() {
 
 		emptyUserAccount.setUsername(username);
 		assertThat(emptyUserAccount.getUsername()).isEqualTo(username);
@@ -76,7 +76,7 @@ public class UserAccountTest {
 	}
 
 	@Test
-	public void givenEmptyUserAccount_whenEmptyUserAccountSetFirstNameAndGetFirstName_thenReturnFirstName() {
+	protected void givenEmptyUserAccount_whenEmptyUserAccountSetFirstNameAndGetFirstName_thenReturnFirstName() {
 
 		emptyUserAccount.setFirstname(firstName);
 		assertThat(emptyUserAccount.getFirstname()).isEqualTo(firstName);
@@ -84,7 +84,7 @@ public class UserAccountTest {
 	}
 
 	@Test
-	public void givenEmptyUserAccount_whenEmptyUserAccountSetLastNameAndGetLastName_thenReturnLastName() {
+	protected void givenEmptyUserAccount_whenEmptyUserAccountSetLastNameAndGetLastName_thenReturnLastName() {
 
 		emptyUserAccount.setLastname(lastName);
 		assertThat(emptyUserAccount.getLastname()).isEqualTo(lastName);
@@ -92,7 +92,7 @@ public class UserAccountTest {
 	}
 
 	@Test
-	public void givenEmptyUserAccounte_whenEmptyUserAccountSetEmailAndGetEmail_thenReturnEmail() {
+	protected void givenEmptyUserAccounte_whenEmptyUserAccountSetEmailAndGetEmail_thenReturnEmail() {
 
 		emptyUserAccount.setEmail(email);
 		assertThat(emptyUserAccount.getEmail()).isEqualTo(email);
@@ -100,7 +100,7 @@ public class UserAccountTest {
 	}
 
 	@Test
-	public void givenEmptyEmptyUserAccount_whenEmptyUserAccountSetPreferredLanguageAndGetPreferredLanguage_thenReturnPreferredLanguage() {
+	protected void givenEmptyEmptyUserAccount_whenEmptyUserAccountSetPreferredLanguageAndGetPreferredLanguage_thenReturnPreferredLanguage() {
 
 		emptyUserAccount.setPreferredLanguage(preferredLanguage);
 		assertThat(emptyUserAccount.getPreferredLanguage()).isEqualTo(preferredLanguage);
@@ -108,28 +108,28 @@ public class UserAccountTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEqualsWithEmptyUserAccount_thenReturnFalse() {
+	protected void givenEmployeeResource_whenEqualsWithEmptyUserAccount_thenReturnFalse() {
 
 		assertThat(userAccount.equals(emptyUserAccount)).isFalse();
 
 	}
 
 	@Test
-	public void givenUserAccount_whenEqualsWithNull_thenReturnFalse() {
+	protected void givenUserAccount_whenEqualsWithNull_thenReturnFalse() {
 
 		assertThat(userAccount.equals(null)).isFalse();
 
 	}
 
 	@Test
-	public void givenUserAccount_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenUserAccount_whenEqualsWithOtherClass_thenReturnFalse() {
 
 		assertThat(userAccount.equals(email)).isFalse();
 
 	}
 
 	@Test
-	public void givenUserAccount_whenEqualsWithUserAccount_thenReturnTrue() {
+	protected void givenUserAccount_whenEqualsWithUserAccount_thenReturnTrue() {
 
 		assertThat(userAccount.equals(userAccount)).isTrue();
 

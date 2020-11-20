@@ -40,63 +40,63 @@ public class EmployeeModifiedEventDataTest {
 	}
 
 	@Test
-	public void givenEmployeeModifiedEventData_whenEmployeeModifiedEventDataGetEmployeeID_thenReturnEmployeeId() {
+	protected void givenEmployeeModifiedEventData_whenEmployeeModifiedEventDataGetEmployeeID_thenReturnEmployeeId() {
 
 		assertThat(employeeModifiedEventData.getEmployeeId()).isEqualTo(employeeId);
 
 	}
 
 	@Test
-	public void givenEmployeeModifiedEventData_whenEmployeeModifiedEventDataGetUsername_thenReturnUsername() {
+	protected void givenEmployeeModifiedEventData_whenEmployeeModifiedEventDataGetUsername_thenReturnUsername() {
 
 		assertThat(employeeModifiedEventData.getUsername()).isEqualTo(username);
 
 	}
 
 	@Test
-	public void givenEmployeeModifiedEventData_whenEmployeeModifiedEventDataGetFirstName_thenReturnFirstName() {
+	protected void givenEmployeeModifiedEventData_whenEmployeeModifiedEventDataGetFirstName_thenReturnFirstName() {
 
 		assertThat(employeeModifiedEventData.getFirstname()).isEqualTo(firstName);
 
 	}
 
 	@Test
-	public void givenEmployeeModifiedEventData_whenEmployeeModifiedEventDataGetLastName_thenReturnLastName() {
+	protected void givenEmployeeModifiedEventData_whenEmployeeModifiedEventDataGetLastName_thenReturnLastName() {
 
 		assertThat(employeeModifiedEventData.getLastname()).isEqualTo(lastName);
 
 	}
 
 	@Test
-	public void givenEmployeeModifiedEventData_whenEmployeeModifiedEventDataGetEmail_thenReturnEmail() {
+	protected void givenEmployeeModifiedEventData_whenEmployeeModifiedEventDataGetEmail_thenReturnEmail() {
 
 		assertThat(employeeModifiedEventData.getEmail()).isEqualTo(email);
 
 	}
 
 	@Test
-	public void givenEmployeeModifiedEventData_whenEmployeeModifiedEventDataGetPreferredLanguage_thenReturnlanguage() {
+	protected void givenEmployeeModifiedEventData_whenEmployeeModifiedEventDataGetPreferredLanguage_thenReturnlanguage() {
 
 		assertThat(employeeModifiedEventData.getPreferredLanguage()).isEqualTo(preferredLanguage);
 
 	}
 
 	@Test
-	public void givenEmployeeModifiedEventData_whenEmployeeModifiedEventDataGetTelecommuting_thenReturnTelecommuting() {
+	protected void givenEmployeeModifiedEventData_whenEmployeeModifiedEventDataGetTelecommuting_thenReturnTelecommuting() {
 
 		assertThat(employeeModifiedEventData.getTelecommuting()).isEqualTo(telecommuting);
 
 	}
 
 	@Test
-	public void givenEmployeeModifiedEventData_whenEmployeeModifiedEventDataGetWorkplace_thenReturnWorkplace() {
+	protected void givenEmployeeModifiedEventData_whenEmployeeModifiedEventDataGetWorkplace_thenReturnWorkplace() {
 
 		assertThat(employeeModifiedEventData.getWorkplace()).isEqualTo(workplace);
 
 	}
 
 	@Test
-	public void givenEmptyEmployeeModifiedEventData_whenEmptyEmployeeModifiedEventDataSetEmployeeIdAndGetEmployee_thenReturnEmployeeId() {
+	protected void givenEmptyEmployeeModifiedEventData_whenEmptyEmployeeModifiedEventDataSetEmployeeIdAndGetEmployee_thenReturnEmployeeId() {
 
 		emptyEmployeeModifiedEventData.setEmployeeId(employeeId);
 		assertThat(emptyEmployeeModifiedEventData.getEmployeeId()).isEqualTo(employeeId);
@@ -104,7 +104,7 @@ public class EmployeeModifiedEventDataTest {
 	}
 
 	@Test
-	public void givenEmptyEmployeeModifiedEventData_whenEmptyEmployeeModifiedEventDataSetUsernameAndGetUsername_thenReturnUsername() {
+	protected void givenEmptyEmployeeModifiedEventData_whenEmptyEmployeeModifiedEventDataSetUsernameAndGetUsername_thenReturnUsername() {
 
 		emptyEmployeeModifiedEventData.setUsername(username);
 		assertThat(emptyEmployeeModifiedEventData.getUsername()).isEqualTo(username);
@@ -112,7 +112,7 @@ public class EmployeeModifiedEventDataTest {
 	}
 
 	@Test
-	public void givenEmptyEmployeeModifiedEventData_whenEmptyEmployeeModifiedEventDataSetFirstNameAndGetFirstName_thenReturnFirstName() {
+	protected void givenEmptyEmployeeModifiedEventData_whenEmptyEmployeeModifiedEventDataSetFirstNameAndGetFirstName_thenReturnFirstName() {
 
 		emptyEmployeeModifiedEventData.setFirstname(firstName);
 		assertThat(emptyEmployeeModifiedEventData.getFirstname()).isEqualTo(firstName);
@@ -120,7 +120,7 @@ public class EmployeeModifiedEventDataTest {
 	}
 
 	@Test
-	public void givenEmptyEmployeeModifiedEventData_whenEmptyEmployeeModifiedEventDataSetLastNameAndGetLastName_thenReturnLastName() {
+	protected void givenEmptyEmployeeModifiedEventData_whenEmptyEmployeeModifiedEventDataSetLastNameAndGetLastName_thenReturnLastName() {
 
 		emptyEmployeeModifiedEventData.setLastname(lastName);
 		assertThat(emptyEmployeeModifiedEventData.getLastname()).isEqualTo(lastName);
@@ -128,7 +128,7 @@ public class EmployeeModifiedEventDataTest {
 	}
 
 	@Test
-	public void givenEmptyEmployeeModifiedEventData_whenEmptyEmployeeModifiedEventDataSetEmailAndGetEmail_thenReturnEmail() {
+	protected void givenEmptyEmployeeModifiedEventData_whenEmptyEmployeeModifiedEventDataSetEmailAndGetEmail_thenReturnEmail() {
 
 		emptyEmployeeModifiedEventData.setEmail(email);
 		assertThat(emptyEmployeeModifiedEventData.getEmail()).isEqualTo(email);
@@ -136,7 +136,7 @@ public class EmployeeModifiedEventDataTest {
 	}
 
 	@Test
-	public void givenEmptyEmployeeModifiedEventData_whenEmptyEmployeeModifiedEventDataSetPreferredLanguageAndGetPreferredLanguage_thenReturnPreferredLanguage() {
+	protected void givenEmptyEmployeeModifiedEventData_whenEmptyEmployeeModifiedEventDataSetPreferredLanguageAndGetPreferredLanguage_thenReturnPreferredLanguage() {
 
 		emptyEmployeeModifiedEventData.setPreferredLanguage(preferredLanguage);
 		assertThat(emptyEmployeeModifiedEventData.getPreferredLanguage()).isEqualTo(preferredLanguage);
@@ -144,7 +144,7 @@ public class EmployeeModifiedEventDataTest {
 	}
 
 	@Test
-	public void givenEmptyEmployeeModifiedEventData_whenEmptyEmployeeModifiedEventDataSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
+	protected void givenEmptyEmployeeModifiedEventData_whenEmptyEmployeeModifiedEventDataSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
 
 		emptyEmployeeModifiedEventData.setTelecommuting(telecommuting);
 		assertThat(emptyEmployeeModifiedEventData.getTelecommuting()).isEqualTo(telecommuting);
@@ -152,7 +152,7 @@ public class EmployeeModifiedEventDataTest {
 	}
 
 	@Test
-	public void givenEmptyEmployeeModifiedEventData_whenEmptyEmployeeModifiedEventDataSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
+	protected void givenEmptyEmployeeModifiedEventData_whenEmptyEmployeeModifiedEventDataSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
 
 		emptyEmployeeModifiedEventData.setWorkplace(workplace);
 		assertThat(emptyEmployeeModifiedEventData.getWorkplace()).isEqualTo(workplace);
@@ -160,28 +160,28 @@ public class EmployeeModifiedEventDataTest {
 	}
 
 	@Test
-	public void givenEmployeeModifiedEventData_whenEqualsWithEmptyEmployeeModifiedEventData_thenReturnFalse() {
+	protected void givenEmployeeModifiedEventData_whenEqualsWithEmptyEmployeeModifiedEventData_thenReturnFalse() {
 
 		assertThat(employeeModifiedEventData.equals(emptyEmployeeModifiedEventData)).isFalse();
 
 	}
 
 	@Test
-	public void givenEmployeeModifiedEventData_whenEqualsWithNull_thenReturnFalse() {
+	protected void givenEmployeeModifiedEventData_whenEqualsWithNull_thenReturnFalse() {
 
 		assertThat(employeeModifiedEventData.equals(null)).isFalse();
 
 	}
 
 	@Test
-	public void givenEmployeeModifiedEventData_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenEmployeeModifiedEventData_whenEqualsWithOtherClass_thenReturnFalse() {
 
 		assertThat(employeeModifiedEventData.equals(email)).isFalse();
 
 	}
 
 	@Test
-	public void givenEmployeeModifiedEventData_whenEqualsWithmployeeModifiedEventData_thenReturnTrue() {
+	protected void givenEmployeeModifiedEventData_whenEqualsWithmployeeModifiedEventData_thenReturnTrue() {
 
 		assertThat(employeeModifiedEventData.equals(employeeModifiedEventData)).isTrue();
 
