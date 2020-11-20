@@ -76,7 +76,7 @@ public class ExportViewModel {
 
 		Optional<Employee> employeeOptional = employeeService.findEmployeeByUsername(employeeUsername);
 
-		if (employeeOptional != null && employeeOptional.isPresent() == false) {
+		if (employeeOptional.isPresent() == false) {
 
 			Employee employee = employeeOptional.get();
 
@@ -266,11 +266,11 @@ public class ExportViewModel {
 
 		if (value.length() >= 3) {
 
-			List<Employee> employees = employeeService.findEmployeesLikeUsername(this.employeeUsername);
+			List<Employee> tempEmployees = employeeService.findEmployeesLikeUsername(this.employeeUsername);
 
-			if (employees.size() > 0) {
+			if (tempEmployees.size() > 0) {
 
-				setEmployees(employees);
+				setEmployees(tempEmployees);
 
 				combo.setAutodrop(true);
 				combo.setButtonVisible(true);

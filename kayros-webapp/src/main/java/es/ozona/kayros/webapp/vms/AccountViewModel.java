@@ -175,7 +175,7 @@ public class AccountViewModel {
 
 			if (LOG.isDebugEnabled()) {
 
-				LOG.debug("Idioma preferido {} establecido con exito.", preferredLocale.toString());
+				LOG.debug("Idioma preferido {} establecido con exito.", preferredLocale);
 
 			}
 

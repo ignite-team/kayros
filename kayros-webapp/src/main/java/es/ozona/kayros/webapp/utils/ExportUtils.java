@@ -29,12 +29,17 @@ public class ExportUtils {
 
 	private static final String fullPattern = "dd/MM/yyyy HH:mm:ss";
 	private static final String pattern = "dd/MM/yyyy";
-	private static final SimpleDateFormat fullFormater = new SimpleDateFormat(fullPattern);
-	private static final SimpleDateFormat formater = new SimpleDateFormat(pattern);
+
+	private ExportUtils() {
+		throw new IllegalStateException("Utility class");
+	}
 
 	public static InputStream exportCSV(ArrayList<ArrayList<Object>> rows, ArrayList<String> headers) {
 
 		try {
+
+			SimpleDateFormat fullFormater = new SimpleDateFormat(fullPattern);
+			SimpleDateFormat formater = new SimpleDateFormat(pattern);
 
 			ByteArrayInputStream instr;
 
@@ -99,6 +104,9 @@ public class ExportUtils {
 		Workbook workbook = new XSSFWorkbook();
 
 		try {
+
+			SimpleDateFormat fullFormater = new SimpleDateFormat(fullPattern);
+			SimpleDateFormat formater = new SimpleDateFormat(pattern);
 
 			Sheet sheet = workbook.createSheet(workingTimePeriodsText);
 

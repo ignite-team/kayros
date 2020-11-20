@@ -61,14 +61,10 @@ public class ExportFormValidator extends AbstractValidator {
 
 	private void validateDates(ValidationContext ctx, Date startDate, Date endDate) {
 
-		if (startDate != null && endDate != null) {
+		if (startDate != null && endDate != null && startDate.compareTo(endDate) > 0) {
 
-			if (startDate.compareTo(endDate) > 0) {
-
-				this.addInvalidMessage(ctx, "startDate", notTallyDatesText);
-				this.addInvalidMessage(ctx, "endDate", notTallyDatesText);
-
-			}
+			this.addInvalidMessage(ctx, "startDate", notTallyDatesText);
+			this.addInvalidMessage(ctx, "endDate", notTallyDatesText);
 
 		}
 

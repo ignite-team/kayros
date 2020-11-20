@@ -7,8 +7,7 @@ import es.ozona.kayros.webapp.shareddomain.model.ShiftPlanResource;
 
 public class ShiftPlanMapper {
 
-	private static String format = "yyyy/MM/dd";
-	private static SimpleDateFormat formater = new SimpleDateFormat(format);
+	private static final String format = "yyyy/MM/dd";
 
 	private ShiftPlanMapper() {
 
@@ -18,6 +17,8 @@ public class ShiftPlanMapper {
 
 		try {
 
+			SimpleDateFormat formater = new SimpleDateFormat(format);
+
 			final ShiftPlan shiftPlan = new ShiftPlan(resource.getShiftPlanId(), resource.getCalendarId(), formater.parse(resource.getStartDate()),
 					formater.parse(resource.getEndDate()));
 
@@ -25,7 +26,6 @@ public class ShiftPlanMapper {
 
 		} catch (Exception e) {
 
-			System.err.println(e);
 			return null;
 
 		}
@@ -33,6 +33,8 @@ public class ShiftPlanMapper {
 	}
 
 	public static ShiftPlanResource mapToResource(ShiftPlan resource) {
+
+		SimpleDateFormat formater = new SimpleDateFormat(format);
 
 		final ShiftPlanResource shiftPlan = new ShiftPlanResource(resource.getShiftPlanId(), resource.getCalendarId(), formater.format(resource.getStartDate()),
 				formater.format(resource.getEndDate()));
