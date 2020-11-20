@@ -96,9 +96,9 @@ public class ExportUtils {
 
 	public static InputStream exportXLSX(ArrayList<ArrayList<Object>> rows, ArrayList<String> headers) {
 
-		try {
+		Workbook workbook = new XSSFWorkbook();
 
-			Workbook workbook = new XSSFWorkbook();
+		try {
 
 			Sheet sheet = workbook.createSheet(workingTimePeriodsText);
 
@@ -165,6 +165,18 @@ public class ExportUtils {
 		} catch (IOException e) {
 
 			return null;
+
+		} finally {
+
+			try {
+
+				workbook.close();
+
+			} catch (IOException e) {
+
+				return null;
+
+			}
 
 		}
 
