@@ -159,28 +159,28 @@ public class ModifyEmployeeCommandTest {
 	@Test
 	protected void givenEmployeeModifyEventData_whenEqualsWithEmptyModifyEmployeeCommand_thenReturnFalse() {
 
-		assertThat(modifyEmployeeCommand.equals(emptyModifyEmployeeCommand)).isFalse();
+		assertThat(modifyEmployeeCommand).isNotEqualTo(emptyModifyEmployeeCommand);
 
 	}
 
 	@Test
 	protected void givenModifyEmployeeCommand_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(modifyEmployeeCommand.equals(null)).isFalse();
+		assertThat(modifyEmployeeCommand).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenModifyEmployeeCommand_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(modifyEmployeeCommand.equals(email)).isFalse();
+		assertThat(modifyEmployeeCommand).isNotEqualTo(email);
 
 	}
 
 	@Test
 	protected void givenModifyEmployeeCommand_whenEqualsWithModifyEmployeeCommand_thenReturnTrue() {
 
-		assertThat(modifyEmployeeCommand.equals(modifyEmployeeCommand)).isTrue();
+		assertThat(modifyEmployeeCommand).isEqualTo(modifyEmployeeCommand);
 
 	}
 

@@ -37,7 +37,7 @@ public class UnassignScheduleCommand {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof UnassignScheduleCommand)) {
+		if (!(obj instanceof UnassignScheduleCommand)) {
 			return false;
 		}
 		return this.hashCode() == obj.hashCode();

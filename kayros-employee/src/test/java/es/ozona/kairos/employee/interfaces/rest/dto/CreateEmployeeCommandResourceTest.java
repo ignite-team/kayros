@@ -161,28 +161,28 @@ public class CreateEmployeeCommandResourceTest {
 	@Test
 	protected void givenCreateEmployeeCommandResource_whenEqualsWithEmptyCreateEmployeeCommandResource_thenReturnFalse() {
 
-		assertThat(createEmployeeCommandResource.equals(emptyCreateEmployeeCommandResource)).isFalse();
+		assertThat(createEmployeeCommandResource).isNotEqualTo(emptyCreateEmployeeCommandResource);
 
 	}
 
 	@Test
 	protected void givenCreateEmployeeCommandResource_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(createEmployeeCommandResource.equals(null)).isFalse();
+		assertThat(createEmployeeCommandResource).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenCreateEmployeeCommandResource_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(createEmployeeCommandResource.equals(email)).isFalse();
+		assertThat(createEmployeeCommandResource).isNotEqualTo(email);
 
 	}
 
 	@Test
 	protected void givenCreateEmployeeCommandResource_whenEqualsWithCreateEmployeeCommandResource_thenReturnTrue() {
 
-		assertThat(createEmployeeCommandResource.equals(createEmployeeCommandResource)).isTrue();
+		assertThat(createEmployeeCommandResource).isEqualTo(createEmployeeCommandResource);
 
 	}
 

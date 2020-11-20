@@ -161,28 +161,28 @@ public class EmployeeCreatedEventDataTest {
 	@Test
 	protected void givenEmployeeCreatedEventData_whenEqualsWithEmptyEmployeeCreatedEventData_thenReturnFalse() {
 
-		assertThat(employeeCreatedEventData.equals(emptyEmployeeCreatedEventData)).isFalse();
+		assertThat(employeeCreatedEventData).isNotEqualTo(emptyEmployeeCreatedEventData);
 
 	}
 
 	@Test
 	protected void givenEmployeeCreatedEventData_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(employeeCreatedEventData.equals(null)).isFalse();
+		assertThat(employeeCreatedEventData).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenEmployeeCreatedEventData_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(employeeCreatedEventData.equals(email)).isFalse();
+		assertThat(employeeCreatedEventData).isNotEqualTo(email);
 
 	}
 
 	@Test
 	protected void givenEmployeeCreatedEventData_whenEqualsWithEmployeeCreatedEventData_thenReturnTrue() {
 
-		assertThat(employeeCreatedEventData.equals(employeeCreatedEventData)).isTrue();
+		assertThat(employeeCreatedEventData).isEqualTo(employeeCreatedEventData);
 
 	}
 

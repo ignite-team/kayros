@@ -121,7 +121,7 @@ public class ModifyEmployeeCommand {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof ModifyEmployeeCommand)) {
+		if (!(obj instanceof ModifyEmployeeCommand)) {
 			return false;
 		}
 		return this.hashCode() == obj.hashCode();

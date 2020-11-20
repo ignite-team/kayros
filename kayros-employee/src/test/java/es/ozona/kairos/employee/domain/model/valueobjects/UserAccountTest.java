@@ -110,28 +110,28 @@ public class UserAccountTest {
 	@Test
 	protected void givenEmployeeResource_whenEqualsWithEmptyUserAccount_thenReturnFalse() {
 
-		assertThat(userAccount.equals(emptyUserAccount)).isFalse();
+		assertThat(userAccount).isNotEqualTo(emptyUserAccount);
 
 	}
 
 	@Test
 	protected void givenUserAccount_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(userAccount.equals(null)).isFalse();
+		assertThat(userAccount).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenUserAccount_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(userAccount.equals(email)).isFalse();
+		assertThat(userAccount).isNotEqualTo(email);
 
 	}
 
 	@Test
 	protected void givenUserAccount_whenEqualsWithUserAccount_thenReturnTrue() {
 
-		assertThat(userAccount.equals(userAccount)).isTrue();
+		assertThat(userAccount).isEqualTo(userAccount);
 
 	}
 

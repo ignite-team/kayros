@@ -153,28 +153,28 @@ public class EmployeeTest {
 	@Test
 	protected void givenCreateEmployeeCommand_whenEqualsWithEmptyCreateEmployeeCommand_thenReturnFalse() {
 
-		assertThat(employee.equals(emptyEmployee)).isFalse();
+		assertThat(employee).isNotEqualTo(emptyEmployee);
 
 	}
 
 	@Test
 	protected void givenCreateEmployeeCommand_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(employee.equals(null)).isFalse();
+		assertThat(employee).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenCreateEmployeeCommand_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(employee.equals(email)).isFalse();
+		assertThat(employee).isNotEqualTo(email);
 
 	}
 
 	@Test
 	protected void givenCreateEmployeeCommand_whenEqualsWithCreateEmployeeCommand_thenReturnTrue() {
 
-		assertThat(employee.equals(employee)).isTrue();
+		assertThat(employee).isEqualTo(employee);
 
 	}
 

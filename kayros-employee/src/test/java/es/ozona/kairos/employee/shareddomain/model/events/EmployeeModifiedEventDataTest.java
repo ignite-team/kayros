@@ -162,28 +162,28 @@ public class EmployeeModifiedEventDataTest {
 	@Test
 	protected void givenEmployeeModifiedEventData_whenEqualsWithEmptyEmployeeModifiedEventData_thenReturnFalse() {
 
-		assertThat(employeeModifiedEventData.equals(emptyEmployeeModifiedEventData)).isFalse();
+		assertThat(employeeModifiedEventData).isNotEqualTo(emptyEmployeeModifiedEventData);
 
 	}
 
 	@Test
 	protected void givenEmployeeModifiedEventData_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(employeeModifiedEventData.equals(null)).isFalse();
+		assertThat(employeeModifiedEventData).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenEmployeeModifiedEventData_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(employeeModifiedEventData.equals(email)).isFalse();
+		assertThat(employeeModifiedEventData).isNotEqualTo(email);
 
 	}
 
 	@Test
 	protected void givenEmployeeModifiedEventData_whenEqualsWithmployeeModifiedEventData_thenReturnTrue() {
 
-		assertThat(employeeModifiedEventData.equals(employeeModifiedEventData)).isTrue();
+		assertThat(employeeModifiedEventData).isEqualTo(employeeModifiedEventData);
 
 	}
 

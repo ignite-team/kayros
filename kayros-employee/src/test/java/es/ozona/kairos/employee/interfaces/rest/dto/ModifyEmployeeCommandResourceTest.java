@@ -161,28 +161,28 @@ public class ModifyEmployeeCommandResourceTest {
 	@Test
 	protected void givenEmployeeModifyEventData_whenEqualsWithEmptyModifyEmployeeCommandResource_thenReturnFalse() {
 
-		assertThat(modifyEmployeeCommandResource.equals(emptyModifyEmployeeCommandResource)).isFalse();
+		assertThat(modifyEmployeeCommandResource).isNotEqualTo(emptyModifyEmployeeCommandResource);
 
 	}
 
 	@Test
 	protected void givenModifyEmployeeCommandResource_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(modifyEmployeeCommandResource.equals(null)).isFalse();
+		assertThat(modifyEmployeeCommandResource).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenModifyEmployeeCommandResource_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(modifyEmployeeCommandResource.equals(email)).isFalse();
+		assertThat(modifyEmployeeCommandResource).isNotEqualTo(email);
 
 	}
 
 	@Test
 	protected void givenModifyEmployeeCommandResource_whenEqualsWithModifyEmployeeCommandResource_thenReturnTrue() {
 
-		assertThat(modifyEmployeeCommandResource.equals(modifyEmployeeCommandResource)).isTrue();
+		assertThat(modifyEmployeeCommandResource).isEqualTo(modifyEmployeeCommandResource);
 
 	}
 

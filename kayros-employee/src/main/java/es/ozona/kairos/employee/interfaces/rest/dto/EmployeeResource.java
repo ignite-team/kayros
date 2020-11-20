@@ -124,7 +124,7 @@ public class EmployeeResource {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof EmployeeResource)) {
+		if (!(obj instanceof EmployeeResource)) {
 			return false;
 		}
 		return this.hashCode() == obj.hashCode();
