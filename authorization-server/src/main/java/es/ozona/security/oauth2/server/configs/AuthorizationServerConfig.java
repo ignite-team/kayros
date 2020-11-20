@@ -88,7 +88,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	public JwtAccessTokenConverter accessTokenConverter() {
 		final JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
 		// converter.setSigningKey("123");
-		final KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("oauth2keystore.p12"), "secret".toCharArray());
+		final KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("oauth2keystore.p12"), "password".toCharArray());
 		converter.setKeyPair(keyStoreKeyFactory.getKeyPair("oauth2server"));
 		return converter;
 	}
