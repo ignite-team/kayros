@@ -6,9 +6,6 @@ import org.springframework.util.ObjectUtils;
 
 public class Calendar implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private String calendarId;
