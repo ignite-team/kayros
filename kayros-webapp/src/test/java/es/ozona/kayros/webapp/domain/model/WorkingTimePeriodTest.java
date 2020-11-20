@@ -49,70 +49,70 @@ public class WorkingTimePeriodTest {
 	}
 
 	@Test
-	public void givenEmptyworkingtimeperiod_whenEmptyWorkingtimeperiodIsWorkingtimeperiod_thenReturnTrue() {
+	protected void givenEmptyworkingtimeperiod_whenEmptyWorkingtimeperiodIsWorkingtimeperiod_thenReturnTrue() {
 
 		assertThat(emptyWorkingTimePeriod.getClass()).isEqualTo(WorkingTimePeriod.class);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodGetStartTime_thenReturnStartTime() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodGetStartTime_thenReturnStartTime() {
 
 		assertThat(workingTimePeriod.getStartTime()).isEqualTo(startTime);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodGetGeneratedStartTime_thenReturnGeneratedStartTime() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodGetGeneratedStartTime_thenReturnGeneratedStartTime() {
 
 		assertThat(workingTimePeriod.getGeneratedStartTime()).isEqualTo(generatedStartTime);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodGetEditedStartTime_thenReturnEditedStartTime() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodGetEditedStartTime_thenReturnEditedStartTime() {
 
 		assertThat(workingTimePeriod.getEditedStartTime()).isEqualTo(editedStartTime);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodGetFinishTime_thenReturnFinishTime() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodGetFinishTime_thenReturnFinishTime() {
 
 		assertThat(workingTimePeriod.getFinishTime()).isEqualTo(finishTime);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodGetGeneratedFinishTime_thenReturnGeneratedFinishTime() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodGetGeneratedFinishTime_thenReturnGeneratedFinishTime() {
 
 		assertThat(workingTimePeriod.getGeneratedFinishTime()).isEqualTo(generatedFinishTime);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodGetEditedFinishTime_thenReturnEditedFinishTime() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodGetEditedFinishTime_thenReturnEditedFinishTime() {
 
 		assertThat(workingTimePeriod.getEditedFinishTime()).isEqualTo(editedFinishTime);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodGetTelecommuting_thenReturnTelecommuting() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodGetTelecommuting_thenReturnTelecommuting() {
 
 		assertThat(workingTimePeriod.getTelecommuting()).isEqualTo(telecommuting);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodGetWorkplace_thenReturnWorkplace() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodGetWorkplace_thenReturnWorkplace() {
 
 		assertThat(workingTimePeriod.getWorkplace()).isEqualTo(workplace);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodSetStartTimeGetStartTime_thenReturnStartTime() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodSetStartTimeGetStartTime_thenReturnStartTime() {
 
 		workingTimePeriod.setStartTime(startTime);
 		assertThat(workingTimePeriod.getStartTime()).isEqualTo(startTime);
@@ -120,7 +120,7 @@ public class WorkingTimePeriodTest {
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodSetGeneratedStartTimeGetGeneratedStartTime_thenReturnGeneratedStartTime() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodSetGeneratedStartTimeGetGeneratedStartTime_thenReturnGeneratedStartTime() {
 
 		workingTimePeriod.setGeneratedStartTime(generatedStartTime);
 		assertThat(workingTimePeriod.getGeneratedStartTime()).isEqualTo(generatedStartTime);
@@ -128,7 +128,7 @@ public class WorkingTimePeriodTest {
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodSetEditedStartTimeGetEditedStartTime_thenReturnEditedStartTime() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodSetEditedStartTimeGetEditedStartTime_thenReturnEditedStartTime() {
 
 		workingTimePeriod.setEditedStartTime(editedStartTime);
 		assertThat(workingTimePeriod.getEditedStartTime()).isEqualTo(editedStartTime);
@@ -136,7 +136,7 @@ public class WorkingTimePeriodTest {
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodSetFinishTimeGetFinishTime_thenReturnFinishTime() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodSetFinishTimeGetFinishTime_thenReturnFinishTime() {
 
 		workingTimePeriod.setFinishTime(finishTime);
 		assertThat(workingTimePeriod.getFinishTime()).isEqualTo(finishTime);
@@ -144,7 +144,7 @@ public class WorkingTimePeriodTest {
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodSetGeneratedFinishTimeGetGeneratedFinishTime_thenReturnGeneratedFinishTime() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodSetGeneratedFinishTimeGetGeneratedFinishTime_thenReturnGeneratedFinishTime() {
 
 		workingTimePeriod.setGeneratedFinishTime(generatedFinishTime);
 		assertThat(workingTimePeriod.getGeneratedFinishTime()).isEqualTo(generatedFinishTime);
@@ -152,7 +152,7 @@ public class WorkingTimePeriodTest {
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodSetEditedFinishTimeGetEditedFinishTime_thenReturnEditedFinishTime() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodSetEditedFinishTimeGetEditedFinishTime_thenReturnEditedFinishTime() {
 
 		workingTimePeriod.setEditedFinishTime(editedFinishTime);
 		assertThat(workingTimePeriod.getEditedFinishTime()).isEqualTo(editedFinishTime);
@@ -160,7 +160,7 @@ public class WorkingTimePeriodTest {
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
 
 		workingTimePeriod.setTelecommuting(telecommuting);
 		assertThat(workingTimePeriod.getTelecommuting()).isEqualTo(telecommuting);
@@ -168,7 +168,7 @@ public class WorkingTimePeriodTest {
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
 
 		workingTimePeriod.setWorkplace(workplace);
 		assertThat(workingTimePeriod.getWorkplace()).isEqualTo(workplace);
@@ -176,56 +176,56 @@ public class WorkingTimePeriodTest {
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodGetPartialDone_thenReturnPartialDone() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodGetPartialDone_thenReturnPartialDone() {
 
 		assertThat(workingTimePeriod.getPartialDone()).isEqualTo(partialDone);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodGetPartialDoneExport_thenReturnPartialDoneExport() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodGetPartialDoneExport_thenReturnPartialDoneExport() {
 
 		assertThat(workingTimePeriod.getPartialDoneExport()).isEqualTo(partialDoneExport);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiod2_whenWorkingtimeperiod2GetPartialDone_thenReturnPartialDone() {
+	protected void givenWorkingtimeperiod2_whenWorkingtimeperiod2GetPartialDone_thenReturnPartialDone() {
 
 		assertThat(workingTimePeriod2.getPartialDone()).isEqualTo(partialDone);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiod2_whenWorkingtimeperiod2GetPartialDoneExport_thenReturnPartialDoneExport() {
+	protected void givenWorkingtimeperiod2_whenWorkingtimeperiod2GetPartialDoneExport_thenReturnPartialDoneExport() {
 
 		assertThat(workingTimePeriod2.getPartialDoneExport()).isEqualTo(partialDoneExport);
 
 	}
 
 	@Test
-	public void givenWorkingTimePeriod_whenEqualsWithEmptyWorkingTimePeriod_thenReturnFalse() {
+	protected void givenWorkingTimePeriod_whenEqualsWithEmptyWorkingTimePeriod_thenReturnFalse() {
 
 		assertThat(workingTimePeriod.equals(emptyWorkingTimePeriod)).isFalse();
 
 	}
 
 	@Test
-	public void givenWorkingTimePeriod_whenEqualsWithNull_thenReturnFalse() {
+	protected void givenWorkingTimePeriod_whenEqualsWithNull_thenReturnFalse() {
 
 		assertThat(workingTimePeriod.equals(null)).isFalse();
 
 	}
 
 	@Test
-	public void givenWorkingTimePeriod_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenWorkingTimePeriod_whenEqualsWithOtherClass_thenReturnFalse() {
 
 		assertThat(workingTimePeriod.equals(workplace)).isFalse();
 
 	}
 
 	@Test
-	public void givenWorkingTimePeriod_whenEqualsWithWorkingTimePeriod_thenReturnTrue() {
+	protected void givenWorkingTimePeriod_whenEqualsWithWorkingTimePeriod_thenReturnTrue() {
 
 		assertThat(workingTimePeriod.equals(workingTimePeriod)).isTrue();
 

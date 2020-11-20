@@ -22,7 +22,7 @@ public class BooleanFormatConverterTest {
 	private BindContext context;
 
 	@Test
-	public void givenSiNoFormatValues_whenCoerceToUiTrueValue_thenReturnsSi() {
+	protected void givenSiNoFormatValues_whenCoerceToUiTrueValue_thenReturnsSi() {
 
 		when(context.getConverterArg(FORMAT_ATTRIBUTE)).thenReturn(TRUE_FALSE_FORMAT);
 
@@ -31,7 +31,7 @@ public class BooleanFormatConverterTest {
 	}
 
 	@Test
-	public void givenSiNoFormatValues_whenCoerceToUiFalseValue_thenReturnsNo() {
+	protected void givenSiNoFormatValues_whenCoerceToUiFalseValue_thenReturnsNo() {
 
 		when(context.getConverterArg(FORMAT_ATTRIBUTE)).thenReturn(TRUE_FALSE_FORMAT);
 
@@ -40,7 +40,7 @@ public class BooleanFormatConverterTest {
 	}
 
 	@Test
-	public void givenSiNoFormatValues_whenCoerceToUiNullValue_thenReturnsNull() {
+	protected void givenSiNoFormatValues_whenCoerceToUiNullValue_thenReturnsNull() {
 
 		when(context.getConverterArg(FORMAT_ATTRIBUTE)).thenReturn(TRUE_FALSE_FORMAT);
 
@@ -49,7 +49,7 @@ public class BooleanFormatConverterTest {
 	}
 
 	@Test
-	public void givenNullFormatValues_whenCoerceToUiTrueValue_thenReturnsNullNullPointerException() {
+	protected void givenNullFormatValues_whenCoerceToUiTrueValue_thenReturnsNullNullPointerException() {
 
 		when(context.getConverterArg(FORMAT_ATTRIBUTE)).thenReturn(null);
 
@@ -60,7 +60,7 @@ public class BooleanFormatConverterTest {
 	}
 
 	@Test
-	public void givenSiNoFormatValues_whenCoerceToBeanTrueValue_thenReturnsSi() {
+	protected void givenSiNoFormatValues_whenCoerceToBeanTrueValue_thenReturnsSi() {
 
 		when(context.getConverterArg(FORMAT_ATTRIBUTE)).thenReturn(TRUE_FALSE_FORMAT);
 
@@ -69,7 +69,7 @@ public class BooleanFormatConverterTest {
 	}
 
 	@Test
-	public void givenSiNoFormatValues_whenCoerceToBeanFalseValue_thenReturnsNo() {
+	protected void givenSiNoFormatValues_whenCoerceToBeanFalseValue_thenReturnsNo() {
 
 		when(context.getConverterArg(FORMAT_ATTRIBUTE)).thenReturn(TRUE_FALSE_FORMAT);
 
@@ -78,7 +78,7 @@ public class BooleanFormatConverterTest {
 	}
 
 	@Test
-	public void givenSiNoFormatValues_whenCoerceToBeanNullValue_thenReturnsFalse() {
+	protected void givenSiNoFormatValues_whenCoerceToBeanNullValue_thenReturnsFalse() {
 
 		when(context.getConverterArg(FORMAT_ATTRIBUTE)).thenReturn(TRUE_FALSE_FORMAT);
 
@@ -87,7 +87,7 @@ public class BooleanFormatConverterTest {
 	}
 
 	@Test
-	public void givenNullFormatValues_whenCoerceToBeanTrueValue_thenReturnsNullNullPointerException() {
+	protected void givenNullFormatValues_whenCoerceToBeanTrueValue_thenReturnsNullNullPointerException() {
 
 		when(context.getConverterArg(FORMAT_ATTRIBUTE)).thenReturn(null);
 

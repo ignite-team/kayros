@@ -39,63 +39,63 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeGetEmployeeID_thenReturnEmployeeId() {
+	protected void givenEmployee_whenEmployeeGetEmployeeID_thenReturnEmployeeId() {
 
 		assertThat(employee.getEmployeeId()).isEqualTo(employeeId);
 
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeGetUsername_thenReturnUsername() {
+	protected void givenEmployee_whenEmployeeGetUsername_thenReturnUsername() {
 
 		assertThat(employee.getUsername()).isEqualTo(username);
 
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeGetFirstName_thenReturnFirstName() {
+	protected void givenEmployee_whenEmployeeGetFirstName_thenReturnFirstName() {
 
 		assertThat(employee.getFirstname()).isEqualTo(firstName);
 
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeGetLastName_thenReturnLastName() {
+	protected void givenEmployee_whenEmployeeGetLastName_thenReturnLastName() {
 
 		assertThat(employee.getLastname()).isEqualTo(lastName);
 
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeGetEmail_thenReturnEmail() {
+	protected void givenEmployee_whenEmployeeGetEmail_thenReturnEmail() {
 
 		assertThat(employee.getEmail()).isEqualTo(email);
 
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeGetPreferredLanguage_thenReturnlanguage() {
+	protected void givenEmployee_whenEmployeeGetPreferredLanguage_thenReturnlanguage() {
 
 		assertThat(employee.getPreferredLanguage()).isEqualTo(preferredLanguage);
 
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeGetTelecommuting_thenReturnTelecommuting() {
+	protected void givenEmployee_whenEmployeeGetTelecommuting_thenReturnTelecommuting() {
 
 		assertThat(employee.getTelecommuting()).isEqualTo(telecommuting);
 
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeGetWorkplace_thenReturnWorkplace() {
+	protected void givenEmployee_whenEmployeeGetWorkplace_thenReturnWorkplace() {
 
 		assertThat(employee.getWorkplace()).isEqualTo(workplace);
 
 	}
 
 	@Test
-	public void givenEmptyEmployee_whenEmptyEmployeeSetEmployeeIdAndGetEmployee_thenReturnEmployeeId() {
+	protected void givenEmptyEmployee_whenEmptyEmployeeSetEmployeeIdAndGetEmployee_thenReturnEmployeeId() {
 
 		emptyEmployee.setEmployeeId(employeeId);
 		assertThat(emptyEmployee.getEmployeeId()).isEqualTo(employeeId);
@@ -103,7 +103,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmptyEmployee_whenEmptyEmployeeSetUsernameAndGetUsername_thenReturnUsername() {
+	protected void givenEmptyEmployee_whenEmptyEmployeeSetUsernameAndGetUsername_thenReturnUsername() {
 
 		emptyEmployee.setUsername(username);
 		assertThat(emptyEmployee.getUsername()).isEqualTo(username);
@@ -111,7 +111,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmptyEmployee_whenEmptyEmployeeSetFirstNameAndGetFirstName_thenReturnFirstName() {
+	protected void givenEmptyEmployee_whenEmptyEmployeeSetFirstNameAndGetFirstName_thenReturnFirstName() {
 
 		emptyEmployee.setFirstname(firstName);
 		assertThat(emptyEmployee.getFirstname()).isEqualTo(firstName);
@@ -119,7 +119,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmptyEmployee_whenEmptyEmployeeSetLastNameAndGetLastName_thenReturnLastName() {
+	protected void givenEmptyEmployee_whenEmptyEmployeeSetLastNameAndGetLastName_thenReturnLastName() {
 
 		emptyEmployee.setLastname(lastName);
 		assertThat(emptyEmployee.getLastname()).isEqualTo(lastName);
@@ -127,7 +127,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmptyEmployee_whenEmptyEmployeeSetEmailAndGetEmail_thenReturnEmail() {
+	protected void givenEmptyEmployee_whenEmptyEmployeeSetEmailAndGetEmail_thenReturnEmail() {
 
 		emptyEmployee.setEmail(email);
 		assertThat(emptyEmployee.getEmail()).isEqualTo(email);
@@ -135,7 +135,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmptyEmployee_whenEmptyEmployeeSetPreferredLanguageAndGetPreferredLanguage_thenReturnPreferredLanguage() {
+	protected void givenEmptyEmployee_whenEmptyEmployeeSetPreferredLanguageAndGetPreferredLanguage_thenReturnPreferredLanguage() {
 
 		emptyEmployee.setPreferredlanguage(preferredLanguage);
 		assertThat(emptyEmployee.getPreferredLanguage()).isEqualTo(preferredLanguage);
@@ -143,7 +143,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmptyEmployee_whenEmptyEmployeeSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
+	protected void givenEmptyEmployee_whenEmptyEmployeeSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
 
 		emptyEmployee.setTelecommuting(telecommuting);
 		assertThat(emptyEmployee.getTelecommuting()).isEqualTo(telecommuting);
@@ -151,7 +151,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmptyEmployee_whenEmptyEmployeeSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
+	protected void givenEmptyEmployee_whenEmptyEmployeeSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
 
 		emptyEmployee.setWorkplace(workplace);
 		assertThat(emptyEmployee.getWorkplace()).isEqualTo(workplace);
@@ -159,28 +159,28 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmployee_whenEqualsWithEmptyEmployee_thenReturnFalse() {
+	protected void givenEmployee_whenEqualsWithEmptyEmployee_thenReturnFalse() {
 
 		assertThat(employee.equals(emptyEmployee)).isFalse();
 
 	}
 
 	@Test
-	public void givenEmployee_whenEqualsWithNull_thenReturnFalse() {
+	protected void givenEmployee_whenEqualsWithNull_thenReturnFalse() {
 
 		assertThat(employee.equals(null)).isFalse();
 
 	}
 
 	@Test
-	public void givenEmployee_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenEmployee_whenEqualsWithOtherClass_thenReturnFalse() {
 
 		assertThat(employee.equals(email)).isFalse();
 
 	}
 
 	@Test
-	public void givenEmployee_whenEqualsWithEmployee_thenReturnTrue() {
+	protected void givenEmployee_whenEqualsWithEmployee_thenReturnTrue() {
 
 		assertThat(employee.equals(employee)).isTrue();
 

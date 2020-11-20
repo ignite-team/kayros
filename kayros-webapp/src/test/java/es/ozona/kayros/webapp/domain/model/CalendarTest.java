@@ -33,42 +33,42 @@ public class CalendarTest {
 	}
 
 	@Test
-	public void givenCalendar_whenCalendarGetCalendarId_thenReturnCalendarId() {
+	protected void givenCalendar_whenCalendarGetCalendarId_thenReturnCalendarId() {
 
 		assertThat(calendar.getCalendarId()).isEqualTo(calendarId);
 
 	}
 
 	@Test
-	public void givenCalendar_whenCalendarGetTitle_thenReturnTitle() {
+	protected void givenCalendar_whenCalendarGetTitle_thenReturnTitle() {
 
 		assertThat(calendar.getTitle()).isEqualTo(title);
 
 	}
 
 	@Test
-	public void givenCalendar_whenCalendarGetDescription_thenReturnDescription() {
+	protected void givenCalendar_whenCalendarGetDescription_thenReturnDescription() {
 
 		assertThat(calendar.getDescription()).isEqualTo(description);
 
 	}
 
 	@Test
-	public void givenCalendar_whenCalendarGetYear_thenReturnYear() {
+	protected void givenCalendar_whenCalendarGetYear_thenReturnYear() {
 
 		assertThat(calendar.getYear()).isEqualTo(year);
 
 	}
 
 	@Test
-	public void givenCalendar_whenCalendarGetMarkedAsDefault_thenReturnMarkedAsDefault() {
+	protected void givenCalendar_whenCalendarGetMarkedAsDefault_thenReturnMarkedAsDefault() {
 
 		assertThat(calendar.getMarkedAsDefault()).isEqualTo(markedAsDefault);
 
 	}
 
 	@Test
-	public void givenEmptyCalendar_whenEmptyCalendarSetCalendarIdAndGetCalendarId_thenReturnCalendarId() {
+	protected void givenEmptyCalendar_whenEmptyCalendarSetCalendarIdAndGetCalendarId_thenReturnCalendarId() {
 
 		emptyCalendar.setCalendarId(calendarId);
 		assertThat(emptyCalendar.getCalendarId()).isEqualTo(calendarId);
@@ -76,7 +76,7 @@ public class CalendarTest {
 	}
 
 	@Test
-	public void givenEmptyCalendar_whenEmptyCalendarSetTitleAndGetTitle_thenReturnTitle() {
+	protected void givenEmptyCalendar_whenEmptyCalendarSetTitleAndGetTitle_thenReturnTitle() {
 
 		emptyCalendar.setTitle(title);
 		assertThat(emptyCalendar.getTitle()).isEqualTo(title);
@@ -84,7 +84,7 @@ public class CalendarTest {
 	}
 
 	@Test
-	public void givenEmptyCalendar_whenEmptyCalendarSetDescriptionAndGetDescription_thenReturnDescription() {
+	protected void givenEmptyCalendar_whenEmptyCalendarSetDescriptionAndGetDescription_thenReturnDescription() {
 
 		emptyCalendar.setDescription(description);
 		assertThat(emptyCalendar.getDescription()).isEqualTo(description);
@@ -92,7 +92,7 @@ public class CalendarTest {
 	}
 
 	@Test
-	public void givenEmptyCalendar_whenEmptyCalendarSetYearAndGetYear_thenReturnYear() {
+	protected void givenEmptyCalendar_whenEmptyCalendarSetYearAndGetYear_thenReturnYear() {
 
 		emptyCalendar.setYear(year);
 		assertThat(emptyCalendar.getYear()).isEqualTo(year);
@@ -100,7 +100,7 @@ public class CalendarTest {
 	}
 
 	@Test
-	public void givenEmptyCalendar_whenEmptyCalendarSetMarkedAsDefaultAndGetMarkedAsDefault_thenReturnMarkedAsDefault() {
+	protected void givenEmptyCalendar_whenEmptyCalendarSetMarkedAsDefaultAndGetMarkedAsDefault_thenReturnMarkedAsDefault() {
 
 		emptyCalendar.setMarkedAsDefault(markedAsDefault);
 		assertThat(emptyCalendar.getMarkedAsDefault()).isEqualTo(markedAsDefault);
@@ -108,28 +108,28 @@ public class CalendarTest {
 	}
 
 	@Test
-	public void givenCalendar_whenEqualsWithEmptyEmployee_thenReturnFalse() {
+	protected void givenCalendar_whenEqualsWithEmptyEmployee_thenReturnFalse() {
 
 		assertThat(calendar.equals(emptyCalendar)).isFalse();
 
 	}
 
 	@Test
-	public void givenCalendar_whenEqualsWithNull_thenReturnFalse() {
+	protected void givenCalendar_whenEqualsWithNull_thenReturnFalse() {
 
 		assertThat(calendar.equals(null)).isFalse();
 
 	}
 
 	@Test
-	public void givenCalendar_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenCalendar_whenEqualsWithOtherClass_thenReturnFalse() {
 
 		assertThat(calendar.equals(title)).isFalse();
 
 	}
 
 	@Test
-	public void givenCalendar_whenEqualsWithCalendar_thenReturnTrue() {
+	protected void givenCalendar_whenEqualsWithCalendar_thenReturnTrue() {
 
 		assertThat(calendar.equals(calendar)).isTrue();
 

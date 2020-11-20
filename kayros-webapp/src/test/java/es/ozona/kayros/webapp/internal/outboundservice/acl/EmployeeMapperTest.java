@@ -42,14 +42,14 @@ public class EmployeeMapperTest {
 	}
 
 	@Test
-	public void givenEmployeeResource_whenEmployeeMapperMapFromResourceEqualsEmployee_thenReturnTrue() {
+	protected void givenEmployeeResource_whenEmployeeMapperMapFromResourceEqualsEmployee_thenReturnTrue() {
 
 		assertThat(EmployeeMapper.mapFromResource(employeeResource).equals(employee)).isTrue();
 
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeMapperMapToResourceEqualsEmployeeResource_thenReturnTrue() {
+	protected void givenEmployee_whenEmployeeMapperMapToResourceEqualsEmployeeResource_thenReturnTrue() {
 
 		assertThat(EmployeeMapper.mapToResource(employee).equals(employeeResource)).isTrue();
 

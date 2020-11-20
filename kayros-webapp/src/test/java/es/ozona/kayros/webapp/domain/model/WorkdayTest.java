@@ -33,49 +33,49 @@ public class WorkdayTest {
 	}
 
 	@Test
-	public void givenWorkDay_whenWorkDayGetDay_thenReturnDay() {
+	protected void givenWorkDay_whenWorkDayGetDay_thenReturnDay() {
 
 		assertThat(workday.getDay()).isEqualTo(day);
 
 	}
 
 	@Test
-	public void givenWorkDay_whenWorkDayGetWorktimeEntry_thenReturnWorktimeEntry() {
+	protected void givenWorkDay_whenWorkDayGetWorktimeEntry_thenReturnWorktimeEntry() {
 
 		assertThat(workday.getWorkTimeEntry()).isEqualTo(worktimeEntry);
 
 	}
 
 	@Test
-	public void givenWorkDay_whenWorkDayGetWorktimeExit_thenReturnWorktimeExit() {
+	protected void givenWorkDay_whenWorkDayGetWorktimeExit_thenReturnWorktimeExit() {
 
 		assertThat(workday.getWorkTimeExit()).isEqualTo(worktimeExit);
 
 	}
 
 	@Test
-	public void givenWorkDay_whenWorkDayGetBreaktimeStart_thenReturnBreaktimeStart() {
+	protected void givenWorkDay_whenWorkDayGetBreaktimeStart_thenReturnBreaktimeStart() {
 
 		assertThat(workday.getBreakTimeStart()).isEqualTo(breaktimeStart);
 
 	}
 
 	@Test
-	public void givenWorkDay_whenWorkDayGetBreaktimeEnd_thenReturnBreaktimeEnd() {
+	protected void givenWorkDay_whenWorkDayGetBreaktimeEnd_thenReturnBreaktimeEnd() {
 
 		assertThat(workday.getBreakTimeEnd()).isEqualTo(breaktimeEnd);
 
 	}
 
 	@Test
-	public void givenWorkDay_whenWorkDayGetRestTime_thenReturnRestTime() {
+	protected void givenWorkDay_whenWorkDayGetRestTime_thenReturnRestTime() {
 
 		assertThat(workday.getRestTime()).isEqualTo(restTime);
 
 	}
 
 	@Test
-	public void givenEmptyWorkDay_whenEmptyWorkDaySetDayAndGetDay_thenReturnDay() {
+	protected void givenEmptyWorkDay_whenEmptyWorkDaySetDayAndGetDay_thenReturnDay() {
 
 		emptyWorkday.setDay(day);
 		assertThat(emptyWorkday.getDay()).isEqualTo(day);
@@ -83,7 +83,7 @@ public class WorkdayTest {
 	}
 
 	@Test
-	public void givenEmptyWorkDay_whenEmptyWorkDaySetWorktimeEntryAndGetWorktimeEntry_thenReturnWorktimeEntry() {
+	protected void givenEmptyWorkDay_whenEmptyWorkDaySetWorktimeEntryAndGetWorktimeEntry_thenReturnWorktimeEntry() {
 
 		emptyWorkday.setWorkTimeEntry(worktimeEntry);
 		assertThat(emptyWorkday.getWorkTimeEntry()).isEqualTo(worktimeEntry);
@@ -91,7 +91,7 @@ public class WorkdayTest {
 	}
 
 	@Test
-	public void givenEmptyWorkDay_wheEmptynWorkDaySetWorktimeExiAndGetWorktimeExit_thenReturnWorktimeExit() {
+	protected void givenEmptyWorkDay_wheEmptynWorkDaySetWorktimeExiAndGetWorktimeExit_thenReturnWorktimeExit() {
 
 		emptyWorkday.setWorkTimeExit(worktimeExit);
 		assertThat(emptyWorkday.getWorkTimeExit()).isEqualTo(worktimeExit);
@@ -99,7 +99,7 @@ public class WorkdayTest {
 	}
 
 	@Test
-	public void givenEmptyWorkDay_whenEmptyWorkDaySetBreaktimeStartAndGetBreaktimeStart_thenReturnBreaktimeStart() {
+	protected void givenEmptyWorkDay_whenEmptyWorkDaySetBreaktimeStartAndGetBreaktimeStart_thenReturnBreaktimeStart() {
 
 		emptyWorkday.setBreakTimeStart(breaktimeStart);
 		assertThat(emptyWorkday.getBreakTimeStart()).isEqualTo(breaktimeStart);
@@ -107,7 +107,7 @@ public class WorkdayTest {
 	}
 
 	@Test
-	public void givenEmptyWorkDay_whenEmptyWorkDaySetBreaktimeEndAndGetBreaktimeEnd_thenReturnBreaktimeEnd() {
+	protected void givenEmptyWorkDay_whenEmptyWorkDaySetBreaktimeEndAndGetBreaktimeEnd_thenReturnBreaktimeEnd() {
 
 		emptyWorkday.setBreakTimeEnd(breaktimeEnd);
 		assertThat(emptyWorkday.getBreakTimeEnd()).isEqualTo(breaktimeEnd);
@@ -115,7 +115,7 @@ public class WorkdayTest {
 	}
 
 	@Test
-	public void givenEmptyWorkDay_whenEmptyWorkDaySetRestTimeAndGetRestTime_thenReturnRestTime() {
+	protected void givenEmptyWorkDay_whenEmptyWorkDaySetRestTimeAndGetRestTime_thenReturnRestTime() {
 
 		emptyWorkday.setRestTime(restTime);
 		assertThat(emptyWorkday.getRestTime()).isEqualTo(restTime);
@@ -123,28 +123,28 @@ public class WorkdayTest {
 	}
 
 	@Test
-	public void givenHoliday_whenEqualsWithEmptyHoliday_thenReturnFalse() {
+	protected void givenHoliday_whenEqualsWithEmptyHoliday_thenReturnFalse() {
 
 		assertThat(workday.equals(emptyWorkday)).isFalse();
 
 	}
 
 	@Test
-	public void givenHoliday_whenEqualsWithNull_thenReturnFalse() {
+	protected void givenHoliday_whenEqualsWithNull_thenReturnFalse() {
 
 		assertThat(workday.equals(null)).isFalse();
 
 	}
 
 	@Test
-	public void givenHoliday_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenHoliday_whenEqualsWithOtherClass_thenReturnFalse() {
 
 		assertThat(workday.equals(day)).isFalse();
 
 	}
 
 	@Test
-	public void givenHoliday_whenEqualsWithHoliday_thenReturnTrue() {
+	protected void givenHoliday_whenEqualsWithHoliday_thenReturnTrue() {
 
 		assertThat(workday.equals(workday)).isTrue();
 

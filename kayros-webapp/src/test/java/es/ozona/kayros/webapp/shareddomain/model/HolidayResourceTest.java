@@ -25,14 +25,14 @@ public class HolidayResourceTest {
 	}
 
 	@Test
-	public void givenHolidayResource_whenHolidayResourceGetHoliday_thenReturnHoliday() {
+	protected void givenHolidayResource_whenHolidayResourceGetHoliday_thenReturnHoliday() {
 
 		assertThat(holidayResource.getHoliday()).isEqualTo(holiday);
 
 	}
 
 	@Test
-	public void givenHolidayResource_whenEmptHolidayResourceSetHolidayAndGetHoliday_thenReturnHoliday() {
+	protected void givenHolidayResource_whenEmptHolidayResourceSetHolidayAndGetHoliday_thenReturnHoliday() {
 
 		emptyHolidayResource.setHoliday(holiday);
 		assertThat(emptyHolidayResource.getHoliday()).isEqualTo(holiday);
@@ -40,28 +40,28 @@ public class HolidayResourceTest {
 	}
 
 	@Test
-	public void givenHolidayResource_whenEqualsWithEmptyHolidayResource_thenReturnFalse() {
+	protected void givenHolidayResource_whenEqualsWithEmptyHolidayResource_thenReturnFalse() {
 
 		assertThat(holidayResource.equals(emptyHolidayResource)).isFalse();
 
 	}
 
 	@Test
-	public void givenHolidayResource_whenEqualsWithNull_thenReturnFalse() {
+	protected void givenHolidayResource_whenEqualsWithNull_thenReturnFalse() {
 
 		assertThat(holidayResource.equals(null)).isFalse();
 
 	}
 
 	@Test
-	public void givenHolidayResource_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenHolidayResource_whenEqualsWithOtherClass_thenReturnFalse() {
 
 		assertThat(holidayResource.equals(holiday)).isFalse();
 
 	}
 
 	@Test
-	public void givenHolidayResource_whenEqualsWithHolidayResource_thenReturnTrue() {
+	protected void givenHolidayResource_whenEqualsWithHolidayResource_thenReturnTrue() {
 
 		assertThat(holidayResource.equals(holidayResource)).isTrue();
 

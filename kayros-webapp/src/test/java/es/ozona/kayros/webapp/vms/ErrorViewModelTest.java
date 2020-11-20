@@ -25,7 +25,7 @@ public class ErrorViewModelTest {
 	}
 
 	@Test
-	public void givenInitializedViewModel_whenVMGetCode_thenReturnNull() {
+	protected void givenInitializedViewModel_whenVMGetCode_thenReturnNull() {
 
 		vm.init();
 		assertThat(vm.getCode()).isNull();
@@ -33,7 +33,7 @@ public class ErrorViewModelTest {
 	}
 
 	@Test
-	public void givenInitializedViewModel_whenVMGetMessage_thenReturnNull() {
+	protected void givenInitializedViewModel_whenVMGetMessage_thenReturnNull() {
 
 		vm.init();
 		assertThat(vm.getMessage()).isNull();
@@ -41,21 +41,21 @@ public class ErrorViewModelTest {
 	}
 
 	@Test
-	public void givenViewModel_whenVMGetMessage_thenReturnNull() {
+	protected void givenViewModel_whenVMGetMessage_thenReturnNull() {
 
 		assertThat(vm.getMessage()).isNull();
 
 	}
 
 	@Test
-	public void givenViewModel_whenVMGetCode_thenReturnNull() {
+	protected void givenViewModel_whenVMGetCode_thenReturnNull() {
 
 		assertThat(vm.getCode()).isNull();
 
 	}
 
 	@Test
-	public void givenViewModel_whenVMSetCodeAndGetCode_thenReturnCode() {
+	protected void givenViewModel_whenVMSetCodeAndGetCode_thenReturnCode() {
 
 		vm.setCode(code);
 		assertThat(vm.getCode()).isEqualTo(code);
@@ -63,7 +63,7 @@ public class ErrorViewModelTest {
 	}
 
 	@Test
-	public void givenViewModel_whenVMSetMessageGetMessage_thenReturnMessage() {
+	protected void givenViewModel_whenVMSetMessageGetMessage_thenReturnMessage() {
 
 		vm.setMessage(message);
 		assertThat(vm.getMessage()).isEqualTo(message);
@@ -71,7 +71,7 @@ public class ErrorViewModelTest {
 	}
 
 	@Test
-	public void givenViewModel_whenVMSetCodeAndSetMessageAndGetErrorMessage_thenReturnErrorMessage() {
+	protected void givenViewModel_whenVMSetCodeAndSetMessageAndGetErrorMessage_thenReturnErrorMessage() {
 
 		vm.setMessage(message);
 		vm.setCode(code);

@@ -31,35 +31,35 @@ public class ShiftPlanResourceTest {
 	}
 
 	@Test
-	public void givenShiftPlanResource_whenShiftPlanResourceGetShiftPlanId_thenReturnShiftPlanId() {
+	protected void givenShiftPlanResource_whenShiftPlanResourceGetShiftPlanId_thenReturnShiftPlanId() {
 
 		assertThat(shiftPlanResource.getShiftPlanId()).isEqualTo(shiftPlanId);
 
 	}
 
 	@Test
-	public void givenShiftPlanResource_whenShiftPlanResourceGetCalendarId_thenReturnTitle() {
+	protected void givenShiftPlanResource_whenShiftPlanResourceGetCalendarId_thenReturnTitle() {
 
 		assertThat(shiftPlanResource.getCalendarId()).isEqualTo(calendarId);
 
 	}
 
 	@Test
-	public void givenShiftPlanResource_whenShiftPlanResourceGetStartDate_thenReturnStartDate() {
+	protected void givenShiftPlanResource_whenShiftPlanResourceGetStartDate_thenReturnStartDate() {
 
 		assertThat(shiftPlanResource.getStartDate()).isEqualTo(startDate);
 
 	}
 
 	@Test
-	public void givenShiftPlanResource_whenShiftPlanResourceGetEndDate_thenReturnEndDate() {
+	protected void givenShiftPlanResource_whenShiftPlanResourceGetEndDate_thenReturnEndDate() {
 
 		assertThat(shiftPlanResource.getEndDate()).isEqualTo(endDate);
 
 	}
 
 	@Test
-	public void givenEmptyShiftPlanResource_whenEmptyShiftPlanResourceSetShiftPlanIdAndGetShiftPlanId_thenReturnShiftPlanId() {
+	protected void givenEmptyShiftPlanResource_whenEmptyShiftPlanResourceSetShiftPlanIdAndGetShiftPlanId_thenReturnShiftPlanId() {
 
 		emptyShiftPlanResource.setShiftPlanId(shiftPlanId);
 		assertThat(emptyShiftPlanResource.getShiftPlanId()).isEqualTo(shiftPlanId);
@@ -67,7 +67,7 @@ public class ShiftPlanResourceTest {
 	}
 
 	@Test
-	public void givenEmptyShiftPlanResource_whenEmptyShiftPlanResourceSetCalendarIdAndGetCalendarId_thenReturnCalendarId() {
+	protected void givenEmptyShiftPlanResource_whenEmptyShiftPlanResourceSetCalendarIdAndGetCalendarId_thenReturnCalendarId() {
 
 		emptyShiftPlanResource.setCalendarId(calendarId);
 		assertThat(emptyShiftPlanResource.getCalendarId()).isEqualTo(calendarId);
@@ -75,7 +75,7 @@ public class ShiftPlanResourceTest {
 	}
 
 	@Test
-	public void givenEmptyShiftPlanResource_whenEmptyShiftPlanResourceSetStartDateAndGetStartDate_thenReturnStartDate() {
+	protected void givenEmptyShiftPlanResource_whenEmptyShiftPlanResourceSetStartDateAndGetStartDate_thenReturnStartDate() {
 
 		emptyShiftPlanResource.setStartDate(startDate);
 		assertThat(emptyShiftPlanResource.getStartDate()).isEqualTo(startDate);
@@ -83,7 +83,7 @@ public class ShiftPlanResourceTest {
 	}
 
 	@Test
-	public void givenEmptyShiftPlanResource_whenEmptyShiftPlanResourceSetEndDateAndGetEndDate_thenReturnEndDate() {
+	protected void givenEmptyShiftPlanResource_whenEmptyShiftPlanResourceSetEndDateAndGetEndDate_thenReturnEndDate() {
 
 		emptyShiftPlanResource.setEndDate(endDate);
 		assertThat(emptyShiftPlanResource.getEndDate()).isEqualTo(endDate);
@@ -91,28 +91,28 @@ public class ShiftPlanResourceTest {
 	}
 
 	@Test
-	public void givenShiftPlanResource_whenEqualsWithEmptyEmployeeResource_thenReturnFalse() {
+	protected void givenShiftPlanResource_whenEqualsWithEmptyEmployeeResource_thenReturnFalse() {
 
 		assertThat(shiftPlanResource.equals(emptyShiftPlanResource)).isFalse();
 
 	}
 
 	@Test
-	public void givenShiftPlanResource_whenEqualsWithNull_thenReturnFalse() {
+	protected void givenShiftPlanResource_whenEqualsWithNull_thenReturnFalse() {
 
 		assertThat(shiftPlanResource.equals(null)).isFalse();
 
 	}
 
 	@Test
-	public void givenShiftPlanResource_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenShiftPlanResource_whenEqualsWithOtherClass_thenReturnFalse() {
 
 		assertThat(shiftPlanResource.equals(calendarId)).isFalse();
 
 	}
 
 	@Test
-	public void givenShiftPlanResource_whenEqualsWithShiftPlanResource_thenReturnTrue() {
+	protected void givenShiftPlanResource_whenEqualsWithShiftPlanResource_thenReturnTrue() {
 
 		assertThat(shiftPlanResource.equals(shiftPlanResource)).isTrue();
 

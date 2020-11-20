@@ -69,7 +69,7 @@ public class ExternalEmployeeServiceTest {
 	}
 
 	@Test
-	public void givenExistingEmpleeUsername_whenCallFindEmployeeByUsername_thenReturnsEmployee() {
+	protected void givenExistingEmpleeUsername_whenCallFindEmployeeByUsername_thenReturnsEmployee() {
 
 		Mockito.when(employeeService.search(String.format("username:%s", username), "+username", 1, 1)).thenReturn(pageResult);
 		assertThat(externalEmployeeService.findEmployeeByUsername(username)).isNotEqualTo(Optional.empty());
@@ -77,7 +77,7 @@ public class ExternalEmployeeServiceTest {
 	}
 
 	@Test
-	public void givenExistingEmpleeUsername_whenCallFindEmployeesLikeUsername_thenReturnsEmployees() {
+	protected void givenExistingEmpleeUsername_whenCallFindEmployeesLikeUsername_thenReturnsEmployees() {
 
 		Mockito.when(employeeService.search(String.format("username:%s*", username), "+username", 1, 15)).thenReturn(pageResult);
 		assertThat(externalEmployeeService.findEmployeesLikeUsername(username).size() > 0).isTrue();
@@ -85,7 +85,7 @@ public class ExternalEmployeeServiceTest {
 	}
 
 	@Test
-	public void givenInvalidEmpleeUsername_whenCallFindEmployeeByUsername_thenReturnsNoEmployee() {
+	protected void givenInvalidEmpleeUsername_whenCallFindEmployeeByUsername_thenReturnsNoEmployee() {
 
 		Mockito.when(employeeService.search(String.format("username:%s", invalidUsername), "+username", 1, 1)).thenReturn(emptyPageResult);
 		assertThat(externalEmployeeService.findEmployeeByUsername(invalidUsername)).isEqualTo(Optional.empty());
@@ -93,7 +93,7 @@ public class ExternalEmployeeServiceTest {
 	}
 
 	@Test
-	public void givenInvalidEmpleeUsername_whenCallFindEmployeesLikeUsername_thenReturns0Employees() {
+	protected void givenInvalidEmpleeUsername_whenCallFindEmployeesLikeUsername_thenReturns0Employees() {
 
 		Mockito.when(employeeService.search(String.format("username:%s*", invalidUsername), "+username", 1, 15)).thenReturn(emptyPageResult);
 		assertThat(externalEmployeeService.findEmployeesLikeUsername(invalidUsername).size() == 0).isTrue();
@@ -101,7 +101,7 @@ public class ExternalEmployeeServiceTest {
 	}
 
 	@Test
-	public void givenEmployee_whenCallModifyEmployee_thenReturnEmployeeObject() {
+	protected void givenEmployee_whenCallModifyEmployee_thenReturnEmployeeObject() {
 
 		Mockito.when(employeeService.modify(employeeResource, employeeId)).thenReturn(employeeResource);
 		assertThat(externalEmployeeService.modifyEmployee(employee) instanceof Employee).isTrue();

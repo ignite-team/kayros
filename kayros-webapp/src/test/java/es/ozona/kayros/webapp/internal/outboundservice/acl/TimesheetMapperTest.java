@@ -87,14 +87,14 @@ public class TimesheetMapperTest {
 	}
 
 	@Test
-	public void givenTimesheetResource_whenTimesheetMapperMapFromResourceEqualsTimesheet_thenReturnTrue() {
+	protected void givenTimesheetResource_whenTimesheetMapperMapFromResourceEqualsTimesheet_thenReturnTrue() {
 
 		assertThat(TimesheetMapper.mapFromResource(timesheetResource).equals(timesheet)).isTrue();
 
 	}
 
 	@Test
-	public void givenTimesheetResource2_whenTimesheetMapperMapFromResourceEqualsTimesheet_thenReturnFalse() {
+	protected void givenTimesheetResource2_whenTimesheetMapperMapFromResourceEqualsTimesheet_thenReturnFalse() {
 
 		assertThat(TimesheetMapper.mapFromResource(timesheetResource2).equals(timesheet)).isFalse();
 

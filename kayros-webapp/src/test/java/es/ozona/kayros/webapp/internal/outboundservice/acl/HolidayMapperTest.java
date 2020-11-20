@@ -28,14 +28,14 @@ public class HolidayMapperTest {
 	}
 
 	@Test
-	public void givenShiftPlanResource_whenShiftPlanMapperMapFromResourceEqualsShiftPlan_thenReturnTrue() {
+	protected void givenShiftPlanResource_whenShiftPlanMapperMapFromResourceEqualsShiftPlan_thenReturnTrue() {
 
 		assertThat(HolidayMapper.mapFromResource(holidayResource).equals(holiday)).isTrue();
 
 	}
 
 	@Test
-	public void givenShiftPlan_whenShiftPlanMapperMapToResourceEqualsShiftPlanResource_thenReturnTrue() {
+	protected void givenShiftPlan_whenShiftPlanMapperMapToResourceEqualsShiftPlanResource_thenReturnTrue() {
 
 		assertThat(HolidayMapper.mapToResource(holiday).equals(holidayResource)).isTrue();
 

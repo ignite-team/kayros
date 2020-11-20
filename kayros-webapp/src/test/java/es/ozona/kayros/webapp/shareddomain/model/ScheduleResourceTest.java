@@ -31,35 +31,35 @@ public class ScheduleResourceTest {
 	}
 
 	@Test
-	public void givenScheduleResource_whenScheduleResourceGetScheduleResourceId_thenReturnScheduleResourceId() {
+	protected void givenScheduleResource_whenScheduleResourceGetScheduleResourceId_thenReturnScheduleResourceId() {
 
 		assertThat(scheduleResource.getScheduleId()).isEqualTo(scheduleId);
 
 	}
 
 	@Test
-	public void givenScheduleResource_whenScheduleResourceGetCalendarId_thenReturnTitle() {
+	protected void givenScheduleResource_whenScheduleResourceGetCalendarId_thenReturnTitle() {
 
 		assertThat(scheduleResource.getCalendarId()).isEqualTo(calendarId);
 
 	}
 
 	@Test
-	public void givenScheduleResource_whenScheduleResourceGetStartDate_thenReturnStartDate() {
+	protected void givenScheduleResource_whenScheduleResourceGetStartDate_thenReturnStartDate() {
 
 		assertThat(scheduleResource.getStartDate()).isEqualTo(startDate);
 
 	}
 
 	@Test
-	public void givenScheduleResource_whenScheduleResourceGetEndDate_thenReturnEndDate() {
+	protected void givenScheduleResource_whenScheduleResourceGetEndDate_thenReturnEndDate() {
 
 		assertThat(scheduleResource.getEndDate()).isEqualTo(endDate);
 
 	}
 
 	@Test
-	public void givenEmptyScheduleResource_whenEmptyScheduleResourceSetScheduleResourceIdAndGetScheduleResourceId_thenReturnScheduleResourceId() {
+	protected void givenEmptyScheduleResource_whenEmptyScheduleResourceSetScheduleResourceIdAndGetScheduleResourceId_thenReturnScheduleResourceId() {
 
 		emptyScheduleResource.setScheduleId(scheduleId);
 		assertThat(emptyScheduleResource.getScheduleId()).isEqualTo(scheduleId);
@@ -67,7 +67,7 @@ public class ScheduleResourceTest {
 	}
 
 	@Test
-	public void givenEmptyScheduleResource_whenEmptyScheduleResourceSetCalendarIdAndGetCalendarId_thenReturnCalendarId() {
+	protected void givenEmptyScheduleResource_whenEmptyScheduleResourceSetCalendarIdAndGetCalendarId_thenReturnCalendarId() {
 
 		emptyScheduleResource.setCalendarId(calendarId);
 		assertThat(emptyScheduleResource.getCalendarId()).isEqualTo(calendarId);
@@ -75,7 +75,7 @@ public class ScheduleResourceTest {
 	}
 
 	@Test
-	public void givenEmptyScheduleResource_whenEmptyScheduleResourceSetStartDateAndGetStartDate_thenReturnStartDate() {
+	protected void givenEmptyScheduleResource_whenEmptyScheduleResourceSetStartDateAndGetStartDate_thenReturnStartDate() {
 
 		emptyScheduleResource.setStartDate(startDate);
 		assertThat(emptyScheduleResource.getStartDate()).isEqualTo(startDate);
@@ -83,7 +83,7 @@ public class ScheduleResourceTest {
 	}
 
 	@Test
-	public void givenEmptyScheduleResource_whenEmptyScheduleResourceSetEndDateAndGetEndDate_thenReturnEndDate() {
+	protected void givenEmptyScheduleResource_whenEmptyScheduleResourceSetEndDateAndGetEndDate_thenReturnEndDate() {
 
 		emptyScheduleResource.setEndDate(endDate);
 		assertThat(emptyScheduleResource.getEndDate()).isEqualTo(endDate);
@@ -91,28 +91,28 @@ public class ScheduleResourceTest {
 	}
 
 	@Test
-	public void givenScheduleResource_whenEqualsWithEmptyEmployee_thenReturnFalse() {
+	protected void givenScheduleResource_whenEqualsWithEmptyEmployee_thenReturnFalse() {
 
 		assertThat(scheduleResource.equals(emptyScheduleResource)).isFalse();
 
 	}
 
 	@Test
-	public void givenScheduleResource_whenEqualsWithNull_thenReturnFalse() {
+	protected void givenScheduleResource_whenEqualsWithNull_thenReturnFalse() {
 
 		assertThat(scheduleResource.equals(null)).isFalse();
 
 	}
 
 	@Test
-	public void givenScheduleResource_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenScheduleResource_whenEqualsWithOtherClass_thenReturnFalse() {
 
 		assertThat(scheduleResource.equals(calendarId)).isFalse();
 
 	}
 
 	@Test
-	public void givenScheduleResource_whenEqualsWithScheduleResource_thenReturnTrue() {
+	protected void givenScheduleResource_whenEqualsWithScheduleResource_thenReturnTrue() {
 
 		assertThat(scheduleResource.equals(scheduleResource)).isTrue();
 
