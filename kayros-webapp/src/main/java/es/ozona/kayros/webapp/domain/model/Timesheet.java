@@ -204,7 +204,7 @@ public class Timesheet {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof Timesheet)) {
+		if (!(obj instanceof Timesheet)) {
 
 			return false;
 

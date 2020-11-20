@@ -206,28 +206,28 @@ public class WorkingTimePeriodTest {
 	@Test
 	protected void givenWorkingTimePeriod_whenEqualsWithEmptyWorkingTimePeriod_thenReturnFalse() {
 
-		assertThat(workingTimePeriod.equals(emptyWorkingTimePeriod)).isFalse();
+		assertThat(workingTimePeriod).isNotEqualTo(emptyWorkingTimePeriod);
 
 	}
 
 	@Test
 	protected void givenWorkingTimePeriod_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(workingTimePeriod.equals(null)).isFalse();
+		assertThat(workingTimePeriod).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenWorkingTimePeriod_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(workingTimePeriod.equals(workplace)).isFalse();
+		assertThat(workingTimePeriod).isNotEqualTo(workplace);
 
 	}
 
 	@Test
 	protected void givenWorkingTimePeriod_whenEqualsWithWorkingTimePeriod_thenReturnTrue() {
 
-		assertThat(workingTimePeriod.equals(workingTimePeriod)).isTrue();
+		assertThat(workingTimePeriod).isEqualTo(workingTimePeriod);
 
 	}
 

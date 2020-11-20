@@ -47,14 +47,14 @@ public class ScheduleMapperTest {
 	@Test
 	protected void givenScheduleResource_whenScheduleMapperMapFromResourceEqualsSchedule_thenReturnTrue() {
 
-		assertThat(ScheduleMapper.mapFromResource(scheduleResource).equals(schedule)).isTrue();
+		assertThat(ScheduleMapper.mapFromResource(scheduleResource)).isEqualTo(schedule);
 
 	}
 
 	@Test
 	protected void givenSchedule_whenScheduleMapperMapToResourceEqualsScheduleResource_thenReturnTrue() {
 
-		assertThat(ScheduleMapper.mapToResource(schedule).equals(scheduleResource)).isTrue();
+		assertThat(ScheduleMapper.mapToResource(schedule)).isEqualTo(scheduleResource);
 
 	}
 

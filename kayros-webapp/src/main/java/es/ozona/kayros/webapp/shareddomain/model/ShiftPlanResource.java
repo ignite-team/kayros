@@ -68,7 +68,7 @@ public class ShiftPlanResource {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof ShiftPlanResource)) {
+		if (!(obj instanceof ShiftPlanResource)) {
 
 			return false;
 

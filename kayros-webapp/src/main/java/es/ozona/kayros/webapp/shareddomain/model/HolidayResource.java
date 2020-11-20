@@ -35,7 +35,7 @@ public class HolidayResource {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof HolidayResource)) {
+		if (!(obj instanceof HolidayResource)) {
 
 			return false;
 

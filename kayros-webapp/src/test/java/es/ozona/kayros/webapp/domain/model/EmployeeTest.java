@@ -161,28 +161,28 @@ public class EmployeeTest {
 	@Test
 	protected void givenEmployee_whenEqualsWithEmptyEmployee_thenReturnFalse() {
 
-		assertThat(employee.equals(emptyEmployee)).isFalse();
+		assertThat(employee).isNotEqualTo(emptyEmployee);
 
 	}
 
 	@Test
 	protected void givenEmployee_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(employee.equals(null)).isFalse();
+		assertThat(employee).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenEmployee_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(employee.equals(email)).isFalse();
+		assertThat(employee).isNotEqualTo(email);
 
 	}
 
 	@Test
 	protected void givenEmployee_whenEqualsWithEmployee_thenReturnTrue() {
 
-		assertThat(employee.equals(employee)).isTrue();
+		assertThat(employee).isEqualTo(employee);
 
 	}
 

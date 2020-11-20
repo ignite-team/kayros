@@ -93,28 +93,28 @@ public class ShiftPlanResourceTest {
 	@Test
 	protected void givenShiftPlanResource_whenEqualsWithEmptyEmployeeResource_thenReturnFalse() {
 
-		assertThat(shiftPlanResource.equals(emptyShiftPlanResource)).isFalse();
+		assertThat(shiftPlanResource).isNotEqualTo(emptyShiftPlanResource);
 
 	}
 
 	@Test
 	protected void givenShiftPlanResource_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(shiftPlanResource.equals(null)).isFalse();
+		assertThat(shiftPlanResource).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenShiftPlanResource_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(shiftPlanResource.equals(calendarId)).isFalse();
+		assertThat(shiftPlanResource).isNotEqualTo(calendarId);
 
 	}
 
 	@Test
 	protected void givenShiftPlanResource_whenEqualsWithShiftPlanResource_thenReturnTrue() {
 
-		assertThat(shiftPlanResource.equals(shiftPlanResource)).isTrue();
+		assertThat(shiftPlanResource).isEqualTo(shiftPlanResource);
 
 	}
 

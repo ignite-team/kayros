@@ -67,7 +67,7 @@ public class Schedule {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof Schedule)) {
+		if (!(obj instanceof Schedule)) {
 
 			return false;
 

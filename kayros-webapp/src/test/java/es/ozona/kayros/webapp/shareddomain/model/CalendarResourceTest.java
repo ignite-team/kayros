@@ -110,28 +110,28 @@ public class CalendarResourceTest {
 	@Test
 	protected void givenCalendarResource_whenEqualsWithEmptyEmployeeResource_thenReturnFalse() {
 
-		assertThat(calendarResource.equals(emptyCalendarResource)).isFalse();
+		assertThat(calendarResource).isNotEqualTo(emptyCalendarResource);
 
 	}
 
 	@Test
 	protected void givenCalendarResource_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(calendarResource.equals(null)).isFalse();
+		assertThat(calendarResource).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenCalendarResource_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(calendarResource.equals(title)).isFalse();
+		assertThat(calendarResource).isNotEqualTo(title);
 
 	}
 
 	@Test
 	protected void givenCalendarResource_whenEqualsWithCalendarResource_thenReturnTrue() {
 
-		assertThat(calendarResource.equals(calendarResource)).isTrue();
+		assertThat(calendarResource).isEqualTo(calendarResource);
 
 	}
 

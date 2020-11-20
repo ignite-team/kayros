@@ -95,28 +95,28 @@ public class ScheduleTest {
 	@Test
 	protected void givenSchedule_whenEqualsWithEmptyEmployee_thenReturnFalse() {
 
-		assertThat(schedule.equals(emptySchedule)).isFalse();
+		assertThat(schedule).isNotEqualTo(emptySchedule);
 
 	}
 
 	@Test
 	protected void givenSchedule_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(schedule.equals(null)).isFalse();
+		assertThat(schedule).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenSchedule_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(schedule.equals(calendarId)).isFalse();
+		assertThat(schedule).isNotEqualTo(calendarId);
 
 	}
 
 	@Test
 	protected void givenSchedule_whenEqualsWithSchedule_thenReturnTrue() {
 
-		assertThat(schedule.equals(schedule)).isTrue();
+		assertThat(schedule).isEqualTo(schedule);
 
 	}
 

@@ -119,7 +119,7 @@ public class ExternalTimesheetServiceTest {
 	protected void givenExistingEmpleeUsernameAndEmployeeId_whenCallCLock_thenReturnsTimesheetResource() {
 
 		Mockito.when(timesheetService.clock(employeeId, username)).thenReturn(timesheetResource);
-		assertThat(externalTimesheetService.clock(employee) instanceof TimesheetResource).isTrue();
+		assertThat(externalTimesheetService.clock(employee)).isInstanceOf(Employee.class);
 
 	}
 
@@ -136,7 +136,7 @@ public class ExternalTimesheetServiceTest {
 
 		Mockito.when(timesheetService.search(String.format("( employeeId:%s and date:%s )", invalidEmployeeId, startDate), "+date", 1, 1000))
 				.thenReturn(emptyPageResult);
-		assertThat(externalTimesheetService.searchCurrentByEmployeeId(invalidEmployeeId).size() == 0).isTrue();
+		assertThat(externalTimesheetService.searchCurrentByEmployeeId(invalidEmployeeId)).isSameAs(0);
 
 	}
 
@@ -162,7 +162,7 @@ public class ExternalTimesheetServiceTest {
 	protected void givenExistingEmployeeId_whenCallSearchCurrentTimesheetByEmployeeId_thenReturnsTimesheet() {
 
 		Mockito.when(timesheetService.search(String.format("( employeeId:%s and date:%s )", employeeId, startDate), "+date", 1, 1000)).thenReturn(pageResult);
-		assertThat(externalTimesheetService.searchCurrentTimesheetByEmployeeId(employeeId) instanceof Timesheet).isTrue();
+		assertThat(externalTimesheetService.searchCurrentTimesheetByEmployeeId(employeeId)).isInstanceOf(Timesheet.class);
 
 	}
 

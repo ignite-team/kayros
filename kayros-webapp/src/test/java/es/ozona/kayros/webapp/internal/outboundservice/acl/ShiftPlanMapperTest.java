@@ -47,14 +47,14 @@ public class ShiftPlanMapperTest {
 	@Test
 	protected void givenShiftPlanResource_whenShiftPlanMapperMapFromResourceEqualsShiftPlan_thenReturnTrue() {
 
-		assertThat(ShiftPlanMapper.mapFromResource(shiftPlanResource).equals(shiftPlan)).isTrue();
+		assertThat(ShiftPlanMapper.mapFromResource(shiftPlanResource)).isEqualTo(shiftPlan);
 
 	}
 
 	@Test
 	protected void givenShiftPlan_whenShiftPlanMapperMapToResourceEqualsShiftPlanResource_thenReturnTrue() {
 
-		assertThat(ShiftPlanMapper.mapToResource(shiftPlan).equals(shiftPlanResource)).isTrue();
+		assertThat(ShiftPlanMapper.mapToResource(shiftPlan)).isEqualTo(shiftPlanResource);
 
 	}
 

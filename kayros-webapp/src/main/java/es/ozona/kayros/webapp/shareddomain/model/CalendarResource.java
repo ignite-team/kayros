@@ -79,7 +79,7 @@ public class CalendarResource {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof CalendarResource)) {
+		if (!(obj instanceof CalendarResource)) {
 
 			return false;
 

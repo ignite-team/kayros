@@ -40,14 +40,14 @@ public class WorkdayMapperTest {
 	@Test
 	protected void givenShiftPlanResource_whenShiftPlanMapperMapFromResourceEqualsShiftPlan_thenReturnTrue() {
 
-		assertThat(WorkdayMapper.mapFromResource(workdayResource).equals(workday)).isTrue();
+		assertThat(WorkdayMapper.mapFromResource(workdayResource)).isEqualTo(workday);
 
 	}
 
 	@Test
 	protected void givenShiftPlan_whenShiftPlanMapperMapToResourceEqualsShiftPlanResource_thenReturnTrue() {
 
-		assertThat(WorkdayMapper.mapToResource(workday).equals(workdayResource)).isTrue();
+		assertThat(WorkdayMapper.mapToResource(workday)).isEqualTo(workdayResource);
 
 	}
 

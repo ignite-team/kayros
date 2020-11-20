@@ -42,28 +42,28 @@ public class HolidayTest {
 	@Test
 	protected void givenHoliday_whenEqualsWithEmptyHoliday_thenReturnFalse() {
 
-		assertThat(holiday.equals(emptyHoliday)).isFalse();
+		assertThat(holiday).isNotEqualTo(emptyHoliday);
 
 	}
 
 	@Test
 	protected void givenHoliday_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(holiday.equals(null)).isFalse();
+		assertThat(holiday).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenHoliday_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(holiday.equals(holidayString)).isFalse();
+		assertThat(holiday).isNotEqualTo(holidayString);
 
 	}
 
 	@Test
 	protected void givenHoliday_whenEqualsWithHoliday_thenReturnTrue() {
 
-		assertThat(holiday.equals(holiday)).isTrue();
+		assertThat(holiday).isEqualTo(holiday);
 
 	}
 

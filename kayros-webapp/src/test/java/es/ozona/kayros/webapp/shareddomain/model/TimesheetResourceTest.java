@@ -71,28 +71,28 @@ public class TimesheetResourceTest {
 	@Test
 	protected void givenTimesheetResource_whenEqualsWithEmptyTimesheetResource_thenReturnFalse() {
 
-		assertThat(timesheetResource.equals(emptyTimesheetResource)).isFalse();
+		assertThat(timesheetResource).isNotEqualTo(emptyTimesheetResource);
 
 	}
 
 	@Test
 	protected void givenTimesheetResource_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(timesheetResource.equals(null)).isFalse();
+		assertThat(timesheetResource).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenTimesheetResource_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(timesheetResource.equals(timesheetId)).isFalse();
+		assertThat(timesheetResource).isNotEqualTo(timesheetId);
 
 	}
 
 	@Test
 	protected void givenTimesheetResource_whenEqualsWithEmployee_thenReturnTrue() {
 
-		assertThat(timesheetResource.equals(timesheetResource)).isTrue();
+		assertThat(timesheetResource).isEqualTo(timesheetResource);
 
 	}
 

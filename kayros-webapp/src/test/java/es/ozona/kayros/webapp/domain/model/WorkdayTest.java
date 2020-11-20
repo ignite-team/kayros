@@ -125,28 +125,28 @@ public class WorkdayTest {
 	@Test
 	protected void givenHoliday_whenEqualsWithEmptyHoliday_thenReturnFalse() {
 
-		assertThat(workday.equals(emptyWorkday)).isFalse();
+		assertThat(workday).isNotEqualTo(emptyWorkday);
 
 	}
 
 	@Test
 	protected void givenHoliday_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(workday.equals(null)).isFalse();
+		assertThat(workday).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenHoliday_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(workday.equals(day)).isFalse();
+		assertThat(workday).isNotEqualTo(day);
 
 	}
 
 	@Test
 	protected void givenHoliday_whenEqualsWithHoliday_thenReturnTrue() {
 
-		assertThat(workday.equals(workday)).isTrue();
+		assertThat(workday).isEqualTo(workday);
 
 	}
 }

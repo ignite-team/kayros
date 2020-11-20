@@ -49,7 +49,7 @@ public class TimesheetDurationTest {
 
 		Duration duration = Duration.ZERO;
 
-		assertThat(new TimesheetDuration(duration).getDuration().equals(duration)).isTrue();
+		assertThat(new TimesheetDuration(duration).getDuration()).isEqualTo(duration);
 
 	}
 

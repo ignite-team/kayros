@@ -171,28 +171,29 @@ public class WorkingTimePeriodResourceTest {
 	@Test
 	protected void givenWorkingTimePeriodResource_whenEqualsWithEmptyWorkingTimePeriodResource_thenReturnFalse() {
 
-		assertThat(workingTimePeriodResource.equals(emptyWorkingTimePeriodResource)).isFalse();
+		assertThat(workingTimePeriodResource).isNotEqualTo(emptyWorkingTimePeriodResource);
 
 	}
 
 	@Test
 	protected void givenWorkingTimePeriodResource_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(workingTimePeriodResource.equals(null)).isFalse();
+		assertThat(workingTimePeriodResource).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenWorkingTimePeriodResource_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(workingTimePeriodResource.equals(workplace)).isFalse();
+		assertThat(workingTimePeriodResource).isNotEqualTo(workplace);
 
 	}
 
 	@Test
 	protected void givenWorkingTimePeriodResource_whenEqualsWithWorkingTimePeriodResource_thenReturnTrue() {
 
-		assertThat(workingTimePeriodResource.equals(workingTimePeriodResource)).isTrue();
+		assertThat(workingTimePeriodResource).isEqualTo(workingTimePeriodResource);
 
 	}
+
 }

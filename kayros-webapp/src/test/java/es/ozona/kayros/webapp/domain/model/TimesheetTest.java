@@ -265,28 +265,28 @@ public class TimesheetTest {
 	@Test
 	protected void givenTimesheet_whenEqualsWithEmptyTimesheet_thenReturnFalse() {
 
-		assertThat(timesheet.equals(emptyTimesheet)).isFalse();
+		assertThat(timesheet).isNotEqualTo(emptyTimesheet);
 
 	}
 
 	@Test
 	protected void givenTimesheet_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(timesheet.equals(null)).isFalse();
+		assertThat(timesheet).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenTimesheet_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(timesheet.equals(timesheetId)).isFalse();
+		assertThat(timesheet).isNotEqualTo(timesheetId);
 
 	}
 
 	@Test
 	protected void givenTimesheet_whenEqualsWithEmployee_thenReturnTrue() {
 
-		assertThat(timesheet.equals(timesheet)).isTrue();
+		assertThat(timesheet).isEqualTo(timesheet);
 
 	}
 

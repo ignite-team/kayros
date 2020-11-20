@@ -127,28 +127,28 @@ public class WorkdayResourceTest {
 	@Test
 	protected void givenHolidayResource_whenEqualsWithEmptyHolidayResource_thenReturnFalse() {
 
-		assertThat(workdayResource.equals(emptyWorkdayResource)).isFalse();
+		assertThat(workdayResource).isNotEqualTo(emptyWorkdayResource);
 
 	}
 
 	@Test
 	protected void givenHolidayResource_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(workdayResource.equals(null)).isFalse();
+		assertThat(workdayResource).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenHolidayResource_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(workdayResource.equals(day)).isFalse();
+		assertThat(workdayResource).isNotEqualTo(day);
 
 	}
 
 	@Test
 	protected void givenHolidayResource_whenEqualsWithHolidayResource_thenReturnTrue() {
 
-		assertThat(workdayResource.equals(workdayResource)).isTrue();
+		assertThat(workdayResource).isEqualTo(workdayResource);
 
 	}
 

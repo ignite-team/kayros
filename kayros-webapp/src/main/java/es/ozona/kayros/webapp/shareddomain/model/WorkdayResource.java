@@ -85,7 +85,7 @@ public class WorkdayResource {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof WorkdayResource)) {
+		if (!(obj instanceof WorkdayResource)) {
 
 			return false;
 

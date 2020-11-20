@@ -40,14 +40,14 @@ public class CalendarMapperTest {
 	@Test
 	protected void givenCalendarResource_whenCalendarMapperMapFromResourceEqualsCalendar_thenReturnTrue() {
 
-		assertThat(CalendarMapper.mapFromResource(calendarResource).equals(calendar)).isTrue();
+		assertThat(CalendarMapper.mapFromResource(calendarResource)).isEqualTo(calendar);
 
 	}
 
 	@Test
 	protected void givenCalendar_whenCalendarMapperMapToResourceEqualsCalendarResource_thenReturnTrue() {
 
-		assertThat(CalendarMapper.mapToResource(calendar).equals(calendarResource)).isTrue();
+		assertThat(CalendarMapper.mapToResource(calendar)).isEqualTo(calendarResource);
 
 	}
 

@@ -93,28 +93,27 @@ public class ScheduleResourceTest {
 	@Test
 	protected void givenScheduleResource_whenEqualsWithEmptyEmployee_thenReturnFalse() {
 
-		assertThat(scheduleResource.equals(emptyScheduleResource)).isFalse();
+		assertThat(scheduleResource).isNotEqualTo(emptyScheduleResource);
 
 	}
 
 	@Test
 	protected void givenScheduleResource_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(scheduleResource.equals(null)).isFalse();
-
+		assertThat(scheduleResource).isNotEqualTo(null);
 	}
 
 	@Test
 	protected void givenScheduleResource_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(scheduleResource.equals(calendarId)).isFalse();
+		assertThat(scheduleResource).isNotEqualTo(calendarId);
 
 	}
 
 	@Test
 	protected void givenScheduleResource_whenEqualsWithScheduleResource_thenReturnTrue() {
 
-		assertThat(scheduleResource.equals(scheduleResource)).isTrue();
+		assertThat(scheduleResource).isEqualTo(scheduleResource);
 
 	}
 

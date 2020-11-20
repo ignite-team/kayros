@@ -82,7 +82,7 @@ public class TimesheetResource {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof TimesheetResource)) {
+		if (!(obj instanceof TimesheetResource)) {
 
 			return false;
 

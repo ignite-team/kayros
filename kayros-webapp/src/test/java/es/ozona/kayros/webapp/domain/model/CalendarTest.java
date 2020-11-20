@@ -110,28 +110,28 @@ public class CalendarTest {
 	@Test
 	protected void givenCalendar_whenEqualsWithEmptyEmployee_thenReturnFalse() {
 
-		assertThat(calendar.equals(emptyCalendar)).isFalse();
+		assertThat(calendar).isNotEqualTo(emptyCalendar);
 
 	}
 
 	@Test
 	protected void givenCalendar_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(calendar.equals(null)).isFalse();
+		assertThat(calendar).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenCalendar_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(calendar.equals(title)).isFalse();
+		assertThat(calendar).isNotEqualTo(title);
 
 	}
 
 	@Test
 	protected void givenCalendar_whenEqualsWithCalendar_thenReturnTrue() {
 
-		assertThat(calendar.equals(calendar)).isTrue();
+		assertThat(calendar).isEqualTo(calendar);
 
 	}
 

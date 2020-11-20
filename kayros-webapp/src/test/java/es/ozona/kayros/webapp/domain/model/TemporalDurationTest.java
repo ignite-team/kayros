@@ -42,7 +42,7 @@ public class TemporalDurationTest {
 
 		Duration duration = Duration.ZERO;
 
-		assertThat(new TemporalDuration(duration).isSupported(null)).isEqualTo(false);
+		assertThat(new TemporalDuration(duration).isSupported(null)).isFalse();
 
 	}
 
@@ -51,7 +51,7 @@ public class TemporalDurationTest {
 
 		Duration duration = Duration.ZERO;
 
-		assertThat(new TemporalDuration(duration).getDuration().equals(duration)).isEqualTo(true);
+		assertThat(new TemporalDuration(duration).getDuration()).isEqualTo(duration);
 
 	}
 

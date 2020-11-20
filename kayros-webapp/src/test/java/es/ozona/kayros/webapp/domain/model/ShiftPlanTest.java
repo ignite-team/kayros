@@ -95,28 +95,28 @@ public class ShiftPlanTest {
 	@Test
 	protected void givenShiftPlan_whenEqualsWithEmptyEmployee_thenReturnFalse() {
 
-		assertThat(shiftPlan.equals(emptyShiftPlan)).isFalse();
+		assertThat(shiftPlan).isNotEqualTo(emptyShiftPlan);
 
 	}
 
 	@Test
 	protected void givenShiftPlan_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(shiftPlan.equals(null)).isFalse();
+		assertThat(shiftPlan).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenShiftPlan_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(shiftPlan.equals(calendarId)).isFalse();
+		assertThat(shiftPlan).isNotEqualTo(calendarId);
 
 	}
 
 	@Test
 	protected void givenShiftPlan_whenEqualsWithShiftPlan_thenReturnTrue() {
 
-		assertThat(shiftPlan.equals(shiftPlan)).isTrue();
+		assertThat(shiftPlan).isEqualTo(shiftPlan);
 
 	}
 

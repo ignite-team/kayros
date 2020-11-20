@@ -135,7 +135,7 @@ public class WorkingTimePeriodResource {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof WorkingTimePeriodResource)) {
+		if (!(obj instanceof WorkingTimePeriodResource)) {
 
 			return false;
 

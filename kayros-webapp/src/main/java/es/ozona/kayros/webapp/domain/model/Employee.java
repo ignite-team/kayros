@@ -113,7 +113,7 @@ public class Employee {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof Employee)) {
+		if (!(obj instanceof Employee)) {
 
 			return false;
 

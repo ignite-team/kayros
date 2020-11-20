@@ -212,28 +212,28 @@ public class CalendarEventTest {
 	@Test
 	protected void givenCalendarEvent_whenEqualsWithEmptyCalendarEvent_thenReturnFalse() {
 
-		assertThat(calendarEvent.equals(emptyCalendarEvent)).isFalse();
+		assertThat(calendarEvent).isNotEqualTo(emptyCalendarEvent);
 
 	}
 
 	@Test
 	protected void givenCalendarEvent_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(calendarEvent.equals(null)).isFalse();
+		assertThat(calendarEvent).isNotEqualTo(null);
 
 	}
 
 	@Test
 	protected void givenCalendarEvent_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(calendarEvent.equals(id)).isFalse();
+		assertThat(calendarEvent).isNotEqualTo(id);
 
 	}
 
 	@Test
 	protected void givenCalendarEvent_whenEqualsWithCalendarEvent_thenReturnTrue() {
 
-		assertThat(calendarEvent.equals(calendarEvent)).isTrue();
+		assertThat(calendarEvent).isEqualTo(calendarEvent);
 
 	}
 

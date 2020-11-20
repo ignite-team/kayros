@@ -70,7 +70,7 @@ public class ShiftPlan {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof ShiftPlan)) {
+		if (!(obj instanceof ShiftPlan)) {
 
 			return false;
 

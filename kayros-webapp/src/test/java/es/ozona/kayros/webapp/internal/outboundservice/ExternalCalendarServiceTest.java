@@ -152,7 +152,7 @@ public class ExternalCalendarServiceTest {
 	protected void givenNoCalendars_whenCallSearchCalendars_thenReturnNoCalendars() {
 
 		Mockito.when(calendarService.searchCalendars(null, "+year", 1, 1000)).thenReturn(emptyCalendarPageResult);
-		assertThat(externalCalendarService.searchCalendars().size() == 0).isTrue();
+		assertThat(externalCalendarService.searchCalendars()).isSameAs(0);
 
 	}
 
@@ -168,7 +168,7 @@ public class ExternalCalendarServiceTest {
 	protected void givenNoShiftPlans_whenCallSearchShiftPlans_thenReturnNoShiftPlans() {
 
 		Mockito.when(calendarService.searchShiftPlans(null, "+startDate", 1, 1000)).thenReturn(emptyShiftPlanPageResult);
-		assertThat(externalCalendarService.searchShiftPlans().size() == 0).isTrue();
+		assertThat(externalCalendarService.searchShiftPlans()).isSameAs(0);
 
 	}
 
@@ -184,7 +184,7 @@ public class ExternalCalendarServiceTest {
 	protected void givenNoHolidays_whenCallSearchCalendarHolidaysByCalendarId_thenReturnNoHolidays() {
 
 		Mockito.when(calendarService.findAllHolidaysByCalendarId(calendarId)).thenReturn(emptyHolidayResourceList);
-		assertThat(externalCalendarService.searchCalendarHolidaysByCalendarId(calendarId).size() == 0).isTrue();
+		assertThat(externalCalendarService.searchCalendarHolidaysByCalendarId(calendarId).size()).isSameAs(0);
 
 	}
 
@@ -200,7 +200,7 @@ public class ExternalCalendarServiceTest {
 	protected void givenNoWorkdays_whenCallSearchShiftPlanWorkdaysByShitfPlanId_thenReturnNoWorkdays() {
 
 		Mockito.when(calendarService.findAllWorkdaysByShiftplanId(shiftPlanId)).thenReturn(emptyWorkdayResourceList);
-		assertThat(externalCalendarService.searchShiftPlanWorkdaysByShitfPlanId(shiftPlanId).size() == 0).isTrue();
+		assertThat(externalCalendarService.searchShiftPlanWorkdaysByShitfPlanId(shiftPlanId).size()).isSameAs(0);
 
 	}
 

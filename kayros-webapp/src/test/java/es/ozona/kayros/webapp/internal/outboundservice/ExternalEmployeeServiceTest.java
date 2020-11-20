@@ -3,7 +3,6 @@ package es.ozona.kayros.webapp.internal.outboundservice;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -72,7 +71,7 @@ public class ExternalEmployeeServiceTest {
 	protected void givenExistingEmpleeUsername_whenCallFindEmployeeByUsername_thenReturnsEmployee() {
 
 		Mockito.when(employeeService.search(String.format("username:%s", username), "+username", 1, 1)).thenReturn(pageResult);
-		assertThat(externalEmployeeService.findEmployeeByUsername(username)).isNotEqualTo(Optional.empty());
+		assertThat(externalEmployeeService.findEmployeeByUsername(username)).isPresent();
 
 	}
 
@@ -88,7 +87,7 @@ public class ExternalEmployeeServiceTest {
 	protected void givenInvalidEmpleeUsername_whenCallFindEmployeeByUsername_thenReturnsNoEmployee() {
 
 		Mockito.when(employeeService.search(String.format("username:%s", invalidUsername), "+username", 1, 1)).thenReturn(emptyPageResult);
-		assertThat(externalEmployeeService.findEmployeeByUsername(invalidUsername)).isEqualTo(Optional.empty());
+		assertThat(externalEmployeeService.findEmployeeByUsername(invalidUsername)).isPresent();
 
 	}
 
@@ -96,7 +95,7 @@ public class ExternalEmployeeServiceTest {
 	protected void givenInvalidEmpleeUsername_whenCallFindEmployeesLikeUsername_thenReturns0Employees() {
 
 		Mockito.when(employeeService.search(String.format("username:%s*", invalidUsername), "+username", 1, 15)).thenReturn(emptyPageResult);
-		assertThat(externalEmployeeService.findEmployeesLikeUsername(invalidUsername).size() == 0).isTrue();
+		assertThat(externalEmployeeService.findEmployeesLikeUsername(invalidUsername).size()).isSameAs(0);
 
 	}
 
@@ -104,7 +103,7 @@ public class ExternalEmployeeServiceTest {
 	protected void givenEmployee_whenCallModifyEmployee_thenReturnEmployeeObject() {
 
 		Mockito.when(employeeService.modify(employeeResource, employeeId)).thenReturn(employeeResource);
-		assertThat(externalEmployeeService.modifyEmployee(employee) instanceof Employee).isTrue();
+		assertThat(externalEmployeeService.modifyEmployee(employee)).isInstanceOf(Employee.class);
 
 	}
 
