@@ -23,12 +23,12 @@ import org.zkoss.util.resource.Labels;
 
 public class ExportUtils {
 
-	private static final String workingTimePeriodsText = Labels.getLabel("timesheet.workingTimePeriods");
-	private static final String yesText = Labels.getLabel("general.yes");
-	private static final String noText = Labels.getLabel("general.no");
+	private static final String WORKING_TIMEPERIODS_TEXT = Labels.getLabel("timesheet.workingTimePeriods");
+	private static final String YES_TEST = Labels.getLabel("general.yes");
+	private static final String NO_TEXT = Labels.getLabel("general.no");
 
-	private static final String fullPattern = "dd/MM/yyyy HH:mm:ss";
-	private static final String pattern = "dd/MM/yyyy";
+	private static final String FULL_PATTERN = "dd/MM/yyyy HH:mm:ss";
+	private static final String PATTERN = "dd/MM/yyyy";
 
 	private ExportUtils() {
 		throw new IllegalStateException("Utility class");
@@ -38,8 +38,8 @@ public class ExportUtils {
 
 		try {
 
-			SimpleDateFormat fullFormater = new SimpleDateFormat(fullPattern);
-			SimpleDateFormat formater = new SimpleDateFormat(pattern);
+			SimpleDateFormat fullFormater = new SimpleDateFormat(FULL_PATTERN);
+			SimpleDateFormat formater = new SimpleDateFormat(PATTERN);
 
 			ByteArrayInputStream instr;
 
@@ -58,11 +58,11 @@ public class ExportUtils {
 
 						if ((Boolean) array[x] == true) {
 
-							array[x] = yesText;
+							array[x] = YES_TEST;
 
 						} else {
 
-							array[x] = noText;
+							array[x] = NO_TEXT;
 
 						}
 
@@ -105,10 +105,10 @@ public class ExportUtils {
 
 		try {
 
-			SimpleDateFormat fullFormater = new SimpleDateFormat(fullPattern);
-			SimpleDateFormat formater = new SimpleDateFormat(pattern);
+			SimpleDateFormat fullFormater = new SimpleDateFormat(FULL_PATTERN);
+			SimpleDateFormat formater = new SimpleDateFormat(PATTERN);
 
-			Sheet sheet = workbook.createSheet(workingTimePeriodsText);
+			Sheet sheet = workbook.createSheet(WORKING_TIMEPERIODS_TEXT);
 
 			Row header = sheet.createRow(0);
 
@@ -132,11 +132,11 @@ public class ExportUtils {
 
 						if ((Boolean) rows.get(y).get(z) == true) {
 
-							cell.setCellValue(yesText);
+							cell.setCellValue(YES_TEST);
 
 						} else {
 
-							cell.setCellValue(noText);
+							cell.setCellValue(NO_TEXT);
 
 						}
 

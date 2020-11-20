@@ -17,6 +17,9 @@ public class ExportFormValidator extends AbstractValidator {
 	private String invalidFormatText;
 	private String invalidEmployeeText;
 
+	private static final String START_DATE_TEXT = "startDate";
+	private static final String END_DATE_TEXT = "endDate";
+
 	public void validate(ValidationContext ctx) {
 
 		invalidDateText = Labels.getLabel("exception.date.invalidDate");
@@ -26,9 +29,9 @@ public class ExportFormValidator extends AbstractValidator {
 
 		Map<String, Property> beanProps = ctx.getProperties(ctx.getProperty().getBase());
 
-		validateStartDate(ctx, (Date) beanProps.get("startDate").getValue());
-		validateEndtDate(ctx, (Date) beanProps.get("endDate").getValue());
-		validateDates(ctx, (Date) beanProps.get("startDate").getValue(), (Date) beanProps.get("endDate").getValue());
+		validateStartDate(ctx, (Date) beanProps.get(START_DATE_TEXT).getValue());
+		validateEndtDate(ctx, (Date) beanProps.get(END_DATE_TEXT).getValue());
+		validateDates(ctx, (Date) beanProps.get(START_DATE_TEXT).getValue(), (Date) beanProps.get(END_DATE_TEXT).getValue());
 		validateFileFormat(ctx, (String) beanProps.get("fileFormat").getValue());
 
 		if (SecurityAccess.hasRole("ROLE_KAYROS_HR_MANAGER")) {
@@ -43,7 +46,7 @@ public class ExportFormValidator extends AbstractValidator {
 
 		if (startDate == null) {
 
-			this.addInvalidMessage(ctx, "startDate", invalidDateText);
+			this.addInvalidMessage(ctx, START_DATE_TEXT, invalidDateText);
 
 		}
 
@@ -53,7 +56,7 @@ public class ExportFormValidator extends AbstractValidator {
 
 		if (endDate == null) {
 
-			this.addInvalidMessage(ctx, "endDate", invalidDateText);
+			this.addInvalidMessage(ctx, END_DATE_TEXT, invalidDateText);
 
 		}
 
@@ -63,8 +66,8 @@ public class ExportFormValidator extends AbstractValidator {
 
 		if (startDate != null && endDate != null && startDate.compareTo(endDate) > 0) {
 
-			this.addInvalidMessage(ctx, "startDate", notTallyDatesText);
-			this.addInvalidMessage(ctx, "endDate", notTallyDatesText);
+			this.addInvalidMessage(ctx, START_DATE_TEXT, notTallyDatesText);
+			this.addInvalidMessage(ctx, END_DATE_TEXT, notTallyDatesText);
 
 		}
 

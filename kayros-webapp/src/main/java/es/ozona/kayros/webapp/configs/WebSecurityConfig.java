@@ -29,7 +29,8 @@ import org.springframework.security.oauth2.core.user.OAuth2UserAuthority;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private static final String ZUL_FILES = "/zkau/web/**/*.zul";
-
+	private static final String CMD = "cmd_0";
+	
 	private static final String[] ZK_RESOURCES = { 
 		"/zkau/web/**/js/**",
 		"/zkau/web/**/zul/js/**",
@@ -56,11 +57,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests().antMatchers(ZUL_FILES).denyAll() // block direct access to zul files
 				.antMatchers(HttpMethod.GET, ZK_RESOURCES).permitAll() // allow zk resources
-				.requestMatchers(req -> "dummy".equals(req.getParameter("cmd_0")) || "onMove".equals(req.getParameter("cmd_0"))
-						|| "rmDesktop".equals(req.getParameter("cmd_0")))
+				.requestMatchers(req -> "dummy".equals(req.getParameter(CMD)) || "onMove".equals(req.getParameter(CMD))
+						|| "rmDesktop".equals(req.getParameter(CMD)))
 				.permitAll() // allow zk resources
 				.regexMatchers(HttpMethod.GET, REMOVE_DESKTOP_REGEX).permitAll() // allow desktop cleanup
-				.requestMatchers(req -> "rmDesktop".equals(req.getParameter("cmd_0"))).permitAll() // allow desktop cleanup from ZATS
+				.requestMatchers(req -> "rmDesktop".equals(req.getParameter(CMD))).permitAll() // allow desktop cleanup from ZATS
 				.mvcMatchers("/login", "/logout").permitAll().mvcMatchers("/", "/secure/**").authenticated().anyRequest().authenticated().and().oauth2Login()
 				.loginPage("/login").successHandler(oAuth2AuthenticationSuccessHandler).and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
 	}
