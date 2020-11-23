@@ -2,8 +2,6 @@ spring:
   profiles:
     active: @spring.profiles.active@
 
---- # dev
-
 server:
   servlet:
     context-path: /auth
@@ -23,6 +21,7 @@ server:
     trust-store-type: PKCS12
     client-auth: want
 
+--- # dev
 
 spring:
   application:
@@ -43,19 +42,6 @@ security:
 
 --- # test
 
-server:
-  port: 9443
-  servlet:
-    context-path: /auth
-    session:
-      cookie:
-        path: /auth
-  ssl:
-    key-store-password: password
-    key-store: classpath:oauth2keystore.p12
-    key-store-type: PKCS12
-    key-alias: oauth2server
-
 spring:
   application:
     name: authorization-server
@@ -74,19 +60,6 @@ security:
       registered-redirect-uri: https://192.168.0.22:8443/kayros/login/oauth2/code/kayrosclient
           
 --- # prod
-
-server:
-  port: 9443
-  servlet:
-    context-path: /auth
-    session:
-      cookie:
-        path: /auth
-  ssl:
-    key-store-password: password
-    key-store: classpath:oauth2keystore.p12
-    key-store-type: PKCS12
-    key-alias: oauth2server
 
 spring:
   application:
