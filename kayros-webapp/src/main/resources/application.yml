@@ -28,7 +28,9 @@ server:
 feign:
   hystrix:
     enabled: true
-    
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 30000
+
 kairos-clock-service:
   ribbon:
     ReadTimeout: 30000
