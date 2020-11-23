@@ -76,7 +76,7 @@ public class ExportViewModel {
 
 		Optional<Employee> employeeOptional = employeeService.findEmployeeByUsername(employeeUsername);
 
-		if (employeeOptional.isPresent() == false) {
+		if (employeeOptional.isPresent()) {
 
 			Employee employee = employeeOptional.get();
 
