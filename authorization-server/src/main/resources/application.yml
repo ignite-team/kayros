@@ -5,12 +5,23 @@ spring:
 --- # dev
 
 server:
-  port: 9100
   servlet:
     context-path: /auth
     session:
       cookie:
         path: /auth
+  port: 9443
+  ssl:
+    # key store
+    key-store: classpath:keystore.p12
+    key-store-password: secret
+    key-store-type: PKCS12
+    key-alias: authorization-server
+    # trust store
+    trust-store: classpath:truststore.p12
+    trust-store-password: secret
+    trust-store-type: PKCS12
+    client-auth: want
 
 spring:
   application:
@@ -85,3 +96,7 @@ security:
    
 
 # $> keytool -genkey -alias oauth2server -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore oauth2keystore.p12
+#    keytool -genkey -keyalg RSA -storetype PKCS12 -alias authorization-server -keystore keystore.p12 -storepass secret -validity 360
+#    keytool -genkey -keyalg RSA -storetype PKCS12 -alias kayros-webapp -keystore keystore.p12 -storepass secret -validity 360
+#    keytool -export -alias kayros-webapp -file kayros-webapp.crt -keystore keystore.p12 -storepass secret
+#    keytool -import -storetype PKCS12  -alias kayros-webapp -file kayros-webapp.crt -keystore truststore.p12 -storepass secret

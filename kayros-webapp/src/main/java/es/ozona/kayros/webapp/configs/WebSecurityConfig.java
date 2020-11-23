@@ -15,9 +15,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
+import org.springframework.security.oauth2.client.endpoint.OAuth2AccessTokenResponseClient;
+import org.springframework.security.oauth2.client.endpoint.OAuth2AuthorizationCodeGrantRequest;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
 import org.springframework.security.oauth2.core.oidc.user.OidcUserAuthority;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2UserAuthority;
 
 /**
@@ -46,7 +51,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	protected OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
-
+	
+	@Autowired
+	protected OAuth2AccessTokenResponseClient<OAuth2AuthorizationCodeGrantRequest> accessTokenResponseClient;
+	
+	@Autowired
+	OAuth2UserService<OAuth2UserRequest, OAuth2User> customUserService;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
@@ -61,8 +72,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll() // allow zk resources
 				.regexMatchers(HttpMethod.GET, REMOVE_DESKTOP_REGEX).permitAll() // allow desktop cleanup
 				.requestMatchers(req -> "rmDesktop".equals(req.getParameter("cmd_0"))).permitAll() // allow desktop cleanup from ZATS
-				.mvcMatchers("/login", "/logout").permitAll().mvcMatchers("/", "/secure/**").authenticated().anyRequest().authenticated().and().oauth2Login()
-				.loginPage("/login").successHandler(oAuth2AuthenticationSuccessHandler).and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
+				.mvcMatchers("/login", "/logout").permitAll().mvcMatchers("/", "/secure/**")
+				.authenticated().anyRequest()
+				.authenticated()
+				.and().logout()
+					.logoutUrl("/logout")
+					.logoutSuccessUrl("/")
+				.and().oauth2Login()
+				      .loginPage("/login").successHandler(oAuth2AuthenticationSuccessHandler)				      
+				      .tokenEndpoint().accessTokenResponseClient(accessTokenResponseClient)
+				.and().userInfoEndpoint().userService(customUserService);
+				      
 	}
 
 	@Bean
