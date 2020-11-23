@@ -87,7 +87,7 @@ public class ExternalEmployeeServiceTest {
 	protected void givenInvalidEmpleeUsername_whenCallFindEmployeeByUsername_thenReturnsNoEmployee() {
 
 		Mockito.when(employeeService.search(String.format("username:%s", invalidUsername), "+username", 1, 1)).thenReturn(emptyPageResult);
-		assertThat(externalEmployeeService.findEmployeeByUsername(invalidUsername)).isPresent();
+		assertThat(externalEmployeeService.findEmployeeByUsername(invalidUsername)).isNotPresent();
 
 	}
 

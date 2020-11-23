@@ -73,7 +73,7 @@ public class WorkingTimePeriodMapperTest {
 	@Test
 	protected void givenWorkingTimePeriodResourceWithNullFinishTime_whenWorkingTimePeriodMapperMapFromResourceEqualsWorkingTimePeriod_thenReturnFalse() {
 
-		assertThat(WorkTimePeriodMapper.mapFromResource(workingTimePeriodResource2)).isEqualTo(workingTimePeriod);
+		assertThat(WorkTimePeriodMapper.mapFromResource(workingTimePeriodResource2)).isNotEqualTo(workingTimePeriod);
 
 	}
 

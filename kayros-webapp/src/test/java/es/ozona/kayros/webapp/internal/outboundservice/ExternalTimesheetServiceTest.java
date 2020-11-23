@@ -18,6 +18,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import es.ozona.data.inquire.model.paging.PageResult;
 import es.ozona.kayros.webapp.domain.model.Employee;
 import es.ozona.kayros.webapp.domain.model.Timesheet;
+import es.ozona.kayros.webapp.domain.model.WorkingTimePeriod;
 import es.ozona.kayros.webapp.infrastructure.feingclients.TimesheetService;
 import es.ozona.kayros.webapp.shareddomain.model.TimesheetResource;
 import es.ozona.kayros.webapp.shareddomain.model.WorkingTimePeriodResource;
@@ -119,7 +120,7 @@ public class ExternalTimesheetServiceTest {
 	protected void givenExistingEmpleeUsernameAndEmployeeId_whenCallCLock_thenReturnsTimesheetResource() {
 
 		Mockito.when(timesheetService.clock(employeeId, username)).thenReturn(timesheetResource);
-		assertThat(externalTimesheetService.clock(employee)).isInstanceOf(Employee.class);
+		assertThat(externalTimesheetService.clock(employee)).isInstanceOf(TimesheetResource.class);
 
 	}
 
@@ -136,7 +137,7 @@ public class ExternalTimesheetServiceTest {
 
 		Mockito.when(timesheetService.search(String.format("( employeeId:%s and date:%s )", invalidEmployeeId, startDate), "+date", 1, 1000))
 				.thenReturn(emptyPageResult);
-		assertThat(externalTimesheetService.searchCurrentByEmployeeId(invalidEmployeeId)).isSameAs(0);
+		assertThat(externalTimesheetService.searchCurrentByEmployeeId(invalidEmployeeId).size()).isSameAs(0);
 
 	}
 

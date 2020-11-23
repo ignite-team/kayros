@@ -96,7 +96,7 @@ public class TimesheetMapperTest {
 	@Test
 	protected void givenTimesheetResource2_whenTimesheetMapperMapFromResourceEqualsTimesheet_thenReturnFalse() {
 
-		assertThat(TimesheetMapper.mapFromResource(timesheetResource2)).isEqualTo(timesheet);
+		assertThat(TimesheetMapper.mapFromResource(timesheetResource2)).isNotEqualTo(timesheet);
 
 	}
 

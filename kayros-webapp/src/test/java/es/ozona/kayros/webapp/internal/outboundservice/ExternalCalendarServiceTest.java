@@ -152,7 +152,7 @@ public class ExternalCalendarServiceTest {
 	protected void givenNoCalendars_whenCallSearchCalendars_thenReturnNoCalendars() {
 
 		Mockito.when(calendarService.searchCalendars(null, "+year", 1, 1000)).thenReturn(emptyCalendarPageResult);
-		assertThat(externalCalendarService.searchCalendars()).isSameAs(0);
+		assertThat(externalCalendarService.searchCalendars().size()).isSameAs(0);
 
 	}
 
@@ -168,7 +168,7 @@ public class ExternalCalendarServiceTest {
 	protected void givenNoShiftPlans_whenCallSearchShiftPlans_thenReturnNoShiftPlans() {
 
 		Mockito.when(calendarService.searchShiftPlans(null, "+startDate", 1, 1000)).thenReturn(emptyShiftPlanPageResult);
-		assertThat(externalCalendarService.searchShiftPlans()).isSameAs(0);
+		assertThat(externalCalendarService.searchShiftPlans().size()).isSameAs(0);
 
 	}
 
