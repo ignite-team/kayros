@@ -76,7 +76,7 @@ public class TimesheetTest {
 	}
 
 	@Test
-	public void givenEmptyTimesheet_whenTimesheetSetTimesheetIdAndGetTimesheetId_thenReturnTimesheetId() {
+	protected void givenEmptyTimesheet_whenTimesheetSetTimesheetIdAndGetTimesheetId_thenReturnTimesheetId() {
 
 		emptyTimesheet.setTimesheetId(timesheetId);
 		assertThat(emptyTimesheet.getTimesheetId()).isEqualTo(timesheetId);
@@ -84,7 +84,7 @@ public class TimesheetTest {
 	}
 
 	@Test
-	public void givenEmptyTimesheet_whenEmptyTimesheetSetEmployeeIdAndGetEmployeeId_thenReturnEmployeeId() {
+	protected void givenEmptyTimesheet_whenEmptyTimesheetSetEmployeeIdAndGetEmployeeId_thenReturnEmployeeId() {
 
 		emptyTimesheet.setEmployeeId(employeeId);
 		assertThat(emptyTimesheet.getEmployeeId()).isEqualTo(employeeId);
@@ -92,7 +92,7 @@ public class TimesheetTest {
 	}
 
 	@Test
-	public void givenTimesheet_whenEmptyTimesheetSetDateAndGetDate_thenReturnDate() {
+	protected void givenTimesheet_whenEmptyTimesheetSetDateAndGetDate_thenReturnDate() {
 
 		emptyTimesheet.setDate(date);
 		assertThat(emptyTimesheet.getDate()).isEqualTo(date);
@@ -100,7 +100,7 @@ public class TimesheetTest {
 	}
 
 	@Test
-	public void givenEmptyTimesheet_whenEmptyTimesheetSetTimePeriodsAndGetWorkingTimePeriods_thenReturnWorkingTimePeriods() {
+	protected void givenEmptyTimesheet_whenEmptyTimesheetSetTimePeriodsAndGetWorkingTimePeriods_thenReturnWorkingTimePeriods() {
 
 		emptyTimesheet.setWorkingTimePeriods(workingTimePeriods1);
 		assertThat(emptyTimesheet.getWorkingTimePeriods()).isEqualTo(workingTimePeriods1);
@@ -108,7 +108,7 @@ public class TimesheetTest {
 	}
 
 	@Test
-	public void givenEmptyTimesheet_whenEmptyTimesheetSetTimePeriodsAndGetStartDate_thenReturnStartDate() {
+	protected void givenEmptyTimesheet_whenEmptyTimesheetSetTimePeriodsAndGetStartDate_thenReturnStartDate() {
 
 		emptyTimesheet.setWorkingTimePeriods(workingTimePeriods1);
 		assertThat(emptyTimesheet.getStartDate()).isEqualTo(startDate);
@@ -116,7 +116,7 @@ public class TimesheetTest {
 	}
 
 	@Test
-	public void givenEmptyTimesheet_whenEmptyTimesheetSettTimePeriodsAndGetEndtDate_thenReturnEndDate() {
+	protected void givenEmptyTimesheet_whenEmptyTimesheetSettTimePeriodsAndGetEndtDate_thenReturnEndDate() {
 
 		emptyTimesheet.setWorkingTimePeriods(workingTimePeriods1);
 		assertThat(emptyTimesheet.getEndDate()).isEqualTo(endDate);
@@ -124,7 +124,7 @@ public class TimesheetTest {
 	}
 
 	@Test
-	public void givenEmptyTimesheet_whenEmptyTimesheetSetTimePeriodsAndGetTotalTime_thenReturnTotalTime() {
+	protected void givenEmptyTimesheet_whenEmptyTimesheetSetTimePeriodsAndGetTotalTime_thenReturnTotalTime() {
 
 		emptyTimesheet.setWorkingTimePeriods(workingTimePeriods1);
 		assertThat(emptyTimesheet.getTotalTime()).isEqualTo(totalTime);
@@ -132,7 +132,7 @@ public class TimesheetTest {
 	}
 
 	@Test
-	public void givenEmptyTimesheet_whenEmptyTimesheetSetTimePeriods2AndGetTotalTime_thenReturnTotalTime() {
+	protected void givenEmptyTimesheet_whenEmptyTimesheetSetTimePeriods2AndGetTotalTime_thenReturnTotalTime() {
 
 		emptyTimesheet.setWorkingTimePeriods(workingTimePeriods2);
 		assertThat(emptyTimesheet.getTotalTime()).isEqualTo(totalTime);
@@ -140,7 +140,7 @@ public class TimesheetTest {
 	}
 
 	@Test
-	public void givenEmptyTimesheet_whenEmptyTimesheetSetNullTimePeriodsAndGetTotalTime_thenReturnNull() {
+	protected void givenEmptyTimesheet_whenEmptyTimesheetSetNullTimePeriodsAndGetTotalTime_thenReturnNull() {
 
 		emptyTimesheet.setWorkingTimePeriods(null);
 		assertThat(emptyTimesheet.getTotalTime()).isNull();
@@ -148,7 +148,7 @@ public class TimesheetTest {
 	}
 
 	@Test
-	public void givenEmptyTimesheet_whenEmptyTimesheetSetEmptyTimePeriodsAndGetTotalTime_thenReturnNull() {
+	protected void givenEmptyTimesheet_whenEmptyTimesheetSetEmptyTimePeriodsAndGetTotalTime_thenReturnNull() {
 
 		emptyTimesheet.setWorkingTimePeriods(new ArrayList<WorkingTimePeriod>());
 		assertThat(emptyTimesheet.getTotalTime()).isNull();
@@ -156,7 +156,7 @@ public class TimesheetTest {
 	}
 
 	@Test
-	public void givenEmptyTimesheet_whenEmptyTimesheetSetTimePeriodsAndGetTotalTime_thenReturnNotTotalTime() {
+	protected void givenEmptyTimesheet_whenEmptyTimesheetSetTimePeriodsAndGetTotalTime_thenReturnNotTotalTime() {
 
 		workingTimePeriods1.add(wtp3);
 		emptyTimesheet.setWorkingTimePeriods(workingTimePeriods1);
@@ -165,128 +165,128 @@ public class TimesheetTest {
 	}
 
 	@Test
-	public void givenEmptyTimesheet_whenEmptyTimesheetGetStatus_thenReturnNull() {
+	protected void givenEmptyTimesheet_whenEmptyTimesheetGetStatus_thenReturnNull() {
 
 		assertThat(emptyTimesheet.getStatus()).isFalse();
 
 	}
 
 	@Test
-	public void givenEmptyTimesheet_whenEmptyTimesheetIsLatencyTimeout_thenReturnTrue() {
+	protected void givenEmptyTimesheet_whenEmptyTimesheetIsLatencyTimeout_thenReturnTrue() {
 
 		assertThat(emptyTimesheet.isLatencityTimeout(latency)).isTrue();
 
 	}
 
 	@Test
-	public void givenTimesheet_whenTimesheetIsLatencyTimeout_thenReturnFalse() {
+	protected void givenTimesheet_whenTimesheetIsLatencyTimeout_thenReturnFalse() {
 
 		assertThat(timesheet.isLatencityTimeout(latency)).isFalse();
 
 	}
 
 	@Test
-	public void givenTimesheet2_whenTimesheetIsLatencyTimeout_thenReturnFalse() {
+	protected void givenTimesheet2_whenTimesheetIsLatencyTimeout_thenReturnFalse() {
 
 		assertThat(timesheet2.isLatencityTimeout(latency)).isFalse();
 
 	}
 
 	@Test
-	public void givenTimesheet3_whenTimesheetIsLatencyTimeout_thenReturnTrue() {
+	protected void givenTimesheet3_whenTimesheetIsLatencyTimeout_thenReturnTrue() {
 
 		assertThat(timesheet3.isLatencityTimeout(latency2)).isTrue();
 
 	}
 
 	@Test
-	public void givenEmptyTimesheet_whenEmptyTimesheetIsLatency2Timeout_thenReturnTrue() {
+	protected void givenEmptyTimesheet_whenEmptyTimesheetIsLatency2Timeout_thenReturnTrue() {
 
 		assertThat(emptyTimesheet.isLatencityTimeout(latency2)).isTrue();
 
 	}
 
 	@Test
-	public void givenTimesheet_whenTimesheetIsLatency2Timeout_thenReturnTrue() {
+	protected void givenTimesheet_whenTimesheetIsLatency2Timeout_thenReturnTrue() {
 
 		assertThat(timesheet.isLatencityTimeout(latency2)).isTrue();
 
 	}
 
 	@Test
-	public void givenTimesheet2_whenTimesheet2IsLatency2Timeout_thenReturnTrue() {
+	protected void givenTimesheet2_whenTimesheet2IsLatency2Timeout_thenReturnTrue() {
 
 		assertThat(timesheet2.isLatencityTimeout(latency2)).isTrue();
 
 	}
 
 	@Test
-	public void givenTimesheet3_whenTimesheet3IsLatency2Timeout_thenReturnTrue() {
+	protected void givenTimesheet3_whenTimesheet3IsLatency2Timeout_thenReturnTrue() {
 
 		assertThat(timesheet3.isLatencityTimeout(latency2)).isTrue();
 
 	}
 
 	@Test
-	public void givenEmptyTimesheet_whenEmptyGetTimeToLatencyTimeout_thenReturnTrue() {
+	protected void givenEmptyTimesheet_whenEmptyGetTimeToLatencyTimeout_thenReturnTrue() {
 
 		assertThat(emptyTimesheet.getTimeToLatencyTimeout(latency)).isEqualTo(0);
 
 	}
 
 	@Test
-	public void givenTimesheet_whenTimesheetGetTimeToLatencyTimeout_thenReturnTrue() {
+	protected void givenTimesheet_whenTimesheetGetTimeToLatencyTimeout_thenReturnTrue() {
 
 		assertThat(timesheet.getTimeToLatencyTimeout(latency)).isEqualTo(0);
 
 	}
 
 	@Test
-	public void givenTimesheet2_whenTimesheet2GetTimeToLatencyTimeout_thenReturnTrue() {
+	protected void givenTimesheet2_whenTimesheet2GetTimeToLatencyTimeout_thenReturnTrue() {
 
 		assertThat(timesheet2.getTimeToLatencyTimeout(latency)).isNotEqualTo(0);
 
 	}
 
 	@Test
-	public void givenTimesheet2_whenTimesheet2GetTimeToLatencyTimeoutWithLatency2_thenReturnTrue() {
+	protected void givenTimesheet2_whenTimesheet2GetTimeToLatencyTimeoutWithLatency2_thenReturnTrue() {
 
 		assertThat(timesheet2.getTimeToLatencyTimeout(latency2)).isEqualTo(0);
 
 	}
 
 	@Test
-	public void givenTimesheet3_whenTimesheet3GetTimeToLatencyTimeout_thenReturnTrue() {
+	protected void givenTimesheet3_whenTimesheet3GetTimeToLatencyTimeout_thenReturnTrue() {
 
 		assertThat(timesheet3.getTimeToLatencyTimeout(latency)).isEqualTo(0);
 
 	}
 
 	@Test
-	public void givenTimesheet_whenEqualsWithEmptyTimesheet_thenReturnFalse() {
+	protected void givenTimesheet_whenEqualsWithEmptyTimesheet_thenReturnFalse() {
 
-		assertThat(timesheet.equals(emptyTimesheet)).isFalse();
-
-	}
-
-	@Test
-	public void givenTimesheet_whenEqualsWithNull_thenReturnFalse() {
-
-		assertThat(timesheet.equals(null)).isFalse();
+		assertThat(timesheet).isNotEqualTo(emptyTimesheet);
 
 	}
 
 	@Test
-	public void givenTimesheet_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenTimesheet_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(timesheet.equals(timesheetId)).isFalse();
+		assertThat(timesheet).isNotEqualTo(null);
 
 	}
 
 	@Test
-	public void givenTimesheet_whenEqualsWithEmployee_thenReturnTrue() {
+	protected void givenTimesheet_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(timesheet.equals(timesheet)).isTrue();
+		assertThat(timesheet).isNotEqualTo(timesheetId);
+
+	}
+
+	@Test
+	protected void givenTimesheet_whenEqualsWithEmployee_thenReturnTrue() {
+
+		assertThat(timesheet).isEqualTo(timesheet);
 
 	}
 

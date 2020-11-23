@@ -57,6 +57,9 @@ import io.swagger.annotations.Tag;
 @SwaggerDefinition(tags = { @Tag(name = "Employee API.", description = "Commands and Queries to managing Employee.") })
 public class EmployeeController extends BaseControllerImpl<Employee, Long, EmployeeRepository, EmployeeCommandService, EmployeeQueryService> {
 
+	private static final String PROVIDE_CORRECT_EMPLOYEE_ID_TEXT = "Provide correct employee ID.";
+	private static final String ID_PATH = "/{id}";
+	
 	@PostMapping(path = "/employees", produces = MimeTypeUtils.APPLICATION_JSON_VALUE, consumes = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@ResponseBody
@@ -72,13 +75,13 @@ public class EmployeeController extends BaseControllerImpl<Employee, Long, Emplo
 
 			final EmployeeResource employeeResource = modelMapper.map(employee, EmployeeResource.class);				
 
-			final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(employeeResource.getEmployeeId()).toUri();
+			final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(ID_PATH).buildAndExpand(employeeResource.getEmployeeId()).toUri();
 
 			return ResponseEntity.created(location).body(employeeResource);
 
 		} catch (Exception e) {
 
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide correct employee ID.", e);
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, PROVIDE_CORRECT_EMPLOYEE_ID_TEXT, e);
 
 		}
 
@@ -96,11 +99,11 @@ public class EmployeeController extends BaseControllerImpl<Employee, Long, Emplo
 			final ModifyEmployeeCommand cmd = modelMapper.map(modifyEmployeeCommandResource, ModifyEmployeeCommand.class);
 			cmd.setEmployeeId(id);
 			final EmployeeResource employeeResource = modelMapper.map(commandService.modifyEmployee(cmd), EmployeeResource.class);
-			final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(employeeResource.getEmployeeId()).toUri();
+			final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(ID_PATH).buildAndExpand(employeeResource.getEmployeeId()).toUri();
 
 			return ResponseEntity.ok().location(location).body(employeeResource);
 		} catch (EmployeeNotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct employee ID.", e);
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, PROVIDE_CORRECT_EMPLOYEE_ID_TEXT, e);
 		}
 	}
 
@@ -115,12 +118,12 @@ public class EmployeeController extends BaseControllerImpl<Employee, Long, Emplo
 		try {
 			final Employee employee = queryService.findByEmployeeId(id);
 			final EmployeeResource employeeResource = modelMapper.map(employee, EmployeeResource.class);
-			final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(employeeResource.getEmployeeId()).toUri();
+			final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(ID_PATH).buildAndExpand(employeeResource.getEmployeeId()).toUri();
 
 			return ResponseEntity.ok().location(location).body(employeeResource);
 
 		} catch (EmployeeNotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct employee ID.", e);
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, PROVIDE_CORRECT_EMPLOYEE_ID_TEXT, e);
 		}
 
 	}
@@ -139,11 +142,11 @@ public class EmployeeController extends BaseControllerImpl<Employee, Long, Emplo
 			cmd.setEmployeeId(id);
 
 			final ScheduleResource scheduleResource = modelMapper.map(commandService.assignSchedule(cmd), ScheduleResource.class);
-			final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(scheduleResource.getScheduleId()).toUri();
+			final URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(ID_PATH).buildAndExpand(scheduleResource.getScheduleId()).toUri();
 
 			return ResponseEntity.ok().location(location).body(scheduleResource);
 		} catch (EmployeeNotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct employee ID.", e);
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, PROVIDE_CORRECT_EMPLOYEE_ID_TEXT, e);
 		}
 	}
 
@@ -163,7 +166,7 @@ public class EmployeeController extends BaseControllerImpl<Employee, Long, Emplo
 
 			return ResponseEntity.noContent().build();
 		} catch (EmployeeNotFoundException e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Provide correct employee ID.", e);
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, PROVIDE_CORRECT_EMPLOYEE_ID_TEXT, e);
 		}
 	}
 

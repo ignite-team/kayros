@@ -23,6 +23,7 @@ server:
     trust-store-type: PKCS12
     client-auth: want
 
+
 spring:
   application:
     name: authorization-server
@@ -43,12 +44,17 @@ security:
 --- # test
 
 server:
-  port: 9100
+  port: 9443
   servlet:
     context-path: /auth
     session:
       cookie:
         path: /auth
+  ssl:
+    key-store-password: password
+    key-store: classpath:oauth2keystore.p12
+    key-store-type: PKCS12
+    key-alias: oauth2server
 
 spring:
   application:
@@ -70,12 +76,17 @@ security:
 --- # prod
 
 server:
-  port: 9100
+  port: 9443
   servlet:
     context-path: /auth
     session:
       cookie:
         path: /auth
+  ssl:
+    key-store-password: password
+    key-store: classpath:oauth2keystore.p12
+    key-store-type: PKCS12
+    key-alias: oauth2server
 
 spring:
   application:
@@ -92,7 +103,7 @@ security:
     client:
       client-id: kayrosclientid
       client-secret: secret
-      registered-redirect-uri: https://192.168.85.193:8443/kayros/login/oauth2/code/kayrosclient
+      registered-redirect-uri: https://dockernode2.flowteam.ozona.es/kayros/login/oauth2/code/kayrosclient
    
 
 # $> keytool -genkey -alias oauth2server -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore oauth2keystore.p12

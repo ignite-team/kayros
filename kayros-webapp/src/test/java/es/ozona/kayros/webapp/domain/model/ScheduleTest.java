@@ -33,35 +33,35 @@ public class ScheduleTest {
 	}
 
 	@Test
-	public void givenSchedule_whenScheduleGetScheduleId_thenReturnScheduleId() {
+	protected void givenSchedule_whenScheduleGetScheduleId_thenReturnScheduleId() {
 
 		assertThat(schedule.getScheduleId()).isEqualTo(scheduleId);
 
 	}
 
 	@Test
-	public void givenSchedule_whenScheduleGetCalendarId_thenReturnTitle() {
+	protected void givenSchedule_whenScheduleGetCalendarId_thenReturnTitle() {
 
 		assertThat(schedule.getCalendarId()).isEqualTo(calendarId);
 
 	}
 
 	@Test
-	public void givenSchedule_whenScheduleGetStartDate_thenReturnStartDate() {
+	protected void givenSchedule_whenScheduleGetStartDate_thenReturnStartDate() {
 
 		assertThat(schedule.getStartDate()).isEqualTo(startDate);
 
 	}
 
 	@Test
-	public void givenSchedule_whenScheduleGetEndDate_thenReturnEndDate() {
+	protected void givenSchedule_whenScheduleGetEndDate_thenReturnEndDate() {
 
 		assertThat(schedule.getEndDate()).isEqualTo(endDate);
 
 	}
 
 	@Test
-	public void givenEmptySchedule_whenEmptyScheduleSetScheduleIdAndGetScheduleId_thenReturnScheduleId() {
+	protected void givenEmptySchedule_whenEmptyScheduleSetScheduleIdAndGetScheduleId_thenReturnScheduleId() {
 
 		emptySchedule.setScheduleId(scheduleId);
 		assertThat(emptySchedule.getScheduleId()).isEqualTo(scheduleId);
@@ -69,7 +69,7 @@ public class ScheduleTest {
 	}
 
 	@Test
-	public void givenEmptySchedule_whenEmptyScheduleSetCalendarIdAndGetCalendarId_thenReturnCalendarId() {
+	protected void givenEmptySchedule_whenEmptyScheduleSetCalendarIdAndGetCalendarId_thenReturnCalendarId() {
 
 		emptySchedule.setCalendarId(calendarId);
 		assertThat(emptySchedule.getCalendarId()).isEqualTo(calendarId);
@@ -77,7 +77,7 @@ public class ScheduleTest {
 	}
 
 	@Test
-	public void givenEmptySchedule_whenEmptyScheduleSetStartDateAndGetStartDate_thenReturnStartDate() {
+	protected void givenEmptySchedule_whenEmptyScheduleSetStartDateAndGetStartDate_thenReturnStartDate() {
 
 		emptySchedule.setStartDate(startDate);
 		assertThat(emptySchedule.getStartDate()).isEqualTo(startDate);
@@ -85,7 +85,7 @@ public class ScheduleTest {
 	}
 
 	@Test
-	public void givenEmptySchedule_whenEmptyScheduleSetEndDateAndGetEndDate_thenReturnEndDate() {
+	protected void givenEmptySchedule_whenEmptyScheduleSetEndDateAndGetEndDate_thenReturnEndDate() {
 
 		emptySchedule.setEndDate(endDate);
 		assertThat(emptySchedule.getEndDate()).isEqualTo(endDate);
@@ -93,30 +93,30 @@ public class ScheduleTest {
 	}
 
 	@Test
-	public void givenSchedule_whenEqualsWithEmptyEmployee_thenReturnFalse() {
+	protected void givenSchedule_whenEqualsWithEmptyEmployee_thenReturnFalse() {
 
-		assertThat(schedule.equals(emptySchedule)).isFalse();
-
-	}
-
-	@Test
-	public void givenSchedule_whenEqualsWithNull_thenReturnFalse() {
-
-		assertThat(schedule.equals(null)).isFalse();
+		assertThat(schedule).isNotEqualTo(emptySchedule);
 
 	}
 
 	@Test
-	public void givenSchedule_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenSchedule_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(schedule.equals(calendarId)).isFalse();
+		assertThat(schedule).isNotEqualTo(null);
 
 	}
 
 	@Test
-	public void givenSchedule_whenEqualsWithSchedule_thenReturnTrue() {
+	protected void givenSchedule_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(schedule.equals(schedule)).isTrue();
+		assertThat(schedule).isNotEqualTo(calendarId);
+
+	}
+
+	@Test
+	protected void givenSchedule_whenEqualsWithSchedule_thenReturnTrue() {
+
+		assertThat(schedule).isEqualTo(schedule);
 
 	}
 

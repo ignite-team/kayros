@@ -37,7 +37,7 @@ public class TimesheetResourceTest {
 	}
 
 	@Test
-	public void givenTimesheetResource_whenTimesheetResourceSetTimesheetIdAndGetTimesheetId_thenReturnTimesheetId() {
+	protected void givenTimesheetResource_whenTimesheetResourceSetTimesheetIdAndGetTimesheetId_thenReturnTimesheetId() {
 
 		emptyTimesheetResource.setTimesheetId(timesheetId);
 		assertThat(emptyTimesheetResource.getTimesheetId()).isEqualTo(timesheetId);
@@ -45,7 +45,7 @@ public class TimesheetResourceTest {
 	}
 
 	@Test
-	public void givenTimesheetResource_whenTimesheetSetEmployeeIdAndGetEmployeeId_thenReturnEmployeeId() {
+	protected void givenTimesheetResource_whenTimesheetSetEmployeeIdAndGetEmployeeId_thenReturnEmployeeId() {
 
 		emptyTimesheetResource.setEmployeeId(employeeId);
 		assertThat(emptyTimesheetResource.getEmployeeId()).isEqualTo(employeeId);
@@ -53,7 +53,7 @@ public class TimesheetResourceTest {
 	}
 
 	@Test
-	public void givenTimesheetResource_whenTimesheetResourceSetDateAndGetDate_thenReturnDate() {
+	protected void givenTimesheetResource_whenTimesheetResourceSetDateAndGetDate_thenReturnDate() {
 
 		emptyTimesheetResource.setDate(date);
 		assertThat(emptyTimesheetResource.getDate()).isEqualTo(date);
@@ -61,7 +61,7 @@ public class TimesheetResourceTest {
 	}
 
 	@Test
-	public void givenTimesheetResource_whenTimesheetResourceSetTimePeriodsAndGetWorkingTimePeriods_thenReturnWorkingTimePeriods() {
+	protected void givenTimesheetResource_whenTimesheetResourceSetTimePeriodsAndGetWorkingTimePeriods_thenReturnWorkingTimePeriods() {
 
 		emptyTimesheetResource.setWorkingTimePeriods(workingTimePeriodsResource);
 		assertThat(emptyTimesheetResource.getWorkingTimePeriods()).isEqualTo(workingTimePeriodsResource);
@@ -69,30 +69,30 @@ public class TimesheetResourceTest {
 	}
 
 	@Test
-	public void givenTimesheetResource_whenEqualsWithEmptyTimesheetResource_thenReturnFalse() {
+	protected void givenTimesheetResource_whenEqualsWithEmptyTimesheetResource_thenReturnFalse() {
 
-		assertThat(timesheetResource.equals(emptyTimesheetResource)).isFalse();
-
-	}
-
-	@Test
-	public void givenTimesheetResource_whenEqualsWithNull_thenReturnFalse() {
-
-		assertThat(timesheetResource.equals(null)).isFalse();
+		assertThat(timesheetResource).isNotEqualTo(emptyTimesheetResource);
 
 	}
 
 	@Test
-	public void givenTimesheetResource_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenTimesheetResource_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(timesheetResource.equals(timesheetId)).isFalse();
+		assertThat(timesheetResource).isNotEqualTo(null);
 
 	}
 
 	@Test
-	public void givenTimesheetResource_whenEqualsWithEmployee_thenReturnTrue() {
+	protected void givenTimesheetResource_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(timesheetResource.equals(timesheetResource)).isTrue();
+		assertThat(timesheetResource).isNotEqualTo(timesheetId);
+
+	}
+
+	@Test
+	protected void givenTimesheetResource_whenEqualsWithEmployee_thenReturnTrue() {
+
+		assertThat(timesheetResource).isEqualTo(timesheetResource);
 
 	}
 

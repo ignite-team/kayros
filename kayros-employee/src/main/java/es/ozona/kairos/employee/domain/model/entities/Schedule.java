@@ -86,7 +86,7 @@ public class Schedule implements Serializable {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof Schedule)) {
+		if (!(obj instanceof Schedule)) {
 			return false;
 		}
 		return this.hashCode() == obj.hashCode();

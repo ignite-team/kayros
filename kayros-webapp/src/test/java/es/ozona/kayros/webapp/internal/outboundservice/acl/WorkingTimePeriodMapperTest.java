@@ -64,23 +64,23 @@ public class WorkingTimePeriodMapperTest {
 	}
 
 	@Test
-	public void givenWorkingTimePeriodResource_whenWorkingTimePeriodMapperMapFromResourceEqualsWorkingTimePeriod_thenReturnTrue() {
+	protected void givenWorkingTimePeriodResource_whenWorkingTimePeriodMapperMapFromResourceEqualsWorkingTimePeriod_thenReturnTrue() {
 
-		assertThat(WorkTimePeriodMapper.mapFromResource(workingTimePeriodResource).equals(workingTimePeriod)).isTrue();
-
-	}
-
-	@Test
-	public void givenWorkingTimePeriodResourceWithNullFinishTime_whenWorkingTimePeriodMapperMapFromResourceEqualsWorkingTimePeriod_thenReturnFalse() {
-
-		assertThat(WorkTimePeriodMapper.mapFromResource(workingTimePeriodResource2).equals(workingTimePeriod)).isFalse();
+		assertThat(WorkTimePeriodMapper.mapFromResource(workingTimePeriodResource)).isEqualTo(workingTimePeriod);
 
 	}
 
 	@Test
-	public void givenEmptyWorkingTimePeriodResource_whenWorkingTimePeriodMapperMapFromResourceEqualsEmptyWorkingTimePeriod_thenReturnTrue() {
+	protected void givenWorkingTimePeriodResourceWithNullFinishTime_whenWorkingTimePeriodMapperMapFromResourceEqualsWorkingTimePeriod_thenReturnFalse() {
 
-		assertThat(WorkTimePeriodMapper.mapFromResource(emptyWorkingTimePeriodResource).equals(emptyWorkingTimePeriod)).isTrue();
+		assertThat(WorkTimePeriodMapper.mapFromResource(workingTimePeriodResource2)).isEqualTo(workingTimePeriod);
+
+	}
+
+	@Test
+	protected void givenEmptyWorkingTimePeriodResource_whenWorkingTimePeriodMapperMapFromResourceEqualsEmptyWorkingTimePeriod_thenReturnTrue() {
+
+		assertThat(WorkTimePeriodMapper.mapFromResource(emptyWorkingTimePeriodResource)).isEqualTo(emptyWorkingTimePeriod);
 
 	}
 

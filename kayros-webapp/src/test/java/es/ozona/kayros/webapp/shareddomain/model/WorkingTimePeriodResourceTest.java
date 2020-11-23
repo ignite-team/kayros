@@ -42,70 +42,70 @@ public class WorkingTimePeriodResourceTest {
 	}
 
 	@Test
-	public void givenEmptyworkingtimeperiodResource_whenEmptyWorkingtimeperiodResourceIsWorkingtimeperiodResource_thenReturnTrue() {
+	protected void givenEmptyworkingtimeperiodResource_whenEmptyWorkingtimeperiodResourceIsWorkingtimeperiodResource_thenReturnTrue() {
 
 		assertThat(emptyWorkingTimePeriodResource.getClass()).isEqualTo(WorkingTimePeriodResource.class);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceGetStartTime_thenReturnStartTime() {
+	protected void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceGetStartTime_thenReturnStartTime() {
 
 		assertThat(workingTimePeriodResource.getStartTime()).isEqualTo(startTime);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceGetGeneratedStartTime_thenReturnGeneratedStartTime() {
+	protected void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceGetGeneratedStartTime_thenReturnGeneratedStartTime() {
 
 		assertThat(workingTimePeriodResource.getGeneratedStartTime()).isEqualTo(generatedStartTime);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceGetEditedStartTime_thenReturnEditedStartTime() {
+	protected void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceGetEditedStartTime_thenReturnEditedStartTime() {
 
 		assertThat(workingTimePeriodResource.getEditedStartTime()).isEqualTo(editedStartTime);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceGetFinishTime_thenReturnFinishTime() {
+	protected void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceGetFinishTime_thenReturnFinishTime() {
 
 		assertThat(workingTimePeriodResource.getFinishTime()).isEqualTo(finishTime);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceGetGeneratedFinishTime_thenReturnGeneratedFinishTime() {
+	protected void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceGetGeneratedFinishTime_thenReturnGeneratedFinishTime() {
 
 		assertThat(workingTimePeriodResource.getGeneratedFinishTime()).isEqualTo(generatedFinishTime);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceGetEditedFinishTime_thenReturnEditedFinishTime() {
+	protected void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceGetEditedFinishTime_thenReturnEditedFinishTime() {
 
 		assertThat(workingTimePeriodResource.getEditedFinishTime()).isEqualTo(editedFinishTime);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiodResource_whenWorkingtimeperiodGetTelecommuting_thenReturnTelecommuting() {
+	protected void givenWorkingtimeperiodResource_whenWorkingtimeperiodGetTelecommuting_thenReturnTelecommuting() {
 
 		assertThat(workingTimePeriodResource.getTelecommuting()).isEqualTo(telecommuting);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceGetWorkplace_thenReturnWorkplace() {
+	protected void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceGetWorkplace_thenReturnWorkplace() {
 
 		assertThat(workingTimePeriodResource.getWorkplace()).isEqualTo(workplace);
 
 	}
 
 	@Test
-	public void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceSetStartTimeGetStartTime_thenReturnStartTime() {
+	protected void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceSetStartTimeGetStartTime_thenReturnStartTime() {
 
 		workingTimePeriodResource.setStartTime(startTime);
 		assertThat(workingTimePeriodResource.getStartTime()).isEqualTo(startTime);
@@ -113,7 +113,7 @@ public class WorkingTimePeriodResourceTest {
 	}
 
 	@Test
-	public void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceSetGeneratedStartTimeGetGeneratedStartTime_thenReturnGeneratedStartTime() {
+	protected void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceSetGeneratedStartTimeGetGeneratedStartTime_thenReturnGeneratedStartTime() {
 
 		workingTimePeriodResource.setGeneratedStartTime(generatedStartTime);
 		assertThat(workingTimePeriodResource.getGeneratedStartTime()).isEqualTo(generatedStartTime);
@@ -121,7 +121,7 @@ public class WorkingTimePeriodResourceTest {
 	}
 
 	@Test
-	public void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceSetEditedStartTimeGetEditedStartTime_thenReturnEditedStartTime() {
+	protected void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceSetEditedStartTimeGetEditedStartTime_thenReturnEditedStartTime() {
 
 		workingTimePeriodResource.setEditedStartTime(editedStartTime);
 		assertThat(workingTimePeriodResource.getEditedStartTime()).isEqualTo(editedStartTime);
@@ -129,7 +129,7 @@ public class WorkingTimePeriodResourceTest {
 	}
 
 	@Test
-	public void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceSetFinishTimeGetFinishTime_thenReturnFinishTime() {
+	protected void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceSetFinishTimeGetFinishTime_thenReturnFinishTime() {
 
 		workingTimePeriodResource.setFinishTime(finishTime);
 		assertThat(workingTimePeriodResource.getFinishTime()).isEqualTo(finishTime);
@@ -137,7 +137,7 @@ public class WorkingTimePeriodResourceTest {
 	}
 
 	@Test
-	public void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceSetGeneratedFinishTimeGetGeneratedFinishTime_thenReturnGeneratedFinishTime() {
+	protected void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceSetGeneratedFinishTimeGetGeneratedFinishTime_thenReturnGeneratedFinishTime() {
 
 		workingTimePeriodResource.setGeneratedFinishTime(generatedFinishTime);
 		assertThat(workingTimePeriodResource.getGeneratedFinishTime()).isEqualTo(generatedFinishTime);
@@ -145,7 +145,7 @@ public class WorkingTimePeriodResourceTest {
 	}
 
 	@Test
-	public void givenWorkingtimeperiod_whenWorkingtimeperiodSetEditedFinishTimeGetEditedFinishTime_thenReturnEditedFinishTime() {
+	protected void givenWorkingtimeperiod_whenWorkingtimeperiodSetEditedFinishTimeGetEditedFinishTime_thenReturnEditedFinishTime() {
 
 		workingTimePeriodResource.setEditedFinishTime(editedFinishTime);
 		assertThat(workingTimePeriodResource.getEditedFinishTime()).isEqualTo(editedFinishTime);
@@ -153,7 +153,7 @@ public class WorkingTimePeriodResourceTest {
 	}
 
 	@Test
-	public void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
+	protected void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
 
 		workingTimePeriodResource.setTelecommuting(telecommuting);
 		assertThat(workingTimePeriodResource.getTelecommuting()).isEqualTo(telecommuting);
@@ -161,7 +161,7 @@ public class WorkingTimePeriodResourceTest {
 	}
 
 	@Test
-	public void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
+	protected void givenWorkingtimeperiodResource_whenWorkingtimeperiodResourceSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
 
 		workingTimePeriodResource.setWorkplace(workplace);
 		assertThat(workingTimePeriodResource.getWorkplace()).isEqualTo(workplace);
@@ -169,30 +169,31 @@ public class WorkingTimePeriodResourceTest {
 	}
 
 	@Test
-	public void givenWorkingTimePeriodResource_whenEqualsWithEmptyWorkingTimePeriodResource_thenReturnFalse() {
+	protected void givenWorkingTimePeriodResource_whenEqualsWithEmptyWorkingTimePeriodResource_thenReturnFalse() {
 
-		assertThat(workingTimePeriodResource.equals(emptyWorkingTimePeriodResource)).isFalse();
-
-	}
-
-	@Test
-	public void givenWorkingTimePeriodResource_whenEqualsWithNull_thenReturnFalse() {
-
-		assertThat(workingTimePeriodResource.equals(null)).isFalse();
+		assertThat(workingTimePeriodResource).isNotEqualTo(emptyWorkingTimePeriodResource);
 
 	}
 
 	@Test
-	public void givenWorkingTimePeriodResource_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenWorkingTimePeriodResource_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(workingTimePeriodResource.equals(workplace)).isFalse();
+		assertThat(workingTimePeriodResource).isNotEqualTo(null);
 
 	}
 
 	@Test
-	public void givenWorkingTimePeriodResource_whenEqualsWithWorkingTimePeriodResource_thenReturnTrue() {
+	protected void givenWorkingTimePeriodResource_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(workingTimePeriodResource.equals(workingTimePeriodResource)).isTrue();
+		assertThat(workingTimePeriodResource).isNotEqualTo(workplace);
 
 	}
+
+	@Test
+	protected void givenWorkingTimePeriodResource_whenEqualsWithWorkingTimePeriodResource_thenReturnTrue() {
+
+		assertThat(workingTimePeriodResource).isEqualTo(workingTimePeriodResource);
+
+	}
+
 }

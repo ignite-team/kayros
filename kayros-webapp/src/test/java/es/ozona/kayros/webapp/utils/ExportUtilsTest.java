@@ -87,7 +87,7 @@ public class ExportUtilsTest {
 	}
 
 	@Test
-	public void given4HeadersAnd4RowsWith4Columns_whenExportUtilsExportCSV_thenReturn5Lines() {
+	protected void given4HeadersAnd4RowsWith4Columns_whenExportUtilsExportCSV_thenReturn5Lines() {
 
 		try {
 
@@ -114,7 +114,7 @@ public class ExportUtilsTest {
 	}
 
 	@Test
-	public void given4HeadersAnd4RowsWith4Columns_whenExportUtilsExportXLSX_thenReturn5Lines() {
+	protected void given4HeadersAnd4RowsWith4Columns_whenExportUtilsExportXLSX_thenReturn5Lines() {
 
 		try {
 

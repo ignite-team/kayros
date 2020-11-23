@@ -65,7 +65,7 @@ public class ScheduleResource {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof ScheduleResource)) {
+		if (!(obj instanceof ScheduleResource)) {
 
 			return false;
 

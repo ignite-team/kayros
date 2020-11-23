@@ -38,16 +38,16 @@ public class CalendarMapperTest {
 	}
 
 	@Test
-	public void givenCalendarResource_whenCalendarMapperMapFromResourceEqualsCalendar_thenReturnTrue() {
+	protected void givenCalendarResource_whenCalendarMapperMapFromResourceEqualsCalendar_thenReturnTrue() {
 
-		assertThat(CalendarMapper.mapFromResource(calendarResource).equals(calendar)).isTrue();
+		assertThat(CalendarMapper.mapFromResource(calendarResource)).isEqualTo(calendar);
 
 	}
 
 	@Test
-	public void givenCalendar_whenCalendarMapperMapToResourceEqualsCalendarResource_thenReturnTrue() {
+	protected void givenCalendar_whenCalendarMapperMapToResourceEqualsCalendarResource_thenReturnTrue() {
 
-		assertThat(CalendarMapper.mapToResource(calendar).equals(calendarResource)).isTrue();
+		assertThat(CalendarMapper.mapToResource(calendar)).isEqualTo(calendarResource);
 
 	}
 

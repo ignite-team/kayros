@@ -68,7 +68,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeModify_thenEmployeeEqualsEmployee() {
+	protected void givenEmployee_whenEmployeeModify_thenEmployeeEqualsEmployee() {
 
 		employee.modify(modifyEmployeeCommand);
 		assertThat(employee).isEqualTo(employee);
@@ -76,42 +76,42 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeGetEmployeeID_thenReturnEmployeeId() {
+	protected void givenEmployee_whenEmployeeGetEmployeeID_thenReturnEmployeeId() {
 
 		assertThat(employee.getEmployeeId()).isEqualTo(employeeId);
 
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeGetAccount_thenReturnUserAccount() {
+	protected void givenEmployee_whenEmployeeGetAccount_thenReturnUserAccount() {
 
 		assertThat(employee.getAccount()).isEqualTo(userAccount);
 
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeGetSchedules_thenReturnSchedules() {
+	protected void givenEmployee_whenEmployeeGetSchedules_thenReturnSchedules() {
 
 		assertThat(employee.getSchedules().size()).isEqualTo(emptySchedules.size());
 
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeGetTelecommuting_thenReturnTelecommuting() {
+	protected void givenEmployee_whenEmployeeGetTelecommuting_thenReturnTelecommuting() {
 
 		assertThat(employee.getTelecommuting()).isEqualTo(telecommuting);
 
 	}
 
 	@Test
-	public void givenEmployee_whenEmployeeGetWorkplace_thenReturnWorkplace() {
+	protected void givenEmployee_whenEmployeeGetWorkplace_thenReturnWorkplace() {
 
 		assertThat(employee.getWorkplace()).isEqualTo(workplace);
 
 	}
 
 	@Test
-	public void givenEmptyEmployee_whenEmptyEmployeeSetEmployeeIdAndGetEmployee_thenReturnEmployeeId() {
+	protected void givenEmptyEmployee_whenEmptyEmployeeSetEmployeeIdAndGetEmployee_thenReturnEmployeeId() {
 
 		emptyEmployee.setEmployeeId(employeeId);
 		assertThat(emptyEmployee.getEmployeeId()).isEqualTo(employeeId);
@@ -119,7 +119,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmptyEmployee_whenEmptyEmployeeSetUserAccountAndGetUserAccount_thenReturnUserAccount() {
+	protected void givenEmptyEmployee_whenEmptyEmployeeSetUserAccountAndGetUserAccount_thenReturnUserAccount() {
 
 		emptyEmployee.setAccount(userAccount);
 		assertThat(emptyEmployee.getAccount()).isEqualTo(userAccount);
@@ -127,7 +127,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmptyEmployee_whenEmptyEmployeeSetSchedulesAndGetSchedules_thenReturnSchedules() {
+	protected void givenEmptyEmployee_whenEmptyEmployeeSetSchedulesAndGetSchedules_thenReturnSchedules() {
 
 		emptyEmployee.setSchedules(emptySchedules);
 		assertThat(emptyEmployee.getSchedules().size()).isEqualTo(emptySchedules.size());
@@ -135,7 +135,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmptyEmployee_whenEmptyEmployeeSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
+	protected void givenEmptyEmployee_whenEmptyEmployeeSetTelecommutingAndGetTelecommuting_thenReturnTelecommuting() {
 
 		emptyEmployee.setTelecommuting(telecommuting);
 		assertThat(emptyEmployee.getTelecommuting()).isEqualTo(telecommuting);
@@ -143,7 +143,7 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenEmptyEmployee_whenEmptyEmployeeSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
+	protected void givenEmptyEmployee_whenEmptyEmployeeSetWorkplaceAndGetWorkplace_thenReturnWorkplace() {
 
 		emptyEmployee.setWorkplace(workplace);
 		assertThat(emptyEmployee.getWorkplace()).isEqualTo(workplace);
@@ -151,30 +151,30 @@ public class EmployeeTest {
 	}
 
 	@Test
-	public void givenCreateEmployeeCommand_whenEqualsWithEmptyCreateEmployeeCommand_thenReturnFalse() {
+	protected void givenCreateEmployeeCommand_whenEqualsWithEmptyCreateEmployeeCommand_thenReturnFalse() {
 
-		assertThat(employee.equals(emptyEmployee)).isFalse();
-
-	}
-
-	@Test
-	public void givenCreateEmployeeCommand_whenEqualsWithNull_thenReturnFalse() {
-
-		assertThat(employee.equals(null)).isFalse();
+		assertThat(employee).isNotEqualTo(emptyEmployee);
 
 	}
 
 	@Test
-	public void givenCreateEmployeeCommand_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenCreateEmployeeCommand_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(employee.equals(email)).isFalse();
+		assertThat(employee).isNotEqualTo(null);
 
 	}
 
 	@Test
-	public void givenCreateEmployeeCommand_whenEqualsWithCreateEmployeeCommand_thenReturnTrue() {
+	protected void givenCreateEmployeeCommand_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(employee.equals(employee)).isTrue();
+		assertThat(employee).isNotEqualTo(email);
+
+	}
+
+	@Test
+	protected void givenCreateEmployeeCommand_whenEqualsWithCreateEmployeeCommand_thenReturnTrue() {
+
+		assertThat(employee).isEqualTo(employee);
 
 	}
 

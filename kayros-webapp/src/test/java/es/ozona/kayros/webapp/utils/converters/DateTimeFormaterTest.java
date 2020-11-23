@@ -27,21 +27,21 @@ public class DateTimeFormaterTest {
 	}
 
 	@Test
-	public void givenFormater_whenFormaterGetDate_thenReturnDateFormat() {
+	protected void givenFormater_whenFormaterGetDate_thenReturnDateFormat() {
 
 		assertThat(formater.getDateFormat(0, Locale.ENGLISH)).isEqualTo(dateFormat);
 
 	}
 
 	@Test
-	public void givenFormater_whenFormaterGetTime_thenReturnTimeFormat() {
+	protected void givenFormater_whenFormaterGetTime_thenReturnTimeFormat() {
 
 		assertThat(formater.getTimeFormat(0, Locale.ENGLISH)).isEqualTo(timeFormat);
 
 	}
 
 	@Test
-	public void givenFormater_whenFormaterGetDateTime_thenReturnDateTimeFormat() {
+	protected void givenFormater_whenFormaterGetDateTime_thenReturnDateTimeFormat() {
 
 		assertThat(formater.getDateTimeFormat(0, 0, Locale.ENGLISH)).isEqualTo(dateTimeFormat);
 

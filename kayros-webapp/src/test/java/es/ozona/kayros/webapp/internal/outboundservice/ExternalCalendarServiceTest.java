@@ -2,6 +2,7 @@ package es.ozona.kayros.webapp.internal.outboundservice;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -71,6 +72,9 @@ public class ExternalCalendarServiceTest {
 	private PageResult<ShiftPlanResource> shiftPlanPageResult;
 	private PageResult<ShiftPlanResource> emptyShiftPlanPageResult;
 
+	private static String pattern = "yyyy/MM/dd";
+	private static SimpleDateFormat formater = new SimpleDateFormat(pattern);
+
 	@Autowired
 	ExternalCalendarService externalCalendarService;
 
@@ -78,7 +82,7 @@ public class ExternalCalendarServiceTest {
 	CalendarService calendarService;
 
 	@BeforeEach
-	public void init() {
+	public void init() throws java.text.ParseException {
 
 		calendarId = "2B477572-BD4A-4C28-A504-64C9486492CC";
 		title = "title";
@@ -87,8 +91,8 @@ public class ExternalCalendarServiceTest {
 		markedAsDefault = false;
 
 		shiftPlanId = "2B477572-BD4A-4C28-A504-64C948649211";
-		startDate = new Date(-3600000);
-		endDate = new Date(-3600000);
+		startDate = formater.parse("1970/01/01");
+		endDate = formater.parse("1970/01/01");
 		startDateString = "1970/01/01";
 		endDateString = "1970/01/01";
 
@@ -137,7 +141,7 @@ public class ExternalCalendarServiceTest {
 	}
 
 	@Test
-	public void givenExistingCalendars_whenCallSearchCalendars_thenReturnCalendars() {
+	protected void givenExistingCalendars_whenCallSearchCalendars_thenReturnCalendars() {
 
 		Mockito.when(calendarService.searchCalendars(null, "+year", 1, 1000)).thenReturn(calendarPageResult);
 		assertThat(externalCalendarService.searchCalendars().size() > 0).isTrue();
@@ -145,15 +149,15 @@ public class ExternalCalendarServiceTest {
 	}
 
 	@Test
-	public void givenNoCalendars_whenCallSearchCalendars_thenReturnNoCalendars() {
+	protected void givenNoCalendars_whenCallSearchCalendars_thenReturnNoCalendars() {
 
 		Mockito.when(calendarService.searchCalendars(null, "+year", 1, 1000)).thenReturn(emptyCalendarPageResult);
-		assertThat(externalCalendarService.searchCalendars().size() == 0).isTrue();
+		assertThat(externalCalendarService.searchCalendars()).isSameAs(0);
 
 	}
 
 	@Test
-	public void givenExistingShiftPlans_whenCallSearchShiftPlans_thenReturnShiftPlans() {
+	protected void givenExistingShiftPlans_whenCallSearchShiftPlans_thenReturnShiftPlans() {
 
 		Mockito.when(calendarService.searchShiftPlans(null, "+startDate", 1, 1000)).thenReturn(shiftPlanPageResult);
 		assertThat(externalCalendarService.searchShiftPlans().size() > 0).isTrue();
@@ -161,15 +165,15 @@ public class ExternalCalendarServiceTest {
 	}
 
 	@Test
-	public void givenNoShiftPlans_whenCallSearchShiftPlans_thenReturnNoShiftPlans() {
+	protected void givenNoShiftPlans_whenCallSearchShiftPlans_thenReturnNoShiftPlans() {
 
 		Mockito.when(calendarService.searchShiftPlans(null, "+startDate", 1, 1000)).thenReturn(emptyShiftPlanPageResult);
-		assertThat(externalCalendarService.searchShiftPlans().size() == 0).isTrue();
+		assertThat(externalCalendarService.searchShiftPlans()).isSameAs(0);
 
 	}
 
 	@Test
-	public void givenExistingHolidays_whenCallSearchCalendarHolidaysByCalendarId_thenReturnHolidays() {
+	protected void givenExistingHolidays_whenCallSearchCalendarHolidaysByCalendarId_thenReturnHolidays() {
 
 		Mockito.when(calendarService.findAllHolidaysByCalendarId(calendarId)).thenReturn(holidayResourceList);
 		assertThat(externalCalendarService.searchCalendarHolidaysByCalendarId(calendarId).size() > 0).isTrue();
@@ -177,15 +181,15 @@ public class ExternalCalendarServiceTest {
 	}
 
 	@Test
-	public void givenNoHolidays_whenCallSearchCalendarHolidaysByCalendarId_thenReturnNoHolidays() {
+	protected void givenNoHolidays_whenCallSearchCalendarHolidaysByCalendarId_thenReturnNoHolidays() {
 
 		Mockito.when(calendarService.findAllHolidaysByCalendarId(calendarId)).thenReturn(emptyHolidayResourceList);
-		assertThat(externalCalendarService.searchCalendarHolidaysByCalendarId(calendarId).size() == 0).isTrue();
+		assertThat(externalCalendarService.searchCalendarHolidaysByCalendarId(calendarId).size()).isSameAs(0);
 
 	}
 
 	@Test
-	public void givenExistingWorkdays_whenCallSearchShiftPlanWorkdaysByShitfPlanId_thenReturnWorkdays() {
+	protected void givenExistingWorkdays_whenCallSearchShiftPlanWorkdaysByShitfPlanId_thenReturnWorkdays() {
 
 		Mockito.when(calendarService.findAllWorkdaysByShiftplanId(shiftPlanId)).thenReturn(workdayResourceList);
 		assertThat(externalCalendarService.searchShiftPlanWorkdaysByShitfPlanId(shiftPlanId).size() > 0).isTrue();
@@ -193,15 +197,15 @@ public class ExternalCalendarServiceTest {
 	}
 
 	@Test
-	public void givenNoWorkdays_whenCallSearchShiftPlanWorkdaysByShitfPlanId_thenReturnNoWorkdays() {
+	protected void givenNoWorkdays_whenCallSearchShiftPlanWorkdaysByShitfPlanId_thenReturnNoWorkdays() {
 
 		Mockito.when(calendarService.findAllWorkdaysByShiftplanId(shiftPlanId)).thenReturn(emptyWorkdayResourceList);
-		assertThat(externalCalendarService.searchShiftPlanWorkdaysByShitfPlanId(shiftPlanId).size() == 0).isTrue();
+		assertThat(externalCalendarService.searchShiftPlanWorkdaysByShitfPlanId(shiftPlanId).size()).isSameAs(0);
 
 	}
 
 	@Test
-	public void givenExistingCalendar_whenCallSearchCalendarByCalendarId_thenReturnCalendar() {
+	protected void givenExistingCalendar_whenCallSearchCalendarByCalendarId_thenReturnCalendar() {
 
 		Mockito.when(calendarService.findCalendarById(calendarId)).thenReturn(calendarResource);
 		assertThat(externalCalendarService.searchCalendarByCalendarId(calendarId)).isEqualTo(calendar);
@@ -209,7 +213,7 @@ public class ExternalCalendarServiceTest {
 	}
 
 	@Test
-	public void givenNoCalendar_whenCallSearchCalendarByCalendarId_thenReturnNull() {
+	protected void givenNoCalendar_whenCallSearchCalendarByCalendarId_thenReturnNull() {
 
 		Mockito.when(calendarService.findCalendarById(calendarId)).thenReturn(null);
 		assertThat(externalCalendarService.searchCalendarByCalendarId(calendarId)).isNull();
@@ -217,7 +221,7 @@ public class ExternalCalendarServiceTest {
 	}
 
 	@Test
-	public void givenExistingShiftPlan_whenCallSearchShiftPlanByShiftPlanId_thenReturnShiftPlans() {
+	protected void givenExistingShiftPlan_whenCallSearchShiftPlanByShiftPlanId_thenReturnShiftPlans() {
 
 		Mockito.when(calendarService.findShiftPlanById(shiftPlanId)).thenReturn(shiftPlanResource);
 		assertThat(externalCalendarService.searchShiftPlanByShiftPlanId(shiftPlanId)).isEqualTo(shiftPlan);
@@ -225,7 +229,7 @@ public class ExternalCalendarServiceTest {
 	}
 
 	@Test
-	public void givenNoShiftPlan_whenCallSearchShiftPlanByShiftPlanId_thenReturnNull() {
+	protected void givenNoShiftPlan_whenCallSearchShiftPlanByShiftPlanId_thenReturnNull() {
 
 		Mockito.when(calendarService.findShiftPlanById(shiftPlanId)).thenReturn(null);
 		assertThat(externalCalendarService.searchShiftPlanByShiftPlanId(shiftPlanId)).isNull();

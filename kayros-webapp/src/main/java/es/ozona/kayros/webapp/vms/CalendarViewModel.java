@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.GlobalCommand;
 import org.zkoss.bind.annotation.Init;
@@ -46,8 +44,6 @@ public class CalendarViewModel {
 	private java.util.Calendar monthAfter;
 	private java.util.Calendar actualMonth;
 
-	private String morningShitText;
-	private String afternoonShiftText;
 	private String fullShiftText;
 	private String holidayText;
 
@@ -59,19 +55,9 @@ public class CalendarViewModel {
 
 	private final SimpleDateFormat FORMATER = new SimpleDateFormat(FORMAT);
 
-	private final static Logger LOG = LoggerFactory.getLogger(CalendarViewModel.class);
-
 	@Init
 	public void init() {
 
-		if (LOG.isWarnEnabled()) {
-
-			LOG.warn("Error");
-
-		}
-
-		morningShitText = Labels.getLabel("general.morningShift");
-		afternoonShiftText = Labels.getLabel("general.afternoonShift");
 		fullShiftText = Labels.getLabel("general.fullShift");
 
 		holidayText = Labels.getLabel("general.holiday");
@@ -143,7 +129,7 @@ public class CalendarViewModel {
 
 		if (this.calendars.size() > 0) {
 
-			List<ShiftPlan> shiftPlans = new ArrayList<ShiftPlan>();
+			List<ShiftPlan> tempShiftPlans = new ArrayList<ShiftPlan>();
 
 			for (Calendar calendar : this.calendars) {
 
@@ -154,7 +140,7 @@ public class CalendarViewModel {
 
 					for (ShiftPlan shiftPlan : finalShiftPlans) {
 
-						shiftPlans.add(shiftPlan);
+						tempShiftPlans.add(shiftPlan);
 
 					}
 
@@ -188,7 +174,7 @@ public class CalendarViewModel {
 
 			}
 
-			this.setShiftPlans(shiftPlans);
+			this.setShiftPlans(tempShiftPlans);
 
 		}
 

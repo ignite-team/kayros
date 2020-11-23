@@ -48,13 +48,19 @@ public class AccountViewModel {
 	public void init() {
 
 		try {
+
 			this.setEmployee(employeeService.findEmployeeByUsername(SecurityContextHolder.getContext().getAuthentication().getName())
 					.orElseGet(() -> employeeService.createEmployeeFromPrincipal()));
-			// TODO: gestionar excepcion de aplicacion
+
 		} catch (Exception e) {
-			if (LOG.isWarnEnabled())
+
+			if (LOG.isWarnEnabled()) {
 				LOG.warn("El servicio Employee no está disponible.");
+
+			}
+
 			throw e;
+
 		}
 
 		Session session = Sessions.getCurrent();
@@ -63,26 +69,13 @@ public class AccountViewModel {
 
 			this.setActualLanguage(employee.getPreferredLanguage());
 
-			Locale preferredLocale = new Locale(this.getActualLanguage());
-
-			session.setAttribute(Attributes.PREFERRED_LOCALE, preferredLocale);
-
-			try {
-				Clients.reloadMessages(preferredLocale);
-				Locales.setThreadLocal(preferredLocale);
-				if (LOG.isDebugEnabled())
-					LOG.debug("Idioma preferido {} establecido con exito.", preferredLocale.toString());
-			} catch (IOException e) {
-				if (LOG.isWarnEnabled())
-					LOG.warn("No se ha podido cargar las preferecias de idioma del empleado.", e);
-				Executions.getCurrent().sendRedirect("");
-			}
-
 		} else {
 
 			this.setActualLanguage(session.getAttribute(Attributes.PREFERRED_LOCALE).toString());
 
 		}
+
+		updatePageLanguage(false);
 
 	}
 
@@ -155,12 +148,48 @@ public class AccountViewModel {
 		employee.setPreferredlanguage(actualLanguage);
 		employeeService.modifyEmployee(this.employee);
 
-		Locale preferredLocale = new Locale(this.getActualLanguage());
+		updatePageLanguage(true);
 
-		Session session = Sessions.getCurrent();
-		session.setAttribute(Attributes.PREFERRED_LOCALE, preferredLocale);
+	}
 
-		Executions.getCurrent().sendRedirect("");
+	private void updatePageLanguage(boolean forceRedirect) {
+
+		try {
+
+			Locale preferredLocale = new Locale(this.getActualLanguage());
+
+			Session session = Sessions.getCurrent();
+
+			session.setAttribute(Attributes.PREFERRED_LOCALE, preferredLocale);
+
+			if (forceRedirect) {
+
+				Executions.getCurrent().sendRedirect("");
+
+			} else {
+
+				Clients.reloadMessages(preferredLocale);
+				Locales.setThreadLocal(preferredLocale);
+
+			}
+
+			if (LOG.isDebugEnabled()) {
+
+				LOG.debug("Idioma preferido {} establecido con exito.", preferredLocale);
+
+			}
+
+		} catch (IOException e) {
+
+			if (LOG.isWarnEnabled()) {
+
+				LOG.warn("No se ha podido cargar las preferecias de idioma del empleado.", e);
+
+			}
+
+			Executions.getCurrent().sendRedirect("");
+
+		}
 
 	}
 
@@ -179,6 +208,7 @@ public class AccountViewModel {
 		params.put("language", this.employee.getPreferredLanguage().split("_")[0]);
 
 		BindUtils.postGlobalCommand(null, null, "updateCalendar", params);
+
 	}
 
 	@Command

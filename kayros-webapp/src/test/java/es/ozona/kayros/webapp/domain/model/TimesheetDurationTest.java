@@ -26,7 +26,7 @@ public class TimesheetDurationTest {
 	}
 
 	@Test
-	public void givenDurationBetweenTwoCorrectDates_whenTimesheetDuration_thenReturnEmpty() {
+	protected void givenDurationBetweenTwoCorrectDates_whenTimesheetDuration_thenReturnEmpty() {
 
 		Duration duration = Duration.between(LocalDateTime.ofInstant(startDate.toInstant(), ZoneId.systemDefault()),
 				LocalDateTime.ofInstant(endDate.toInstant(), ZoneId.systemDefault()));
@@ -36,7 +36,7 @@ public class TimesheetDurationTest {
 	}
 
 	@Test
-	public void given0Duration_whenTimesheetDurationIsSupportedNull_thenReturnFalse() {
+	protected void given0Duration_whenTimesheetDurationIsSupportedNull_thenReturnFalse() {
 
 		Duration duration = Duration.ZERO;
 
@@ -45,11 +45,11 @@ public class TimesheetDurationTest {
 	}
 
 	@Test
-	public void given0Duration_whenTimesheetDurationGetDuration_thenReturnDuration() {
+	protected void given0Duration_whenTimesheetDurationGetDuration_thenReturnDuration() {
 
 		Duration duration = Duration.ZERO;
 
-		assertThat(new TimesheetDuration(duration).getDuration().equals(duration)).isTrue();
+		assertThat(new TimesheetDuration(duration).getDuration()).isEqualTo(duration);
 
 	}
 

@@ -35,49 +35,49 @@ public class WorkdayResourceTest {
 	}
 
 	@Test
-	public void givenWorkDayResource_whenWorkDayResourceGetDay_thenReturnDay() {
+	protected void givenWorkDayResource_whenWorkDayResourceGetDay_thenReturnDay() {
 
 		assertThat(workdayResource.getDay()).isEqualTo(day);
 
 	}
 
 	@Test
-	public void givenWorkDayResource_whenWorkDayResourceGetWorktimeEntry_thenReturnWorktimeEntry() {
+	protected void givenWorkDayResource_whenWorkDayResourceGetWorktimeEntry_thenReturnWorktimeEntry() {
 
 		assertThat(workdayResource.getWorkTimeEntry()).isEqualTo(worktimeEntry);
 
 	}
 
 	@Test
-	public void givenWorkDayResource_whenWorkDayResourceGetWorktimeExit_thenReturnWorktimeExit() {
+	protected void givenWorkDayResource_whenWorkDayResourceGetWorktimeExit_thenReturnWorktimeExit() {
 
 		assertThat(workdayResource.getWorkTimeExit()).isEqualTo(worktimeExit);
 
 	}
 
 	@Test
-	public void givenWorkDayResource_whenWorkDayResourceGetBreaktimeStart_thenReturnBreaktimeStart() {
+	protected void givenWorkDayResource_whenWorkDayResourceGetBreaktimeStart_thenReturnBreaktimeStart() {
 
 		assertThat(workdayResource.getBreakTimeStart()).isEqualTo(breaktimeStart);
 
 	}
 
 	@Test
-	public void givenWorkDayResource_whenWorkDayResourceGetBreaktimeEnd_thenReturnBreaktimeEnd() {
+	protected void givenWorkDayResource_whenWorkDayResourceGetBreaktimeEnd_thenReturnBreaktimeEnd() {
 
 		assertThat(workdayResource.getBreakTimeEnd()).isEqualTo(breaktimeEnd);
 
 	}
 
 	@Test
-	public void givenWorkDayResource_whenWorkDayResourceGetRestTime_thenReturnRestTime() {
+	protected void givenWorkDayResource_whenWorkDayResourceGetRestTime_thenReturnRestTime() {
 
 		assertThat(workdayResource.getRestTime()).isEqualTo(restTime);
 
 	}
 
 	@Test
-	public void givenEmptyWorkDayResource_whenEmptyWorkDayResourceSetDayAndGetDay_thenReturnDay() {
+	protected void givenEmptyWorkDayResource_whenEmptyWorkDayResourceSetDayAndGetDay_thenReturnDay() {
 
 		emptyWorkdayResource.setDay(day);
 		assertThat(emptyWorkdayResource.getDay()).isEqualTo(day);
@@ -85,7 +85,7 @@ public class WorkdayResourceTest {
 	}
 
 	@Test
-	public void givenEmptyWorkDayResource_whenEmptyWorkDayResourceSetWorktimeEntryAndGetWorktimeEntry_thenReturnWorktimeEntry() {
+	protected void givenEmptyWorkDayResource_whenEmptyWorkDayResourceSetWorktimeEntryAndGetWorktimeEntry_thenReturnWorktimeEntry() {
 
 		emptyWorkdayResource.setWorkTimeEntry(worktimeEntry);
 		assertThat(emptyWorkdayResource.getWorkTimeEntry()).isEqualTo(worktimeEntry);
@@ -93,7 +93,7 @@ public class WorkdayResourceTest {
 	}
 
 	@Test
-	public void givenEmptyWorkDayResource_wheEmptynWorkDayResourceSetWorktimeExiAndGetWorktimeExit_thenReturnWorktimeExit() {
+	protected void givenEmptyWorkDayResource_wheEmptynWorkDayResourceSetWorktimeExiAndGetWorktimeExit_thenReturnWorktimeExit() {
 
 		emptyWorkdayResource.setWorkTimeExit(worktimeExit);
 		assertThat(emptyWorkdayResource.getWorkTimeExit()).isEqualTo(worktimeExit);
@@ -101,7 +101,7 @@ public class WorkdayResourceTest {
 	}
 
 	@Test
-	public void givenEmptyWorkDayResource_whenEmptyWorkDayResourceSetBreaktimeStartAndGetBreaktimeStart_thenReturnBreaktimeStart() {
+	protected void givenEmptyWorkDayResource_whenEmptyWorkDayResourceSetBreaktimeStartAndGetBreaktimeStart_thenReturnBreaktimeStart() {
 
 		emptyWorkdayResource.setBreakTimeStart(breaktimeStart);
 		assertThat(emptyWorkdayResource.getBreakTimeStart()).isEqualTo(breaktimeStart);
@@ -109,7 +109,7 @@ public class WorkdayResourceTest {
 	}
 
 	@Test
-	public void givenEmptyWorkDayResource_whenEmptyWorkDayResourceSetBreaktimeEndAndGetBreaktimeEnd_thenReturnBreaktimeEnd() {
+	protected void givenEmptyWorkDayResource_whenEmptyWorkDayResourceSetBreaktimeEndAndGetBreaktimeEnd_thenReturnBreaktimeEnd() {
 
 		emptyWorkdayResource.setBreakTimeEnd(breaktimeEnd);
 		assertThat(emptyWorkdayResource.getBreakTimeEnd()).isEqualTo(breaktimeEnd);
@@ -117,7 +117,7 @@ public class WorkdayResourceTest {
 	}
 
 	@Test
-	public void givenEmptyWorkDayResource_whenEmptyWorkDayResourceSetRestTimeAndGetRestTime_thenReturnRestTime() {
+	protected void givenEmptyWorkDayResource_whenEmptyWorkDayResourceSetRestTimeAndGetRestTime_thenReturnRestTime() {
 
 		emptyWorkdayResource.setRestTime(restTime);
 		assertThat(emptyWorkdayResource.getRestTime()).isEqualTo(restTime);
@@ -125,30 +125,30 @@ public class WorkdayResourceTest {
 	}
 
 	@Test
-	public void givenHolidayResource_whenEqualsWithEmptyHolidayResource_thenReturnFalse() {
+	protected void givenHolidayResource_whenEqualsWithEmptyHolidayResource_thenReturnFalse() {
 
-		assertThat(workdayResource.equals(emptyWorkdayResource)).isFalse();
-
-	}
-
-	@Test
-	public void givenHolidayResource_whenEqualsWithNull_thenReturnFalse() {
-
-		assertThat(workdayResource.equals(null)).isFalse();
+		assertThat(workdayResource).isNotEqualTo(emptyWorkdayResource);
 
 	}
 
 	@Test
-	public void givenHolidayResource_whenEqualsWithOtherClass_thenReturnFalse() {
+	protected void givenHolidayResource_whenEqualsWithNull_thenReturnFalse() {
 
-		assertThat(workdayResource.equals(day)).isFalse();
+		assertThat(workdayResource).isNotEqualTo(null);
 
 	}
 
 	@Test
-	public void givenHolidayResource_whenEqualsWithHolidayResource_thenReturnTrue() {
+	protected void givenHolidayResource_whenEqualsWithOtherClass_thenReturnFalse() {
 
-		assertThat(workdayResource.equals(workdayResource)).isTrue();
+		assertThat(workdayResource).isNotEqualTo(day);
+
+	}
+
+	@Test
+	protected void givenHolidayResource_whenEqualsWithHolidayResource_thenReturnTrue() {
+
+		assertThat(workdayResource).isEqualTo(workdayResource);
 
 	}
 

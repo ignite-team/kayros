@@ -161,13 +161,10 @@ public class Timesheet {
 		boolean timeout = true;
 		Date now = new Date();
 
-		if (this.workingTimePeriods != null && this.workingTimePeriods.size() != 0) {
+		if (this.workingTimePeriods != null && this.workingTimePeriods.size() != 0
+				&& now.getTime() - this.workingTimePeriods.get(this.workingTimePeriods.size() - 1).getStartTime().getTime() < (latencyTime * 60 * 1000)) {
 
-			if (now.getTime() - this.workingTimePeriods.get(this.workingTimePeriods.size() - 1).getStartTime().getTime() < (latencyTime * 60 * 1000)) {
-
-				timeout = false;
-
-			}
+			timeout = false;
 
 		}
 
@@ -207,7 +204,7 @@ public class Timesheet {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof Timesheet)) {
+		if (!(obj instanceof Timesheet)) {
 
 			return false;
 

@@ -71,7 +71,6 @@ public class CalendarRestApiTests {
 		calendar2019.put("year", "2019");
 	}
 
-	@Test
 	public void find() throws URISyntaxException, JsonMappingException, JsonProcessingException, JSONException {
 
 		String calendarId = post(createPath, calendar2019, randomServerPort);
@@ -82,15 +81,9 @@ public class CalendarRestApiTests {
 
 		result = this.restTemplate.getForEntity(baseUrl + findPath, Calendar.class, randomServerPort, calendarId);
 
-		System.out.println(result.getBody().getCalendarId().getCalendarId());
-
 		listResult = this.restTemplate.getForEntity(baseUrl + findByYearPath, Calendar[].class, randomServerPort, 2020);
 
-		System.out.println(listResult.getBody()[0].getCalendarId().getCalendarId());
-
 		listResult = this.restTemplate.getForEntity(baseUrl + findAll, Calendar[].class, randomServerPort);
-
-		System.out.println(listResult.getBody().length);
 
 		JSONObject dayJson = new JSONObject();
 		dayJson.put("holiday", ZonedDateTime.now(ZoneId.of("UTC")).toString());

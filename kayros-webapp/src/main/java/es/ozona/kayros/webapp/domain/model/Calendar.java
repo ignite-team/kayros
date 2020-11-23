@@ -79,7 +79,7 @@ public class Calendar {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof Calendar)) {
+		if (!(obj instanceof Calendar)) {
 
 			return false;
 

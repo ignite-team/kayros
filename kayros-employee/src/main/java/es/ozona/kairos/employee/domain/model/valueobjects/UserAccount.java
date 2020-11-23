@@ -10,8 +10,6 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.util.ObjectUtils;
 
-import es.ozona.kairos.employee.interfaces.rest.dto.EmployeeResource;
-
 @Embeddable
 public class UserAccount implements Serializable {
 
@@ -108,7 +106,7 @@ public class UserAccount implements Serializable {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof UserAccount)) {
+		if (!(obj instanceof UserAccount)) {
 			return false;
 		}
 		return this.hashCode() == obj.hashCode();

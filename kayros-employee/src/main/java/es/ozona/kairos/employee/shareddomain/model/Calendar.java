@@ -6,9 +6,6 @@ import org.springframework.util.ObjectUtils;
 
 public class Calendar implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private String calendarId;
@@ -73,7 +70,7 @@ public class Calendar implements Serializable {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof Calendar)) {
+		if (!(obj instanceof Calendar)) {
 			return false;
 		}
 		return this.hashCode() == obj.hashCode();

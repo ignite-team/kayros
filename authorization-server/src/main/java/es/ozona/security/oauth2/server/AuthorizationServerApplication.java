@@ -21,6 +21,7 @@ public class AuthorizationServerApplication {
 		SpringApplication.run(AuthorizationServerApplication.class, args);
 	}
 
+<<<<<<< HEAD
 //	@Bean
 //	public ServletWebServerFactory servletContainer() {
 //		TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
@@ -45,5 +46,31 @@ public class AuthorizationServerApplication {
 //		connector.setRedirectPort(9443);
 //		return connector;
 //	}
+=======
+	@Bean
+	public ServletWebServerFactory servletContainer() {
+		TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
+			@Override
+			protected void postProcessContext(Context context) {
+				SecurityConstraint securityConstraint = new SecurityConstraint();
+				securityConstraint.setUserConstraint("CONFIDENTIAL");
+				SecurityCollection collection = new SecurityCollection();
+				collection.addPattern("/*");
+				securityConstraint.addCollection(collection);
+				context.addConstraint(securityConstraint);
+			}
+		};
+		tomcat.addAdditionalTomcatConnectors(redirectConnector());
+		return tomcat;
+	}
+
+	private Connector redirectConnector() {
+		Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+		connector.setScheme("http");
+		connector.setPort(9100);
+		connector.setRedirectPort(9443);
+		return connector;
+	}
+>>>>>>> 3654f82fb45d807c6b4fda5cca40c294e1d0045c
 
 }

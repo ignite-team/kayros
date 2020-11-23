@@ -113,7 +113,7 @@ public class EmployeeCreatedEventData {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof EmployeeCreatedEventData)) {
+		if (!(obj instanceof EmployeeCreatedEventData)) {
 			return false;
 		}
 		return this.hashCode() == obj.hashCode();

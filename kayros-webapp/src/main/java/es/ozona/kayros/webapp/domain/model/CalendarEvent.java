@@ -136,7 +136,7 @@ public class CalendarEvent {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof CalendarEvent)) {
+		if (!(obj instanceof CalendarEvent)) {
 
 			return false;
 

@@ -16,9 +16,13 @@ public class SecurityAccess {
 
 	private static final Logger logger = LoggerFactory.getLogger(SecurityAccess.class);
 
+	private SecurityAccess() {
+		throw new IllegalStateException("Utility class");
+	}
+
 	public static Boolean isAuthenticated() {
 		Authentication authentication = getAuthentication();
-		logger.debug(" => " + (null != authentication ? authentication.getAuthorities() : "not authenticated!"));
+		logger.debug(null != authentication ? authentication.getAuthorities().toString() : "not authenticated!");
 		return null != authentication && !authentication.getAuthorities().isEmpty();
 	}
 

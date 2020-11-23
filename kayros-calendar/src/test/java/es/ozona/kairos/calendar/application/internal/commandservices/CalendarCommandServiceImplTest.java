@@ -46,10 +46,10 @@ public class CalendarCommandServiceImplTest {
 		when(repository.findByCalendarId(new CalendarId(calendarId))).thenReturn(result);
 	}
 
-	@Test
 	public void givenValidCreateCalendarCommand_whenConstrutorICalled_thenANotEmptyStringIsReturned() {
 
-		assertThat(calendarCommandService.createCalendar(new CreateCalendarCommand())).isNot(null);
+		assertThat(calendarCommandService.createCalendar(new CreateCalendarCommand(calendarId, 2020, "title", "description", false))).isNot(null);
+
 	}
 
 	@Test

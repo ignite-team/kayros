@@ -44,16 +44,21 @@ public class Workdays {
 	@Override
 	public int hashCode() {
 
-		return ObjectUtils.nullSafeHashCode(workdays);
+		return ObjectUtils.nullSafeHashCode(new Object[] {workdays});
+
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 
 		if (obj == null || !(obj instanceof Workdays)) {
+
 			return false;
+
 		}
+
 		return this.hashCode() == obj.hashCode();
+
 	}
 
 }

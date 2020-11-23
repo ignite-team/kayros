@@ -2,22 +2,22 @@ package es.ozona.kairos.employee.shareddomain.model.events;
 
 public class UnregisteredTimesheetClockedInEvent {
 
-	private UnregisteredTimesheetClockedInEventData UnregisteredTimesheetClockInEventData;
+	private UnregisteredTimesheetClockedInEventData unregisteredTimesheetClockInEventData;
 	
 	public UnregisteredTimesheetClockedInEvent() {
-		
+
 	}
 
-	public UnregisteredTimesheetClockedInEvent(UnregisteredTimesheetClockedInEventData UnregisteredTimesheetClockInEventData) {
-		this.UnregisteredTimesheetClockInEventData = UnregisteredTimesheetClockInEventData;
+	public UnregisteredTimesheetClockedInEvent(UnregisteredTimesheetClockedInEventData unregisteredTimesheetClockInEventData) {
+		this.unregisteredTimesheetClockInEventData = unregisteredTimesheetClockInEventData;
 	}
 
 	public UnregisteredTimesheetClockedInEventData getUnregisteredTimesheetClockInEventData() {
-		return UnregisteredTimesheetClockInEventData;
+		return unregisteredTimesheetClockInEventData;
 	}
 
-	public void setUnregisteredTimesheetClockInEventData(UnregisteredTimesheetClockedInEventData UnregisteredTimesheetClockInEventData) {
-		this.UnregisteredTimesheetClockInEventData = UnregisteredTimesheetClockInEventData;
+	public void setUnregisteredTimesheetClockInEventData(UnregisteredTimesheetClockedInEventData unregisteredTimesheetClockInEventData) {
+		this.unregisteredTimesheetClockInEventData = unregisteredTimesheetClockInEventData;
 	}
 
 }

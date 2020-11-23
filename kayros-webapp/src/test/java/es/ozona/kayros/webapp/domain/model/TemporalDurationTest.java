@@ -28,7 +28,7 @@ public class TemporalDurationTest {
 	}
 
 	@Test
-	public void givenDurationBetweenTwoCorrectDates_whenTemporalDuration_thenReturnEmpty() {
+	protected void givenDurationBetweenTwoCorrectDates_whenTemporalDuration_thenReturnEmpty() {
 
 		Duration duration = Duration.between(LocalDateTime.ofInstant(startDate.toInstant(), ZoneId.systemDefault()),
 				LocalDateTime.ofInstant(endDate.toInstant(), ZoneId.systemDefault()));
@@ -38,20 +38,20 @@ public class TemporalDurationTest {
 	}
 
 	@Test
-	public void given0Duration_whenTemporalDurationIsSupportedNull_thenReturnFalse() {
+	protected void given0Duration_whenTemporalDurationIsSupportedNull_thenReturnFalse() {
 
 		Duration duration = Duration.ZERO;
 
-		assertThat(new TemporalDuration(duration).isSupported(null)).isEqualTo(false);
+		assertThat(new TemporalDuration(duration).isSupported(null)).isFalse();
 
 	}
 
 	@Test
-	public void given0Duration_whenTemporalDurationGetDuration_thenReturnDuration() {
+	protected void given0Duration_whenTemporalDurationGetDuration_thenReturnDuration() {
 
 		Duration duration = Duration.ZERO;
 
-		assertThat(new TemporalDuration(duration).getDuration().equals(duration)).isEqualTo(true);
+		assertThat(new TemporalDuration(duration).getDuration()).isEqualTo(duration);
 
 	}
 

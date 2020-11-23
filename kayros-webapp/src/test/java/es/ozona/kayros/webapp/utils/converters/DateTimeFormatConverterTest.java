@@ -51,7 +51,7 @@ public class DateTimeFormatConverterTest {
 	private BindContext context;
 
 	@Test
-	public void givenFormat_whenCoerceToUiDate_thenReturnDateString() {
+	protected void givenFormat_whenCoerceToUiDate_thenReturnDateString() {
 
 		when(context.getConverterArg(formatAttribute)).thenReturn(format);
 
@@ -60,7 +60,7 @@ public class DateTimeFormatConverterTest {
 	}
 
 	@Test
-	public void givenFormat_whenCoerceToUiNull_thenReturnNull() {
+	protected void givenFormat_whenCoerceToUiNull_thenReturnNull() {
 
 		when(context.getConverterArg(formatAttribute)).thenReturn(format);
 
@@ -69,7 +69,7 @@ public class DateTimeFormatConverterTest {
 	}
 
 	@Test
-	public void givenNullFormat_whenCoerceToUiDate_thenReturnNullPointerException() {
+	protected void givenNullFormat_whenCoerceToUiDate_thenReturnNullPointerException() {
 
 		when(context.getConverterArg(formatAttribute)).thenReturn(null);
 
@@ -80,7 +80,7 @@ public class DateTimeFormatConverterTest {
 	}
 
 	@Test
-	public void givenFormat_whenCoerceToBeanDateString_thenReturnDate() {
+	protected void givenFormat_whenCoerceToBeanDateString_thenReturnDate() {
 
 		when(context.getConverterArg(formatAttribute)).thenReturn(format);
 
@@ -89,7 +89,7 @@ public class DateTimeFormatConverterTest {
 	}
 
 	@Test
-	public void givenFormat_whenCoerceToBeanNull_thenReturnNull() {
+	protected void givenFormat_whenCoerceToBeanNull_thenReturnNull() {
 
 		when(context.getConverterArg(formatAttribute)).thenReturn(format);
 
@@ -98,7 +98,7 @@ public class DateTimeFormatConverterTest {
 	}
 
 	@Test
-	public void givenNullFormat_whenCoerceToBeanDateString_thenReturnsNullPointerException() {
+	protected void givenNullFormat_whenCoerceToBeanDateString_thenReturnsNullPointerException() {
 
 		when(context.getConverterArg(formatAttribute)).thenReturn(null);
 
@@ -109,7 +109,7 @@ public class DateTimeFormatConverterTest {
 	}
 
 	@Test
-	public void givenFormat_whenCoerceToBeanInvalidDateString_thenReturnsUiException() {
+	protected void givenFormat_whenCoerceToBeanInvalidDateString_thenReturnsUiException() {
 
 		when(context.getConverterArg(formatAttribute)).thenReturn(format);
 

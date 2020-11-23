@@ -22,7 +22,8 @@ import es.ozona.kayros.webapp.shareddomain.model.TimesheetResource;
 public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 
 	private static final String SERVICE_DATE_FORMAT = "yyyyMMdd";
-
+	private static final String DATE_QUERY_PARAM = "+date";
+	
 	@Autowired
 	private TimesheetService timesheetService;
 
@@ -39,7 +40,7 @@ public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 	public List<WorkingTimePeriod> searchCurrentByEmployeeId(String employeeId) {
 		final String date = LocalDate.now().format(DateTimeFormatter.ofPattern(SERVICE_DATE_FORMAT));
 
-		final List<TimesheetResource> timesheets = timesheetService.search(String.format("( employeeId:%s and date:%s )", employeeId, date), "+date", 1, 1000)
+		final List<TimesheetResource> timesheets = timesheetService.search(String.format("( employeeId:%s and date:%s )", employeeId, date), DATE_QUERY_PARAM, 1, 1000)
 				.getItems();
 
 		return CollectionUtils.isEmpty(timesheets) ? new ArrayList<WorkingTimePeriod>()
@@ -51,7 +52,7 @@ public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 	public List<Timesheet> searchTimesheetsByEmployeeIdBetweenDates(String startDate, String endDate, String employeeId) {
 
 		final List<TimesheetResource> timesheets = timesheetService
-				.search(String.format("( date>%s and date<%s and employeeId:%s )", startDate, endDate, employeeId), "+date", 1, 1000).getItems();
+				.search(String.format("( date>%s and date<%s and employeeId:%s )", startDate, endDate, employeeId), DATE_QUERY_PARAM, 1, 1000).getItems();
 
 		return CollectionUtils.isEmpty(timesheets) ? null : timesheets.stream().map(t -> TimesheetMapper.mapFromResource(t)).collect(Collectors.toList());
 
@@ -61,7 +62,7 @@ public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 	public Timesheet searchCurrentTimesheetByEmployeeId(String employeeId) {
 		final String date = LocalDate.now().format(DateTimeFormatter.ofPattern(SERVICE_DATE_FORMAT));
 
-		final List<TimesheetResource> timesheets = timesheetService.search(String.format("( employeeId:%s and date:%s )", employeeId, date), "+date", 1, 1000)
+		final List<TimesheetResource> timesheets = timesheetService.search(String.format("( employeeId:%s and date:%s )", employeeId, date), DATE_QUERY_PARAM, 1, 1000)
 				.getItems();
 
 		return CollectionUtils.isEmpty(timesheets) ? null : TimesheetMapper.mapFromResource(CollectionUtils.lastElement(timesheets));

@@ -33,6 +33,7 @@ public class Holiday implements Comparable<Holiday>, Serializable {
 
 	public Holiday(LocalDate holiday) {
 		super();
+		this.id = 1L;
 		this.holiday = holiday;
 	}
 

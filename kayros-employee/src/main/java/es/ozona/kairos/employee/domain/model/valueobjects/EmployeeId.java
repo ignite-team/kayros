@@ -40,7 +40,7 @@ public class EmployeeId implements Serializable {
 	@Override
 	public boolean equals(Object obj) {
 
-		if (obj == null || !(obj instanceof EmployeeId)) {
+		if (!(obj instanceof EmployeeId)) {
 			return false;
 		}
 		return this.hashCode() == obj.hashCode();
