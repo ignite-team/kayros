@@ -13,7 +13,7 @@
 	<version>1.3.0</version>
 	<name>kayros-webapp</name>
 	<description>kayros webapp</description>
-	
+
 	<profiles>
 		<profile>
 			<id>dev</id>
@@ -22,6 +22,12 @@
 			</activation>
 			<properties>
 				<spring.profiles.active>dev</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>insecure</id>
+			<properties>
+				<spring.profiles.active>insecure</spring.profiles.active>
 			</properties>
 		</profile>
 		<profile>

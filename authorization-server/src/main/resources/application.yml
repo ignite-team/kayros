@@ -8,6 +8,10 @@ server:
     session:
       cookie:
         path: /auth
+
+--- # dev
+
+server:
   port: 9443
   ssl:
     # key store
@@ -20,8 +24,6 @@ server:
     trust-store-password: secret
     trust-store-type: PKCS12
     client-auth: want
-
---- # dev
 
 spring:
   application:
@@ -40,7 +42,42 @@ security:
       client-secret: secret
       registered-redirect-uri: https://localhost:8443/kayros/login/oauth2/code/kayrosclient
 
+--- # insecure
+
+server:
+  port: 9100
+
+spring:
+  application:
+    name: authorization-server
+  profiles: insecure
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-one:4001/eureka
+      
+security:
+  oauth2:
+    client:
+      client-id: kayrosclientid
+      client-secret: secret
+      registered-redirect-uri: http://192.168.0.22:8080/kayros/login/oauth2/code/kayrosclient
+
 --- # test
+server:
+  port: 9443
+  ssl:
+    # key store
+    key-store: classpath:keystore.p12
+    key-store-password: secret
+    key-store-type: PKCS12
+    key-alias: authorization-server
+    # trust store
+    trust-store: classpath:truststore.p12
+    trust-store-password: secret
+    trust-store-type: PKCS12
+    client-auth: want
 
 spring:
   application:
@@ -60,6 +97,19 @@ security:
       registered-redirect-uri: https://192.168.0.22:8443/kayros/login/oauth2/code/kayrosclient
           
 --- # prod
+server:
+  port: 9443
+  ssl:
+    # key store
+    key-store: classpath:keystore.p12
+    key-store-password: secret
+    key-store-type: PKCS12
+    key-alias: authorization-server
+    # trust store
+    trust-store: classpath:truststore.p12
+    trust-store-password: secret
+    trust-store-type: PKCS12
+    client-auth: want
 
 spring:
   application:

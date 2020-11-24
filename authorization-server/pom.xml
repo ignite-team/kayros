@@ -25,6 +25,12 @@
 			</properties>
 		</profile>
 		<profile>
+			<id>insecure</id>
+			<properties>
+				<spring.profiles.active>insecure</spring.profiles.active>
+			</properties>
+		</profile>
+		<profile>
 			<id>test</id>
 			<properties>
 				<spring.profiles.active>test</spring.profiles.active>
