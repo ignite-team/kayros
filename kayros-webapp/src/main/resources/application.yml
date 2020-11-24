@@ -113,7 +113,7 @@ logging:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:4001/eureka  
+      defaultZone: http://eureka-one:4001/eureka  
     
 spring:
   profiles: insecure
