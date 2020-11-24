@@ -135,11 +135,6 @@ public class AccountViewModel {
 
 		try {
 
-<<<<<<< HEAD
-=======
-			Locale preferredLocale = new Locale(this.getActualLanguage().split("_")[0],this.getActualLanguage().split("_")[1]);
-
->>>>>>> d165c5ba5291eb86306e6766e6c55951f1007aae
 			Session session = Sessions.getCurrent();
 
 			session.setAttribute(Attributes.PREFERRED_LOCALE, this.locale);
