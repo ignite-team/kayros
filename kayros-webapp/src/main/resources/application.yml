@@ -128,15 +128,15 @@ spring:
             client-secret: secret
             client-name: kayros
             scope: user_info,read,write
-            redirect-uri: http://localhost:8080/kayros/login/oauth2/code/kayrosclient
+            redirect-uri: http://192.168.0.22:8080/kayros/login/oauth2/code/kayrosclient
             client-authentication-method: basic
             authorization-grant-type: authorization_code
             provider: kayros-authserver-provider
         provider:
             kayros-authserver-provider:
-              token-uri: http://localhost:9100/auth/oauth/token
-              authorization-uri: http://localhost:9100/auth/oauth/authorize
-              user-info-uri: http://localhost:9100/auth/userinfo
+              token-uri: http://192.168.0.22:9100/auth/oauth/token
+              authorization-uri: http://192.168.0.22:9100/auth/oauth/authorize
+              user-info-uri: http://192.168.0.22:9100/auth/userinfo
               user-name-attribute: username
               user-info-authentication-method: basic
 

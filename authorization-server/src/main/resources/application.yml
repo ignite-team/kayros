@@ -29,7 +29,7 @@ security:
     client:
       client-id: kayrosclientid
       client-secret: secret
-      registered-redirect-uri: http://localhost:8080/kayros/login/oauth2/code/kayrosclient
+      registered-redirect-uri: http://192.168.0.22:8080/kayros/login/oauth2/code/kayrosclient
 
 --- # dev
 
