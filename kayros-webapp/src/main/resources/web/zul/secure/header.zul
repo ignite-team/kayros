@@ -16,11 +16,11 @@
 	<menupopup id="accountProfile">
 		<menu label="${labels.languages.language}">
 			<menupopup>
-				<menuitem label="${labels.languages.spanish}" checked="@bind(vm.actualLanguage eq 'es_ES' ? 'true' : 'false')"
+				<menuitem label="${labels.languages.spanish}" checked="@bind(vm.locale eq 'es_ES' ? 'true' : 'false')"
 					onClick="@command('changeLang', lang = 'es_ES')" />
-				<menuitem label="${labels.languages.galician}" checked="@bind(vm.actualLanguage eq 'gl_ES' ? 'true' : 'false')"
+				<menuitem label="${labels.languages.galician}" checked="@bind(vm.locale eq 'gl_ES' ? 'true' : 'false')"
 					onClick="@command('changeLang', lang = 'gl_ES')" />
-				<menuitem label="${labels.languages.english}" checked="@bind(vm.actualLanguage eq 'en_EN' ? 'true' : 'false')"
+				<menuitem label="${labels.languages.english}" checked="@bind(vm.locale eq 'en_EN' ? 'true' : 'false')"
 					onClick="@command('changeLang', lang = 'en_EN')" />
 			</menupopup>
 		</menu>

@@ -39,7 +39,8 @@ public class AccountViewModel {
 	protected ExternalEmployeeService employeeService;
 
 	private Employee employee;
-	private String actualLanguage;
+
+	private Locale locale;
 
 	private long timeout;
 	private boolean status;
@@ -55,6 +56,7 @@ public class AccountViewModel {
 		} catch (Exception e) {
 
 			if (LOG.isWarnEnabled()) {
+
 				LOG.warn("El servicio Employee no está disponible.");
 
 			}
@@ -67,15 +69,15 @@ public class AccountViewModel {
 
 		if (session.getAttribute(Attributes.PREFERRED_LOCALE) == null) {
 
-			this.setActualLanguage(employee.getPreferredLanguage());
+			this.setLocale(employee.getPreferredLanguage());
 
 		} else {
 
-			this.setActualLanguage(session.getAttribute(Attributes.PREFERRED_LOCALE).toString());
+			this.setLocale(session.getAttribute(Attributes.PREFERRED_LOCALE).toString());
 
 		}
 
-		updatePageLanguage(false);
+		updatePageLocale(false);
 
 	}
 
@@ -85,41 +87,18 @@ public class AccountViewModel {
 
 	}
 
-	public String getActualLanguage() {
+	public Locale getLocale() {
 
-		return actualLanguage;
+		return this.locale;
 
 	}
 
-	public void setActualLanguage(String actualLanguage) {
+	public void setLocale(String newStringLocale) {
 
-		String finalLanguage;
+		String language = newStringLocale.split("_")[0];
+		String country = newStringLocale.split("_")[1].toUpperCase();
 
-		switch (actualLanguage.toLowerCase()) {
-		case "es_es":
-
-			finalLanguage = "es_ES";
-			break;
-
-		case "gl_es":
-
-			finalLanguage = "gl_ES";
-			break;
-
-		case "en_en":
-
-			finalLanguage = "en_EN";
-			break;
-
-		default:
-
-			finalLanguage = "es_ES";
-
-			break;
-
-		}
-
-		this.actualLanguage = finalLanguage;
+		this.locale = new Locale(language, country);
 
 	}
 
@@ -140,27 +119,25 @@ public class AccountViewModel {
 	}
 
 	@Command
-	@NotifyChange("actualLanguage")
+	@NotifyChange("locale")
 	public void changeLang(@BindingParam("lang") String lang) {
 
-		this.setActualLanguage(lang);
+		this.setLocale(lang);
 
-		employee.setPreferredlanguage(actualLanguage);
+		employee.setPreferredlanguage(this.locale.toString());
 		employeeService.modifyEmployee(this.employee);
 
-		updatePageLanguage(true);
+		updatePageLocale(true);
 
 	}
 
-	private void updatePageLanguage(boolean forceRedirect) {
+	private void updatePageLocale(boolean forceRedirect) {
 
 		try {
 
-			Locale preferredLocale = new Locale(this.getActualLanguage());
-
 			Session session = Sessions.getCurrent();
 
-			session.setAttribute(Attributes.PREFERRED_LOCALE, preferredLocale);
+			session.setAttribute(Attributes.PREFERRED_LOCALE, this.locale);
 
 			if (forceRedirect) {
 
@@ -168,14 +145,14 @@ public class AccountViewModel {
 
 			} else {
 
-				Clients.reloadMessages(preferredLocale);
-				Locales.setThreadLocal(preferredLocale);
+				Clients.reloadMessages(this.locale);
+				Locales.setThreadLocal(this.locale);
 
 			}
 
 			if (LOG.isDebugEnabled()) {
 
-				LOG.debug("Idioma preferido {} establecido con exito.", preferredLocale);
+				LOG.debug("Idioma preferido {} establecido con exito.", this.locale);
 
 			}
 
