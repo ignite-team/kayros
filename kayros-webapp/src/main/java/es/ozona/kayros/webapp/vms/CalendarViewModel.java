@@ -103,7 +103,7 @@ public class CalendarViewModel {
 
 			for (Schedule schedule : this.schedules) {
 
-				Calendar calendar = calendarService.searchCalendarByCalendarId(schedule.getCalendarId().toUpperCase());
+				Calendar calendar = calendarService.searchCalendarByCalendarId(schedule.getCalendarId());
 
 				if (calendar != null) {
 
