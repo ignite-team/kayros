@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.function.Function;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -121,6 +122,9 @@ public class BaseSpecification<E> implements Specification<E> {
 	private Object coerceToObject(String stringValue, Class<?> clazz) {
 		Map<Class<?>, Function<String, Object>> converters = new HashMap<>();
 
+		converters.put(UUID.class, s -> s == null ? null : UUID.fromString(s));
+		converters.put(Boolean.class, s -> s == null ? null : Boolean.parseBoolean(s));
+		converters.put(Boolean.TYPE, s -> Boolean.parseBoolean(s));
 		converters.put(Boolean.class, s -> s == null ? null : Boolean.parseBoolean(s));
 		converters.put(Boolean.TYPE, s -> Boolean.parseBoolean(s));
 		converters.put(Byte.class, s -> s == null ? null : Byte.parseByte(s));
