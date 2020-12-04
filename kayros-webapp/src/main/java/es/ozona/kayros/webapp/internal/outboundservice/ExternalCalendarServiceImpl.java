@@ -103,7 +103,7 @@ public class ExternalCalendarServiceImpl implements ExternalCalendarService {
 	@Override
 	public List<ShiftPlan> searchShiftPlansByCalendarId(String id) {
 
-		final List<ShiftPlanResource> shiftPlans = calendarService.searchShiftPlans(String.format("calendarId:%s*", id), "+startDate", 1, 1000).getItems();
+		final List<ShiftPlanResource> shiftPlans = calendarService.searchShiftPlans("calendarId:" + id, "+startDate", 1, 1000).getItems();
 		return CollectionUtils.isEmpty(shiftPlans) ? new ArrayList<ShiftPlan>()
 				: shiftPlans.stream().map(s -> ShiftPlanMapper.mapFromResource(s)).collect(Collectors.toList());
 

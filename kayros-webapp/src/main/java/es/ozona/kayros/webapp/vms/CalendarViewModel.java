@@ -258,8 +258,7 @@ public class CalendarViewModel {
 
 		String json = new Gson().toJson(this.events);
 
-		Clients.evalJavaScript("initCalendar('" + FORMATER.format(new Date()) + "', '" + FORMATER.format(monthBefore.getTime()) + "', '"
-				+ FORMATER.format(monthAfter.getTime()) + "', '" + language + "', " + json + ");");
+		Clients.evalJavaScript("initCalendar('" + FORMATER.format(new Date()) + "', '" + FORMATER.format(monthBefore.getTime()) + "', '" + FORMATER.format(monthAfter.getTime()) + "', '" + language + "', " + json + ");");
 
 	}
 
