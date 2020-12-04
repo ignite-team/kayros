@@ -1,6 +1,7 @@
 package es.ozona.kairos.clock.domain.model.valueobjects;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -22,8 +23,8 @@ public class EmployeeId implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@NotEmpty
-	@Column(name = "employee_id", nullable = false)
-	private String employeeId;
+	@Column(name = "employee_id", columnDefinition = "uuid")
+	private UUID employeeId;
 
 	/**
 	 * Creates a default instance of class {@code EmployeeId}
@@ -38,11 +39,11 @@ public class EmployeeId implements Serializable {
 	 * @param employeeId
 	 */
 	public EmployeeId(String employeeId) {
-		this.employeeId = employeeId;
+		this.employeeId = employeeId != null ? UUID.fromString(employeeId) : null;
 	}	
 	
 	public String getEmployeeId() {
-		return employeeId;
+		return employeeId != null ? employeeId.toString() : null;
 	}
 
 	@Override

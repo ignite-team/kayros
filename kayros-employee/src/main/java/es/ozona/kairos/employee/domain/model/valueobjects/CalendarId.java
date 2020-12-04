@@ -1,6 +1,7 @@
 package es.ozona.kairos.employee.domain.model.valueobjects;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -16,18 +17,18 @@ public class CalendarId implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "calendar_id", columnDefinition = "uuid")
-	private String calendarId;
+	private UUID calendarId;
 
 	public CalendarId() {
 
 	}
 
 	public CalendarId(String calendarId) {
-		this.calendarId = calendarId;
+		this.calendarId = calendarId != null ? UUID.fromString(calendarId) : null;
 	}
 
 	public String getCalendarId() {
-		return calendarId;
+		return calendarId != null ? calendarId.toString() : null;
 	}
 
 	@Override
