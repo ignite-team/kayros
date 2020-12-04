@@ -1,4 +1,4 @@
-spring:  profiles:    active: @spring.profiles.active@    
+spring:  profiles:    active: @spring.profiles.active@
 --- # Profile dev
 logging:
   level:
@@ -6,17 +6,17 @@ logging:
       ozona: debug
     root: warn  pattern:
     console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%replace(%xException){'\n','\u2028'}%nopex%n"
-   
+
 server:
-  port: 8081        
-        
+  port: 8081
+
 eureka:
   instance:
     instance-id: ${spring.application.name}:${random.value}
   client:
     service-url:
-      defaultZone: http://localhost:4001/eureka  
-        
+      defaultZone: http://localhost:4001/eureka
+
 spring: 
   profiles: dev
   application:
@@ -31,7 +31,7 @@ spring:
           destination: shiftplan.management.queue
           binder: rabbit
         calendarManagementInputChannel:
-          destination: calendar.management.queue   
+          destination: calendar.management.queue
           binder: rabbit
           group: shiftplan
       binders:
@@ -48,19 +48,19 @@ spring:
     url: jdbc:h2:file:C:/Proxectos/kayros/data/calendardb;DB_CLOSE_DELAY=2;AUTO_SERVER=TRUE #DB_CLOSE_ON_EXIT=false
     username: sa
     password:
-    driverClassName: org.h2.Driver     
+    driverClassName: org.h2.Driver
   jpa:
     generate-ddl: true
     show-sql: true
-    open-in-view: true          
-    hibernate:      
-      ddl-auto: create-drop      
+    open-in-view: true
+    hibernate:
+      ddl-auto: create-drop
 
   h2:
     console:
       enabled: true
       path: /h2-console
-      
+
 --- # Profile test
 
 logging:
@@ -72,20 +72,20 @@ logging:
     console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%replace(%xException){'\n','\u2028'}%nopex%n"
    
 server:
-  port: 8081        
-        
+  port: 8081
+
 eureka:
   instance:
     instance-id: ${spring.application.name}:${random.value}
   client:
     service-url:
       defaultZone: http://eureka-one:4001/eureka  
-        
+
 spring: 
   profiles: test
   application:
     name: kairos-calendar-service
-  cloud:  
+  cloud:
     stream:
       bindings:
         calendarManagementOutputChannel:
@@ -95,7 +95,7 @@ spring:
           destination: shiftplan.management.queue
           binder: rabbit
         calendarManagementInputChannel:
-          destination: calendar.management.queue   
+          destination: calendar.management.queue
           binder: rabbit
           group: shiftplan
       binders:
@@ -108,18 +108,4 @@ spring:
                 port: 5672
                 username: guest
                 password: guest
-  datasource:
-    url: jdbc:h2:file:/workspace/data/calendardb;DB_CLOSE_DELAY=2;AUTO_SERVER=TRUE #DB_CLOSE_ON_EXIT=false
-    username: sa
-    password:
-    driverClassName: org.h2.Driver     
-  jpa:
-    generate-ddl: true
-    show-sql: true
-    open-in-view: true          
-    hibernate:      
-      ddl-auto: create-drop 
-  h2:
-    console:
-      enabled: true
-      path: /h2-console--- # Profile prodlogging:  level:    es:      ozona: debug    root: warn  pattern:    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%replace(%xException){'\n','\u2028'}%nopex%n"   server:  port: 8081                eureka:  instance:    instance-id: ${spring.application.name}:${random.value}  client:    service-url:      defaultZone: http://eureka-one:4001/eureka        spring:   profiles: prod  application:    name: kairos-calendar-service  cloud:      stream:      bindings:        calendarManagementOutputChannel:          destination: calendar.management.queue          binder: rabbit        shiftplanManagementOutputChannel:          destination: shiftplan.management.queue          binder: rabbit        calendarManagementInputChannel:          destination: calendar.management.queue             binder: rabbit          group: shiftplan      binders:        rabbit:          type: rabbit          environment:            spring:              rabbitmq:                host: rabbitmq                port: 5672                username: guest                password: guest  datasource:    url: jdbc:h2:file:/workspace/data/calendardb;DB_CLOSE_DELAY=2;AUTO_SERVER=TRUE #DB_CLOSE_ON_EXIT=false    username: sa    password:    driverClassName: org.h2.Driver       jpa:    generate-ddl: true    show-sql: true    open-in-view: true              hibernate:            ddl-auto: create-drop  h2:    console:      enabled: true      path: /h2-console
+  datasource:    url: jdbc:postgresql://192.168.85.191:5432/kayros    username: kayros-user    password: abc123.    initialization-mode: always    platform: postgres  jpa:    generate-ddl: true    hibernate:      ddl-auto: create-drop--- # Profile prodlogging:  level:    es:      ozona: debug    root: warn  pattern:    console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%replace(%xException){'\n','\u2028'}%nopex%n"   server:  port: 8081eureka:  instance:    instance-id: ${spring.application.name}:${random.value}  client:    service-url:      defaultZone: http://eureka-one:4001/eurekaspring:   profiles: prod  application:    name: kairos-calendar-service  cloud:    stream:      bindings:        calendarManagementOutputChannel:          destination: calendar.management.queue          binder: rabbit        shiftplanManagementOutputChannel:          destination: shiftplan.management.queue          binder: rabbit        calendarManagementInputChannel:          destination: calendar.management.queue          binder: rabbit          group: shiftplan      binders:        rabbit:          type: rabbit          environment:            spring:              rabbitmq:                host: rabbitmq                port: 5672                username: guest                password: guest  datasource:    url: jdbc:postgresql://192.168.85.191:5432/kayros    username: kayros-user    password: abc123.    initialization-mode: always    platform: postgres  jpa:    generate-ddl: true    hibernate:      ddl-auto: create-drop

@@ -5,7 +5,7 @@ logging:
     root: warn
   pattern:
     console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([trace=%X{X-Trace-Id:-},span=%X{X-Span-Id:-}]){yellow} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%replace(%xException){'\n','\u2028'}%nopex%n"    
-    
+
 server:
   port: 8082
 
@@ -30,12 +30,12 @@ kairos-employee-service:
 spring:
   profiles:    active: @spring.profiles.active@ 
   application:
-    name: kairos-clock-service         
+    name: kairos-clock-service
   h2:
     console:
       enabled: true
       path: /h2-console
-      
+
 --- # Profile dev
 
 eureka:
@@ -48,12 +48,12 @@ eureka:
 spring:
   profiles: dev
   application:
-    name: kairos-clock-service    
+    name: kairos-clock-service
   cloud:
     stream:
       bindings:
         timesheetManagementOutChannel:
-          destination: timesheetManagement    
+          destination: timesheetManagement
           binder: rabbit
       binders:
         rabbit:
@@ -69,30 +69,14 @@ spring:
     url: jdbc:h2:file:C:/proyectos/clockdb;DB_CLOSE_DELAY=2;AUTO_SERVER=TRUE #DB_CLOSE_ON_EXIT=false
     username: sa
     password:
-    driverClassName: org.h2.Driver     
+    driverClassName: org.h2.Driver
   jpa:
     generate-ddl: true
     show-sql: true
-    open-in-view: true          
+    open-in-view: true
     database-platform: es.ozona.kairos.clock.MyH2Dialect
-    hibernate:      
+    hibernate:
       ddl-auto: create-drop
-         
-#    properties:
-#      hibernate:
-#        hbm2ddl:
-#          auto: update   
-#      javax:
-#        persistence:      
-#          schema-generation:
-#            database:
-#              action: drop-and-create                
-#            drop-source: metadata
-#            create-source: metadata
-#            scripts:
-#              action: drop-and-create
-#              create-target: ./src/test/resources/dll/create.sql
-#              drop-target: ./src/test/resources/dll/drop.sql
 
 --- # Profile test
 
@@ -101,17 +85,17 @@ eureka:
     instance-id: ${spring.application.name}:${random.value}
   client:
     service-url:
-      defaultZone: http://eureka-one:4001/eureka  
+      defaultZone: http://eureka-one:4001/eureka
 
 spring:
   profiles: test
   application:
-    name: kairos-clock-service    
+    name: kairos-clock-service
   cloud:
     stream:
       bindings:
         timesheetManagementOutChannel:
-          destination: timesheetManagement    
+          destination: timesheetManagement
           binder: rabbit
       binders:
         rabbit:
@@ -124,16 +108,14 @@ spring:
                 username: guest
                 password: guest
   datasource:
-    url: jdbc:h2:file:/workspace/data/clockdb;DB_CLOSE_DELAY=2;AUTO_SERVER=TRUE #DB_CLOSE_ON_EXIT=false
-    username: sa
-    password:
-    driverClassName: org.h2.Driver     
+    url: jdbc:postgresql://192.168.85.191:5432/kayros
+    username: kayros-user
+    password: abc123.
+    initialization-mode: always
+    platform: postgres
   jpa:
     generate-ddl: true
-    show-sql: true
-    open-in-view: true          
-    database-platform: es.ozona.kairos.clock.MyH2Dialect
-    hibernate:      
+    hibernate:
       ddl-auto: create-drop
 
 --- # Profile prod
@@ -148,12 +130,12 @@ eureka:
 spring:
   profiles: prod
   application:
-    name: kairos-clock-service    
+    name: kairos-clock-service
   cloud:
     stream:
       bindings:
         timesheetManagementOutChannel:
-          destination: timesheetManagement    
+          destination: timesheetManagement
           binder: rabbit
       binders:
         rabbit:
@@ -166,14 +148,12 @@ spring:
                 username: guest
                 password: guest
   datasource:
-    url: jdbc:h2:file:/workspace/data/clockdb;DB_CLOSE_DELAY=2;AUTO_SERVER=TRUE #DB_CLOSE_ON_EXIT=false
-    username: sa
-    password:
-    driverClassName: org.h2.Driver     
+    url: jdbc:postgresql://192.168.85.191:5432/kayros
+    username: kayros-user
+    password: abc123.
+    initialization-mode: always
+    platform: postgres
   jpa:
     generate-ddl: true
-    show-sql: true
-    open-in-view: true          
-    database-platform: es.ozona.kairos.clock.MyH2Dialect
-    hibernate:      
+    hibernate:
       ddl-auto: create-drop
