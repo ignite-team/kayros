@@ -133,8 +133,8 @@ public class CalendarViewModel {
 
 			for (Calendar calendar : this.calendars) {
 
-				List<ShiftPlan> finalShiftPlans = calendarService.searchShiftPlansByCalendarId(calendar.getCalendarId().toUpperCase());
-				List<Holiday> finalHolidays = calendarService.searchCalendarHolidaysByCalendarId(calendar.getCalendarId().toUpperCase());
+				List<ShiftPlan> finalShiftPlans = calendarService.searchShiftPlansByCalendarId(calendar.getCalendarId());
+				List<Holiday> finalHolidays = calendarService.searchCalendarHolidaysByCalendarId(calendar.getCalendarId());
 
 				if (finalShiftPlans.size() > 0) {
 
@@ -192,7 +192,7 @@ public class CalendarViewModel {
 
 			for (ShiftPlan shiftPlan : this.shiftPlans) {
 
-				List<Workday> finalWorkdays = calendarService.searchShiftPlanWorkdaysByShitfPlanId(shiftPlan.getShiftPlanId().toUpperCase());
+				List<Workday> finalWorkdays = calendarService.searchShiftPlanWorkdaysByShitfPlanId(shiftPlan.getShiftPlanId());
 
 				if (finalWorkdays.size() > 0) {
 
