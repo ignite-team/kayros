@@ -10,7 +10,7 @@ import org.springframework.util.ObjectUtils;
 @Embeddable
 public class CalendarId {
 
-	@Column(name = "calendar_id", nullable = false, length = 500)
+	@Column(name = "calendar_id", nullable = false, columnDefinition = "uuid")
 	private UUID calendarId;
 
 	public CalendarId() {
