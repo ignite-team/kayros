@@ -19,7 +19,7 @@ import es.ozona.kairos.shareddomain.model.events.CalendarCreatedEvent;
 @SpringBootTest
 public class CalendarTest {
 	private Long id;
-	private CalendarId calendarId = new CalendarId("id-001");
+	private CalendarId calendarId = new CalendarId("2b477572-bd4a-4c28-a504-64c9486492cc");
 	private int year = 2020;
 	private Calendar calendarA = new Calendar(new CreateCalendarCommand(calendarId.getCalendarId(), year, "title", "description", false));
 	private Calendar calendarB = new Calendar(new CreateCalendarCommand(calendarId.getCalendarId(), year, "title", "description", false));

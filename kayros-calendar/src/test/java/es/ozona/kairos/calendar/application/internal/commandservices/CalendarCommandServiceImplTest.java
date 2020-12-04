@@ -36,7 +36,7 @@ public class CalendarCommandServiceImplTest {
 
 	@BeforeEach
 	private void init() {
-		calendarId = "A not empty String.";
+		calendarId = "2b477572-bd4a-4c28-a504-64c9486492cc";
 		calendar = new Calendar(new CreateCalendarCommand(calendarId, 2020, "title", "description", false));
 
 		final List<Calendar> result = new ArrayList<Calendar>();
@@ -68,8 +68,8 @@ public class CalendarCommandServiceImplTest {
 	public void givenNotPersistedId_thenAddCalendarHolidayIsCalled_thenUnexpectedQueryResultIsThrown() throws CalendarNotFoundException {
 		// Given, When & Then
 		assertThatExceptionOfType(CalendarNotFoundException.class).isThrownBy(() -> {
-			calendarCommandService.addCalendarHoliday(new AddCalendarHolidayCommand("NotPersistedID", null));
-		}).withMessageContaining("NotPersistedID");
+			calendarCommandService.addCalendarHoliday(new AddCalendarHolidayCommand("3b477572-bd4a-4c28-a504-64c9486492cc", null));
+		}).withMessageContaining("3b477572-bd4a-4c28-a504-64c9486492cc");
 	}
 
 }

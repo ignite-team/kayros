@@ -18,8 +18,8 @@ import es.ozona.kairos.calendar.domain.model.valueobjects.Workdays;
 @SpringBootTest
 public class ShiftPlanTest {
 	private static Long id;
-	private String calendarId = "id-001";
-	private String shiftPlanId = "id-001";
+	private String calendarId = "2b477572-bd4a-4c28-a504-64c9486492cc";
+	private String shiftPlanId = "2b477572-bd4a-4c28-a504-64c9486492cc";
 	private LocalDate startDate = LocalDate.now();
 	private LocalDate endDate = LocalDate.now();
 	private ShiftPlan shiftPlanA = new ShiftPlan(new CreateShiftPlanCommand(shiftPlanId, calendarId, startDate, endDate));
@@ -77,7 +77,7 @@ public class ShiftPlanTest {
 	}
 
 	@Test
-	@Disabled // TODO: dont test now
+	@Disabled
 	public void getterWorkdaysWorks() {
 		final List<Workday> list = new ArrayList<>();
 		list.add(new Workday());

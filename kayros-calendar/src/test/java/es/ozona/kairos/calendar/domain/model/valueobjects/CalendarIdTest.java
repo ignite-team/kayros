@@ -5,10 +5,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 
 public class CalendarIdTest {
-	private String calendarId = "ID-001";
+	private String calendarId = "2b477572-bd4a-4c28-a504-64c9486492cc";
 	private CalendarId calendarIdA = new CalendarId(calendarId);
 	private CalendarId calendarIdB = new CalendarId(calendarId);
-	private CalendarId calendarIdC = new CalendarId("ID-002");
+	private CalendarId calendarIdC = new CalendarId("3b477572-bd4a-4c28-a504-64c9486492cc");
 
 	@Test
 	public void hashcodeWorksOnEmptyAggregates() {
