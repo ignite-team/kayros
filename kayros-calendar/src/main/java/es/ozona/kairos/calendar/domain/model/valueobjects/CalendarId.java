@@ -1,5 +1,7 @@
 package es.ozona.kairos.calendar.domain.model.valueobjects;
 
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -9,7 +11,7 @@ import org.springframework.util.ObjectUtils;
 public class CalendarId {
 
 	@Column(name = "calendar_id", nullable = false, length = 500)
-	private String calendarId;
+	private UUID calendarId;
 
 	public CalendarId() {
 
@@ -17,11 +19,11 @@ public class CalendarId {
 
 	public CalendarId(String calendarId) {
 		super();
-		this.calendarId = calendarId;
+		this.calendarId = calendarId != null ? UUID.fromString(calendarId) : null;
 	}
 
 	public String getCalendarId() {
-		return calendarId;
+		return calendarId != null ? calendarId.toString() : null;
 	}
 
 	@Override
