@@ -40,7 +40,7 @@ security:
     client:
       client-id: kayrosclientid
       client-secret: secret
-      registered-redirect-uri: https://92.168.0.18:8443/kayros/login/oauth2/code/kayrosclient
+      registered-redirect-uri: https://localhost:8443/kayros/login/oauth2/code/kayrosclient
 
 --- # insecure
 
@@ -94,7 +94,7 @@ security:
     client:
       client-id: kayrosclientid
       client-secret: secret
-      registered-redirect-uri: https://192.168.0.22:8443/kayros/login/oauth2/code/kayrosclient
+      registered-redirect-uri: https://192.168.0.18:8443/kayros/login/oauth2/code/kayrosclient
           
 --- # prod
 server:
