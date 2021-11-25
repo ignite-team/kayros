@@ -6,9 +6,9 @@ spring:
 
 spring:
   profiles: dev
-server:
-  
+server:  
   port: 4001
+  
 eureka:
   instance:
     hostname: eureka-one
@@ -20,9 +20,9 @@ eureka:
 
 spring:
   profiles: eureka-one
-server:
-  
+server:  
   port: 4001
+  
 eureka:
   instance:
     hostname: eureka-one
@@ -30,7 +30,7 @@ eureka:
     fetch-registry: true
     register-with-eureka: false    
     serviceUrl:
-      defaultZone: http://eureka-two:4002/eureka,http://eureka-three:4003/eureka
+      defaultZone: http://eureka-two:4002/eureka
  
 --- # profile eurekatwo
 
@@ -45,7 +45,7 @@ eureka:
     fetch-registry: true
     register-with-eureka: false    
     serviceUrl:
-      defaultZone: http://eureka-one:4001/eureka,http://eureka-three:4003/eureka
+      defaultZone: http://eureka-one:4001/eureka
     
 --- # profile eurekathree
 
