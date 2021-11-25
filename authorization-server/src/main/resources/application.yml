@@ -63,7 +63,7 @@ security:
       client-id: kayrosclientid
       client-secret: secret
       #registered-redirect-uri: http://192.168.0.22:8080/kayros/login/oauth2/code/kayrosclient
-      registered-redirect-uri: http://91.116.176.141:18443/kayros/login/oauth2/code/kayrosclient      
+      registered-redirect-uri: https://91.116.176.141:18443/kayros/login/oauth2/code/kayrosclient      
 
 --- # test
 server:
