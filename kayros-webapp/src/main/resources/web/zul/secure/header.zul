@@ -3,7 +3,6 @@
 		<hbox pack="center" align="center">
 			<button label="@load(vm.status eq 'false' ? labels.header.enter : labels.header.leave)" onClick="@command('clock')" width="125px"
 				class="horizontalMargin50" id="clockin" disabled="@load(vm.timeout eq 0 ? 'false' : 'true')" />
-			<timer id="timer" running="@load(vm.timeout eq 0 ? 'false' : 'true')" delay="@load(vm.timeout)" onTimer="@command('resetTimeout')" />
 			<vbox align="start" class="horizontalMargin50">
 				<label value="@load(vm.employee.email)" class="username-label" />
 				<label value="@load(vm.employee.workplace)" class="workplace-label" />

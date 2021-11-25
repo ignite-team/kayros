@@ -22,4 +22,8 @@
 			</grid>
 		</vbox>
 	</window>
+	<script type="text/javascript">
+		zk.afterLoad(function() { var origEvalJSON = jq.evalJSON; var maxDialogs = 3; jq.evalJSON = function(jsonResponse) { try { return origEvalJSON.apply(this, arguments); }
+		catch (e) { $(location).attr('href','/logout'); } }; });
+	</script>	
 </zk>

@@ -10,6 +10,10 @@
 <zk>
 	<include id="headerInclude" src="~./zul/secure/header.zul" onClientInfo="onClientInfo(event)"/>
 	<include src="~./zul/secure/content.zul" />
+	<script type="text/javascript">
+		zk.afterLoad(function() { var origEvalJSON = jq.evalJSON; var maxDialogs = 3; jq.evalJSON = function(jsonResponse) { try { return origEvalJSON.apply(this, arguments); }
+		catch (e) { $(location).attr('href','/logout'); } }; });
+	</script>
 	<zscript>
 		void onClientInfo(Event evt) {
 			ClientInfoEvent event = (ClientInfoEvent) evt;

@@ -40,7 +40,7 @@ userPassword: 12345
 mail: jeijo@xilco.gal
 mobile: 616300294
 physicalDeliveryOfficeName: San Marcos
-employeeNumber: 1001
+employeeNumber: 1002
 
 dn: uid=xose.eijo,ou=users,dc=xilco,dc=gal
 objectclass: top
@@ -54,7 +54,7 @@ userPassword: 12345
 mail: xose.eijo@ozona.es
 mobile: 123456789
 physicalDeliveryOfficeName: San Marcos
-employeeNumber: 1002
+employeeNumber: 1003
 
 dn: uid=anadelia.sardella,ou=users,dc=xilco,dc=gal
 objectclass: top
@@ -68,7 +68,7 @@ userPassword: 12345
 mail: anadelia.sardella@ozona.es
 mobile: 123456789
 physicalDeliveryOfficeName: San Marcos
-employeeNumber: 1003
+employeeNumber: 1004
 
 dn: uid=daniel.picos,ou=users,dc=xilco,dc=gal
 objectclass: top
@@ -82,7 +82,7 @@ userPassword: 12345
 mail: daniel.picos@ozona.es
 mobile: 123456789
 physicalDeliveryOfficeName: San Marcos
-employeeNumber: 1004
+employeeNumber: 1005
 
 dn: uid=jose.pita,ou=users,dc=xilco,dc=gal
 objectclass: top
@@ -96,7 +96,7 @@ userPassword: 12345
 mail: jose.pita@ozona.es
 mobile: 123456789
 physicalDeliveryOfficeName: San Marcos
-employeeNumber: 1005
+employeeNumber: 1006
 
 dn: cn=kayros_admin,ou=groups,dc=xilco,dc=gal
 objectclass: top
