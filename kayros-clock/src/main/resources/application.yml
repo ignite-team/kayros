@@ -111,12 +111,12 @@ spring:
     url: jdbc:postgresql://postgres:5432/kayros
     username: kayros_clock_app
     password: kayros_clock_app
-    initialization-mode: never
+    initialization-mode: always
     platform: postgres
   jpa:
     generate-ddl: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
 
 --- # Profile prod
 
