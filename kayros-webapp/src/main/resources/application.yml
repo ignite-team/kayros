@@ -183,9 +183,9 @@ spring:
             provider: kayros-authserver-provider
         provider:
             kayros-authserver-provider:
-              token-uri: https://authorization-server:9443/auth/oauth/token
-              authorization-uri: https://authorization-server:9443/auth/oauth/authorize
-              user-info-uri: https://authorization-server:9443/auth/userinfo
+              token-uri: https://192.168.0.19:9443/auth/oauth/token
+              authorization-uri: https://192.168.0.19:9443/auth/oauth/authorize
+              user-info-uri: https://192.168.0.19:9443/auth/userinfo
               user-name-attribute: username  
               
 --- # Profile prod              
