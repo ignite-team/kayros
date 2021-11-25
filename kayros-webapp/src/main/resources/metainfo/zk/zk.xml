@@ -10,7 +10,7 @@
 		<location>~./zul/errorHandler.zul</location>
 	</error-page>
 	<session-config>
-		<session-timeout>600</session-timeout>
+		<session-timeout>30</session-timeout>
 		<automatic-timeout>true</automatic-timeout>
 		<device-type>ajax</device-type>
 		<timeout-uri>/logout</timeout-uri>
