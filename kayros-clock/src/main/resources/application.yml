@@ -111,7 +111,7 @@ spring:
     url: jdbc:postgresql://postgres:5432/kayros
     username: kayros_clock_app
     password: kayros_clock_app
-    initialization-mode: always
+    initialization-mode: never
     platform: postgres
   jpa:
     generate-ddl: true

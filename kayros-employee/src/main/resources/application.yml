@@ -124,7 +124,7 @@ spring:
     url: jdbc:postgresql://postgres:5432/kayros
     username: kayros_employee_app
     password: kayros_employee_app
-    initialization-mode: always
+    initialization-mode: never
     platform: postgres
   jpa:
     generate-ddl: true
