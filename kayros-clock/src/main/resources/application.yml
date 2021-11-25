@@ -108,9 +108,9 @@ spring:
                 username: guest
                 password: guest
   datasource:
-    url: jdbc:postgresql://192.168.85.191:5432/kayros
-    username: kayros-user
-    password: abc123.
+    url: jdbc:postgresql://postgres:5432/kayros
+    username: kayros_clock_app
+    password: kayros_clock_app
     initialization-mode: always
     platform: postgres
   jpa:
