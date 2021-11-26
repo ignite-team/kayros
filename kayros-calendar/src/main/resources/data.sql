@@ -1,6 +1,6 @@
-delete from shiftplan_workdays;
-delete from shiftplans;
-delete from calendars;
+TRUNCATE TABLE shiftplan_workdays RESTART IDENTITY cascade;
+TRUNCATE TABLE shiftplans RESTART IDENTITY cascade;
+TRUNCATE TABLE calendars RESTART IDENTITY cascade;
 
 insert into calendars (calendar_id,description, marked_as_default, title, year) values('2b477572bd4a4c28a50464c9486492cc', 'Calendario general para el año 2021', true, 'Calendario laboral 2021', 2021 );
 
