@@ -1,3 +1,7 @@
+delete from shiftplan_workdays;
+delete from shiftplans;
+delete from calendars;
+
 insert into calendars (calendar_id,description, marked_as_default, title, year) values('2b477572bd4a4c28a50464c9486492cc', 'Calendario general para el año 2021', true, 'Calendario laboral 2021', 2021 );
 
 insert into shiftplans (calendar_id, efective_end_date, end_date, start_date, shiftplan_id) values ('2b477572bd4a4c28a50464c9486492cc', '2021-06-30', '2021-06-30', '2021-01-01', '2b477572bd4a4c28a50464c948649211');
