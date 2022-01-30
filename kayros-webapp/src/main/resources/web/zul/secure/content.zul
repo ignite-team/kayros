@@ -3,6 +3,7 @@
 		<tabs>
 			<tab selected="true">${labels.content.tab.registry}</tab>
 			<tab>${labels.content.tab.export}</tab>
+			<tab>${labels.content.tab.export}</tab>
 			<tab onSelect='Clients.evalJavaScript("renderCalendar()")'>${labels.content.tab.calendar}</tab>
 		</tabs>
 		<tabpanels>
@@ -126,6 +127,104 @@
 				<div align="center" style="padding: 15px" width="100%" height="100%">
 					<n:div id="calendarContainer"></n:div>
 				</div>
+			</tabpanel>
+
+			<tabpanel viewModel="@id('vm') @init('es.ozona.kayros.webapp.vms.EditorViewModel')">
+				<listbox id="list" model="@load(vm.entities) @template((vm.displayEdit and each.editingStatus) ? 'editable' : 'noneditable')" multiple="true"
+				checkmark="true" mold="paging" pageSize="10" hflex="1" vflex="1">
+				<listhead>
+					<listheader label="${c:l('crud.actions')}" width="175px" valign="center" />
+					<listheader label="${c:l('workingTimePeriod.startTime')}" sort="auto(item.startTime)" width="225px"/>
+					<listheader label="${c:l('workingTimePeriod.generatedStartTime')}" sort="auto(item.generatedStartTime)" width="150px"/>
+					<listheader label="${c:l('workingTimePeriod.editedStartTime')}" sort="auto(item.editedStartTime)" width="150px"/>
+					<listheader label="${c:l('workingTimePeriod.finishTime')}" sort="auto(item.finishTime)" width="225px"/>
+					<listheader label="${c:l('workingTimePeriod.generatedFinishTime')}" sort="auto(item.generatedFinishTime)"  width="150px"/>
+					<listheader label="${c:l('workingTimePeriod.editedFinishTime')}" sort="auto(item.editedFinishTime)" width="150px"/>
+					<listheader label="${c:l('workingTimePeriod.telecommuting')}" sort="auto(item.telecommuting)"  width="150px"/>
+					<listheader label="${c:l('workingTimePeriod.worksplace')}" sort="auto(item.workplace)" width="225px"/>
+				</listhead>
+				<auxhead>
+					<auxheader>
+						<div sclass="z-icon-search" style="font-size: 1.6em;cursor: pointer" onClick="@command('search')" />
+						<space width="10px" />
+						<div sclass="z-icon-plus" style="font-size: 1.6em;cursor: pointer" onClick="@command('create')" />
+						<div sclass="z-icon-trash-o" style="font-size: 1.5em;cursor: pointer" onClick="@command('delete',items=list.selectedItems)" />
+						<space width="10px" />
+						<div sclass="z-icon-eraser" style="font-size: 1.5em;cursor: pointer" onClick="@command('clear')" />
+					</auxheader>
+					<auxheader/>
+					<auxheader/>
+					<auxheader/>
+					<auxheader/>
+					<auxheader/>
+					<auxheader/>
+					<auxheader/>
+					<auxheader/>
+				</auxhead>
+				<template name="editable" var="entity">
+					<listitem>
+						<listcell>
+							<button iconSclass="z-icon-check" onClick="@command('confirm', entity=entity)" />
+							<button iconSclass="z-icon-remove" onClick="@command('cancel', entity=entity)" />
+						</listcell>
+						<listcell>
+							<datebox value="@load(entity.item.startTime) @save(entity.item.startTime, before={'confirm'})" format="dd/MM/yyyy HH:mm" hflex="1"/>
+						</listcell>
+						<listcell>
+							<label value="@load(entity.item.generatedStartTime) @save(entity.item.generatedStartTime, before={'confirm'})" hflex="1"/>
+						</listcell>
+						<listcell>
+							<label value="@load(entity.item.editedStartTime) @save(entity.item.editedStartTime, before={'confirm'})" hflex="1"/>
+						</listcell>
+						<listcell>
+							<datebox value="@load(entity.item.finishTime) @save(entity.item.finishTime, before={'confirm'})" format="dd/MM/yyyy HH:mm" hflex="1"/>
+						</listcell>
+						<listcell>
+							<label value="@load(entity.item.generatedFinishTime) @save(entity.item.generatedFinishTime, before={'confirm'})" hflex="1"/>
+						</listcell>
+						<listcell>
+							<label value="@load(entity.item.editedFinishTime) @save(entity.item.editedFinishTime, before={'confirm'})" hflex="1"/>
+						</listcell>
+						<listcell>
+							<checkbox value="@load(entity.item.telecommuting) @save(entity.item.telecommunting, before={'confirm'})" hflex="1"/>
+						</listcell>																		
+						<listcell>
+							<textbox value="@load(entity.item.workplace) @save(entity.item.workplace, before={'confirm'})" hflex="1"/>
+						</listcell>						
+					</listitem>
+				</template>
+				<template name="noneditable" var="entity">
+					<listitem>
+						<listcell>
+							<button iconSclass="z-icon-edit" onClick="@command('changeEditableStatus', entity=entity)" hflex="1"/>
+						</listcell>
+						<listcell>
+							<label value="@load(entity.item.startTime) @converter('formatedDate', format='dd/MM/yyyy HH:mm:ss')" hflex="1"/> 
+						</listcell>
+						<listcell>
+							<label value="@load(entity.item.generatedStartTime)" hflex="1"/>
+						</listcell>
+						<listcell>
+							<label value="@load(entity.item.editedStartTime)" hflex="1"/>
+						</listcell>
+						<listcell>
+							<label value="@load(entity.item.finishTime) @converter('formatedDate', format='dd/MM/yyyy HH:mm:ss')" hflex="1"/>
+						</listcell>
+						<listcell>
+							<label value="@load(entity.item.generatedFinishTime)" hflex="1"/>
+						</listcell>
+						<listcell>
+							<label value="@load(entity.item.editedFinishTime)" hflex="1"/>
+						</listcell>
+						<listcell>
+							<label value="@load(entity.item.telecommuting)" hflex="1"/>
+						</listcell>
+						<listcell>
+							<label value="@load(entity.item.workplace)" hflex="1"/>
+						</listcell>
+					</listitem>
+				</template>
+			</listbox>
 			</tabpanel>
 		</tabpanels>
 	</tabbox>

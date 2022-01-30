@@ -1,5 +1,6 @@
 package es.ozona.kayros.webapp.internal.outboundservice;
 
+import java.util.Date;
 import java.util.List;
 
 import es.ozona.kayros.webapp.domain.model.Employee;
@@ -16,5 +17,7 @@ public interface ExternalTimesheetService {
 	List<Timesheet> searchTimesheetsByEmployeeIdBetweenDates(String startDate, String endDate, String employeeId);
 
 	Timesheet searchCurrentTimesheetByEmployeeId(String employeeId);
+
+	Timesheet searchTimesheetByEmployeeIdAndDate(Date date, String employeeId);
 
 }

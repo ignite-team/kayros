@@ -1,8 +1,10 @@
 package es.ozona.kayros.webapp.internal.outboundservice;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,15 +59,25 @@ public class ExternalTimesheetServiceImpl implements ExternalTimesheetService {
 		return CollectionUtils.isEmpty(timesheets) ? null : timesheets.stream().map(t -> TimesheetMapper.mapFromResource(t)).collect(Collectors.toList());
 
 	}
-
+	
 	@Override
-	public Timesheet searchCurrentTimesheetByEmployeeId(String employeeId) {
-		final String date = LocalDate.now().format(DateTimeFormatter.ofPattern(SERVICE_DATE_FORMAT));
-
-		final List<TimesheetResource> timesheets = timesheetService.search(String.format("( employeeId:%s and date:%s )", employeeId, date), DATE_QUERY_PARAM, 1, 1000)
+	public Timesheet searchTimesheetByEmployeeIdAndDate(Date date, String employeeId) {
+		final String localDate = date.toInstant()
+			      .atZone(ZoneId.systemDefault())
+			      .toLocalDate()
+			      .format(DateTimeFormatter.ofPattern(SERVICE_DATE_FORMAT));
+		
+		final List<TimesheetResource> timesheets = timesheetService.search(String.format("( employeeId:%s and date:%s )", employeeId, localDate), DATE_QUERY_PARAM, 1, 1000)
 				.getItems();
 
 		return CollectionUtils.isEmpty(timesheets) ? null : TimesheetMapper.mapFromResource(CollectionUtils.lastElement(timesheets));
+
+	}	
+
+	@Override
+	public Timesheet searchCurrentTimesheetByEmployeeId(String employeeId) {
+
+		return this.searchTimesheetByEmployeeIdAndDate(new Date(), employeeId);
 
 	}
 
