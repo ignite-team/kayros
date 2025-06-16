@@ -28,7 +28,8 @@ kairos-employee-service:
    MaxAutoRetries: 2
 
 spring:
-  profiles:    active: @spring.profiles.active@ 
+  profiles:
+    active: @spring.profiles.active@ 
   application:
     name: kairos-clock-service         
   h2:
@@ -166,14 +167,15 @@ spring:
                 username: guest
                 password: guest
   datasource:
-    url: jdbc:h2:file:/workspace/data/clockdb;DB_CLOSE_DELAY=2;AUTO_SERVER=TRUE #DB_CLOSE_ON_EXIT=false
-    username: sa
-    password:
-    driverClassName: org.h2.Driver     
+    url: jdbc:postgresql://db:5432/kayros
+    username: kayros
+    password: 12345
+    driverClassName: org.postgresql.Driver
+    #driverClassName: postgresql.Driver
   jpa:
     generate-ddl: true
     show-sql: true
     open-in-view: true          
-    database-platform: es.ozona.kairos.clock.MyH2Dialect
+    #database-platform: es.ozona.kairos.clock.MyH2Dialect
     hibernate:      
       ddl-auto: create-drop
